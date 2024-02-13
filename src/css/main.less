@@ -1,0 +1,49 @@
+
+content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	.board {
+		.player {
+			position: absolute;
+			top: 160px;
+			left: 160px;
+			width: 100px;
+			height: 100px;
+			background: #b0b;
+			border: 2px solid #000;
+			border-radius: 2px;
+			box-shadow: 5px 5px 0 rgba(#000,.2);
+
+			&:before,
+			&:after {
+				content: "";
+				position: absolute;
+				top: 37px;
+				left: 17px;
+				width: 17px;
+				height: 17px;
+				border-radius: 17px;
+				background: rgba(#000,.75);
+				animation: wink 5s ease-in-out infinite;
+			}
+
+			&:after {
+				left: 59px;
+			}
+		}
+	}
+}
+
+
+@keyframes wink {
+	0%   { height: 17px; border-radius: 17px; margin-top: 0; }
+	49%  { height: 17px; border-radius: 17px; margin-top: 0; }
+	49.1%  { height: 7px; border-radius: 7px; margin-top: 10px; }
+	50%  { height: 7px; border-radius: 7px; margin-top: 10px; }
+	50.1% { height: 17px; border-radius: 17px; margin-top: 0; }
+	100% { height: 17px; border-radius: 17px; margin-top: 0; }
+}
