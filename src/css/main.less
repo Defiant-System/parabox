@@ -7,24 +7,40 @@ content {
 	bottom: 0;
 
 	.board {
+		position: absolute;
+		top: 17px;
+		left: 17px;
+		right: 17px;
+		bottom: 17px;
+		background: rgba(#000,.1);
+		box-shadow: inset 0 0 0 3px rgba(#000,.1);
+		border-radius: 6px;
 		--y: 1;
 		--x: 1;
 		--c: 97px;
+		--color: #777;
 
 		> div {
 			position: absolute;
-			top: calc( var( --y ) * var( --c ) );
-			left: calc( var( --x ) * var( --c ) );
+			top: calc( calc( var( --y ) * calc( var( --c ) + 2px ) ) + 5px );
+			left: calc( calc( var( --x ) * calc( var( --c ) + 2px ) ) + 5px );
 		}
 
-		.player {
+		.box {
 			width: 97px;
 			height: 103px;
-			background: #1881cc;
+			background: var( --color );
 			box-shadow: inset 0px -10px 0px 0px rgba(#000,.175),
+						inset 0 0 1px rgba(#fff,.5),
 						0 0 9px rgba(#000,.35);
 			border-radius: 9px;
 			border: 2px solid rgba(#000,.65);
+
+			&.blue   { --color: #17b; }
+			&.yellow { --color: #c70; }
+			&.brown  { --color: #b60; }
+			&.red    { --color: #933; }
+			&.green  { --color: #171; }
 
 			&:before {
 				content: "";
@@ -49,6 +65,10 @@ content {
 				mix-blend-mode: soft-light;
 				pointer-events: none;
 			}
+		}
+
+		.player {
+			--color: #9d02bd;
 
 			i {
 				position: absolute;
@@ -79,7 +99,7 @@ content {
 			}
 		}
 
-		.storage {
+		.spot {
 			width: 97px;
 			height: 103px;
 			border-radius: 11px;
