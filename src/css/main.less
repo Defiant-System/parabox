@@ -7,37 +7,161 @@ content {
 	bottom: 0;
 
 	.board {
-		.player {
+		--y: 1;
+		--x: 1;
+		--c: 97px;
+
+		> div {
 			position: absolute;
-			top: 160px;
-			left: 160px;
-			width: 100px;
-			height: 100px;
-			background: #b0b;
-			border: 2px solid #000;
-			border-radius: 2px;
-			box-shadow: 5px 5px 0 rgba(#000,.2);
+			top: calc( var( --y ) * var( --c ) );
+			left: calc( var( --x ) * var( --c ) );
+		}
+
+		.player {
+			width: 97px;
+			height: 103px;
+			background: #1881cc;
+			box-shadow: inset 0px -10px 0px 0px rgba(#000,.175),
+						0 0 9px rgba(#000,.35);
+			border-radius: 9px;
+			border: 2px solid rgba(#000,.65);
+
+			&:before {
+				content: "";
+				background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.25), transparent);
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 10px;
+				border-radius: inherit;
+				pointer-events: none;
+			}
+
+			&:after {
+				content: "";
+				background-image: linear-gradient(90deg, transparent, rgba(#fff,.5), transparent);
+				position: absolute;
+				left: 9px;
+				right: 9px;
+				bottom: 10px;
+				height: 1px;
+				mix-blend-mode: soft-light;
+				pointer-events: none;
+			}
+
+			i {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				pointer-events: none;
+
+				&:before,
+				&:after {
+					content: "";
+					position: absolute;
+					top: 37px;
+					left: 17px;
+					width: 17px;
+					height: 17px;
+					border-radius: 17px;
+					background: rgba(#000,.6);
+					animation: wink 6s ease-in-out infinite,
+								vert 19s ease-in-out infinite,
+								hori 17s ease-in-out infinite;
+				}
+
+				&:after {
+					left: 59px;
+				}
+			}
+		}
+
+		.storage {
+			width: 97px;
+			height: 103px;
+			border-radius: 11px;
+			border: 5px solid rgba(#000,.35);
+			mix-blend-mode: soft-light;
 
 			&:before,
 			&:after {
 				content: "";
+				background-image: linear-gradient(90deg, transparent, rgba(#fff,.35), transparent);
 				position: absolute;
-				top: 37px;
-				left: 17px;
-				width: 17px;
-				height: 17px;
-				border-radius: 17px;
-				background: rgba(#000,.6);
-				animation: wink 6s ease-in-out infinite;
+				left: 7px;
+				right: 7px;
+				top: 0;
+				height: 1px;
 			}
 
 			&:after {
-				left: 59px;
+				top: auto;
+				left: 0;
+				right: 0;
+				bottom: -6px;
+			}
+
+			&.eyes i {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				pointer-events: none;
+
+				&:before,
+				&:after {
+					content: "";
+					position: absolute;
+					top: 29px;
+					left: 13px;
+					width: 17px;
+					height: 17px;
+					border-radius: 17px;
+					background: rgba(#000,.4);
+					box-shadow: 0 1px 0 rgba(#fff,.25);
+				}
+
+				&:after {
+					left: auto;
+					right: 13px;
+				}
 			}
 		}
 	}
 }
 
+
+@keyframes vert {
+	0%    { margin-left: 0; }
+	15%   { margin-left: 0; }
+	16%   { margin-left: -3px; }
+	30%   { margin-left: -3px; }
+	31%   { margin-left: 7px; }
+	50%   { margin-left: 7px; }
+	51%   { margin-left: 0px; }
+	78%   { margin-left: 0px; }
+	79%   { margin-left: 5px; }
+	80%   { margin-left: 5px; }
+	100%  { margin-left: 0; }
+}
+
+@keyframes hori {
+	0%    { transform: translateY(5px); }
+	15%   { transform: translateY(5px); }
+	16%   { transform: translateY(-3px); }
+	30%   { transform: translateY(-3px); }
+	31%   { transform: translateY(0px); }
+	50%   { transform: translateY(0px); }
+	51%   { transform: translateY(0px); }
+	78%   { transform: translateY(0px); }
+	79%   { transform: translateY(7px); }
+	80%   { transform: translateY(7px); }
+	100%  { transform: translateY(5px); }
+}
 
 @keyframes wink {
 	0%   { height: 17px; border-radius: 17px; margin-top: 0; }
