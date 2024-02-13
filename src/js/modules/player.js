@@ -19,5 +19,8 @@ let Player = {
 		this.pos.limit(this.max);
 
 		this.el.css(this.pos.serialize());
+	},
+	jump() {
+		this.el.cssSequence("jump", "animationend", el => el.removeClass("jump"));
 	}
 };

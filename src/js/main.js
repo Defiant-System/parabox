@@ -27,6 +27,7 @@ const parabox = {
 					case "left":  Player.move(1); break;
 					case "down":  Player.move(2); break;
 					case "right": Player.move(3); break;
+					case "space": Player.jump(); break;
 				}
 				break;
 			// custom events
