@@ -13,6 +13,7 @@ content {
 		right: 17px;
 		bottom: 17px;
 		background: rgba(#000,.1);
+		// background-image: radial-gradient(ellipse at center, rgba(#fff,.01), transparent 85%);
 		box-shadow: inset 0 0 0 3px rgba(#000,.1);
 		border-radius: 6px;
 		--mX: 4;
@@ -71,8 +72,13 @@ content {
 		}
 
 		.player {
-			z-index: calc( var( --y ) + 1 );
 			--color: #9d02bd;
+			z-index: calc( var( --y ) + 1 );
+			transition: all 180ms ease-in-out;
+
+			&.jump {
+				animation: jump 2s ease-in-out infinite;
+			}
 
 			i {
 				position: absolute;
@@ -86,19 +92,25 @@ content {
 				&:after {
 					content: "";
 					position: absolute;
-					top: 37px;
-					left: 17px;
+					top: 33px;
 					width: 17px;
 					height: 17px;
 					border-radius: 17px;
 					background: rgba(#000,.6);
+				}
+
+				&:before {
+					left: 17px;
 					animation: wink 6s ease-in-out infinite,
-								vert 19s ease-in-out infinite,
+								vert-left 19s ease-in-out infinite,
 								hori 17s ease-in-out infinite;
 				}
 
 				&:after {
-					left: 59px;
+					right: 17px;
+					animation: wink 6s ease-in-out infinite,
+								vert-right 19s ease-in-out infinite,
+								hori 17s ease-in-out infinite;
 				}
 			}
 		}
@@ -160,8 +172,16 @@ content {
 	}
 }
 
+@keyframes jump {
+	0%   { transform: translateY(0) translateX(0); height: 103px; width: 97px; }
+	15%  { transform: translateY(13px) translateX(-10px); height: 90px; width: 107px; }
+	35%  { transform: translateY(-43px) translateX(5px); height: 103px; width: 87px; }
+	50%  { transform: translateY(0) translateX(0); height: 103px; width: 97px; }
+	100% { transform: translateY(0) translateX(0); height: 103px; width: 97px; }
+}
 
-@keyframes vert {
+
+@keyframes vert-left {
 	0%    { margin-left: 0; }
 	15%   { margin-left: 0; }
 	16%   { margin-left: -3px; }
@@ -173,6 +193,20 @@ content {
 	79%   { margin-left: 5px; }
 	80%   { margin-left: 5px; }
 	100%  { margin-left: 0; }
+}
+
+@keyframes vert-right {
+	0%    { margin-right: 0; }
+	15%   { margin-right: 0; }
+	16%   { margin-right: 3px; }
+	30%   { margin-right: 3px; }
+	31%   { margin-right: -7px; }
+	50%   { margin-right: -7px; }
+	51%   { margin-right: 0px; }
+	78%   { margin-right: 0px; }
+	79%   { margin-right: -5px; }
+	80%   { margin-right: -5px; }
+	100%  { margin-right: 0; }
 }
 
 @keyframes hori {
