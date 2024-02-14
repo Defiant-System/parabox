@@ -2,6 +2,8 @@
 let Player = {
 	init() {
 		this.el = window.find(".box.player");
+		if (!this.length) return;
+		
 		// player position
 		let x = +this.el.cssProp("--x"),
 			y = +this.el.cssProp("--y");
