@@ -7,6 +7,10 @@ content {
 	bottom: 0;
 	// background: rgba(#000,.15);
 
+	.hidden {
+		display: none;
+	}
+
 	.board {
 		position: absolute;
 		top: 35px;
@@ -18,6 +22,7 @@ content {
 		--mY: 4;
 		--y: 1;
 		--x: 1;
+		--bR: 9px;
 		--c: 79px;
 
 		&.box {
@@ -27,13 +32,8 @@ content {
 						0 0 9px rgba(#000,.35);
 		}
 
-		&:before {
-			opacity: .25;
-		}
-
-		&:after {
-			opacity: .35;
-		}
+		&:before { opacity: .25; }
+		&:after { opacity: .35; }
 
 		> div {
 			position: absolute;
@@ -182,6 +182,48 @@ content {
 				left: auto;
 				right: 13px;
 			}
+		}
+	}
+
+	.wall {
+		position: absolute;
+		top: calc( calc( var( --y ) * calc( var( --c ) ) - 2px ) - 12px );
+		left: calc( var( --x ) * calc( var( --c ) ) - 2px );
+		width: var( --c );
+		height: var( --c );
+		background: #f90;
+		opacity: .65;
+		border: 1px solid rgba(#000,.95);
+
+		&.top-left {
+			border-width: 1px 0 0 1px;
+			border-radius: var( --bR ) 0 0 0;
+		}
+
+		&.top-right {
+			border-width: 1px 1px 0 0;
+			border-radius: 0 var( --bR ) 0 0;
+		}
+
+		&.bottom-middle {
+			height: calc( var( --c ) + 6px );
+			border-width: 0 0 1px 0;
+			border-radius: 0;
+			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+		}
+
+		&.bottom-left {
+			height: calc( var( --c ) + 6px );
+			border-width: 0 0 1px 1px;
+			border-radius: 0 0 0 var( --bR );
+			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+		}
+
+		&.bottom-right {
+			height: calc( var( --c ) + 6px );
+			border-width: 0 1px 1px 0;
+			border-radius: 0 0 var( --bR ) 0;
+			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 		}
 	}
 }
