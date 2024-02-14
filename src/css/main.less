@@ -7,10 +7,6 @@ content {
 	bottom: 0;
 	// background: rgba(#000,.15);
 
-	.hidden {
-		display: none;
-	}
-
 	.board {
 		position: absolute;
 		top: 35px;
@@ -30,15 +26,29 @@ content {
 			height: calc( calc( var( --c ) * var( --h ) ) + 6px );
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175),
 						0 0 9px rgba(#000,.35);
-		}
 
-		&:before { opacity: .25; }
-		&:after { opacity: .35; }
+			&:before {
+				opacity: .25;
+				top: 9px;
+				border-top: 1px solid rgba(#000,.75);
+				box-shadow: 0px -9px 0px 0px rgba(#000,.25);
+			}
+
+			&:after {
+				opacity: .35;
+			}
+		}
 
 		> div {
 			position: absolute;
 			top: calc( calc( var( --y ) * calc( var( --c ) + 2px ) ) + 5px );
 			left: calc( calc( var( --x ) * calc( var( --c ) + 2px ) ) + 5px );
+
+			&.player,
+			&.box,
+			&.spot {
+				display: none;
+			}
 		}
 	}
 
@@ -193,42 +203,150 @@ content {
 		height: var( --c );
 		background: #f90;
 		opacity: .65;
-		border: 1px solid rgba(#000,.95);
+		border: 2px solid rgba(#000,.95);
 
-		&.top-left {
-			border-width: 1px 0 0 1px;
+		&:after {
+			content: "";
+			position: absolute;
+			top: 9px;
+			left: 0;
+			right: 0;
+			bottom: 9px;
+			border-radius: inherit;
+			mix-blend-mode: soft-light;
+			pointer-events: none;
+		}
+		
+		// north east
+		&.NE {
+			border-width: 2px 0 0 2px;
 			border-radius: var( --bR ) 0 0 0;
+
+			&:after {
+				border-top: 1px solid rgba(#000,.35);
+				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+			}
 		}
 
-		&.top-middle {
-			border-width: 1px 0 0 0;
+		// north
+		&.N {
+			border-width: 2px 0 0 0;
 			border-radius: 0;
 		}
 
-		&.top-right {
-			border-width: 1px 1px 0 0;
+		// north west
+		&.NW {
+			border-width: 2px 2px 0 0;
 			border-radius: 0 var( --bR ) 0 0;
+
+			&:after {
+				border-top: 1px solid rgba(#000,.35);
+				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+			}
 		}
 
-		&.bottom-middle {
+		// north south east
+		&.NSE {
 			height: calc( var( --c ) + 6px );
-			border-width: 0 0 1px 0;
+			border-width: 2px 0 2px 2px;
+			border-radius: var( --bR ) 0 0 var( --bR );
+			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+
+			&:after { border-bottom: 1px solid #fff; }
+		}
+
+		// north south
+		&.NS {
+			height: calc( var( --c ) + 6px );
+			border-width: 2px 0 2px 0;
 			border-radius: 0;
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+
+			&:after {
+				border-top: 1px solid rgba(#000,.35);
+				border-bottom: 1px solid #fff;
+				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+			}
 		}
 
-		&.bottom-left {
+		// north west south
+		&.NWS {
 			height: calc( var( --c ) + 6px );
-			border-width: 0 0 1px 1px;
+			border-width: 2px 2px 2px 0;
+			border-radius: 0 var( --bR ) var( --bR ) 0;
+			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+
+			&:after { border-bottom: 1px solid #fff; }
+		}
+
+		// north west east
+		&.NWE {
+			border-width: 2px 2px 0 2px;
+			border-radius: var( --bR ) var( --bR ) 0 0;
+		}
+
+		// full
+		&.F {
+			border-width: 0;
+			border-radius: 0;
+		}
+
+		// east
+		&.E {
+			border-width: 0 0 0 2px;
+			border-radius: 0;
+		}
+
+		// west
+		&.W {
+			border-width: 0 2px 0 0;
+			border-radius: 0;
+		}
+
+		// west east
+		&.WE {
+			border-width: 0 2px 0 2px;
+			border-radius: 0;
+		}
+
+		// west south east
+		&.WSE {
+			height: calc( var( --c ) + 6px );
+			border-width: 0 2px 2px 2px;
+			border-radius: 0 0 var( --bR ) var( --bR );
+			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+
+			&:after { border-bottom: 1px solid #fff; }
+		}
+
+		// south
+		&.S {
+			height: calc( var( --c ) + 6px );
+			border-width: 0 0 2px 0;
+			border-radius: 0;
+			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+
+			&:after { border-bottom: 1px solid #fff; }
+		}
+
+		// south east
+		&.SE {
+			height: calc( var( --c ) + 6px );
+			border-width: 0 0 2px 2px;
 			border-radius: 0 0 0 var( --bR );
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+
+			&:after { border-bottom: 1px solid #fff; }
 		}
 
-		&.bottom-right {
+		// west south
+		&.WS {
 			height: calc( var( --c ) + 6px );
-			border-width: 0 1px 1px 0;
+			border-width: 0 2px 2px 0;
 			border-radius: 0 0 var( --bR ) 0;
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+
+			&:after { border-bottom: 1px solid #fff; }
 		}
 	}
 }
