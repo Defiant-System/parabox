@@ -1,7 +1,15 @@
 
 @import "./classes/point.js"
+@import "./modules/utils.js"
 @import "./modules/player.js"
+@import "./modules/game.js"
 @import "./modules/test.js"
+
+
+let Level = {};
+
+@import "./levels/level-1.js"
+@import "./levels/level-2.js"
 
 
 const parabox = {
@@ -10,7 +18,7 @@ const parabox = {
 		this.content = window.find("content");
 
 		// init objects
-		Player.init();
+		Game.init();
 
 		// DEV-ONLY-START
 		Test.init(this);

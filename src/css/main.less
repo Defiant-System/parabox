@@ -54,7 +54,7 @@ content {
 
 			// &.player { display: none; }
 			// &.box:not(.player) { display: none; }
-			// &.spot { display: none; }
+			// &.void { display: none; }
 		}
 
 		> span {
@@ -151,7 +151,8 @@ content {
 		}
 	}
 
-	div.spot {
+	div.exit,
+	div.void {
 		top: calc( calc( var( --y ) * var( --c ) ) - 2px );
 		left: calc( calc( var( --x ) * var( --c ) ) + 4px );
 		height: calc( var( --c ) - 10px );
@@ -177,32 +178,32 @@ content {
 			right: 0;
 			bottom: -5px;
 		}
+	}
 
-		&.eyes i {
+	.exit i {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		pointer-events: none;
+
+		&:before,
+		&:after {
+			content: "";
 			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			pointer-events: none;
+			top: 19px;
+			left: 11px;
+			width: 11px;
+			height: 11px;
+			border-radius: 11px;
+			background: rgba(#000,.35);
+			box-shadow: 0 1px 0 rgba(#fff,.125);
+		}
 
-			&:before,
-			&:after {
-				content: "";
-				position: absolute;
-				top: 19px;
-				left: 11px;
-				width: 11px;
-				height: 11px;
-				border-radius: 11px;
-				background: rgba(#000,.35);
-				box-shadow: 0 1px 0 rgba(#fff,.125);
-			}
-
-			&:after {
-				left: auto;
-				right: 11px;
-			}
+		&:after {
+			left: auto;
+			right: 11px;
 		}
 	}
 
@@ -215,9 +216,10 @@ content {
 		z-index: var( --y );
 		background: #999;
 		// opacity: .65;
+		// backdrop-filter: blur(7px);
 		border: 2px solid rgba(#000,.95);
 		filter: var( --fg-filter );
-		// backdrop-filter: blur(7px);
+		// filter: sepia(1) hue-rotate(85deg) saturate(1.5) brightness(.75);
 
 		&:after {
 			content: "";
