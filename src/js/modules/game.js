@@ -4,7 +4,7 @@ let Game = {
 		// paint level
 		this.paint(1);
 		// init player object
-		// Player.init();
+		Player.init();
 	},
 	paint(i) {
 		let APP = parabox,
@@ -12,17 +12,6 @@ let Game = {
 			htm = [];
 		// level wrapper: START
 		htm.push(`<div class="box board" style="--bg-color: ${level.bg}; --fg-filter: ${level.filter};">`);
-
-		// walls
-		for (let y=0, yl=level.walls.length; y<yl; y++) {
-			let row = level.walls[y];
-			for (let x=0, xl=row.length; x<xl; x++) {
-				let cell = row[x],
-					sub = cell.sub ? cell.sub.map(s => `<u class="${s}"></u>`).join("") : "",
-					str = cell.key ? `<span class="wall ${cell.key}" style="--y: ${y}; --x: ${x};">${sub}</span>` : "";
-				htm.push(str);
-			}
-		}
 
 		// voids
 		for (let i=0, il=level.void.length; i<il; i++) {
@@ -41,6 +30,17 @@ let Game = {
 
 		// player
 		htm.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
+
+		// walls
+		for (let y=0, yl=level.walls.length; y<yl; y++) {
+			let row = level.walls[y];
+			for (let x=0, xl=row.length; x<xl; x++) {
+				let cell = row[x],
+					sub = cell.sub ? cell.sub.map(s => `<u class="${s}"></u>`).join("") : "",
+					str = cell.key ? `<span class="wall ${cell.key}" style="--y: ${y}; --x: ${x};">${sub}</span>` : "";
+				htm.push(str);
+			}
+		}
 
 		// level wrapper: END
 		htm.push(`</div>`)
