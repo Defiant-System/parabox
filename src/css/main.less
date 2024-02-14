@@ -11,7 +11,8 @@ content {
 		position: absolute;
 		top: 35px;
 		left: 35px;
-		--color: rgba(#369, .5);
+		--bg-color: rgba(#248,.5);
+		--fg-color: #f90;
 		--w: 7;
 		--h: 7;
 		--mX: 4;
@@ -22,6 +23,7 @@ content {
 		--c: 79px;
 
 		&.box {
+			background: var( --bg-color );
 			width: calc( var( --c ) * var( --w ) );
 			height: calc( calc( var( --c ) * var( --h ) ) + 6px );
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175),
@@ -44,11 +46,9 @@ content {
 			top: calc( calc( var( --y ) * calc( var( --c ) + 2px ) ) + 5px );
 			left: calc( calc( var( --x ) * calc( var( --c ) + 2px ) ) + 5px );
 
-			&.player,
-			&.box,
-			&.spot {
-				display: none;
-			}
+			&.player { display: none; }
+			&.box:not(.player) { display: none; }
+			// &.spot { display: none; }
 		}
 	}
 
@@ -201,7 +201,8 @@ content {
 		left: calc( var( --x ) * calc( var( --c ) ) - 2px );
 		width: var( --c );
 		height: var( --c );
-		background: #f90;
+		z-index: var( --y );
+		background: var( --fg-color );
 		opacity: .65;
 		border: 2px solid rgba(#000,.95);
 
@@ -232,6 +233,11 @@ content {
 		&.N {
 			border-width: 2px 0 0 0;
 			border-radius: 0;
+
+			&:after {
+				border-top: 1px solid rgba(#000,.35);
+				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+			}
 		}
 
 		// north west
@@ -252,7 +258,11 @@ content {
 			border-radius: var( --bR ) 0 0 var( --bR );
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 
-			&:after { border-bottom: 1px solid #fff; }
+			&:after {
+				border-top: 1px solid rgba(#000,.35);
+				border-bottom: 1px solid #fff;
+				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+			}
 		}
 
 		// north south
@@ -276,7 +286,11 @@ content {
 			border-radius: 0 var( --bR ) var( --bR ) 0;
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 
-			&:after { border-bottom: 1px solid #fff; }
+			&:after {
+				border-top: 1px solid rgba(#000,.35);
+				border-bottom: 1px solid #fff;
+				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+			}
 		}
 
 		// north west east
