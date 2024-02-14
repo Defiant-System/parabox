@@ -47,11 +47,11 @@ content {
 
 		> div {
 			position: absolute;
-			top: calc( calc( var( --y ) * var( --c ) ) - 17px );
+			top: calc( calc( var( --y ) * var( --c ) ) - 14px );
 			left: calc( calc( var( --x ) * var( --c ) ) - 1px );
 
-			&.player { display: none; }
-			&.box:not(.player) { display: none; }
+			// &.player { display: none; }
+			// &.box:not(.player) { display: none; }
 			&.spot { display: none; }
 		}
 
@@ -62,8 +62,8 @@ content {
 
 	.box {
 		z-index: var( --y );
-		width: var( --c );
-		height: calc( var( --c ) + 11px );
+		width: calc( var( --c ) - 2px );
+		height: calc( var( --c ) + 6px );
 		background: var( --color );
 		box-shadow: inset 0px -9px 0px 0px rgba(#000,.175),
 					inset 0 0 1px rgba(#fff,.5),
@@ -376,6 +376,21 @@ content {
 					height: 78px;
 					background: url(~/icons/neg-rnw-n.png) 0px 0px no-repeat;
 					background-size: 6px 78px;
+				}
+			}
+
+			&.RNW-N.RSW-S {
+				// &:after {
+				// 	left: 4px;
+				// 	right: 4px;
+				// }
+
+				&.RNW-N:before {
+					background: red;
+				}
+
+				&.RSW-S:before {
+					background: green;
 				}
 			}
 
