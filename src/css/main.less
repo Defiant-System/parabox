@@ -270,7 +270,7 @@ content {
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
-				border-bottom: 1px solid rgba(#fff,.65);
+				border-bottom: 1px solid rgba(#fff,.45);
 				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
 			}
 		}
@@ -284,7 +284,7 @@ content {
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
-				border-bottom: 1px solid rgba(#fff,.65);
+				border-bottom: 1px solid rgba(#fff,.45);
 				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
 			}
 
@@ -379,18 +379,23 @@ content {
 				}
 			}
 
-			&.RNW-N.RSW-S {
-				// &:after {
-				// 	left: 4px;
-				// 	right: 4px;
-				// }
-
-				&.RNW-N:before {
-					background: red;
+			&.RNE-N.RNE-S {
+				&:before {
+					height: 93px;
+					background: url(~/icons/neg-rne-n2.png) 0px 0px no-repeat,
+								url(~/icons/neg-rse-s2.png) 0px 6px no-repeat;
+					background-size: 6px 16px,
+									6px 87px;
 				}
+			}
 
-				&.RSW-S:before {
-					background: green;
+			&.RNW-N.RSW-S {
+				&:before {
+					height: 93px;
+					background: url(~/icons/neg-rnw-n2.png) 0px 0px no-repeat,
+								url(~/icons/neg-rnw-s2.png) 0px 6px no-repeat;
+					background-size: 6px 16px,
+									6px 87px;
 				}
 			}
 
@@ -419,7 +424,7 @@ content {
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
-				border-bottom: 1px solid rgba(#fff,.65);
+				border-bottom: 1px solid rgba(#fff,.45);
 				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
 			}
 		}
@@ -433,7 +438,7 @@ content {
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
-				border-bottom: 1px solid rgba(#fff,.65);
+				border-bottom: 1px solid rgba(#fff,.45);
 				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
 			}
 		}
@@ -480,7 +485,7 @@ content {
 			border-radius: 0 0 var( --bR ) var( --bR );
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 
-			&:after { border-bottom: 1px solid rgba(#fff,.65); }
+			&:after { border-bottom: 1px solid rgba(#fff,.45); }
 		}
 
 		// south
@@ -490,7 +495,7 @@ content {
 			border-radius: 0;
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 
-			&:after { border-bottom: 1px solid rgba(#fff,.65); }
+			&:after { border-bottom: 1px solid rgba(#fff,.45); }
 		}
 
 		// south east
@@ -500,7 +505,7 @@ content {
 			border-radius: 0 0 0 var( --bR );
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 
-			&:after { border-bottom: 1px solid rgba(#fff,.65); }
+			&:after { border-bottom: 1px solid rgba(#fff,.45); }
 		}
 
 		// west south
@@ -510,7 +515,7 @@ content {
 			border-radius: 0 0 var( --bR ) 0;
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 
-			&:after { border-bottom: 1px solid rgba(#fff,.65); }
+			&:after { border-bottom: 1px solid rgba(#fff,.45); }
 		}
 	}
 }

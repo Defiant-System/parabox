@@ -18,7 +18,7 @@
 		<style type="text/css">
 			.st0{fill:#8D8D8D;stroke:#848484;stroke-width:1.1;stroke-miterlimit:10;}
 			.st1{fill:none;stroke:#000;stroke-width:2;stroke-miterlimit:10;}
-			.st2{stroke:#ddd;}
+			.st2{stroke:#c1c1c1;}
 		</style>
 		<path class="st0" d="M6,5.6C3,5.6,0.5,3.1,0.5,0v9.9C0.5,13,3,15.5,6,15.5"/>
 		<path class="st1" d="M1,0c0,2.8,2.3,5,5,5l0,0"/>
@@ -30,7 +30,7 @@
 			.st0{fill:#999;}
 			.st1{fill:#8D8D8D;stroke:#848484;stroke-width:1.1;stroke-miterlimit:10;}
 			.st2{fill:none;stroke:#000;stroke-width:2;stroke-miterlimit:10;}
-			.st3{stroke:#ddd;}
+			.st3{stroke:#c1c1c1;}
 		</style>
 		<rect class="st0" x="0" y="5" width="6" height="11"/>
 		<path class="st1" d="M0,15.5c3,0,5.5-2.5,5.5-5.6V0C5.5,3.1,3,5.6,0,5.6"/>
@@ -40,7 +40,7 @@
 
 	<svg id="neg-rse-s" viewBox="0 0 6 87">
 		<style type="text/css">
-			.st0{fill:#7e7e7e;stroke:#b1b1b1;stroke-width:1.1;stroke-miterlimit:10;}
+			.st0{fill:#7e7e7e;stroke:#a9a9a9;stroke-width:1.1;stroke-miterlimit:10;}
 			.st1{fill:none;stroke:#000;stroke-width:2;stroke-miterlimit:10;}
 			.st2{fill:#8d8d8d;}
 			.st3{stroke:#848484;}
@@ -53,7 +53,7 @@
 
 	<svg id="neg-rsw-s" viewBox="0 0 6 87">
 		<style type="text/css">
-			.st0{fill:#7e7e7e;stroke:#b1b1b1;stroke-width:1.1;stroke-miterlimit:10;}
+			.st0{fill:#7e7e7e;stroke:#a9a9a9;stroke-width:1.1;stroke-miterlimit:10;}
 			.st1{fill:none;stroke:#000;stroke-width:2;stroke-miterlimit:10;}
 			.st2{fill:#8d8d8d;}
 			.st3{stroke:#848484;}
@@ -63,4 +63,42 @@
 		<rect class="st2" y="0" width="6" height="9"/>
 		<line class="st3" x1="0" y1="9.5" x2="6" y2="9.5"/>
 	</svg>
+
+	<svg id="neg-rnw-n2" viewBox="0 0 6 16">
+		<style type="text/css">
+			.st0{fill:#8D8D8D;stroke:#848484;stroke-width:1.1;stroke-miterlimit:10;}
+			.st1{fill:none;stroke:#000;stroke-width:2;stroke-miterlimit:10;}
+		</style>
+		<path class="st0" d="M0,15.5c3,0,5.5-2.5,5.5-5.6V0C5.5,3.1,3,5.6,0,5.6"/>
+		<path class="st1" d="M0,5.1c2.7,0,5-2.3,5-5.1"/>
+	</svg>
+
+	<svg id="neg-rnw-s2" viewBox="0 0 6 87">
+		<style type="text/css">
+			.st0{fill:#7e7e7e;stroke:#a9a9a9;stroke-width:1.1;stroke-miterlimit:10;}
+			.st1{fill:none;stroke:#000;stroke-width:2;stroke-miterlimit:10;}
+		</style>
+		<path class="st0" d="M0,81.4c3,0,5.5,2.5,5.5,5.6v-9.9C5.5,74,3,71.5,0,71.5"/>
+		<path class="st1" d="M5,87c0-2.8-2.3-5-5-5l0,0"/>
+	</svg>
+
+
+	<svg id="neg-rne-n2" viewBox="0 0 6 16">
+		<style type="text/css">
+			.st0{fill:#8D8D8D;stroke:#848484;stroke-width:1.1;stroke-miterlimit:10;}
+			.st1{fill:none;stroke:#000;stroke-width:2;stroke-miterlimit:10;}
+		</style>
+		<path class="st0" d="M6,5.6C3,5.6,0.5,3.1,0.5,0v9.9C0.5,13,3,15.5,6,15.5"/>
+		<path class="st1" d="M1,0c0,2.8,2.3,5,5,5l0,0"/>
+	</svg>
+
+	<svg id="neg-rse-s2" viewBox="0 0 6 87">
+		<style type="text/css">
+			.st0{fill:#7e7e7e;stroke:#a9a9a9;stroke-width:1.1;stroke-miterlimit:10;}
+			.st1{fill:none;stroke:#000;stroke-width:2;stroke-miterlimit:10;}
+		</style>
+		<path class="st0" d="M6,71.5c-3,0-5.5,2.5-5.5,5.6V87c0-3.1,2.5-5.6,5.5-5.6"/>
+		<path class="st1" d="M6,82L6,82c-2.7,0-5,2.2-5,5"/>
+	</svg>
+	
 </svg>
