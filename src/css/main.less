@@ -211,7 +211,7 @@ content {
 		height: var( --c );
 		z-index: var( --y );
 		background: var( --fg-color );
-		opacity: .65;
+		// opacity: .65;
 		border: 2px solid rgba(#000,.95);
 		backdrop-filter: blur(7px);
 
@@ -269,7 +269,7 @@ content {
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
-				border-bottom: 1px solid #fff;
+				border-bottom: 1px solid rgba(#fff,.65);
 				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
 			}
 		}
@@ -283,8 +283,74 @@ content {
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
-				border-bottom: 1px solid #fff;
+				border-bottom: 1px solid rgba(#fff,.65);
 				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+			}
+
+			&.RSE-S {
+				z-index: calc( var( --y ) + 2 );
+
+				&:before {
+					content: "";
+					position: absolute;
+					bottom: -5px;
+					left: -2px;
+					width: 6px;
+					height: 15px;
+					background: red;
+				}
+			}
+
+			&.RSW-S {
+				z-index: calc( var( --y ) + 2 );
+
+				&:before {
+					content: "";
+					position: absolute;
+					bottom: -5px;
+					right: -2px;
+					width: 6px;
+					height: 15px;
+					background: red;
+				}
+			}
+
+			&.RNE-N {
+				z-index: calc( var( --y ) + 2 );
+
+				&:after {
+					left: 4px;
+				}
+
+				&:before {
+					content: "";
+					position: absolute;
+					top: -6px;
+					left: -2px;
+					width: 6px;
+					height: 78px;
+					background: url(~/icons/neg-rne-n.png) 0px 0px no-repeat;
+					background-size: 6px 78px;
+				}
+			}
+
+			&.RNW-N {
+				z-index: calc( var( --y ) + 2 );
+
+				&:after {
+					right: 4px;
+				}
+
+				&:before {
+					content: "";
+					position: absolute;
+					top: -6px;
+					right: -2px;
+					width: 6px;
+					height: 78px;
+					background: url(~/icons/neg-rnw-n.png) 0px 0px no-repeat;
+					background-size: 6px 78px;
+				}
 			}
 		}
 
@@ -297,7 +363,7 @@ content {
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
-				border-bottom: 1px solid #fff;
+				border-bottom: 1px solid rgba(#fff,.65);
 				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
 			}
 		}
@@ -344,7 +410,7 @@ content {
 			border-radius: 0 0 var( --bR ) var( --bR );
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 
-			&:after { border-bottom: 1px solid #fff; }
+			&:after { border-bottom: 1px solid rgba(#fff,.65); }
 		}
 
 		// south
@@ -354,7 +420,7 @@ content {
 			border-radius: 0;
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 
-			&:after { border-bottom: 1px solid #fff; }
+			&:after { border-bottom: 1px solid rgba(#fff,.65); }
 		}
 
 		// south east
@@ -364,7 +430,7 @@ content {
 			border-radius: 0 0 0 var( --bR );
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 
-			&:after { border-bottom: 1px solid #fff; }
+			&:after { border-bottom: 1px solid rgba(#fff,.65); }
 		}
 
 		// west south
@@ -374,7 +440,7 @@ content {
 			border-radius: 0 0 var( --bR ) 0;
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 
-			&:after { border-bottom: 1px solid #fff; }
+			&:after { border-bottom: 1px solid rgba(#fff,.65); }
 		}
 	}
 }
