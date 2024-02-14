@@ -50,9 +50,9 @@ content {
 			top: calc( calc( var( --y ) * var( --c ) ) - 17px );
 			left: calc( calc( var( --x ) * var( --c ) ) - 1px );
 
-			// &.player { display: none; }
-			// &.box:not(.player) { display: none; }
-			// &.spot { display: none; }
+			&.player { display: none; }
+			&.box:not(.player) { display: none; }
+			&.spot { display: none; }
 		}
 
 		> span {
@@ -290,28 +290,53 @@ content {
 			&.RSE-S {
 				z-index: calc( var( --y ) + 2 );
 
+				&:after {
+					left: 4px;
+				}
+
 				&:before {
 					content: "";
 					position: absolute;
-					bottom: -5px;
+					top: 0;
 					left: -2px;
 					width: 6px;
-					height: 15px;
-					background: red;
+					height: 87px;
+					background: url(~/icons/neg-rse-s.png) 0px 0px no-repeat;
+					background-size: 6px 87px;
 				}
 			}
 
 			&.RSW-S {
 				z-index: calc( var( --y ) + 2 );
 
+				&:after {
+					right: 4px;
+				}
+
 				&:before {
 					content: "";
 					position: absolute;
-					bottom: -5px;
+					bottom: -6px;
 					right: -2px;
 					width: 6px;
-					height: 15px;
-					background: red;
+					height: 87px;
+					background: url(~/icons/neg-rsw-s.png) 0px 0px no-repeat;
+					background-size: 6px 87px;
+				}
+			}
+
+			&.RSE-S.RSW-S {
+				&:after {
+					left: 4px;
+					right: 4px;
+				}
+
+				&:before {
+					width: auto;
+					background: url(~/icons/neg-rse-s.png) 0px 0px no-repeat,
+								url(~/icons/neg-rsw-s.png) 77px 0px no-repeat;
+					background-size: 6px 87px,
+									 6px 87px;
 				}
 			}
 
