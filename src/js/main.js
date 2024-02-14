@@ -23,10 +23,10 @@ const parabox = {
 				break;
 			case "window.keystroke":
 				switch (event.char) {
-					case "up":    Player.move(0); break;
-					case "left":  Player.move(1); break;
-					case "down":  Player.move(2); break;
-					case "right": Player.move(3); break;
+					case "up":
+					case "left":
+					case "down":
+					case "right": Player.move(event.char); break;
 					case "space": Player.jump(); break;
 				}
 				break;

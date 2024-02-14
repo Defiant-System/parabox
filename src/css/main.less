@@ -53,8 +53,8 @@ content {
 			left: calc( calc( var( --x ) * var( --c ) ) - 1px );
 
 			// &.player { display: none; }
-			&.box:not(.player) { display: none; }
-			&.spot { display: none; }
+			// &.box:not(.player) { display: none; }
+			// &.spot { display: none; }
 		}
 
 		> span {
@@ -109,11 +109,12 @@ content {
 	div.player {
 		--color: #9d02bd;
 		z-index: calc( var( --y ) + 1 );
-		transition: all 180ms ease-in-out;
+		transition: all 250ms ease-in-out;
 
-		&.jump {
-			animation: jump 1200ms ease-in-out;
-		}
+		&.go-right { animation: go-right 350ms ease-in-out; }
+		&.go-left  { animation: go-left 350ms ease-in-out; }
+		&.go-up    { animation: go-up 350ms ease-in-out; }
+		&.go-down  { animation: go-down 350ms ease-in-out; }
 
 		i {
 			position: absolute;
@@ -205,7 +206,7 @@ content {
 		}
 	}
 
-	.wall {
+	span.wall {
 		position: absolute;
 		top: calc( calc( var( --y ) * calc( var( --c ) ) - 2px ) - 12px );
 		left: calc( var( --x ) * calc( var( --c ) ) - 2px );
@@ -396,39 +397,61 @@ content {
 	}
 
 	u {
-		background: red;
 		position: absolute;
 		width: 6px;
 		height: 16px;
+		z-index: 2;
 
 		&.NW-NE {
 			top: -6px;
 			right: -6px;
+			background: url(~/icons/neg-nw-ne.png) 0px 0px/contain no-repeat;
 		}
 
 		&.NE-NW {
 			top: -6px;
 			left: -6px;
+			background: url(~/icons/neg-ne-nw.png) 0px 0px/contain no-repeat;
 		}
 
 		&.NE-ES {
 			top: -6px;
 			left: -2px;
+			background: url(~/icons/neg-ne-es.png) 0px 0px/contain no-repeat;
 		}
 
 		&.NE-WS {
 			top: -4px;
 			left: -4px;
+			background: url(~/icons/neg-ne-ws.png) 0px 0px/contain no-repeat;
 		}
 	}
 }
 
-@keyframes jump {
-	0%   { transform: translateY(0) translateX(0); height: 103px; width: 97px; }
-	15%  { transform: translateY(13px) translateX(-10px); height: 90px; width: 107px; }
-	35%  { transform: translateY(-43px) translateX(5px); height: 103px; width: 87px; }
-	50%  { transform: translateY(0) translateX(0); height: 103px; width: 97px; }
-	100% { transform: translateY(0) translateX(0); height: 103px; width: 97px; }
+
+
+@keyframes go-right {
+	0%   { transform: scale(1, 1); }
+	30%  { transform: scale(.9, 1.1); }
+	100% { transform: scale(1, 1); }
+}
+
+@keyframes go-left {
+	0%   { transform: scale(1, 1); }
+	30%  { transform: scale(.9, 1.1); }
+	100% { transform: scale(1, 1); }
+}
+
+@keyframes go-up {
+	0%   { transform: scale(1, 1); }
+	30%  { transform: scale(1.1, .9); }
+	100% { transform: scale(1, 1); }
+}
+
+@keyframes go-down {
+	0%   { transform: scale(1, 1); }
+	30%  { transform: scale(1.1, .9); }
+	100% { transform: scale(1, 1); }
 }
 
 
