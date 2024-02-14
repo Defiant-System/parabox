@@ -140,14 +140,16 @@ content {
 		}
 	}
 
-	.spot {
-		z-index: 1;
-		margin: 7px 0 0 1px;
+	div.spot {
+		// margin: 7px 0 0 1px;
+		top: calc( calc( var( --y ) * calc( var( --c ) + 2px ) ) - 5px );
+		left: calc( calc( var( --x ) * calc( var( --c ) + 2px ) ) - 2px );
 		height: calc( var( --c ) - 2px );
 		width: calc( var( --c ) - 2px );
+		z-index: 1;
 		border-radius: 11px;
-		border: 4px solid rgba(#000,.75);
-		mix-blend-mode: color-dodge;
+		border: 4px solid rgba(#000,.35);
+		// mix-blend-mode: color-dodge;
 
 		&:before,
 		&:after {
@@ -184,7 +186,7 @@ content {
 				width: 13px;
 				height: 13px;
 				border-radius: 13px;
-				background: rgba(#000,.65);
+				background: rgba(#000,.35);
 				box-shadow: 0 1px 0 rgba(#fff,.125);
 			}
 
