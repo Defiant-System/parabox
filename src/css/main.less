@@ -10,7 +10,7 @@ content {
 	.board {
 		position: absolute;
 		--bg-color: rgba(#248,.5);
-		--fg-color: #f90;
+		--fg-filter: none;
 		--w: 7;
 		--h: 7;
 		--mX: 6;
@@ -210,10 +210,11 @@ content {
 		width: var( --c );
 		height: var( --c );
 		z-index: var( --y );
-		background: var( --fg-color );
+		background: #999;
 		// opacity: .65;
 		border: 2px solid rgba(#000,.95);
-		backdrop-filter: blur(7px);
+		filter: var( --fg-filter );
+		// backdrop-filter: blur(7px);
 
 		&:after {
 			content: "";
@@ -399,6 +400,20 @@ content {
 			height: calc( var( --c ) + 6px );
 			border-width: 2px 2px 2px 0;
 			border-radius: 0 var( --bR ) var( --bR ) 0;
+			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+
+			&:after {
+				border-top: 1px solid rgba(#000,.35);
+				border-bottom: 1px solid rgba(#fff,.65);
+				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+			}
+		}
+
+		// north west south east
+		&.NWSE {
+			height: calc( var( --c ) + 6px );
+			border-width: 2px;
+			border-radius: var( --bR );
 			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
 
 			&:after {
