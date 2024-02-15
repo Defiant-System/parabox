@@ -2,7 +2,7 @@
 let Game = {
 	init() {
 		// paint level
-		this.paint(5);
+		this.paint(6);
 		// init player object
 		Player.init();
 	},
@@ -144,7 +144,7 @@ let Game = {
 	},
 	checkWin() {
 		let exitEl = this.el.find(".exit"),
-			exitY = +exitEl.cssProp("--x"),
+			exitY = +exitEl.cssProp("--y"),
 			exitX = +exitEl.cssProp("--x");
 		// return if player is not on exit square
 		if (!Player.pos.isOn(exitX, exitY)) return;
@@ -154,10 +154,11 @@ let Game = {
 		if (Utils.isVoid(this.levelClean[Player.pos.y][Player.pos.x])) {
 			rowsWithVoid.push(this.levelClean[Player.pos.y]);
 		}
-
+		// count placed blocks
 		let rowsWithSuccess = this.board.filter(row => row.some(cell => cell === SUCCESS));
 		let isWin = rowsWithVoid.length === 0 && rowsWithSuccess.length === this.blockCount;
 
+		console.log(4);
 		if (isWin) {
 			console.log("you win!");
 		}

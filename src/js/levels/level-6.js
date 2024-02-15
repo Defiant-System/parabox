@@ -3,7 +3,7 @@ Level[6] = {
 	bg: "#666",
 	filter: "none",
 	player: { y: 3, x: 2 },
-	exit: { y: 1, x: 1 },
+	exit: { y: 5, x: 7 },
 	void: [{ y: 1, x: 2 }],
 	block: [{ y: 3, x: 3, color: "yellow" }],
 	walls: [
