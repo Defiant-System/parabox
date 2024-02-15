@@ -23,7 +23,7 @@ let Player = {
 				right: [1,  0],
 			};
 		this.pos.add(vec[dir]);
-		this.pos.limit(this.max);
+		// this.pos.limit(this.max);
 
 		this.el
 			.css(this.pos.serialize())

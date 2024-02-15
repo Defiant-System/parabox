@@ -18,7 +18,7 @@ let Game = {
 			htm = [];
 
 		// level wrapper: START
-		htm.push(`<div class="box board" style="--bg-color: ${level.bg}; --fg-filter: ${level.filter};">`);
+		htm.push(`<div class="box board" style="--bg-color: ${level.bg}; --fg-filter: ${level.filter}; --w: ${size.w}; --h: ${size.h};">`);
 		
 		// player
 		htm.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
