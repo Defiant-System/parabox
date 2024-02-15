@@ -1,11 +1,10 @@
 
 let Game = {
 	init() {
-		
+		this.wrapper = parabox.content.find(".game-view");
 	},
 	renderLevel(i) {
-		let APP = parabox,
-			level = Level[i],
+		let level = Level[i],
 			size = {
 				h: level.walls.length,
 				w: Math.max(...level.walls.map(row => row.length)),
@@ -60,7 +59,7 @@ let Game = {
 		// level wrapper: END
 		htm.push(`</div>`)
 		// insert into DOM
-		this.el = APP.content.html(htm.join("")).find(".box.board");
+		this.el = this.wrapper.html(htm.join("")).find(".box.board");
 		// count and store block count
 		this.blockCount = this.el.find(".box[data-id]").length;
 
@@ -160,7 +159,7 @@ let Game = {
 
 		// check if level is complete
 		if (rowsWithVoid.length === 0 && rowsWithSuccess.length === this.blockCount) {
-			console.log("you win!");
+			setTimeout(() => parabox.content.addClass("game-won"), 500);
 		}
 	}
 };

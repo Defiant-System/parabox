@@ -21,6 +21,8 @@ const parabox = {
 		// DEV-ONLY-END
 	},
 	dispatch(event) {
+		let Self = parabox,
+			el;
 		switch (event.type) {
 			// system events
 			case "window.init":
@@ -37,6 +39,9 @@ const parabox = {
 			case "set-game-level":
 				Game.renderLevel(+event.arg);
 				return true;
+			case "close-congratulations":
+				Self.content.removeClass("game-won");
+				break;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;
