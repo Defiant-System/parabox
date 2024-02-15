@@ -56,17 +56,17 @@ let Game = {
 		// blocks
 		for (let i=0, il=level.block.length; i<il; i++) {
 			let block = level.block[i];
-			htm.push(`<div class="box ${block.color}" style="--y: ${block.y}; --x: ${block.x};"></div>`);
-		// update board
-		board[block.y][block.x] = BLOCK;
+			htm.push(`<div class="box ${block.color}" data-id="${block.y}-${block.x}" style="--y: ${block.y}; --x: ${block.x};"></div>`);
+			// update board
+			board[block.y][block.x] = BLOCK;
 		}
 		// level wrapper: END
 		htm.push(`</div>`)
 		// insert into DOM
-		APP.content.html(htm.join(""));
+		this.el = APP.content.html(htm.join("")).find(".box.board");
 
 		// save clean version of map
-		if (!this.levelClean) this.levelClean = board;
+		if (!this.levelClean) this.levelClean = JSON.parse(JSON.stringify(board));
 
 		// save reference to board
 		this.board = board;
@@ -81,10 +81,6 @@ let Game = {
 		this.board[Player.pos.y][Player.pos.x] = PLAYER;
 	},
 	movePlayerAndBoxes(playerCoords, direction) {
-
-		// TODO: push box & update board
-		
-
 		let newPlayerY = Utils.getY(playerCoords.y, direction, 1);
 		let newPlayerX = Utils.getX(playerCoords.x, direction, 1);
 		let newBoxY = Utils.getY(playerCoords.y, direction, 2);
@@ -105,17 +101,23 @@ let Game = {
 			if (Utils.isTraversible(nextBlock)) {
 				for (let i=0; i<blocksInARow; i++) {
 					// Add blocks
-					this.board[Utils.getY(newBoxY, direction, i)][Utils.getX(newBoxX, direction, i)] =
-						Utils.isVoid(this.levelClean[Utils.getY(newBoxY, direction, i)][Utils.getX(newBoxX, direction, i)])
-							? SUCCESS
-							: BLOCK;
+					let rY = Utils.getY(newBoxY, direction, i),
+						rX = Utils.getX(newBoxX, direction, i),
+						result = Utils.isVoid(this.levelClean[rY][rX]) ? SUCCESS : BLOCK;
+					this.board[Utils.getY(newBoxY, direction, i)][Utils.getX(newBoxX, direction, i)] = result;
 				}
 				this.movePlayer(playerCoords, direction);
 			}
 		} else {
-			// Move box
-			// If on top of void, make into a success box
-			this.board[newBoxY][newBoxX] = Utils.isVoid(this.levelClean[newBoxY][newBoxX]) ? SUCCESS : BLOCK;
+			// Move box; if on top of void, make into a success box
+			let result = Utils.isVoid(this.levelClean[newBoxY][newBoxX]) ? SUCCESS : BLOCK;
+			this.board[newBoxY][newBoxX] = result;
+
+			let bEl = this.el.find(`.box[data-id="${newPlayerY}-${newPlayerX}"]`),
+				style = `--y: ${newBoxY}; --x: ${newBoxX};`,
+				id = `${newBoxY}-${newBoxX}`;
+			bEl.attr({ style }).data({ id });
+
 			this.movePlayer(playerCoords, direction);
 		}
 	},

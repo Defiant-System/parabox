@@ -34,31 +34,19 @@ let Utils = {
 		return [VOID, SUCCESS].includes(cell);
 	},
 	getX(x, direction, spaces = 1) {
-		if (direction === "up" || direction === "down") {
-			return x;
-		}
-		if (direction === "right") {
-			return x + spaces;
-		}
-		if (direction === "left") {
-			return x - spaces;
-		}
+		if (direction === "up" || direction === "down") return x;
+		if (direction === "right") return x + spaces;
+		if (direction === "left") return x - spaces;
 	},
 	getY(y, direction, spaces = 1) {
-		if (direction === "left" || direction === "right") {
-			return y;
-		}
-		if (direction === "down") {
-			return y + spaces;
-		}
-		if (direction === "up") {
-			return y - spaces;
-		}
+		if (direction === "left" || direction === "right") return y;
+		if (direction === "down") return y + spaces;
+		if (direction === "up") return y - spaces;
 	},
 	countBlocks(blockCount, y, x, direction, board) {
-		if (isBlock(board[y][x])) {
+		if (this.isBlock(board[y][x])) {
 			blockCount++;
-			return countBlocks(blockCount, getY(y, direction), getX(x, direction), direction, board);
+			return this.countBlocks(blockCount, this.getY(y, direction), this.getX(x, direction), direction, board);
 		} else {
 			return blockCount;
 		}
