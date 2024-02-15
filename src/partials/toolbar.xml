@@ -1,11 +1,16 @@
 <ToolBar>
-	<Group width="69%">
+	<Group width="89%">
 		<Options>
-			<Tool symbol="icon-chevron-left"/>
-			<Tool symbol="icon-chevron-right"/>
+			<Tool symbol="icon-undo"/>
+			<Tool symbol="icon-redo"/>
+		</Options>
+		<Options>
+			<Tool name="1" click="set-game-level" arg="1"/>
+			<Tool name="2" click="set-game-level" arg="2"/>
+			<Tool name="3" click="set-game-level" arg="3"/>
 		</Options>
 	</Group>
-	<Group width="31%">
-		<Search placeholder="Search"/>
+	<Group width="11%">
+		<Tool symbol="icon-cog"/>
 	</Group>
 </ToolBar>
