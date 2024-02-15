@@ -17,10 +17,10 @@ let Player = {
 	move(dir) {
 		let name = `go-${dir}`,
 			vec = {
-				up: [0, -1],
-				left: [-1, 0],
-				down: [0, 1],
-				right: [1, 0],
+				up:    [0, -1],
+				left:  [-1, 0],
+				down:  [0,  1],
+				right: [1,  0],
 			};
 		this.pos.add(vec[dir]);
 		this.pos.limit(this.max);
@@ -29,7 +29,17 @@ let Player = {
 			.css(this.pos.serialize())
 			.cssSequence(name, "animationend", el => el.removeClass(name));
 	},
-	jump() {
-		this.el.cssSequence("jump", "animationend", el => el.removeClass("jump"));
+	coords() {
+		let y = Game.board.findIndex(row => row.includes(PLAYER));
+		let x = Game.board[y].indexOf(PLAYER);
+
+		return {
+			x,
+			y,
+			above: Game.board[y-1][x],
+			below: Game.board[y+1][x],
+			sideLeft: Game.board[y][x-1],
+			sideRight: Game.board[y][x+1],
+		};
 	}
 };

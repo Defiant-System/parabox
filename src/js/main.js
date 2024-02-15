@@ -34,8 +34,7 @@ const parabox = {
 					case "up":
 					case "left":
 					case "down":
-					case "right": Player.move(event.char); break;
-					case "space": Player.jump(); break;
+					case "right": Game.move(event.char); break;
 				}
 				break;
 			// custom events

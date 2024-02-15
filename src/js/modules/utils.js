@@ -3,9 +3,19 @@
 let EMPTY = "empty",
 	WALL = "wall",
 	VOID = "void",
+	EXIT = "exit",
 	BLOCK = "block",
 	SUCCESS = "success",
 	PLAYER = "player";
+
+let directions = {
+		up: "up",
+		down: "down",
+		left: "left",
+		right: "right",
+	};
+
+
 
 let Utils = {
 	isBlock(cell) {
