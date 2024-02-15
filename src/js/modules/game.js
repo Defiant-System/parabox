@@ -75,15 +75,49 @@ let Game = {
 		// Replace previous spot with initial board state (void or empty)
 		this.board[playerCoords.y][playerCoords.x] =
 			Utils.isVoid(this.levelClean[playerCoords.y][playerCoords.x]) ? VOID : EMPTY;
-
 		// Move player
 		Player.move(direction);
-
 		// update board
 		this.board[Player.pos.y][Player.pos.x] = PLAYER;
 	},
 	movePlayerAndBoxes(playerCoords, direction) {
 
+		// TODO: push box & update board
+		
+
+		let newPlayerY = Utils.getY(playerCoords.y, direction, 1);
+		let newPlayerX = Utils.getX(playerCoords.x, direction, 1);
+		let newBoxY = Utils.getY(playerCoords.y, direction, 2);
+		let newBoxX = Utils.getX(playerCoords.x, direction, 2);
+
+		// Don"t move if the movement pushes a box into a wall
+		if (Utils.isWall(this.board[newBoxY][newBoxX])) return;
+
+		// Count how many blocks are in a row
+		let blocksInARow = 0;
+		if (Utils.isBlock(this.board[newBoxY][newBoxX])) {
+			blocksInARow = Utils.countBlocks(1, newBoxY, newBoxX, direction, this.board);
+			// See what the next block is
+			let nextBlock = this.board
+						[Utils.getY(newPlayerY, direction, blocksInARow)]
+						[Utils.getX(newPlayerX, direction, blocksInARow)];
+			// Push all the blocks if you can
+			if (Utils.isTraversible(nextBlock)) {
+				for (let i=0; i<blocksInARow; i++) {
+					// Add blocks
+					this.board[Utils.getY(newBoxY, direction, i)][Utils.getX(newBoxX, direction, i)] =
+						Utils.isVoid(this.levelClean[Utils.getY(newBoxY, direction, i)][Utils.getX(newBoxX, direction, i)])
+							? SUCCESS
+							: BLOCK;
+				}
+				this.movePlayer(playerCoords, direction);
+			}
+		} else {
+			// Move box
+			// If on top of void, make into a success box
+			this.board[newBoxY][newBoxX] = Utils.isVoid(this.levelClean[newBoxY][newBoxX]) ? SUCCESS : BLOCK;
+			this.movePlayer(playerCoords, direction);
+		}
 	},
 	move(direction) {
 		let playerCoords = Player.coords();
