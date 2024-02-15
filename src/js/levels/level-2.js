@@ -1,11 +1,12 @@
 
 Level[2] = {
 	bg: "#151",
-	filter: "sepia(1) hue-rotate(225deg) saturate(1.25) brightness(0.85)",
-	player: { y: 6, x: 4 },
+	filter: "sepia(1) hue-rotate(75deg) saturate(1.25) brightness(0.85)",
+	// player: { y: 6, x: 4 },
+	player: { y: 2, x: 4 },
 	exit: { y: 7, x: 4 },
 	void: [{ y: 7, x: 2 }, { y: 7, x: 6 }],
-	block: [{ y: 3, x: 4, color: "brown" }, { y: 4, x: 4, color: "brown" }],
+	block: [{ y: 3, x: 4, color: "yellow" }, { y: 4, x: 4, color: "yellow" }],
 	walls: [
 		[{ key: "NE" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "NW" }],
 		[{ key: "E" }, { key: "F" }, { key: "S" }, { key: "S" }, { key: "S" }, { key: "F" }, { key: "F" }, { key: "F" }, { key: "W" }],

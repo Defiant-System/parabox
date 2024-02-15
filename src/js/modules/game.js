@@ -80,45 +80,50 @@ let Game = {
 		this.board[Player.pos.y][Player.pos.x] = PLAYER;
 	},
 	movePlayerAndBoxes(playerCoords, direction) {
-		let newPlayerY = Utils.getY(playerCoords.y, direction, 1);
-		let newPlayerX = Utils.getX(playerCoords.x, direction, 1);
-		let newBoxY = Utils.getY(playerCoords.y, direction, 2);
-		let newBoxX = Utils.getX(playerCoords.x, direction, 2);
+		let playerY = Utils.getY(playerCoords.y, direction, 1);
+		let playerX = Utils.getX(playerCoords.x, direction, 1);
+		let blockY = Utils.getY(playerCoords.y, direction, 2);
+		let blockX = Utils.getX(playerCoords.x, direction, 2);
 
 		// Don"t move if the movement pushes a box into a wall
-		if (Utils.isWall(this.board[newBoxY][newBoxX])) return;
+		if (Utils.isWall(this.board[blockY][blockX])) return;
 
 		// Count how many blocks are in a row
 		let blocksInARow = 0;
-		if (Utils.isBlock(this.board[newBoxY][newBoxX])) {
-			blocksInARow = Utils.countBlocks(1, newBoxY, newBoxX, direction, this.board);
+		if (Utils.isBlock(this.board[blockY][blockX])) {
+			blocksInARow = Utils.countBlocks(1, blockY, blockX, direction, this.board);
 			// See what the next block is
-			let nextBlock = this.board
-						[Utils.getY(newPlayerY, direction, blocksInARow)]
-						[Utils.getX(newPlayerX, direction, blocksInARow)];
+			let bY = Utils.getY(playerY, direction, blocksInARow),
+				bX = Utils.getX(playerX, direction, blocksInARow);
 			// Push all the blocks if you can
-			if (Utils.isTraversible(nextBlock)) {
-				for (let i=0; i<blocksInARow; i++) {
-					// Add blocks
-					let rY = Utils.getY(newBoxY, direction, i),
-						rX = Utils.getX(newBoxX, direction, i),
-						result = Utils.isVoid(this.levelClean[rY][rX]) ? SUCCESS : BLOCK;
-					this.board[Utils.getY(newBoxY, direction, i)][Utils.getX(newBoxX, direction, i)] = result;
+			if (Utils.isTraversible(this.board[bY][bX])) {
+				while (blocksInARow--) {
+					let oY = Utils.getY(blockY, direction, blocksInARow),
+						oX = Utils.getX(blockX, direction, blocksInARow),
+						result = Utils.isVoid(this.levelClean[oY][oX]) ? SUCCESS : BLOCK;
+					this.board[oY][oX] = result;
+					// move DOM element
+					console.log( playerCoords.y, playerCoords.x );
+					// console.log([blockY, blockX], [oY, oX]);
+					if (blocksInARow > 0) {
+						// this.moveBlockEl([blockY, blockX], [oY, oX]);
+					}
 				}
-				this.movePlayer(playerCoords, direction);
+				// this.movePlayer(playerCoords, direction);
 			}
 		} else {
 			// Move box; if on top of void, make into a success box
-			let result = Utils.isVoid(this.levelClean[newBoxY][newBoxX]) ? SUCCESS : BLOCK;
-			this.board[newBoxY][newBoxX] = result;
-
-			let bEl = this.el.find(`.box[data-id="${newPlayerY}-${newPlayerX}"]`),
-				style = `--y: ${newBoxY}; --x: ${newBoxX};`,
-				id = `${newBoxY}-${newBoxX}`;
-			bEl.attr({ style }).data({ id });
-
+			let result = Utils.isVoid(this.levelClean[blockY][blockX]) ? SUCCESS : BLOCK;
+			this.board[blockY][blockX] = result;
+			this.moveBlockEl([playerY, playerX], [blockY, blockX]);
 			this.movePlayer(playerCoords, direction);
 		}
+	},
+	moveBlockEl(from, to) {
+		let bEl = this.el.find(`.box[data-id="${from[0]}-${from[1]}"]`),
+			style = `--y: ${to[0]}; --x: ${to[1]};`,
+			id = `${to[0]}-${to[1]}`;
+		bEl.attr({ style }).data({ id });
 	},
 	move(direction) {
 		let playerCoords = Player.coords();
@@ -143,10 +148,11 @@ let Game = {
 		let exitEl = this.el.find(".exit"),
 			exitY = +exitEl.cssProp("--y"),
 			exitX = +exitEl.cssProp("--x");
-		// count placed blocks
-		let rowsWithSuccess = this.board.filter(row => row.some(cell => cell === SUCCESS));
+		
 		// signals exit is open
-		if (rowsWithSuccess.length === this.blockCount) this.el.find(".exit").addClass("ready");
+		let voidCount = this.board.filter(row => row.some(cell => cell === VOID))
+							.reduce((acc, row) => acc + row.filter(c => c === VOID).length, 0);
+		if (voidCount === 0) this.el.find(".exit").addClass("ready");
 
 		// return if player is not on exit square
 		if (!Player.pos.isOn(exitX, exitY)) return;
@@ -158,6 +164,7 @@ let Game = {
 		}
 
 		// check if level is complete
+		let rowsWithSuccess = this.board.filter(row => row.some(cell => cell === SUCCESS));
 		if (rowsWithVoid.length === 0 && rowsWithSuccess.length === this.blockCount) {
 			setTimeout(() => parabox.content.addClass("game-won"), 500);
 		}
