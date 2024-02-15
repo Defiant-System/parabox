@@ -64,6 +64,8 @@ let Game = {
 		htm.push(`</div>`)
 		// insert into DOM
 		this.el = APP.content.html(htm.join("")).find(".box.board");
+		// count and store block count
+		this.blockCount = this.el.find(".box[data-id]").length;
 
 		// save clean version of map
 		if (!this.levelClean) this.levelClean = JSON.parse(JSON.stringify(board));
@@ -134,9 +136,30 @@ let Game = {
 		if (Utils.isTraversible(adjacentCell[direction])) {
 			this.movePlayer(playerCoords, direction);
 		}
-
 		if (Utils.isBlock(adjacentCell[direction])) {
 			this.movePlayerAndBoxes(playerCoords, direction);
+		}
+		// check if level is cleared
+		this.checkWin();
+	},
+	checkWin() {
+		let exitEl = this.el.find(".exit"),
+			exitY = +exitEl.cssProp("--x"),
+			exitX = +exitEl.cssProp("--x");
+		// return if player is not on exit square
+		if (!Player.pos.isOn(exitX, exitY)) return;
+
+		// The player herself might be standing on an initially void cell:
+		let rowsWithVoid = this.board.filter(row => row.some(cell => cell === VOID));
+		if (Utils.isVoid(this.levelClean[Player.pos.y][Player.pos.x])) {
+			rowsWithVoid.push(this.levelClean[Player.pos.y]);
+		}
+
+		let rowsWithSuccess = this.board.filter(row => row.some(cell => cell === SUCCESS));
+		let isWin = rowsWithVoid.length === 0 && rowsWithSuccess.length === this.blockCount;
+
+		if (isWin) {
+			console.log("you win!");
 		}
 	}
 };

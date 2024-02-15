@@ -2,7 +2,7 @@
 Level[1] = {
 	bg: "#369",
 	filter: "sepia(1) hue-rotate(145deg) saturate(1.5) brightness(0.75)",
-	player: { y: 3, x: 3 },
+	player: { y: 3, x: 1 },
 	exit: { y: 1, x: 1 },
 	void: [{ y: 5, x: 5 }],
 	block: [{ y: 3, x: 4, color: "red" }],

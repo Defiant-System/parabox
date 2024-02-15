@@ -12,6 +12,10 @@ class Point {
 		};
 	}
 
+	isOn(x, y) {
+		return this.x === x && this.y === y;
+	}
+
 	add(v) {
 		this.x += v[0];
 		this.y += v[1];
