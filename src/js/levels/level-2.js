@@ -1,5 +1,5 @@
 
-Level[1] = {
+Level[2] = {
 	bg: "#151",
 	filter: "sepia(1) hue-rotate(225deg) saturate(1.25) brightness(0.85)",
 	player: { y: 6, x: 4 },

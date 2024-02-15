@@ -15,27 +15,26 @@ content {
 		--fg-filter: none;
 		--w: 7;
 		--h: 7;
-		--mX: 6;
-		--mY: 6;
 		--y: 1;
 		--x: 1;
-		--bR: 9px;
-		--c: 79px;
+		--bR: 8px;
+		--t: 9px;
+		--c: 61px;
 
 		&.box {
-			top: 35px;
-			left: 35px;
+			top: 55px;
+			left: 55px;
 			background: var( --bg-color );
 			width: calc( var( --c ) * var( --w ) );
 			height: calc( calc( var( --c ) * var( --h ) ) + 6px );
-			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175),
-						0 0 9px rgba(#000,.35);
+			box-shadow: inset 0px -7px 0px 0px rgba(#000,.175),
+						0 0 7px rgba(#000,.35);
 
 			&:before {
 				opacity: .25;
 				top: 9px;
 				border-top: 1px solid rgba(#000,.75);
-				box-shadow: 0px -9px 0px 0px rgba(#000,.25);
+				box-shadow: 0px -7px 0px 0px rgba(#000,.25);
 				background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.8), transparent);
 				// background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.8), transparent),
 				// 					repeating-linear-gradient(0deg, transparent 0, transparent calc( var( --c ) - 1px ), #111 calc( var( --c ) - 1px ), #111 var( --c )),
@@ -54,6 +53,7 @@ content {
 
 			// &.player { display: none; }
 			// &.box:not(.player) { display: none; }
+			// &.exit,
 			// &.void { display: none; }
 		}
 
@@ -67,10 +67,10 @@ content {
 		width: calc( var( --c ) - 2px );
 		height: calc( var( --c ) + 6px );
 		background: var( --color );
-		box-shadow: inset 0px -9px 0px 0px rgba(#000,.175),
+		box-shadow: inset 0px -7px 0px 0px rgba(#000,.175),
 					// 0 0 9px rgba(#000,.35),
 					inset 0 0 1px rgba(#fff,.5);
-		border-radius: 9px;
+		border-radius: var( --bR );
 		border: 2px solid rgba(#000,.65);
 
 		&.blue   { --color: #17b; }
@@ -85,10 +85,10 @@ content {
 			content: "";
 			background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.8), transparent);
 			position: absolute;
-			top: 9px;
+			top: 7px;
 			left: 0;
 			right: 0;
-			bottom: 9px;
+			bottom: 7px;
 			border-radius: inherit;
 			border-top: 1px solid rgba(#111,.4);
 			pointer-events: none;
@@ -99,9 +99,9 @@ content {
 			content: "";
 			background-image: linear-gradient(90deg, transparent, rgba(#fff,.65), transparent);
 			position: absolute;
-			left: 9px;
-			right: 9px;
-			bottom: 9px;
+			left: 7px;
+			right: 7px;
+			bottom: 7px;
 			height: 1px;
 			mix-blend-mode: soft-light;
 			pointer-events: none;
@@ -111,12 +111,13 @@ content {
 	div.player {
 		--color: #9d02bd;
 		// z-index: calc( var( --y ) + 1 );
-		transition: all 250ms ease-in-out;
+		transition: all 300ms ease-in-out;
+		will-change: transform, top, left;
 
-		&.go-right { animation: go-right 350ms ease-in-out; }
-		&.go-left  { animation: go-left 350ms ease-in-out; }
-		&.go-up    { animation: go-up 350ms ease-in-out; }
-		&.go-down  { animation: go-down 350ms ease-in-out; }
+		&.go-right { animation: go-right 360ms ease-in-out; }
+		&.go-left  { animation: go-left 360ms ease-in-out; }
+		&.go-up    { animation: go-up 360ms ease-in-out; }
+		&.go-down  { animation: go-down 360ms ease-in-out; }
 
 		i {
 			position: absolute;
@@ -130,22 +131,22 @@ content {
 			&:after {
 				content: "";
 				position: absolute;
-				top: 21px;
-				width: 13px;
-				height: 13px;
-				border-radius: 13px;
+				top: 17px;
+				width: 11px;
+				height: 11px;
+				border-radius: 11px;
 				background: rgba(#000,.6);
 			}
 
 			&:before {
-				left: 14px;
+				left: 11px;
 				animation: wink 6s ease-in-out infinite,
 							vert-left 19s ease-in-out infinite,
 							hori 17s ease-in-out infinite;
 			}
 
 			&:after {
-				right: 14px;
+				right: 11px;
 				animation: wink 6s ease-in-out infinite,
 							vert-right 19s ease-in-out infinite,
 							hori 17s ease-in-out infinite;
@@ -159,8 +160,7 @@ content {
 		left: calc( calc( var( --x ) * var( --c ) ) + 4px );
 		height: calc( var( --c ) - 10px );
 		width: calc( var( --c ) - 10px );
-		// z-index: 1;
-		border-radius: 11px;
+		border-radius: 9px;
 		border: 4px solid rgba(#000,.35);
 
 		&:before,
@@ -194,18 +194,18 @@ content {
 		&:after {
 			content: "";
 			position: absolute;
-			top: 19px;
-			left: 11px;
-			width: 11px;
-			height: 11px;
-			border-radius: 11px;
+			top: 13px;
+			left: 8px;
+			width: 9px;
+			height: 9px;
+			border-radius: 7px;
 			background: rgba(#000,.35);
 			box-shadow: 0 1px 0 rgba(#fff,.125);
 		}
 
 		&:after {
 			left: auto;
-			right: 11px;
+			right: 8px;
 		}
 	}
 
@@ -466,10 +466,10 @@ content {
 @keyframes vert-left {
 	0%    { margin-left: 0; }
 	15%   { margin-left: 0; }
-	16%   { margin-left: -6px; }
-	30%   { margin-left: -6px; }
-	31%   { margin-left: 6px; }
-	50%   { margin-left: 6px; }
+	16%   { margin-left: -5px; }
+	30%   { margin-left: -5px; }
+	31%   { margin-left: 5px; }
+	50%   { margin-left: 5px; }
 	51%   { margin-left: 0px; }
 	78%   { margin-left: 0px; }
 	79%   { margin-left: 3px; }
@@ -480,10 +480,10 @@ content {
 @keyframes vert-right {
 	0%    { margin-right: 0; }
 	15%   { margin-right: 0; }
-	16%   { margin-right: 6px; }
-	30%   { margin-right: 6px; }
-	31%   { margin-right: -6px; }
-	50%   { margin-right: -6px; }
+	16%   { margin-right: 5px; }
+	30%   { margin-right: 5px; }
+	31%   { margin-right: -5px; }
+	50%   { margin-right: -5px; }
 	51%   { margin-right: 0px; }
 	78%   { margin-right: 0px; }
 	79%   { margin-right: -3px; }
@@ -506,10 +506,10 @@ content {
 }
 
 @keyframes wink {
-	0%   { height: 13px; border-radius: 13px; margin-top: 0; }
-	49%  { height: 13px; border-radius: 13px; margin-top: 0; }
+	0%   { height: 11px; border-radius: 11px; margin-top: 0; }
+	49%  { height: 11px; border-radius: 11px; margin-top: 0; }
 	49.1%  { height: 5px; border-radius: 5px; margin-top: 7px; }
 	50.9%  { height: 5px; border-radius: 5px; margin-top: 7px; }
-	51%  { height: 13px; border-radius: 13px; margin-top: 0; }
-	100% { height: 13px; border-radius: 13px; margin-top: 0; }
+	51%  { height: 11px; border-radius: 11px; margin-top: 0; }
+	100% { height: 11px; border-radius: 11px; margin-top: 0; }
 }

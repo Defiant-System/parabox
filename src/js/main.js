@@ -8,8 +8,10 @@
 
 let Level = {};
 
+@import "./levels/blank.js"
 @import "./levels/level-1.js"
 @import "./levels/level-2.js"
+@import "./levels/level-3.js"
 
 
 const parabox = {
