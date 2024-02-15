@@ -46,7 +46,7 @@ let Game = {
 		}
 
 		// exit
-		htm.push(`<div class="exit" style="--y: ${level.exit.y}; --x: ${level.exit.x};"><i></i></div>`);
+		htm.push(`<div class="exit" style="--y: ${level.exit.y}; --x: ${level.exit.x};"><i></i><b></b></div>`);
 		// update board
 		board[level.exit.y][level.exit.x] = EXIT;
 
@@ -144,6 +144,11 @@ let Game = {
 		let exitEl = this.el.find(".exit"),
 			exitY = +exitEl.cssProp("--y"),
 			exitX = +exitEl.cssProp("--x");
+		// count placed blocks
+		let rowsWithSuccess = this.board.filter(row => row.some(cell => cell === SUCCESS));
+		// signals exit is open
+		if (rowsWithSuccess.length === this.blockCount) this.el.find(".exit").addClass("ready");
+
 		// return if player is not on exit square
 		if (!Player.pos.isOn(exitX, exitY)) return;
 
@@ -152,11 +157,9 @@ let Game = {
 		if (Utils.isVoid(this.levelClean[Player.pos.y][Player.pos.x])) {
 			rowsWithVoid.push(this.levelClean[Player.pos.y]);
 		}
-		// count placed blocks
-		let rowsWithSuccess = this.board.filter(row => row.some(cell => cell === SUCCESS));
-		let isWin = rowsWithVoid.length === 0 && rowsWithSuccess.length === this.blockCount;
 
-		if (isWin) {
+		// check if level is complete
+		if (rowsWithVoid.length === 0 && rowsWithSuccess.length === this.blockCount) {
 			console.log("you win!");
 		}
 	}
