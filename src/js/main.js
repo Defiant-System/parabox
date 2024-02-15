@@ -34,6 +34,9 @@ const parabox = {
 				}
 				break;
 			// custom events
+			case "set-game-level":
+				Game.renderLevel(+event.arg);
+				return true;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;

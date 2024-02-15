@@ -22,13 +22,15 @@ content {
 		--c: 61px;
 
 		&.box {
-			top: 55px;
-			left: 55px;
 			background: var( --bg-color );
 			width: calc( var( --c ) * var( --w ) );
 			height: calc( calc( var( --c ) * var( --h ) ) + 6px );
 			box-shadow: inset 0px -7px 0px 0px rgba(#000,.175),
 						0 0 7px rgba(#000,.35);
+
+			&.size-5 { top: 165px; left: 165px; }
+			&.size-7 { top: 115px; left: 115px; }
+			&.size-9 { top: 55px; left: 55px; }
 
 			&:before {
 				opacity: .25;
@@ -111,13 +113,13 @@ content {
 	div.player {
 		--color: #9d02bd;
 		// z-index: calc( var( --y ) + 1 );
-		transition: all 300ms ease-in-out;
+		transition: all 260ms ease-in-out;
 		will-change: transform, top, left;
 
-		&.go-right { animation: go-right 360ms ease-in-out; }
-		&.go-left  { animation: go-left 360ms ease-in-out; }
-		&.go-up    { animation: go-up 360ms ease-in-out; }
-		&.go-down  { animation: go-down 360ms ease-in-out; }
+		&.go-right { animation: go-right 300ms ease-in-out; }
+		&.go-left  { animation: go-left 300ms ease-in-out; }
+		&.go-up    { animation: go-up 300ms ease-in-out; }
+		&.go-down  { animation: go-down 300ms ease-in-out; }
 
 		i {
 			position: absolute;

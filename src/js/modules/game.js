@@ -1,12 +1,9 @@
 
 let Game = {
 	init() {
-		// paint level
-		this.paint(6);
-		// init player object
-		Player.init();
+		
 	},
-	paint(i) {
+	renderLevel(i) {
 		let APP = parabox,
 			level = Level[i],
 			size = {
@@ -18,7 +15,7 @@ let Game = {
 			htm = [];
 
 		// level wrapper: START
-		htm.push(`<div class="box board" style="--bg-color: ${level.bg}; --fg-filter: ${level.filter}; --w: ${size.w}; --h: ${size.h};">`);
+		htm.push(`<div class="box board size-${size.w}" style="--bg-color: ${level.bg}; --fg-filter: ${level.filter}; --w: ${size.w}; --h: ${size.h};">`);
 		
 		// player
 		htm.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
@@ -68,10 +65,11 @@ let Game = {
 		this.blockCount = this.el.find(".box[data-id]").length;
 
 		// save clean version of map
-		if (!this.levelClean) this.levelClean = JSON.parse(JSON.stringify(board));
-
+		this.levelClean = JSON.parse(JSON.stringify(board));
 		// save reference to board
 		this.board = board;
+		// init player object
+		Player.init();
 	},
 	movePlayer(playerCoords, direction) {
 		// Replace previous spot with initial board state (void or empty)
@@ -158,7 +156,6 @@ let Game = {
 		let rowsWithSuccess = this.board.filter(row => row.some(cell => cell === SUCCESS));
 		let isWin = rowsWithVoid.length === 0 && rowsWithSuccess.length === this.blockCount;
 
-		console.log(4);
 		if (isWin) {
 			console.log("you win!");
 		}
