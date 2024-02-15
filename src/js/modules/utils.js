@@ -25,7 +25,7 @@ let Utils = {
 		return [PLAYER].includes(cell);
 	},
 	isTraversible(cell) {
-		return [EMPTY, VOID].includes(cell);
+		return [EMPTY, VOID, EXIT].includes(cell);
 	},
 	isWall(cell) {
 		return [WALL].includes(cell);
