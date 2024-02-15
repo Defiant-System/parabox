@@ -1,6 +1,6 @@
 
 Level[4] = {
-	bg: "#666",
+	bg: "#626262",
 	filter: "none",
 	player: { y: 7, x: 1 },
 	exit: { y: 6, x: 4 },

@@ -2,7 +2,7 @@
 let Game = {
 	init() {
 		// paint level
-		this.paint(4);
+		this.paint(5);
 		// init player object
 		Player.init();
 	},
