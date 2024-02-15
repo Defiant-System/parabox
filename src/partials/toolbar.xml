@@ -8,6 +8,9 @@
 			<Tool name="1" click="set-game-level" arg="1"/>
 			<Tool name="2" click="set-game-level" arg="2"/>
 			<Tool name="3" click="set-game-level" arg="3"/>
+			<Tool name="4" click="set-game-level" arg="4"/>
+			<Tool name="5" click="set-game-level" arg="5"/>
+			<Tool name="6" click="set-game-level" arg="6"/>
 		</Options>
 	</Group>
 	<Group width="11%">

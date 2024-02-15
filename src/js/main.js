@@ -5,13 +5,7 @@
 @import "./modules/game.js"
 @import "./modules/test.js"
 
-
-let Level = {};
-
-@import "./levels/blank.js"
-@import "./levels/level-1.js"
-@import "./levels/level-2.js"
-@import "./levels/level-3.js"
+@import "./levels/index.js"
 
 
 const parabox = {
