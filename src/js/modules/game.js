@@ -103,13 +103,11 @@ let Game = {
 						result = Utils.isVoid(this.levelClean[oY][oX]) ? SUCCESS : BLOCK;
 					this.board[oY][oX] = result;
 					// move DOM element
-					console.log( playerCoords.y, playerCoords.x );
-					// console.log([blockY, blockX], [oY, oX]);
-					if (blocksInARow > 0) {
-						// this.moveBlockEl([blockY, blockX], [oY, oX]);
-					}
+					let nY = Utils.getY(playerY, direction, blocksInARow),
+						nX = Utils.getX(playerX, direction, blocksInARow);
+					this.moveBlockEl([nY, nX], [oY, oX]);
 				}
-				// this.movePlayer(playerCoords, direction);
+				this.movePlayer(playerCoords, direction);
 			}
 		} else {
 			// Move box; if on top of void, make into a success box
