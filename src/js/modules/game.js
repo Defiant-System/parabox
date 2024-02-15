@@ -17,11 +17,6 @@ let Game = {
 		// level wrapper: START
 		htm.push(`<div class="box board size-${size.w}" style="--bg-color: ${level.bg}; --fg-filter: ${level.filter}; --w: ${size.w}; --h: ${size.h};">`);
 		
-		// player
-		htm.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
-		// update board
-		board[level.player.y][level.player.x] = PLAYER;
-		
 		// walls
 		for (let y=0, yl=level.walls.length; y<yl; y++) {
 			let row = level.walls[y];
@@ -37,6 +32,11 @@ let Game = {
 			}
 		}
 
+		// player
+		htm.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
+		// update board
+		board[level.player.y][level.player.x] = PLAYER;
+		
 		// voids
 		for (let i=0, il=level.void.length; i<il; i++) {
 			let spot = level.void[i];
