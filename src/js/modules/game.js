@@ -19,7 +19,7 @@ let Game = {
 		Player.init();
 	},
 	paint(id) {
-		let level = Level[id],
+		let level = typeof id === "object" ? id : Level[id],
 			size = {
 				h: level.walls.length,
 				w: Math.max(...level.walls.map(row => row.length)),
@@ -80,7 +80,6 @@ let Game = {
 		htm.push(voids.join(""));
 		htm.push(blocks.join(""));
 		htm.push(`</div>`);
-		// level wrapper: END
 
 		return { id, board, size, walls, player, voids, blocks, htm };
 	},

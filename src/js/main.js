@@ -64,9 +64,6 @@ const parabox = {
 					Self.editor.dispatch({ type: "exit-mode" });
 				}
 				break;
-			case "set-game-level":
-				Game.renderLevel(+event.arg);
-				return true;
 			case "close-congratulations":
 				Self.content.removeClass("game-won");
 				break;
@@ -78,11 +75,12 @@ const parabox = {
 					pEl = event.el.data("area") ? event.el : event.el.parents("div[data-area]");
 					name = pEl.data("area");
 					if (pEl.length && Self[name].dispatch) {
-						Self[name].dispatch(event);
+						return Self[name].dispatch(event);
 					}
 				}
 		}
 	},
+	toolbar: @import "areas/toolbar.js",
 	editor: @import "areas/editor.js",
 };
 
