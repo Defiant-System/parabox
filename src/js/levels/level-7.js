@@ -1,7 +1,7 @@
 
 Level[7] = {
-	bg: "#666",
-	filter: "none",
+	bg: "#272",
+	filter: "sepia(1) saturate(.85) brightness(.9)",
 	player: { y: 3, x: 2 },
 	exit: null,
 	void: [],
@@ -16,8 +16,8 @@ Level[7] = {
 };
 
 Level[7.1] = {
-	bg: "#15a",
-	filter: "sepia(1) hue-rotate(145deg) saturate(1.75) brightness(0.75)",
+	bg: "#149",
+	filter: "sepia(1) hue-rotate(145deg) saturate(1.75) brightness(.65)",
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],
 		[{ key: "WE" }, {}, {}, {}, { key: "WE" }],
@@ -30,7 +30,7 @@ Level[7.1] = {
 
 Level[7.2] = {
 	bg: "#b50",
-	filter: "sepia(1) hue-rotate(225deg) saturate(1.5) brightness(0.85)",
+	filter: "sepia(1) hue-rotate(225deg) saturate(1.5) brightness(.85)",
 	walls: [
 		[{ key: "NSE" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],
 		[{}, {}, {}, { key: "WE" }],
