@@ -20,32 +20,13 @@ let Game = {
 	},
 	paint(id) {
 		let level = typeof id === "object" ? id : Level[id],
-			size = {
-				h: level.walls.length,
-				w: Math.max(...level.walls.map(row => row.length)),
-			},
 			// update board
-			board = [...Array(size.h)].map(y => [...Array(size.w)].map(x => EMPTY)),
-			walls = [],
 			player = [],
 			voids = [],
 			blocks = [],
 			htm = [];
 
-		// walls
-		for (let y=0, yl=level.walls.length; y<yl; y++) {
-			let row = level.walls[y];
-			for (let x=0, xl=row.length; x<xl; x++) {
-				let cell = row[x],
-					sub = cell.sub ? cell.sub.map(s => `<u class="${s}"></u>`).join("") : "";
-				if (cell.key) {
-					// UI element
-					walls.push(`<span class="wall ${cell.key}" style="--y: ${y}; --x: ${x};">${sub}</span>`);
-					// update board
-					board[y][x] = "wall";
-				}
-			}
-		}
+		let { walls, board, size } = this.paintWalls(level.walls);
 
 		// player
 		player.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
@@ -70,33 +51,18 @@ let Game = {
 		// blocks
 		for (let i=0, il=level.block.length; i<il; i++) {
 			let block = level.block[i],
+				style = `--y: ${block.y}; --x: ${block.x};`,
 				color = block.color,
 				sub = [];
 			if (block.mini) {
+				let mini = Level[block.mini],
+					data = this.paintWalls(mini.walls);
+				sub = [...data.walls];
+
 				color = "mini";
-				// temp
-				sub.push(`<span class="wall NE" style="--y: 0; --x: 0;"></span>`);
-				sub.push(`<span class="wall NS" style="--y: 0; --x: 1;"></span>`);
-				sub.push(`<span class="wall NS" style="--y: 0; --x: 2;"></span>`);
-				sub.push(`<span class="wall NS" style="--y: 0; --x: 3;"></span>`);
-				sub.push(`<span class="wall NW" style="--y: 0; --x: 4;"></span>`);
-
-				sub.push(`<span class="wall WE" style="--y: 1; --x: 0;"></span>`);
-				sub.push(`<span class="wall WE" style="--y: 1; --x: 4;"></span>`);
-
-				sub.push(`<span class="wall WE" style="--y: 2; --x: 0;"></span>`);
-				sub.push(`<span class="wall WE" style="--y: 2; --x: 4;"></span>`);
-
-				sub.push(`<span class="wall WE" style="--y: 3; --x: 0;"></span>`);
-				sub.push(`<span class="wall WE" style="--y: 3; --x: 4;"></span>`);
-
-				sub.push(`<span class="wall SE" style="--y: 4; --x: 0;"></span>`);
-				sub.push(`<span class="wall NS" style="--y: 4; --x: 1;"></span>`);
-				sub.push(`<span class="wall NS" style="--y: 4; --x: 2;"></span>`);
-				sub.push(`<span class="wall NS" style="--y: 4; --x: 3;"></span>`);
-				sub.push(`<span class="wall WS" style="--y: 4; --x: 4;"></span>`);
+				style += `--color: ${mini.bg}; --fg-filter: ${mini.filter};`;
 			}
-			blocks.push(`<div class="box ${color}" data-id="${block.y}-${block.x}" style="--y: ${block.y}; --x: ${block.x};">${sub.join("")}</div>`);
+			blocks.push(`<div class="box ${color}" data-id="${block.y}-${block.x}" style="${style}">${sub.join("")}</div>`);
 			// update board
 			board[block.y][block.x] = BLOCK;
 		}
@@ -110,6 +76,29 @@ let Game = {
 		htm.push(`</div>`);
 
 		return { id, board, size, walls, player, voids, blocks, htm };
+	},
+	paintWalls(data) {
+		let size = {
+				h: data.length,
+				w: Math.max(...data.map(row => row.length)),
+			},
+			board = [...Array(size.h)].map(y => [...Array(size.w)].map(x => EMPTY)),
+			walls = [];
+		// walls
+		for (let y=0, yl=data.length; y<yl; y++) {
+			let row = data[y];
+			for (let x=0, xl=row.length; x<xl; x++) {
+				let cell = row[x],
+					sub = cell.sub ? cell.sub.map(s => `<u class="${s}"></u>`).join("") : "";
+				if (cell.key) {
+					// UI element
+					walls.push(`<span class="wall ${cell.key}" style="--y: ${y}; --x: ${x};">${sub}</span>`);
+					// update board
+					board[y][x] = "wall";
+				}
+			}
+		}
+		return { walls, board, size };
 	},
 	movePlayer(playerCoords, direction) {
 		// Replace previous spot with initial board state (void or empty)
