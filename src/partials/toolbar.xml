@@ -22,7 +22,9 @@
 		</Group>
 	</ToolSet>
 
-	<ToolSet id="edit-mode" state="hidden">
-		<Tool name="Editor" click="editor-mode"/>
+	<ToolSet id="edit-mode">
+		<Group>
+			<Tool name="Editor" click="editor-mode"/>
+		</Group>
 	</ToolSet>
 </ToolBar>
