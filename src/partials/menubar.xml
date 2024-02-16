@@ -5,7 +5,7 @@
 		<Menu name="Quit Parabox" shell="win -c"/>
 	</Menu>
 	<Menu name="Game" for="game-options">
-		<Menu name="Editor Mode" is-checked="1"/>
+		<Menu name="Editor Mode" click="set-editor-mode"/>
 	</Menu>
 
 	<Menu name="Help">

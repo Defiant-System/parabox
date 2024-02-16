@@ -33,6 +33,14 @@ content {
 		}
 	}
 
+	&[data-mode="game"] {
+		.game-view { opacity: 1; pointer-events: initial; }
+	}
+
+	&[data-mode="editor"] {
+		.editor-view { opacity: 1; pointer-events: initial; }
+	}
+
 	.board {
 		position: absolute;
 		font-size: 0;
@@ -576,8 +584,9 @@ content {
 	}
 
 	.game-view {
-		// pacity: 0;
-		// visibility: hidden;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -586,8 +595,9 @@ content {
 	}
 
 	.editor-view {
-		// pacity: 0;
-		// visibility: hidden;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
 		position: absolute;
 		top: 0;
 		left: 0;

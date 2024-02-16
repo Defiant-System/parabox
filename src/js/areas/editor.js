@@ -32,13 +32,28 @@
 				// prevent default behaviour
 				event.preventDefault();
 
+				let el = $(event.target),
+					bEl = el.parents("?.box.board"),
+					type = el.hasClass("wall") ? "subtract" : "add",
+					click = {
+						x: event.clientX,
+						y: event.clientY,
+					},
+					offset = {
+						x: event.offsetX,
+						y: event.offsetY,
+					};
+
+				// return console.log(event);
+				Self.drag = { bEl, type, click, offset };
+
 				// cover content
 				APP.content.addClass("cover");
 				// bind event handlers
 				Self.els.doc.on("mousemove mouseup", Self.paintWall);
 				break;
 			case "mousemove":
-				console.log(123);
+				
 				break;
 			case "mouseup":
 				// cover content

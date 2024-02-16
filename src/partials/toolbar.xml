@@ -1,6 +1,6 @@
 
 <ToolBar>
-	<ToolSet id="default">
+	<ToolSet id="default" state="active">
 		<Group width="23%">
 			<Options>
 				<Tool symbol="icon-undo"/>
@@ -22,7 +22,7 @@
 		</Group>
 	</ToolSet>
 
-	<ToolSet id="edit-mode" state="active">
+	<ToolSet id="edit-tools">
 		<Group width="89%">
 			<Options>
 				<Tool name="5" click="set-board-size" arg="5"/>

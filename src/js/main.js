@@ -30,6 +30,7 @@ const parabox = {
 			name,
 			pEl,
 			el;
+		// console.log(event);
 		switch (event.type) {
 			// system events
 			case "window.init":
@@ -43,6 +44,18 @@ const parabox = {
 				}
 				break;
 			// custom events
+			case "set-editor-mode":
+				if (event.xMenu.getAttribute("is-checked")) {
+					// update blueprint
+					event.xMenu.removeAttribute("is-checked");
+					// switch toolbar toolset
+					window.toolset = "default";
+				} else {
+					event.xMenu.setAttribute("is-checked", "1");
+					// switch toolbar toolset
+					window.toolset = "edit-tools";
+				}
+				break;
 			case "set-game-level":
 				Game.renderLevel(+event.arg);
 				return true;
