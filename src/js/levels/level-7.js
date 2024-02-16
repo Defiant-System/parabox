@@ -20,21 +20,21 @@ Level[7.1] = {
 	filter: "none", //"sepia(1) hue-rotate(145deg) saturate(1.75) brightness(.65)",
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],
+		[{ key: "WE", sub: ["NW-NE"] }, {}, {}, {}, { key: "WE", sub: ["NE-NW"] }],
 		[{ key: "WE" }, {}, {}, {}, { key: "WE" }],
 		[{ key: "WE" }, {}, {}, {}, { key: "WE" }],
-		[{ key: "WE" }, {}, {}, {}, { key: "WE" }],
-		[{ key: "SE" }, { key: "NWS" }, {}, { key: "NSE" }, { key: "WS" }],
+		[{ key: "SE" }, { key: "NWS", sub: ["NE-ES"] }, {}, { key: "NSE" }, { key: "WS", sub: ["NE-WS"] }],
 	]
 };
 
 
 Level[7.2] = {
 	bg: "#b50",
-	filter: "none", //"sepia(1) hue-rotate(225deg) saturate(1.5) brightness(.85)",
+	filter: "sepia(1) hue-rotate(225deg) saturate(1.5) brightness(.85) opacity(.95)",
 	walls: [
 		[{ key: "NSE" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],
-		[{}, {}, {}, { key: "WE" }],
+		[{}, {}, {}, { key: "WE", sub: ["NE-NW"] }],
 		[{ key: "NWE" }, {}, {}, { key: "WE" }],
-		[{ key: "SE" }, { key: "NWS" }, {}, { key: "WSE" }],
+		[{ key: "SE" }, { key: "NWS", sub: ["NE-ES"] }, {}, { key: "WSE" }],
 	]
 };

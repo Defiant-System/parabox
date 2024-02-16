@@ -69,4 +69,44 @@
 		<path class="st1" d="M0,15.5c3,0,5.5-2.5,5.5-5.6V0C5.5,3.1,3,5.6,0,5.6"/>
 		<path class="st2" d="M0,5L0,5c2.7,0,5-2.2,5-5"/>
 	</svg>
+
+	<svg id="mini-neg-nw-ne" viewBox="0 0 6 7">
+		<style type="text/css">
+			.st0{fill:#999;}
+			.st1{fill:#7e7e7e;stroke:#adadad;stroke-width:1.1;stroke-miterlimit:10;}
+			.st2{fill:none;stroke:#222;stroke-width:2;stroke-miterlimit:10;}
+		</style>
+		<rect class="st0" width="6" height="5"/>
+		<path class="st1" d="M6,0.6l-1.1,0c-3.4,0-4.4,2-4.4,5.5V9c0-2.7,2.1-4.2,4.5-4.3l1,0"/>
+		<path class="st2" d="M1,10V9c0-2.5,1.3-4,4-4l0,0h1"/>
+	</svg>
+
+	<svg id="mini-neg-ne-nw" viewBox="0 0 6 10">
+		<style type="text/css">
+			.st0{fill:#999;}
+			.st1{fill:#7e7e7e;stroke:#adadad;stroke-width:1.1;stroke-miterlimit:10;}
+			.st2{fill:none;stroke:#222;stroke-width:2;stroke-miterlimit:10;}
+		</style>
+		<rect class="st0" width="6" height="5"/>
+		<path class="st1" d="M0,4.8l1,0c2.4,0,4.5,1.5,4.5,4.3V6.1c0-3.5-1-5.5-4.4-5.5L0,0.6"/>
+		<path class="st2" d="M5,10V9c0-2.5-1.3-4-4-4l0,0H0"/>
+	</svg>
+
+	<svg id="mini-neg-ne-es" viewBox="0 0 6 7">
+		<style type="text/css">
+			.st0{fill:#999;}
+			.st1{fill:none;stroke:#222;stroke-width:2;stroke-miterlimit:10;}
+		</style>
+		<path class="st0" d="M6,5.5C2.7,5.6,1,4.1,0,0l0,7h6"/>
+		<path class="st1" d="M1,0v1c0,2.5,1.4,4,4,4l0,0h1"/>
+	</svg>
+
+	<svg id="mini-neg-ne-ws" viewBox="0 0 6 7">
+		<style type="text/css">
+			.st0{fill:#999;}
+			.st1{fill:none;stroke:#222;stroke-width:2;stroke-miterlimit:10;}
+		</style>
+		<path class="st0" d="M0,7h6V0C5,4.1,3.3,5.6,0,5.5"/>
+		<path class="st1" d="M0,5h1l0,0c2.6,0,4-1.5,4-4V0"/>
+	</svg>
 </svg>

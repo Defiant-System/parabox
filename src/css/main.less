@@ -205,11 +205,36 @@ content {
 			}
 
 			> span.wall {
-				border-color: rgba(#000,.7);
+				border-color: #222;
 
 				&:after {
 					top: 1px;
 					border-top: 0;
+				}
+			}
+
+			u {
+				width: 6px;
+				height: 7px;
+
+				&.NW-NE {
+					top: 0;
+					height: 10px;
+					background-image: url(~/icons/mini-neg-nw-ne.png);
+				}
+
+				&.NE-NW {
+					top: 0;
+					height: 10px;
+					background-image: url(~/icons/mini-neg-ne-nw.png);
+				}
+
+				&.NE-ES {
+					background-image: url(~/icons/mini-neg-ne-es.png);
+				}
+
+				&.NE-WS {
+					background-image: url(~/icons/mini-neg-ne-ws.png);
 				}
 			}
 		}
