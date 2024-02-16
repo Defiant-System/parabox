@@ -78,16 +78,31 @@ content {
 				left: 119px;
 				--c: 82px;
 				--eyes: 15px;
+
+				.mini {
+					&.size-4 > span.wall { --c: 20px; }
+					&.size-5 > span.wall { --c: 16px; }
+				}
 			}
 
 			&.size-7 {
 				top: 115px;
 				left: 115px;
+
+				.mini {
+					&.size-4 > span.wall { --c: 15px; }
+					&.size-5 > span.wall { --c: 12px; }
+				}
 			}
 
 			&.size-9 {
 				top: 55px;
 				left: 55px;
+
+				.mini {
+					&.size-4 > span.wall { --c: 15px; }
+					&.size-5 > span.wall { --c: 12px; }
+				}
 			}
 
 			&.size-11 {
@@ -194,14 +209,6 @@ content {
 			&:after {
 				bottom: 2px;
 				opacity: .1;
-			}
-
-			&.size-4 {
-				> span.wall { --c: 20px; }
-			}
-
-			&.size-5 {
-				> span.wall { --c: 16px; }
 			}
 
 			> span.wall {
