@@ -62,6 +62,8 @@ content {
 		--bR: 8px;
 		--t: 9px;
 		--c: 61px;
+		--wH: -9px;
+		--wT: 12px;
 		--eyes: 11px;
 
 		&.box {
@@ -74,7 +76,7 @@ content {
 			&.size-5 {
 				top: 119px;
 				left: 119px;
-				--c: 83px;
+				--c: 82px;
 				--eyes: 15px;
 			}
 
@@ -145,10 +147,6 @@ content {
 		&.red    { --color: #b33; }
 		&.green  { --color: #171; }
 
-		&.link {
-			--color: #17b;
-		}
-
 		&[data-id] { transition: all 250ms ease-in-out; }
 
 		&:before {
@@ -175,6 +173,39 @@ content {
 			height: 1px;
 			mix-blend-mode: soft-light;
 			pointer-events: none;
+		}
+
+		&.mini {
+			--color: #17b;
+			--wT: 9px;
+			--wH: -4px;
+			margin-top: 4px;
+			height: calc( var( --c ) + 2px );
+			box-shadow: inset 0px -3px 0px 0px rgba(#000,.175),
+						inset 0 0 1px rgba(#fff,.5);
+
+			&:before {
+				top: 3px;
+				bottom: 3px;
+			}
+
+			&:after {
+				bottom: 3px;
+			}
+
+			> span.wall {
+				--c: 16px;
+				border-color: rgba(#000,.7);
+
+				&:after {
+					top: 1px;
+					border-top: 0;
+				}
+
+				// &.NSE { border-width: 1px 0 1px 1px; }
+				// &.NS { border-width: 1px 0 1px 0; }
+				// &.NWS { border-width: 1px 1px 1px 0; }
+			}
 		}
 	}
 
@@ -312,7 +343,7 @@ content {
 
 	span.wall {
 		position: absolute;
-		top: calc( calc( var( --y ) * calc( var( --c ) ) - 2px ) - 12px );
+		top: calc( calc( var( --y ) * calc( var( --c ) ) - 2px ) - var( --wT ) );
 		left: calc( var( --x ) * calc( var( --c ) ) - 2px );
 		width: var( --c );
 		height: var( --c );
@@ -327,10 +358,10 @@ content {
 		&:after {
 			content: "";
 			position: absolute;
-			top: 9px;
+			top: calc( var( --wH ) * -1 );
 			left: 0;
 			right: 0;
-			bottom: 9px;
+			bottom: calc( var( --wH ) * -1 );
 			border-radius: inherit;
 			mix-blend-mode: soft-light;
 			pointer-events: none;
@@ -343,7 +374,7 @@ content {
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
-				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+				box-shadow: 0px var( --wH ) 0px 0px rgba(#000,.2);
 			}
 		}
 
@@ -354,7 +385,7 @@ content {
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
-				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+				box-shadow: 0px var( --wH ) 0px 0px rgba(#000,.2);
 			}
 		}
 
@@ -365,7 +396,7 @@ content {
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
-				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+				box-shadow: 0px var( --wH ) 0px 0px rgba(#000,.2);
 			}
 		}
 
@@ -374,12 +405,12 @@ content {
 			height: calc( var( --c ) + 6px );
 			border-width: 2px 0 2px 2px;
 			border-radius: var( --bR ) 0 0 var( --bR );
-			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
 				border-bottom: 1px solid rgba(#fff,.45);
-				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+				box-shadow: 0px var( --wH ) 0px 0px rgba(#000,.2);
 			}
 		}
 
@@ -388,12 +419,12 @@ content {
 			height: calc( var( --c ) + 6px );
 			border-width: 2px 0 2px 0;
 			border-radius: 0;
-			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
 				border-bottom: 1px solid rgba(#fff,.45);
-				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+				box-shadow: 0px var( --wH ) 0px 0px rgba(#000,.2);
 			}
 		}
 
@@ -402,12 +433,12 @@ content {
 			height: calc( var( --c ) + 6px );
 			border-width: 2px 2px 2px 0;
 			border-radius: 0 var( --bR ) var( --bR ) 0;
-			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
 				border-bottom: 1px solid rgba(#fff,.45);
-				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+				box-shadow: 0px var( --wH ) 0px 0px rgba(#000,.2);
 			}
 		}
 
@@ -416,12 +447,12 @@ content {
 			height: calc( var( --c ) + 6px );
 			border-width: 2px;
 			border-radius: var( --bR );
-			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
 				border-bottom: 1px solid rgba(#fff,.45);
-				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+				box-shadow: 0px var( --wH ) 0px 0px rgba(#000,.2);
 			}
 		}
 
@@ -432,7 +463,7 @@ content {
 
 			&:after {
 				border-top: 1px solid rgba(#000,.35);
-				box-shadow: 0px -9px 0px 0px rgba(#000,.2);
+				box-shadow: 0px var( --wH ) 0px 0px rgba(#000,.2);
 			}
 		}
 
@@ -465,7 +496,7 @@ content {
 			height: calc( var( --c ) + 6px );
 			border-width: 0 2px 2px 2px;
 			border-radius: 0 0 var( --bR ) var( --bR );
-			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
 
 			&:after { border-bottom: 1px solid rgba(#fff,.45); }
 		}
@@ -475,7 +506,7 @@ content {
 			height: calc( var( --c ) + 6px );
 			border-width: 0 0 2px 0;
 			border-radius: 0;
-			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
 
 			&:after { border-bottom: 1px solid rgba(#fff,.45); }
 		}
@@ -485,7 +516,7 @@ content {
 			height: calc( var( --c ) + 6px );
 			border-width: 0 0 2px 2px;
 			border-radius: 0 0 0 var( --bR );
-			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
 
 			&:after { border-bottom: 1px solid rgba(#fff,.45); }
 		}
@@ -495,7 +526,7 @@ content {
 			height: calc( var( --c ) + 6px );
 			border-width: 0 2px 2px 0;
 			border-radius: 0 0 var( --bR ) 0;
-			box-shadow: inset 0px -9px 0px 0px rgba(#000,.175);
+			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
 
 			&:after { border-bottom: 1px solid rgba(#fff,.45); }
 		}

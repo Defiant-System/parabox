@@ -5,7 +5,7 @@ Level[7] = {
 	player: { y: 3, x: 2 },
 	exit: null,
 	void: [],
-	block: [{ y: 1, x: 2, link: 7.1 }],
+	block: [{ y: 1, x: 2, mini: 7.1 }],
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],
 		[{ key: "WE", sub: ["NW-NE"] }, {}, {}, {}, { key: "WE", sub: ["NE-NW"] }],

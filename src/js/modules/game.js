@@ -70,9 +70,33 @@ let Game = {
 		// blocks
 		for (let i=0, il=level.block.length; i<il; i++) {
 			let block = level.block[i],
-				color = block.color;
-			if (block.link) color = "link";
-			blocks.push(`<div class="box ${color}" data-id="${block.y}-${block.x}" style="--y: ${block.y}; --x: ${block.x};"></div>`);
+				color = block.color,
+				sub = [];
+			if (block.mini) {
+				color = "mini";
+				// temp
+				sub.push(`<span class="wall NE" style="--y: 0; --x: 0;"></span>`);
+				sub.push(`<span class="wall NS" style="--y: 0; --x: 1;"></span>`);
+				sub.push(`<span class="wall NS" style="--y: 0; --x: 2;"></span>`);
+				sub.push(`<span class="wall NS" style="--y: 0; --x: 3;"></span>`);
+				sub.push(`<span class="wall NW" style="--y: 0; --x: 4;"></span>`);
+
+				sub.push(`<span class="wall WE" style="--y: 1; --x: 0;"></span>`);
+				sub.push(`<span class="wall WE" style="--y: 1; --x: 4;"></span>`);
+
+				sub.push(`<span class="wall WE" style="--y: 2; --x: 0;"></span>`);
+				sub.push(`<span class="wall WE" style="--y: 2; --x: 4;"></span>`);
+
+				sub.push(`<span class="wall WE" style="--y: 3; --x: 0;"></span>`);
+				sub.push(`<span class="wall WE" style="--y: 3; --x: 4;"></span>`);
+
+				sub.push(`<span class="wall SE" style="--y: 4; --x: 0;"></span>`);
+				sub.push(`<span class="wall NS" style="--y: 4; --x: 1;"></span>`);
+				sub.push(`<span class="wall NS" style="--y: 4; --x: 2;"></span>`);
+				sub.push(`<span class="wall NS" style="--y: 4; --x: 3;"></span>`);
+				sub.push(`<span class="wall WS" style="--y: 4; --x: 4;"></span>`);
+			}
+			blocks.push(`<div class="box ${color}" data-id="${block.y}-${block.x}" style="--y: ${block.y}; --x: ${block.x};">${sub.join("")}</div>`);
 			// update board
 			board[block.y][block.x] = BLOCK;
 		}
@@ -160,8 +184,10 @@ let Game = {
 		this.checkWin();
 	},
 	checkWin() {
-		let exitEl = this.el.find(".exit"),
-			exitY = +exitEl.cssProp("--y"),
+		let exitEl = this.el.find(".exit");
+		if (!exitEl.length) return;
+
+		let exitY = +exitEl.cssProp("--y"),
 			exitX = +exitEl.cssProp("--x");
 		
 		// signals exit is open
