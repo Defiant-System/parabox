@@ -59,7 +59,7 @@ let Game = {
 					data = this.paintWalls(mini.walls);
 				sub = [...data.walls];
 
-				color = "mini";
+				color = `mini size-${data.size.w}`;
 				style += `--color: ${mini.bg}; --fg-filter: ${mini.filter};`;
 			}
 			blocks.push(`<div class="box ${color}" data-id="${block.y}-${block.x}" style="${style}">${sub.join("")}</div>`);
@@ -149,9 +149,9 @@ let Game = {
 	},
 	moveBlockEl(from, to) {
 		let bEl = this.el.find(`.box[data-id="${from[0]}-${from[1]}"]`),
-			style = `--y: ${to[0]}; --x: ${to[1]};`,
+			style = { "--y": to[0], "--x": to[1] },
 			id = `${to[0]}-${to[1]}`;
-		bEl.attr({ style }).data({ id });
+		bEl.css(style).data({ id });
 	},
 	move(direction) {
 		let playerCoords = Player.coords();
