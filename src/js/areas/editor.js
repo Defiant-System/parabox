@@ -20,7 +20,8 @@
 		switch (event.type) {
 			case "init-mode":
 				data = Game.paint(1);
-				console.log(data);
+				
+				Self.els.el.html(data.htm.join(""));
 				break;
 			case "exit-mode":
 				break;

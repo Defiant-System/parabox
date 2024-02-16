@@ -49,11 +49,15 @@ const parabox = {
 					event.xMenu.setAttribute("is-checked", "1");
 					// switch toolbar toolset
 					window.toolset = "edit-tools";
+					// switch content mode
+					Self.content.data({ mode: "editor" });
 					// dispatch init event
 					Self.editor.dispatch({ type: "init-mode" });
 				} else {
 					// update blueprint
 					event.xMenu.removeAttribute("is-checked");
+					// switch content mode
+					Self.content.data({ mode: "game" });
 					// switch toolbar toolset
 					window.toolset = "default";
 					// dispatch editor exit
