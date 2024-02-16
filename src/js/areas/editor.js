@@ -14,8 +14,8 @@
 	dispatch(event) {
 		let APP = parabox,
 			Self = APP.editor,
-			result,
 			data,
+			result,
 			name,
 			value,
 			el;
@@ -23,8 +23,8 @@
 		switch (event.type) {
 			case "init-mode":
 			case "paint-board":
-				data = Self.dispatch({ type: "generate-board", size: event.size || 5 });
-				result = Game.paint(data);
+				Self.data = Self.dispatch({ type: "generate-board", size: event.size || 5 });
+				result = Game.paint(Self.data);
 				
 				// extract only walls
 				value = [result.htm[0]];
@@ -49,8 +49,25 @@
 					block: [{ y: 3, x: 2, color: "yellow" }],
 					walls: [...Array(event.size)].map(y => [...Array(event.size)].map(x => ({}))),
 				};
+
+				data.walls[0][0] = { key: "NSE" };
+				data.walls[0][1] = { key: "NWS" };
+
 				return data;
 		}
+	},
+	getCell(y, x) {
+		let board = this.data,
+			cell = board[y, x],
+			N: board[y-1][x],
+			S: board[y+1][x],
+			E: board[y][x-1],
+			W: board[y][x+1],
+			NW: board[y-1][x+1],
+			NE: board[y-1][x-1],
+			SW: board[y+1][x+1],
+			SE: board[y+1][x-1];
+		return { cell, N, S, E, W, NW, NE, SW, SE };
 	},
 	paintWall(event) {
 		let APP = parabox,
