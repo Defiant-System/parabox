@@ -5,7 +5,7 @@ let Game = {
 	},
 	renderLevel(id) {
 		let { board, size, htm } = this.paint(id);
-		
+
 		// insert into DOM
 		this.el = this.wrapper.html(htm.join("")).find(".box.board");
 		// count and store block count
@@ -26,11 +26,12 @@ let Game = {
 			},
 			// update board
 			board = [...Array(size.h)].map(y => [...Array(size.w)].map(x => EMPTY)),
+			walls = [],
+			player = [],
+			voids = [],
+			blocks = [],
 			htm = [];
 
-		// level wrapper: START
-		htm.push(`<div class="box board size-${size.w}" style="--bg-color: ${level.bg}; --fg-filter: ${level.filter}; --w: ${size.w}; --h: ${size.h};">`);
-		
 		// walls
 		for (let y=0, yl=level.walls.length; y<yl; y++) {
 			let row = level.walls[y];
@@ -39,7 +40,7 @@ let Game = {
 					sub = cell.sub ? cell.sub.map(s => `<u class="${s}"></u>`).join("") : "";
 				if (cell.key) {
 					// UI element
-					htm.push(`<span class="wall ${cell.key}" style="--y: ${y}; --x: ${x};">${sub}</span>`);
+					walls.push(`<span class="wall ${cell.key}" style="--y: ${y}; --x: ${x};">${sub}</span>`);
 					// update board
 					board[y][x] = "wall";
 				}
@@ -47,34 +48,41 @@ let Game = {
 		}
 
 		// player
-		htm.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
+		player.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
 		// update board
 		board[level.player.y][level.player.x] = PLAYER;
 		
 		// voids
 		for (let i=0, il=level.void.length; i<il; i++) {
 			let spot = level.void[i];
-			htm.push(`<div class="void" style="--y: ${spot.y}; --x: ${spot.x};"></div>`);
+			voids.push(`<div class="void" style="--y: ${spot.y}; --x: ${spot.x};"></div>`);
 			// update board
 			board[spot.y][spot.x] = VOID;
 		}
 
 		// exit
-		htm.push(`<div class="exit" style="--y: ${level.exit.y}; --x: ${level.exit.x};"><i></i><b></b></div>`);
+		voids.push(`<div class="exit" style="--y: ${level.exit.y}; --x: ${level.exit.x};"><i></i><b></b></div>`);
 		// update board
 		board[level.exit.y][level.exit.x] = EXIT;
 
 		// blocks
 		for (let i=0, il=level.block.length; i<il; i++) {
 			let block = level.block[i];
-			htm.push(`<div class="box ${block.color}" data-id="${block.y}-${block.x}" style="--y: ${block.y}; --x: ${block.x};"></div>`);
+			blocks.push(`<div class="box ${block.color}" data-id="${block.y}-${block.x}" style="--y: ${block.y}; --x: ${block.x};"></div>`);
 			// update board
 			board[block.y][block.x] = BLOCK;
 		}
-		// level wrapper: END
-		htm.push(`</div>`);
 
-		return { id, board, size, htm };
+		// level wrapper: START
+		htm.push(`<div class="box board size-${size.w}" style="--bg-color: ${level.bg}; --fg-filter: ${level.filter}; --w: ${size.w}; --h: ${size.h};">`);
+		htm.push(walls.join(""));
+		htm.push(player.join(""));
+		htm.push(voids.join(""));
+		htm.push(blocks.join(""));
+		htm.push(`</div>`);
+		// level wrapper: END
+
+		return { id, board, size, walls, player, voids, blocks, htm };
 	},
 	movePlayer(playerCoords, direction) {
 		// Replace previous spot with initial board state (void or empty)

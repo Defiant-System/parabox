@@ -15,13 +15,21 @@
 		let APP = parabox,
 			Self = APP.editor,
 			data,
+			name,
+			value,
 			el;
 		// console.log(event);
 		switch (event.type) {
 			case "init-mode":
 				data = Game.paint(1);
 				
-				Self.els.el.html(data.htm.join(""));
+				// extract only walls
+				value = [data.htm[0]];
+				value.push(...data.walls);
+				value.push(data.htm[data.htm.length-1]);
+
+				// insert into DOM
+				Self.els.el.html(value.join(""));
 				break;
 			case "exit-mode":
 				break;
