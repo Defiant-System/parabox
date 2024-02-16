@@ -176,28 +176,35 @@ content {
 		}
 
 		&.mini {
-			--color: #15a;
-			--fg-filter: sepia(1) hue-rotate(145deg) saturate(1.5) brightness(0.75);
+			--color: #444;
+			--fg-filter: none; // sepia(1) hue-rotate(145deg) saturate(1.5) brightness(0.75);
 			--bR: 5px;
-			--wT: 8px;
+			--wT: 7px;
 			--wH: -3px;
-			margin-top: 4px;
+			margin-top: 5px;
 			height: calc( var( --c ) + 2px );
-			box-shadow: inset 0px -3px 0px 0px rgba(#000,.175),
+			box-shadow: inset 0px -2px 0px 0px rgba(#000,.175),
 						inset 0 0 1px rgba(#fff,.5);
 
 			&:before {
-				top: 3px;
-				bottom: 3px;
+				top: 2px;
+				bottom: 2px;
 			}
 
 			&:after {
-				bottom: 3px;
+				bottom: 2px;
 				opacity: .1;
 			}
 
+			&.size-4 {
+				> span.wall { --c: 20px; }
+			}
+
+			&.size-5 {
+				> span.wall { --c: 16px; }
+			}
+
 			> span.wall {
-				--c: 16px;
 				border-color: rgba(#000,.7);
 
 				&:after {
