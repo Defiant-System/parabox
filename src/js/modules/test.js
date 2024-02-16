@@ -2,7 +2,7 @@
 let Test = {
 	init(APP) {
 
-		setTimeout(() => window.find(`.toolbar-tool_[data-arg="1"]`).trigger("click"), 100);
+		setTimeout(() => window.find(`.toolbar-tool_[data-arg="7"]`).trigger("click"), 100);
 		// setTimeout(() => Game.checkWin(), 1000);
 
 		// let xMenu = window.bluePrint.selectSingleNode(`//Menu[@click="set-editor-mode"]`);
