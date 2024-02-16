@@ -14,10 +14,15 @@
 	dispatch(event) {
 		let APP = parabox,
 			Self = APP.editor,
+			data,
 			el;
 		// console.log(event);
 		switch (event.type) {
-			case "custom-event":
+			case "init-mode":
+				data = Game.paint(1);
+				console.log(data);
+				break;
+			case "exit-mode":
 				break;
 		}
 	},
@@ -53,7 +58,7 @@
 				Self.els.doc.on("mousemove mouseup", Self.paintWall);
 				break;
 			case "mousemove":
-				
+
 				break;
 			case "mouseup":
 				// cover content

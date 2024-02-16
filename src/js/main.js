@@ -45,15 +45,19 @@ const parabox = {
 				break;
 			// custom events
 			case "set-editor-mode":
-				if (event.xMenu.getAttribute("is-checked")) {
+				if (!event.xMenu.getAttribute("is-checked")) {
+					event.xMenu.setAttribute("is-checked", "1");
+					// switch toolbar toolset
+					window.toolset = "edit-tools";
+					// dispatch init event
+					Self.editor.dispatch({ type: "init-mode" });
+				} else {
 					// update blueprint
 					event.xMenu.removeAttribute("is-checked");
 					// switch toolbar toolset
 					window.toolset = "default";
-				} else {
-					event.xMenu.setAttribute("is-checked", "1");
-					// switch toolbar toolset
-					window.toolset = "edit-tools";
+					// dispatch editor exit
+					Self.editor.dispatch({ type: "exit-mode" });
 				}
 				break;
 			case "set-game-level":

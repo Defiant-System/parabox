@@ -3,8 +3,23 @@ let Game = {
 	init() {
 		this.wrapper = parabox.content.find(".game-view");
 	},
-	renderLevel(i) {
-		let level = Level[i],
+	renderLevel(id) {
+		let { board, size, htm } = this.paint(id);
+		
+		// insert into DOM
+		this.el = this.wrapper.html(htm.join("")).find(".box.board");
+		// count and store block count
+		this.blockCount = this.el.find(".box[data-id]").length;
+
+		// save clean version of map
+		this.levelClean = JSON.parse(JSON.stringify(board));
+		// save reference to board
+		this.board = board;
+		// init player object
+		Player.init();
+	},
+	paint(id) {
+		let level = Level[id],
 			size = {
 				h: level.walls.length,
 				w: Math.max(...level.walls.map(row => row.length)),
@@ -57,18 +72,9 @@ let Game = {
 			board[block.y][block.x] = BLOCK;
 		}
 		// level wrapper: END
-		htm.push(`</div>`)
-		// insert into DOM
-		this.el = this.wrapper.html(htm.join("")).find(".box.board");
-		// count and store block count
-		this.blockCount = this.el.find(".box[data-id]").length;
+		htm.push(`</div>`);
 
-		// save clean version of map
-		this.levelClean = JSON.parse(JSON.stringify(board));
-		// save reference to board
-		this.board = board;
-		// init player object
-		Player.init();
+		return { id, board, size, htm };
 	},
 	movePlayer(playerCoords, direction) {
 		// Replace previous spot with initial board state (void or empty)

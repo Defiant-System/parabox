@@ -34,11 +34,19 @@ content {
 	}
 
 	&[data-mode="game"] {
-		.game-view { opacity: 1; pointer-events: initial; }
+		.game-view {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: initial;
+		}
 	}
 
 	&[data-mode="editor"] {
-		.editor-view { opacity: 1; pointer-events: initial; }
+		.editor-view {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: initial;
+		}
 	}
 
 	.board {
