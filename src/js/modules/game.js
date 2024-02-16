@@ -60,15 +60,19 @@ let Game = {
 			board[spot.y][spot.x] = VOID;
 		}
 
-		// exit
-		voids.push(`<div class="exit" style="--y: ${level.exit.y}; --x: ${level.exit.x};"><i></i><b></b></div>`);
-		// update board
-		board[level.exit.y][level.exit.x] = EXIT;
+		if (level.exit) {
+			// exit
+			voids.push(`<div class="exit" style="--y: ${level.exit.y}; --x: ${level.exit.x};"><i></i><b></b></div>`);
+			// update board
+			board[level.exit.y][level.exit.x] = EXIT;
+		}
 
 		// blocks
 		for (let i=0, il=level.block.length; i<il; i++) {
-			let block = level.block[i];
-			blocks.push(`<div class="box ${block.color}" data-id="${block.y}-${block.x}" style="--y: ${block.y}; --x: ${block.x};"></div>`);
+			let block = level.block[i],
+				color = block.color;
+			if (block.link) color = "link";
+			blocks.push(`<div class="box ${color}" data-id="${block.y}-${block.x}" style="--y: ${block.y}; --x: ${block.x};"></div>`);
 			// update board
 			board[block.y][block.x] = BLOCK;
 		}
