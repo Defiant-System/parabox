@@ -30,7 +30,7 @@ Level[7.1] = {
 
 Level[7.2] = {
 	bg: "#b50",
-	filter: "sepia(1) hue-rotate(225deg) saturate(1.5) brightness(.85) opacity(.95)",
+	filter: "sepia(1) hue-rotate(225deg) saturate(1.5) brightness(.85)",
 	walls: [
 		[{ key: "NSE" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],
 		[{}, {}, {}, { key: "WE", sub: ["NE-NW"] }],
