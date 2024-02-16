@@ -177,8 +177,8 @@ content {
 
 		&.mini {
 			--color: #17b;
-			--wT: 9px;
-			--wH: -4px;
+			--wT: 8px;
+			--wH: -3px;
 			margin-top: 4px;
 			height: calc( var( --c ) + 2px );
 			box-shadow: inset 0px -3px 0px 0px rgba(#000,.175),
@@ -191,6 +191,7 @@ content {
 
 			&:after {
 				bottom: 3px;
+				opacity: .1;
 			}
 
 			> span.wall {
@@ -201,10 +202,6 @@ content {
 					top: 1px;
 					border-top: 0;
 				}
-
-				// &.NSE { border-width: 1px 0 1px 1px; }
-				// &.NS { border-width: 1px 0 1px 0; }
-				// &.NWS { border-width: 1px 1px 1px 0; }
 			}
 		}
 	}
