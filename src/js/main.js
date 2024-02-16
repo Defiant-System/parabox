@@ -5,6 +5,7 @@
 @import "./modules/game.js"
 @import "./modules/test.js"
 
+@import "./levels/editor.js"
 @import "./levels/index.js"
 
 
@@ -14,6 +15,7 @@ const parabox = {
 		this.content = window.find("content");
 
 		// init objects
+		Editor.init();
 		Game.init();
 
 		// DEV-ONLY-START
