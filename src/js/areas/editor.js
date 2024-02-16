@@ -57,8 +57,9 @@
 		}
 	},
 	getCell(y, x) {
-		let board = this.data,
-			cell = board[y, x],
+		let board = this.data;
+		return {
+			cell: board[y, x],
 			N: board[y-1][x],
 			S: board[y+1][x],
 			E: board[y][x-1],
@@ -66,8 +67,8 @@
 			NW: board[y-1][x+1],
 			NE: board[y-1][x-1],
 			SW: board[y+1][x+1],
-			SE: board[y+1][x-1];
-		return { cell, N, S, E, W, NW, NE, SW, SE };
+			SE: board[y+1][x-1],
+		};
 	},
 	paintWall(event) {
 		let APP = parabox,

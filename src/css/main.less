@@ -62,6 +62,7 @@ content {
 		--bR: 8px;
 		--t: 9px;
 		--c: 61px;
+		--eyes: 11px;
 
 		&.box {
 			background: var( --bg-color );
@@ -70,9 +71,30 @@ content {
 			box-shadow: inset 0px -7px 0px 0px rgba(#000,.175),
 						0 0 7px rgba(#000,.35);
 
-			&.size-5 { top: 165px; left: 165px; }
-			&.size-7 { top: 115px; left: 115px; }
-			&.size-9 { top: 55px; left: 55px; }
+			&.size-5 {
+				top: 119px;
+				left: 119px;
+				--c: 83px;
+				--eyes: 15px;
+			}
+
+			&.size-7 {
+				top: 115px;
+				left: 115px;
+			}
+
+			&.size-9 {
+				top: 55px;
+				left: 55px;
+			}
+
+			&.size-11 {
+				top: 29px;
+				left: 29px;
+				--c: 54px;
+				--eyes: 8px;
+			}
+			
 
 			&:before {
 				opacity: .25;
@@ -176,21 +198,22 @@ content {
 				content: "";
 				position: absolute;
 				top: 17px;
-				width: 11px;
-				height: 11px;
-				border-radius: 11px;
+				width: var( --eyes );
+				height: var( --eyes );
+				border-radius: var( --eyes );
 				background: rgba(#000,.6);
+				box-shadow: 0 1px 0 rgba(#fff,.125);
 			}
 
 			&:before {
-				left: 11px;
+				left: var( --eyes );
 				animation: wink 6s ease-in-out infinite,
 							vert-left 19s ease-in-out infinite,
 							hori 17s ease-in-out infinite;
 			}
 
 			&:after {
-				right: 11px;
+				right: var( --eyes );
 				animation: wink 6s ease-in-out infinite,
 							vert-right 19s ease-in-out infinite,
 							hori 17s ease-in-out infinite;
@@ -239,18 +262,18 @@ content {
 			&:after {
 				content: "";
 				position: absolute;
-				top: 13px;
-				left: 8px;
-				width: 9px;
-				height: 9px;
-				border-radius: 7px;
+				top: calc( var( --eyes ) * 1.1 );
+				left: calc( var( --eyes ) - 2px );
+				width: calc( var( --eyes ) - 2px );
+				height: calc( var( --eyes ) - 2px );
+				border-radius: calc( var( --eyes ) - 2px );
 				background: rgba(#000,.35);
 				box-shadow: 0 1px 0 rgba(#fff,.125);
 			}
 
 			&:after {
 				left: auto;
-				right: 8px;
+				right: calc( var( --eyes ) - 2px );
 			}
 		}
 
@@ -772,12 +795,12 @@ content {
 }
 
 @keyframes wink {
-	0%   { height: 11px; border-radius: 11px; margin-top: 0; }
-	49%  { height: 11px; border-radius: 11px; margin-top: 0; }
-	49.1%  { height: 5px; border-radius: 5px; margin-top: 7px; }
-	50.9%  { height: 5px; border-radius: 5px; margin-top: 7px; }
-	51%  { height: 11px; border-radius: 11px; margin-top: 0; }
-	100% { height: 11px; border-radius: 11px; margin-top: 0; }
+	0%   { height: var( --eyes ); border-radius: var( --eyes ); margin-top: 0; }
+	49%  { height: var( --eyes ); border-radius: var( --eyes ); margin-top: 0; }
+	49.1%  { height: calc( var( --eyes ) * .5 ); border-radius: calc( var( --eyes ) * .5 ); margin-top: calc( var( --eyes ) * .4 ); }
+	50.9%  { height: calc( var( --eyes ) * .5 ); border-radius: calc( var( --eyes ) * .5 ); margin-top: calc( var( --eyes ) * .4 ); }
+	51%  { height: var( --eyes ); border-radius: var( --eyes ); margin-top: 0; }
+	100% { height: var( --eyes ); border-radius: var( --eyes ); margin-top: 0; }
 }
 
 
