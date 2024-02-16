@@ -5,7 +5,6 @@
 @import "./modules/game.js"
 @import "./modules/test.js"
 
-@import "./levels/editor.js"
 @import "./levels/index.js"
 
 
@@ -14,16 +13,22 @@ const parabox = {
 		// fast references
 		this.content = window.find("content");
 
-		// init objects
-		Editor.init();
-		Game.init();
+		// init all sub-objects
+		Object.keys(this)
+			.filter(i => typeof this[i].init === "function")
+			.map(i => this[i].init(this));
 
+		// init objects
+		Game.init();
+		
 		// DEV-ONLY-START
 		Test.init(this);
 		// DEV-ONLY-END
 	},
 	dispatch(event) {
 		let Self = parabox,
+			name,
+			pEl,
 			el;
 		switch (event.type) {
 			// system events
@@ -47,8 +52,17 @@ const parabox = {
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;
+			default:
+				if (event.el) {
+					pEl = event.el.data("area") ? event.el : event.el.parents("div[data-area]");
+					name = pEl.data("area");
+					if (pEl.length && Self[name].dispatch) {
+						Self[name].dispatch(event);
+					}
+				}
 		}
-	}
+	},
+	editor: @import "areas/editor.js",
 };
 
 window.exports = parabox;
