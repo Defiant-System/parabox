@@ -193,9 +193,11 @@ let Game = {
 			exitX = +exitEl.cssProp("--x");
 		
 		// signals exit is open
+		let successCount = this.board.filter(row => row.some(cell => cell === SUCCESS))
+								.reduce((acc, row) => acc + row.filter(c => c === SUCCESS).length, 0);
 		let voidCount = this.board.filter(row => row.some(cell => cell === VOID))
 							.reduce((acc, row) => acc + row.filter(c => c === VOID).length, 0);
-		if (voidCount === 0) this.el.find(".exit").addClass("ready");
+		if (voidCount === 0 && successCount === this.blockCount) this.el.find(".exit").addClass("ready");
 
 		// return if player is not on exit square
 		if (!Player.pos.isOn(exitX, exitY)) return;

@@ -59,9 +59,9 @@
 					walls: [...Array(event.size)].map(y => [...Array(event.size)].map(x => ({}))),
 				};
 
-				data.walls[0][0] = { key: "NSE" };
-				data.walls[0][1] = { key: "NWS" };
-				data.walls[2][2] = { key: "NWSE" };
+				// data.walls[0][0] = { key: "NSE" };
+				// data.walls[0][1] = { key: "NWS" };
+				// data.walls[2][2] = { key: "NWSE" };
 
 				return data;
 		}
@@ -93,18 +93,15 @@
 
 				let el = $(event.target),
 					bEl = el.parents("?.box.board"),
-					type = el.hasClass("wall") ? "subtract" : "add",
-					click = {
-						x: event.clientX,
-						y: event.clientY,
-					},
+					tip = el.hasClass("wall") ? EMPTY : WALL,
+					snapshot = Self.data.board.map(row => [...row]),
 					offset = {
-						x: event.offsetX,
-						y: event.offsetY,
+						x: event.offsetX - event.clientX,
+						y: event.offsetY - event.clientY,
 					};
 
 				// return console.log(event);
-				Self.drag = { bEl, type, click, offset, down: true };
+				Self.drag = { bEl, tip, offset, snapshot };
 
 				// cover content
 				APP.content.addClass("cover");
@@ -112,30 +109,37 @@
 				Self.els.doc.on("mousemove mouseup", Self.paintWall);
 				break;
 			case "mousemove":
-				let y = (event.offsetY / Self.data.px) | 0,
-					x = (event.offsetX / Self.data.px) | 0;
-				if (y > Self.data.size) y = Self.data.size;
-				if (x > Self.data.size) x = Self.data.size;
+				if (Drag.snapshot) {
+					let y = Math.min(((Drag.offset.y + event.clientY) / Self.data.px) | 0, Self.data.size),
+						x = Math.min(((Drag.offset.x + event.clientX) / Self.data.px) | 0, Self.data.size);
 
-				if (Drag.down) {
-					// TODO
-					let oldWalls = JSON.stringify(Self.data.board),
-						currKey = Self.data.board[y][x];
-					Self.data.board[y][x] = "wall";
+					// compare old state with new state
+					let oldState = JSON.stringify(Drag.snapshot);
+					Drag.snapshot[y][x] = Drag.tip;
+					let newState = JSON.stringify(Drag.snapshot);
 
-					let newWalls = JSON.stringify(Self.data.board);
-					if (oldWalls !== newWalls) {
-						console.log("insert element");
+					if (oldState !== newState) {
+						Self.data.walls[y][x] = { key: "NWSE" };
+
+						// clear old walls
+						Self.els.board.find(".wall").remove();
+
+						// // refresh DOM
+						let { walls } = Game.paintWalls(Self.data.walls);
+						Self.els.board.prepend(walls.join(""));
+						console.log("refreshed DOM");
 					}
 				} else {
-					let cell = Self.data.walls[y][x];
-					if (cell.key) y = -1;
+					let y = Math.min((event.offsetY / Self.data.px) | 0, Self.data.size),
+						x = Math.min((event.offsetX / Self.data.px) | 0, Self.data.size),
+						cell = Self.data.walls[y][x];
+					if (cell.key) y = -1; // hovering wall
 					Self.els.ghost.css({ "--y": y, "--x": x });
 				}
 				break;
 			case "mouseup":
 				// reset drag object
-				delete Drag.down;
+				delete Drag.snapshot;
 				// cover content
 				APP.content.removeClass("cover");
 				// bind event handlers
