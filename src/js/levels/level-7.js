@@ -16,7 +16,7 @@ Level[7] = {
 };
 
 Level[7.1] = {
-	bg: "#137",
+	bg: "#24a",
 	filter: "sepia(1) hue-rotate(175deg) saturate(1.75) brightness(.8)",
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],

@@ -2,6 +2,13 @@
 let Game = {
 	init() {
 		this.wrapper = parabox.content.find(".game-view");
+		this.zoomed = parabox.content.find(".zoom-level");
+	},
+	zoomPaint(id) {
+		let { board, size, htm, level } = this.paint(id);
+		// console.log(board);
+
+		this.zoomed.html(htm.join(""));
 	},
 	renderLevel(id) {
 		let { board, size, htm, level } = this.paint(id);
@@ -28,15 +35,15 @@ let Game = {
 
 		let { walls, board, size } = this.paintWalls(level.walls);
 
+		// player
 		if (level.player) {
-			// player
 			player.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
 			// update board
 			board[level.player.y][level.player.x] = PLAYER;
 		}
 		
+		// voids
 		if (level.void) {
-			// voids
 			for (let i=0, il=level.void.length; i<il; i++) {
 				let spot = level.void[i];
 				voids.push(`<div class="void" style="--y: ${spot.y}; --x: ${spot.x};"></div>`);
@@ -45,15 +52,15 @@ let Game = {
 			}
 		}
 
+		// exit
 		if (level.exit) {
-			// exit
 			voids.push(`<div class="exit" style="--y: ${level.exit.y}; --x: ${level.exit.x};"><i></i><b></b></div>`);
 			// update board
 			board[level.exit.y][level.exit.x] = EXIT;
 		}
 
+		// blocks
 		if (level.block) {
-			// blocks
 			for (let i=0, il=level.block.length; i<il; i++) {
 				let block = level.block[i],
 					style = `--y: ${block.y}; --x: ${block.x};`,
@@ -204,13 +211,5 @@ let Game = {
 		if (rowsWithVoid.length === 0 && rowsWithSuccess.length === this.blockCount) {
 			setTimeout(() => parabox.content.addClass("game-won"), 500);
 		}
-	},
-	zoomIn(coords) {
-		let transform = `translateX(83px) translateY(96px) translateZ(390px)`;
-		this.el.css({ transform });
-
-		// this.el.addClass("zoom-in");
-		
-		// console.log(coords);
 	}
 };

@@ -49,54 +49,57 @@ content {
 		}
 	}
 
+	.zoom-level {
+		position: absolute;
+		top: -1000px;
+		left: -310px;
+
+		.board {
+			&.box {
+				&.size-7 {
+					--bR: 28px;
+					--size: 352px;
+					--t: 19px;
+					--eyes: 31px;
+				}
+			}
+		}
+	}
+
 	.board {
 		position: absolute;
 		font-size: 0;
 		padding: 1px 0 0 1px;
 		--bg-color: rgba(#248,.5);
 		--fg-filter: none;
-		--w: 7;
-		--h: 7;
-		--y: 1;
-		--x: 1;
+		--size: 61px;
 		--bR: 8px;
 		--t: 9px;
-		--c: 61px;
 		--wH: -9px;
 		--wT: 12px;
-		--eyes: 11px;
-		transition: transform 1000ms ease-in-out;
-
-		// &.zoom-in {
-		// 	--zX: 83px;
-		// 	--zY: 96px;
-		// 	--zZ: 390px;
-		// 	transform: translateX(83px) translateY(96px) translateZ(390px);
-		// }
+		--eyes: calc( var( --size ) * .175 );
 
 		&.box {
 			background: var( --bg-color );
-			width: calc( var( --c ) * var( --w ) );
-			height: calc( calc( var( --c ) * var( --h ) ) + 6px );
+			width: calc( var( --size ) * var( --w ) );
+			height: calc( calc( var( --size ) * var( --h ) ) + 6px );
 			box-shadow: inset 0px -7px 0px 0px rgba(#000,.175),
 						0 0 7px rgba(#000,.35);
 
 			&.size-4 {
 				top: 155px;
 				left: 155px;
-				--c: 82px;
-				--eyes: 15px;
+				--size: 82px;
 			}
 
 			&.size-5 {
 				top: 119px;
 				left: 119px;
-				--c: 82px;
-				--eyes: 15px;
+				--size: 82px;
 
 				.mini {
-					&.size-4 > span.wall { --c: 20px; }
-					&.size-5 > span.wall { --c: 16px; }
+					&.size-4 > span.wall { --size: 20px; }
+					&.size-5 > span.wall { --size: 16px; }
 				}
 			}
 
@@ -105,8 +108,8 @@ content {
 				left: 115px;
 
 				.mini {
-					&.size-4 > span.wall { --c: 15px; }
-					&.size-5 > span.wall { --c: 12px; }
+					&.size-4 > span.wall { --size: 15px; }
+					&.size-5 > span.wall { --size: 12px; }
 				}
 			}
 
@@ -115,16 +118,15 @@ content {
 				left: 55px;
 
 				.mini {
-					&.size-4 > span.wall { --c: 15px; }
-					&.size-5 > span.wall { --c: 12px; }
+					&.size-4 > span.wall { --size: 15px; }
+					&.size-5 > span.wall { --size: 12px; }
 				}
 			}
 
 			&.size-11 {
 				top: 29px;
 				left: 29px;
-				--c: 54px;
-				--eyes: 8px;
+				--size: 54px;
 			}
 			
 
@@ -135,8 +137,8 @@ content {
 				box-shadow: 0px -7px 0px 0px rgba(#000,.25);
 				background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.8), transparent);
 				// background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.8), transparent),
-				// 					repeating-linear-gradient(0deg, transparent 0, transparent calc( var( --c ) - 1px ), #111 calc( var( --c ) - 1px ), #111 var( --c )),
-				// 					repeating-linear-gradient(90deg, transparent 0, transparent calc( var( --c ) - 1px ), #111 calc( var( --c ) - 1px ), #111 var( --c ));
+				// 					repeating-linear-gradient(0deg, transparent 0, transparent calc( var( --size ) - 1px ), #111 calc( var( --size ) - 1px ), #111 var( --size )),
+				// 					repeating-linear-gradient(90deg, transparent 0, transparent calc( var( --size ) - 1px ), #111 calc( var( --size ) - 1px ), #111 var( --size ));
 			}
 
 			&:after {
@@ -146,8 +148,8 @@ content {
 
 		> div {
 			position: absolute;
-			top: calc( calc( var( --y ) * var( --c ) ) - 14px );
-			left: calc( calc( var( --x ) * var( --c ) ) - 1px );
+			top: calc( calc( var( --y ) * var( --size ) ) - 14px );
+			left: calc( calc( var( --x ) * var( --size ) ) - 1px );
 
 			// &.player { display: none; }
 			// &.box:not(.player) { display: none; }
@@ -162,8 +164,8 @@ content {
 
 	.box {
 		z-index: var( --y );
-		width: calc( var( --c ) - 2px );
-		height: calc( var( --c ) + 6px );
+		width: calc( var( --size ) - 2px );
+		height: calc( var( --size ) + 6px );
 		background: var( --color );
 		box-shadow: inset 0px -7px 0px 0px rgba(#000,.175),
 					// 0 0 9px rgba(#000,.35),
@@ -212,7 +214,7 @@ content {
 			--wT: 7px;
 			--wH: -3px;
 			margin-top: 5px;
-			height: calc( var( --c ) + 2px );
+			height: calc( var( --size ) + 2px );
 			box-shadow: inset 0px -2px 0px 0px rgba(#000,.175),
 						inset 0 0 1px rgba(#fff,.5);
 
@@ -265,7 +267,6 @@ content {
 
 	div.player {
 		--color: #9d02bd;
-		// z-index: calc( var( --y ) + 1 );
 		transition: all 260ms ease-in-out;
 		will-change: transform, top, left;
 
@@ -286,7 +287,7 @@ content {
 			&:after {
 				content: "";
 				position: absolute;
-				top: 17px;
+				top: calc( var( --size ) * .2 );
 				width: var( --eyes );
 				height: var( --eyes );
 				border-radius: var( --eyes );
@@ -312,10 +313,10 @@ content {
 
 	div.exit,
 	div.void {
-		top: calc( calc( var( --y ) * var( --c ) ) - 2px );
-		left: calc( calc( var( --x ) * var( --c ) ) + 4px );
-		height: calc( var( --c ) - 10px );
-		width: calc( var( --c ) - 10px );
+		top: calc( calc( var( --y ) * var( --size ) ) - 2px );
+		left: calc( calc( var( --x ) * var( --size ) ) + 4px );
+		height: calc( var( --size ) - 10px );
+		width: calc( var( --size ) - 10px );
 		border-radius: 9px;
 		border: 4px solid rgba(#000,.35);
 
@@ -397,10 +398,10 @@ content {
 
 	span.wall {
 		position: absolute;
-		top: calc( calc( var( --y ) * calc( var( --c ) ) - 2px ) - var( --wT ) );
-		left: calc( var( --x ) * calc( var( --c ) ) - 2px );
-		width: var( --c );
-		height: var( --c );
+		top: calc( calc( var( --y ) * calc( var( --size ) ) - 2px ) - var( --wT ) );
+		left: calc( var( --x ) * calc( var( --size ) ) - 2px );
+		width: var( --size );
+		height: var( --size );
 		z-index: var( --y );
 		background: #999;
 		// opacity: .65;
@@ -456,7 +457,7 @@ content {
 
 		// north south east
 		&.NSE {
-			height: calc( var( --c ) + 6px );
+			height: calc( var( --size ) + 6px );
 			border-width: 2px 0 2px 2px;
 			border-radius: var( --bR ) 0 0 var( --bR );
 			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
@@ -470,7 +471,7 @@ content {
 
 		// north south
 		&.NS {
-			height: calc( var( --c ) + 6px );
+			height: calc( var( --size ) + 6px );
 			border-width: 2px 0 2px 0;
 			border-radius: 0;
 			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
@@ -484,7 +485,7 @@ content {
 
 		// north west south
 		&.NWS {
-			height: calc( var( --c ) + 6px );
+			height: calc( var( --size ) + 6px );
 			border-width: 2px 2px 2px 0;
 			border-radius: 0 var( --bR ) var( --bR ) 0;
 			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
@@ -498,7 +499,7 @@ content {
 
 		// north west south east
 		&.NWSE {
-			height: calc( var( --c ) + 6px );
+			height: calc( var( --size ) + 6px );
 			border-width: 2px;
 			border-radius: var( --bR );
 			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
@@ -547,7 +548,7 @@ content {
 
 		// west south east
 		&.WSE {
-			height: calc( var( --c ) + 6px );
+			height: calc( var( --size ) + 6px );
 			border-width: 0 2px 2px 2px;
 			border-radius: 0 0 var( --bR ) var( --bR );
 			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
@@ -557,7 +558,7 @@ content {
 
 		// south
 		&.S {
-			height: calc( var( --c ) + 6px );
+			height: calc( var( --size ) + 6px );
 			border-width: 0 0 2px 0;
 			border-radius: 0;
 			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
@@ -567,7 +568,7 @@ content {
 
 		// south east
 		&.SE {
-			height: calc( var( --c ) + 6px );
+			height: calc( var( --size ) + 6px );
 			border-width: 0 0 2px 2px;
 			border-radius: 0 0 0 var( --bR );
 			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
@@ -577,7 +578,7 @@ content {
 
 		// west south
 		&.WS {
-			height: calc( var( --c ) + 6px );
+			height: calc( var( --size ) + 6px );
 			border-width: 0 2px 2px 0;
 			border-radius: 0 0 var( --bR ) 0;
 			box-shadow: inset 0px var( --wH ) 0px 0px rgba(#000,.175);
