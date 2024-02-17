@@ -9,7 +9,7 @@
 			el: window.find(`.editor-view[data-area="editor"]`),
 		};
 		// bind event handlers
-		this.els.el.on("mousedown mousemove mouseup", ".board", this.paintWall);
+		this.els.el.on("mousedown mousemove", ".board", this.paintWall);
 	},
 	dispatch(event) {
 		let APP = parabox,
@@ -35,6 +35,7 @@
 				Self.els.board = Self.els.el.html(value.join("")).find(`> .box.board`);
 				// get cell size in pixels
 				Self.data.px = parseInt(Self.els.board.cssProp("--size"), 10);
+				Self.data.board = result.board;
 
 				console.log( Self.data );
 
@@ -103,10 +104,12 @@
 					};
 
 				// return console.log(event);
-				Self.drag = { bEl, type, click, offset };
+				Self.drag = { bEl, type, click, offset, down: true };
 
 				// cover content
 				APP.content.addClass("cover");
+				// bind event handlers
+				Self.els.doc.on("mousemove mouseup", Self.paintWall);
 				break;
 			case "mousemove":
 				let y = (event.offsetY / Self.data.px) | 0,
@@ -116,6 +119,14 @@
 
 				if (Drag.down) {
 					// TODO
+					let oldWalls = JSON.stringify(Self.data.board),
+						currKey = Self.data.board[y][x];
+					Self.data.board[y][x] = "wall";
+
+					let newWalls = JSON.stringify(Self.data.board);
+					if (oldWalls !== newWalls) {
+						console.log("insert element");
+					}
 				} else {
 					let cell = Self.data.walls[y][x];
 					if (cell.key) y = -1;
@@ -127,6 +138,8 @@
 				delete Drag.down;
 				// cover content
 				APP.content.removeClass("cover");
+				// bind event handlers
+				Self.els.doc.off("mousemove mouseup", Self.paintWall);
 				break;
 		}
 	}
