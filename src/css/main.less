@@ -442,8 +442,7 @@ content {
 
 		&.ghost {
 			display: none;
-			// margin-top: -3px;
-			background: rgba(#aaa,.4);
+			background: rgba(#292,.75);
 			height: calc( var( --size ) + 6px );
 			border-width: 2px;
 			border-color: rgba(#000,.6);
@@ -795,15 +794,34 @@ content {
 		left: 0;
 		right: 0;
 		bottom: 0;
+		overflow: hidden;
 		background-color: #5a5acd;
-		background-image: repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
-						repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
-						repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px),
-						repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px),
-						linear-gradient(0deg, transparent, rgba(#fff,.075));
+		background-image: linear-gradient(0deg, transparent, rgba(#fff,.075));
 		
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 110%;
+			height: 110%;
+			opacity: .5;
+			background-image: repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
+							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
+							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px),
+							repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px);
+			animation: bgAnim 7s linear infinite;
+		}
+
 		.box.board:hover .ghost {
 			display: block;
+		}
+
+		.box.board {
+			.wall:hover {
+				background: #a44;
+				opacity: .85;
+			}
 		}
 	}
 

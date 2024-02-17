@@ -9,7 +9,7 @@
 			el: window.find(`.editor-view[data-area="editor"]`),
 		};
 		// bind event handlers
-		this.els.el.on("mousedown mousemove mouseup", this.paintWall);
+		this.els.el.on("mousedown mousemove mouseup", ".board", this.paintWall);
 	},
 	dispatch(event) {
 		let APP = parabox,
@@ -36,8 +36,10 @@
 				// get cell size in pixels
 				Self.data.px = parseInt(Self.els.board.cssProp("--size"), 10);
 
+				console.log( Self.data );
+
 				// insert ghost element
-				Self.els.ghost = Self.els.board.append(`<span class="wall ghost" style="--y: 3; --x: 3;"></span>`);
+				Self.els.ghost = Self.els.board.append(`<span class="wall ghost" style="--y: -1; --x: -1;"></span>`);
 				break;
 			case "exit-mode":
 				// insert into DOM
@@ -48,6 +50,7 @@
 				data = {
 					bg: "#666",
 					filter: "none",
+					size: event.size - 1,
 					player: { y: 1, x: 1 },
 					exit: { y: 1, x: 3 },
 					void: [{ y: 1, x: 4 }],
@@ -57,6 +60,7 @@
 
 				data.walls[0][0] = { key: "NSE" };
 				data.walls[0][1] = { key: "NWS" };
+				data.walls[2][2] = { key: "NWSE" };
 
 				return data;
 		}
@@ -105,11 +109,16 @@
 				APP.content.addClass("cover");
 				break;
 			case "mousemove":
-				if (Drag.down) {
+				let y = (event.offsetY / Self.data.px) | 0,
+					x = (event.offsetX / Self.data.px) | 0;
+				if (y > Self.data.size) y = Self.data.size;
+				if (x > Self.data.size) x = Self.data.size;
 
+				if (Drag.down) {
+					// TODO
 				} else {
-					let y = (event.offsetY / Self.data.px) | 0,
-						x = (event.offsetX / Self.data.px) | 0;
+					let cell = Self.data.walls[y][x];
+					if (cell.key) y = -1;
 					Self.els.ghost.css({ "--y": y, "--x": x });
 				}
 				break;
