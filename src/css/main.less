@@ -9,7 +9,7 @@
 	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-
+background: transparent;
 overflow: visible;
 
 content {
@@ -58,6 +58,7 @@ content {
 			&.box {
 				&.size-7 {
 					--bR: 28px;
+					--bW: 10px;
 					--size: 352px;
 					--t: 19px;
 					--eyes: 31px;
@@ -74,17 +75,20 @@ content {
 		--fg-filter: none;
 		--size: 61px;
 		--bR: 8px;
+		--bW: 2px;
 		--t: 9px;
 		--wH: -9px;
 		--wT: 12px;
 		--eyes: calc( var( --size ) * .175 );
+		--bH: calc( var( --size ) * .125 );
+		--nbH: calc( var( --bH ) * -1 );
 
 		&.box {
 			background: var( --bg-color );
 			width: calc( var( --size ) * var( --w ) );
 			height: calc( calc( var( --size ) * var( --h ) ) + 6px );
-			box-shadow: inset 0px -7px 0px 0px rgba(#000,.175),
-						0 0 7px rgba(#000,.35);
+			box-shadow: inset 0px var( --nbH ) 0px 0px rgba(#000,.175),
+						0 0 var( --bH ) rgba(#000,.35);
 
 			&.size-4 {
 				top: 155px;
@@ -134,7 +138,7 @@ content {
 				opacity: .25;
 				top: 9px;
 				border-top: 1px solid rgba(#000,.75);
-				box-shadow: 0px -7px 0px 0px rgba(#000,.25);
+				box-shadow: 0px var( --nbH ) 0px 0px rgba(#000,.25);
 				background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.8), transparent);
 				// background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.8), transparent),
 				// 					repeating-linear-gradient(0deg, transparent 0, transparent calc( var( --size ) - 1px ), #111 calc( var( --size ) - 1px ), #111 var( --size )),
@@ -167,11 +171,11 @@ content {
 		width: calc( var( --size ) - 2px );
 		height: calc( var( --size ) + 6px );
 		background: var( --color );
-		box-shadow: inset 0px -7px 0px 0px rgba(#000,.175),
+		box-shadow: inset 0px var( --nbH ) 0px 0px rgba(#000,.175),
 					// 0 0 9px rgba(#000,.35),
 					inset 0 0 1px rgba(#fff,.5);
 		border-radius: var( --bR );
-		border: 2px solid rgba(#000,.65);
+		border: var( --bW ) solid rgba(#000,.65);
 
 		&.blue   { --color: #17b; }
 		&.yellow { --color: #c70; }
@@ -185,10 +189,10 @@ content {
 			content: "";
 			background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.8), transparent);
 			position: absolute;
-			top: 7px;
+			top: var( --bH );
 			left: 0;
 			right: 0;
-			bottom: 7px;
+			bottom: var( --bH );
 			border-radius: inherit;
 			border-top: 1px solid rgba(#111,.4);
 			pointer-events: none;
@@ -199,9 +203,9 @@ content {
 			content: "";
 			background-image: linear-gradient(90deg, transparent, rgba(#fff,.65), transparent);
 			position: absolute;
-			left: 7px;
-			right: 7px;
-			bottom: 7px;
+			left: var( --bH );
+			right: var( --bH );
+			bottom: var( --bH );
 			height: 1px;
 			mix-blend-mode: soft-light;
 			pointer-events: none;
@@ -325,8 +329,8 @@ content {
 			content: "";
 			background-image: linear-gradient(90deg, transparent, rgba(#fff,.15), transparent);
 			position: absolute;
-			left: 7px;
-			right: 7px;
+			left: var( --bH );
+			right: var( --bH );
 			top: 0;
 			height: 1px;
 		}
@@ -404,11 +408,8 @@ content {
 		height: var( --size );
 		z-index: var( --y );
 		background: #999;
-		// opacity: .65;
-		// backdrop-filter: blur(7px);
-		border: 2px solid rgba(#000,.95);
+		border: var( --bW ) solid rgba(#000,.95);
 		filter: var( --fg-filter );
-		// filter: sepia(1) hue-rotate(85deg) saturate(1.5) brightness(.75);
 
 		&:after {
 			content: "";
@@ -730,7 +731,7 @@ content {
 		right: 0;
 		bottom: 0;
 		overflow: hidden;
-		background-color: #427;
+		background-color: #527;
 		background-image: linear-gradient(0deg, transparent, rgba(#fff,.075));
 
 		&:before {
@@ -740,9 +741,12 @@ content {
 			left: 0;
 			width: 110%;
 			height: 110%;
-			background-image: repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 41px),
-							repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 41px);
-			animation: bgAnim 6s linear infinite;
+			opacity: .5;
+			background-image: repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
+							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
+							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px),
+							repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px);
+			animation: bgAnim 7s linear infinite;
 		}
 	}
 
@@ -927,7 +931,7 @@ content {
 
 @keyframes bgAnim  {
 	0%   { transform: translateY(0) translateX(0); }
-	100% { transform: translateY(-41px) translateX(-41px); }
+	100% { transform: translateY(-40px) translateX(-40px); }
 }
 
 
