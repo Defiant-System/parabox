@@ -1,7 +1,7 @@
 
 Level[4] = {
-	bg: "#626262",
-	filter: "none",
+	bg: "#833",
+	filter: "sepia(.5) brightness(.8) hue-rotate(320deg) saturate(4)",
 	player: { y: 7, x: 1 },
 	exit: { y: 6, x: 4 },
 	void: [{ y: 1, x: 6 }, { y: 6, x: 6 }],
