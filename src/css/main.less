@@ -65,6 +65,14 @@ content {
 		--wH: -9px;
 		--wT: 12px;
 		--eyes: 11px;
+		transition: transform 1000ms ease-in-out;
+
+		// &.zoom-in {
+		// 	--zX: 83px;
+		// 	--zY: 96px;
+		// 	--zZ: 390px;
+		// 	transform: translateX(83px) translateY(96px) translateZ(390px);
+		// }
 
 		&.box {
 			background: var( --bg-color );
@@ -719,6 +727,8 @@ content {
 		left: 0;
 		right: 0;
 		bottom: 0;
+		overflow: hidden;
+		perspective: 500px;
 	}
 
 	.editor-view {
@@ -897,6 +907,7 @@ content {
 	0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
 	100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
 }
+
 
 // fireworks
 @keyframes textBounce {

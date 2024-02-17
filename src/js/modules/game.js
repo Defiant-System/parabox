@@ -4,7 +4,7 @@ let Game = {
 		this.wrapper = parabox.content.find(".game-view");
 	},
 	renderLevel(id) {
-		let { board, size, htm } = this.paint(id);
+		let { board, size, htm, level } = this.paint(id);
 
 		// insert into DOM
 		this.el = this.wrapper.html(htm.join("")).find(".box.board");
@@ -16,7 +16,7 @@ let Game = {
 		// save reference to board
 		this.board = board;
 		// init player object
-		Player.init();
+		if (level.player) Player.init();
 	},
 	paint(id) {
 		let level = typeof id === "object" ? id : Level[id],
@@ -28,17 +28,21 @@ let Game = {
 
 		let { walls, board, size } = this.paintWalls(level.walls);
 
-		// player
-		player.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
-		// update board
-		board[level.player.y][level.player.x] = PLAYER;
-		
-		// voids
-		for (let i=0, il=level.void.length; i<il; i++) {
-			let spot = level.void[i];
-			voids.push(`<div class="void" style="--y: ${spot.y}; --x: ${spot.x};"></div>`);
+		if (level.player) {
+			// player
+			player.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
 			// update board
-			board[spot.y][spot.x] = VOID;
+			board[level.player.y][level.player.x] = PLAYER;
+		}
+		
+		if (level.void) {
+			// voids
+			for (let i=0, il=level.void.length; i<il; i++) {
+				let spot = level.void[i];
+				voids.push(`<div class="void" style="--y: ${spot.y}; --x: ${spot.x};"></div>`);
+				// update board
+				board[spot.y][spot.x] = VOID;
+			}
 		}
 
 		if (level.exit) {
@@ -48,23 +52,25 @@ let Game = {
 			board[level.exit.y][level.exit.x] = EXIT;
 		}
 
-		// blocks
-		for (let i=0, il=level.block.length; i<il; i++) {
-			let block = level.block[i],
-				style = `--y: ${block.y}; --x: ${block.x};`,
-				color = block.color,
-				sub = [];
-			if (block.mini) {
-				let mini = Level[block.mini],
-					data = this.paintWalls(mini.walls);
-				sub = [...data.walls];
+		if (level.block) {
+			// blocks
+			for (let i=0, il=level.block.length; i<il; i++) {
+				let block = level.block[i],
+					style = `--y: ${block.y}; --x: ${block.x};`,
+					color = block.color,
+					sub = [];
+				if (block.mini) {
+					let mini = Level[block.mini],
+						data = this.paintWalls(mini.walls);
+					sub = [...data.walls];
 
-				color = `mini size-${data.size.w}`;
-				style += `--color: ${mini.bg}; --fg-filter: ${mini.filter};`;
+					color = `mini size-${data.size.w}`;
+					style += `--color: ${mini.bg}; --fg-filter: ${mini.filter};`;
+				}
+				blocks.push(`<div class="box ${color}" data-id="${block.y}-${block.x}" style="${style}">${sub.join("")}</div>`);
+				// update board
+				board[block.y][block.x] = BLOCK;
 			}
-			blocks.push(`<div class="box ${color}" data-id="${block.y}-${block.x}" style="${style}">${sub.join("")}</div>`);
-			// update board
-			board[block.y][block.x] = BLOCK;
 		}
 
 		// level wrapper: START
@@ -75,7 +81,7 @@ let Game = {
 		htm.push(blocks.join(""));
 		htm.push(`</div>`);
 
-		return { id, board, size, walls, player, voids, blocks, htm };
+		return { id, level, board, size, walls, player, voids, blocks, htm };
 	},
 	paintWalls(data) {
 		let size = {
@@ -198,5 +204,13 @@ let Game = {
 		if (rowsWithVoid.length === 0 && rowsWithSuccess.length === this.blockCount) {
 			setTimeout(() => parabox.content.addClass("game-won"), 500);
 		}
+	},
+	zoomIn(coords) {
+		let transform = `translateX(83px) translateY(96px) translateZ(390px)`;
+		this.el.css({ transform });
+
+		// this.el.addClass("zoom-in");
+		
+		// console.log(coords);
 	}
 };
