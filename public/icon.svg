@@ -3,29 +3,17 @@
 	<style type="text/css">
 		.st0{fill:#829;filter:url(#dropshadow);}
 		.st1{fill:#c3d;}
-		.st2{opacity:0.48;fill:url(#SVGID_1_);enable-background:new;}
+		.st2{opacity:0.35;fill:url(#SVGID_1_);enable-background:new;}
 		.st3{opacity:0.5;fill:url(#SVGID_2_);enable-background:new;}
 		.st4{fill:none;stroke:#000000;stroke-width:1.25;stroke-miterlimit:10;}
 	</style>
 	<radialGradient id="SVGID_1_" cx="-634.6219" cy="102.7423" r="37.9838" gradientTransform="matrix(1.035340e-13 -1 -0.8935 -9.250636e-14 118.9403 -591.8956)" gradientUnits="userSpaceOnUse">
-		<stop  offset="1.448989e-02" style="stop-color:#FFFFFF"/>
-		<stop  offset="0.1009" style="stop-color:#F8F8F8;stop-opacity:0.9123"/>
-		<stop  offset="0.2279" style="stop-color:#E4E4E4;stop-opacity:0.7834"/>
-		<stop  offset="0.3799" style="stop-color:#C4C4C4;stop-opacity:0.6292"/>
-		<stop  offset="0.5513" style="stop-color:#979797;stop-opacity:0.4553"/>
-		<stop  offset="0.7389" style="stop-color:#5D5D5D;stop-opacity:0.265"/>
-		<stop  offset="0.9371" style="stop-color:#181818;stop-opacity:6.384778e-02"/>
-		<stop  offset="1" style="stop-color:#000000;stop-opacity:0"/>
+		<stop  offset="1.448989e-02" style="stop-color:#fff"/>
+		<stop  offset="1" style="stop-color:#000;stop-opacity:0"/>
 	</radialGradient>
 	<radialGradient id="SVGID_2_" cx="-1026.3688" cy="35.1631" r="36.4297" gradientTransform="matrix(8.499001e-14 -0.5 -0.7335 -4.625318e-14 52.9498 -470.1087)" gradientUnits="userSpaceOnUse">
-		<stop  offset="1.448989e-02" style="stop-color:#FFFFFF"/>
-		<stop  offset="0.1009" style="stop-color:#F8F8F8;stop-opacity:0.9123"/>
-		<stop  offset="0.2279" style="stop-color:#E4E4E4;stop-opacity:0.7834"/>
-		<stop  offset="0.3799" style="stop-color:#C4C4C4;stop-opacity:0.6292"/>
-		<stop  offset="0.5513" style="stop-color:#979797;stop-opacity:0.4553"/>
-		<stop  offset="0.7389" style="stop-color:#5D5D5D;stop-opacity:0.265"/>
-		<stop  offset="0.9371" style="stop-color:#181818;stop-opacity:6.384778e-02"/>
-		<stop  offset="1" style="stop-color:#000000;stop-opacity:0"/>
+		<stop  offset="1.448989e-02" style="stop-color:#fff"/>
+		<stop  offset="1" style="stop-color:#000;stop-opacity:0"/>
 	</radialGradient>
 	<filter filterUnits="objectBoundingBox" id="dropshadow">
 		<feOffset dx="0" dy="1.5" in="SourceAlpha" result="defappShadowOffsetOuter1"></feOffset>
