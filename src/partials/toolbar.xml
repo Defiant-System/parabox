@@ -16,6 +16,7 @@
 				<Tool name="5" click="set-game-level" arg="5"/>
 				<Tool name="6" click="set-game-level" arg="6"/>
 				<Tool name="7" click="set-game-level" arg="7"/>
+				<Tool name="8" click="set-game-level" arg="8"/>
 			</Options>
 		</Group>
 		<Group width="11%">

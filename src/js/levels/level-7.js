@@ -2,10 +2,10 @@
 Level[7] = {
 	bg: "#272",
 	filter: "sepia(1) hue-rotate(65deg) saturate(1.15) brightness(.8)",
-	player: { y: 3, x: 2 },
+	player: { y: 2, x: 1 },
 	exit: null,
 	void: [],
-	block: [{ y: 1, x: 1, mini: 7.1 }, { y: 2, x: 3, mini: 7.2 }],
+	block: [{ y: 1, x: 1, mini: 7.1 }, { y: 1, x: 3, mini: 7.2 }],
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],
 		[{ key: "WE", sub: ["NW-NE"] }, {}, {}, {}, { key: "WE", sub: ["NE-NW"] }],

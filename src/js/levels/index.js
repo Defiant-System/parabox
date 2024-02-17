@@ -9,3 +9,4 @@ let Level = {};
 @import "./level-5.js"
 @import "./level-6.js"
 @import "./level-7.js"
+@import "./level-8.js"
