@@ -9,7 +9,7 @@
 			el: window.find(`.editor-view[data-area="editor"]`),
 		};
 		// bind event handlers
-		this.els.el.on("mousedown", this.paintWall);
+		this.els.el.on("mousedown mousemove mouseup", this.paintWall);
 	},
 	dispatch(event) {
 		let APP = parabox,
@@ -32,7 +32,12 @@
 				value.push(result.htm[result.htm.length-1]);
 
 				// insert into DOM
-				Self.els.el.html(value.join(""));
+				Self.els.board = Self.els.el.html(value.join("")).find(`> .box.board`);
+				// get cell size in pixels
+				Self.data.px = parseInt(Self.els.board.cssProp("--size"), 10);
+
+				// insert ghost element
+				Self.els.ghost = Self.els.board.append(`<span class="wall ghost" style="--y: 3; --x: 3;"></span>`);
 				break;
 			case "exit-mode":
 				// insert into DOM
@@ -73,7 +78,7 @@
 	paintWall(event) {
 		let APP = parabox,
 			Self = APP.editor,
-			Drag = Self.drag;
+			Drag = Self.drag || {};
 		// console.log(opt);
 		switch (event.type) {
 			// native events
@@ -98,17 +103,21 @@
 
 				// cover content
 				APP.content.addClass("cover");
-				// bind event handlers
-				Self.els.doc.on("mousemove mouseup", Self.paintWall);
 				break;
 			case "mousemove":
+				if (Drag.down) {
 
+				} else {
+					let y = (event.offsetY / Self.data.px) | 0,
+						x = (event.offsetX / Self.data.px) | 0;
+					Self.els.ghost.css({ "--y": y, "--x": x });
+				}
 				break;
 			case "mouseup":
+				// reset drag object
+				delete Drag.down;
 				// cover content
 				APP.content.removeClass("cover");
-				// bind event handlers
-				Self.els.doc.off("mousemove mouseup", Self.paintWall);
 				break;
 		}
 	}
