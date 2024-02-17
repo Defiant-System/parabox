@@ -60,6 +60,7 @@ content {
 		position: absolute;
 		top: -1000px;
 		left: -310px;
+		z-index: 999;
 
 		.board {
 			&.box {
@@ -87,7 +88,7 @@ content {
 		--wH: -9px;
 		--wT: 12px;
 		--eyes: calc( var( --size ) * .175 );
-		--bH: calc( var( --size ) * .125 );
+		--bH: calc( var( --size ) * .15 );
 		--nbH: calc( var( --bH ) * -1 );
 
 		&.box {
@@ -96,6 +97,12 @@ content {
 			height: calc( calc( var( --size ) * var( --h ) ) + 6px );
 			box-shadow: inset 0px var( --nbH ) 0px 0px rgba(#000,.175),
 						0 0 var( --bH ) rgba(#000,.35);
+
+			&.size-3 {
+				top: 195px;
+				left: 195px;
+				--size: 91px;
+			}
 
 			&.size-4 {
 				top: 155px;
@@ -119,6 +126,7 @@ content {
 				left: 115px;
 
 				.mini {
+					&.size-3 > span.wall { --size: 15px; }
 					&.size-4 > span.wall { --size: 15px; }
 					&.size-5 > span.wall { --size: 12px; }
 				}
@@ -127,8 +135,10 @@ content {
 			&.size-9 {
 				top: 55px;
 				left: 55px;
+				--size: 62px;
 
 				.mini {
+					&.size-3 > span.wall { --size: 20px; }
 					&.size-4 > span.wall { --size: 15px; }
 					&.size-5 > span.wall { --size: 12px; }
 				}
@@ -162,10 +172,10 @@ content {
 			top: calc( calc( var( --y ) * var( --size ) ) - 14px );
 			left: calc( calc( var( --x ) * var( --size ) ) - 1px );
 
-			// &.player { display: none; }
-			// &.box:not(.player) { display: none; }
-			// &.exit,
-			// &.void { display: none; }
+			&.player { display: none; }
+			&.box:not(.player) { display: none; }
+			&.exit,
+			&.void { display: none; }
 		}
 
 		> span {
@@ -214,7 +224,7 @@ content {
 			right: var( --bH );
 			bottom: var( --bH );
 			height: 1px;
-			mix-blend-mode: soft-light;
+			// mix-blend-mode: soft-light;
 			pointer-events: none;
 		}
 
