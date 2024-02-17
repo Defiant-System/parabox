@@ -2,13 +2,10 @@
 let Game = {
 	init() {
 		this.wrapper = parabox.content.find(".game-view");
-		this.zoomed = parabox.content.find(".zoom-level");
 	},
 	zoomPaint(id) {
 		let { board, size, htm, level } = this.paint(id);
-		// console.log(board);
-
-		this.zoomed.html(htm.join(""));
+		this.wrapper.append(`<div class="zoom-level">${htm.join("")}</div`);
 	},
 	renderLevel(id) {
 		let { board, size, htm, level } = this.paint(id);
@@ -24,6 +21,9 @@ let Game = {
 		this.board = board;
 		// init player object
 		if (level.player) Player.init();
+
+		// temp
+		this.zoomPaint(id);
 	},
 	paint(id) {
 		let level = typeof id === "object" ? id : Level[id],

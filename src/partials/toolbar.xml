@@ -18,6 +18,7 @@
 				<Tool name="7" click="set-game-level" arg="7"/>
 				<Tool name="8" click="set-game-level" arg="8"/>
 			</Options>
+			<Tool name="Zoom" click="toggle-zoom"/>
 		</Group>
 		<Group width="11%">
 			<Tool symbol="icon-cog" menu="game-options"/>

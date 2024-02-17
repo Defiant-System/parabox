@@ -44,6 +44,10 @@ const parabox = {
 				}
 				break;
 			// custom events
+			case "toggle-zoom":
+				let isOn = Self.content.hasClass("show-zoomed");
+				Self.content.toggleClass("show-zoomed", isOn);
+				return !isOn;
 			case "set-editor-mode":
 				if (!event.xMenu.getAttribute("is-checked")) {
 					event.xMenu.setAttribute("is-checked", "1");
