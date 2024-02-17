@@ -3,9 +3,9 @@
 	<style type="text/css">
 		.st0{fill:#800090;filter:url(#dropshadow);}
 		.st1{fill:#A600C9;}
-		.st2{opacity:0.48;fill:url(#SVGID_1_);enable-background:new    ;}
-		.st3{opacity:0.5;fill:url(#SVGID_2_);enable-background:new    ;}
-		.st4{fill:none;stroke:#000000;stroke-width:1.5;stroke-miterlimit:10;}
+		.st2{opacity:0.48;fill:url(#SVGID_1_);enable-background:new;}
+		.st3{opacity:0.5;fill:url(#SVGID_2_);enable-background:new;}
+		.st4{fill:none;stroke:#000000;stroke-width:1.25;stroke-miterlimit:10;}
 	</style>
 	<radialGradient id="SVGID_1_" cx="-634.6219" cy="102.7423" r="37.9838" gradientTransform="matrix(1.035340e-13 -1 -0.8935 -9.250636e-14 118.9403 -591.8956)" gradientUnits="userSpaceOnUse">
 		<stop  offset="1.448989e-02" style="stop-color:#FFFFFF"/>
@@ -30,7 +30,7 @@
 	<filter filterUnits="objectBoundingBox" id="dropshadow">
 		<feOffset dx="0" dy="1.5" in="SourceAlpha" result="defappShadowOffsetOuter1"></feOffset>
 		<feGaussianBlur stdDeviation="2" in="defappShadowOffsetOuter1" result="defappShadowBlurOuter1"></feGaussianBlur>
-		<feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 .75 0" type="matrix" in="defappShadowBlurOuter1" result="defappShadowMatrixOuter1"></feColorMatrix>
+		<feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 .5 0" type="matrix" in="defappShadowBlurOuter1" result="defappShadowMatrixOuter1"></feColorMatrix>
 		<feMerge>
 			<feMergeNode in="defappShadowMatrixOuter1"/>
 			<feMergeNode in="SourceGraphic"/>
