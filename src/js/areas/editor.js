@@ -126,13 +126,14 @@
 					if (!!cell.hold.sub) {
 						if (cell.NW && !!cell.NW.key && cell.W && !!cell.W.key) delSub(cell.hold, "NW-NE");
 						if (cell.NE && !!cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-NW");
-						if ((cell.NE && !cell.NE.key) || (cell.N && !cell.N.key))  delSub(cell.hold, "NE-NW");
-						if ((cell.NW && !cell.NW.key) || (cell.N && !cell.N.key))  delSub(cell.hold, "NW-NE");
-						
+						if ((cell.NE && !cell.NE.key) || (cell.N && !cell.N.key)) delSub(cell.hold, "NE-NW");
+						if ((cell.NW && !cell.NW.key) || (cell.N && !cell.N.key)) delSub(cell.hold, "NW-NE");
+						if (cell.N && !!cell.N.key && cell.NW && !!cell.NW.key && cell.W && !!cell.W.key) delSub(cell.hold, "NW-WS");
+						if (cell.N && !!cell.N.key && cell.NE && !!cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-ES");
 						if (!cell.hold.sub.length) delete cell.hold.sub;
 					}
 
-					if (y === 1 && x === 2) console.log(cell);
+					if (y === 2 && x === 3) console.log(cell);
 					cell.hold.key = cell.borders.join("");
 				}
 			}
