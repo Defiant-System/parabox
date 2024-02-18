@@ -59,10 +59,10 @@
 					walls: [...Array(event.size)].map(y => [...Array(event.size)].map(x => ({}))),
 				};
 
-				// data.walls[0][0] = { key: "NWSE" };
-				// data.walls[0][1] = { key: "NWSE" };
-				// data.walls[0][2] = { key: "NWSE" };
-				// data.walls[0][3] = { key: "NWSE" };
+				data.walls[0][0] = { key: "NWSE" };
+				data.walls[0][1] = { key: "NWSE" };
+				data.walls[0][2] = { key: "NWE" };
+				data.walls[0][3] = { key: "NWE" };
 				// data.walls[0][4] = { key: "NWSE" };
 
 				// data.walls[1][0] = { key: "NWSE" };
@@ -80,7 +80,7 @@
 				// data.walls[3][0] = { key: "NWSE" };
 				// data.walls[3][1] = { key: "NWSE" };
 				// data.walls[3][2] = { key: "NWSE" };
-				// data.walls[3][3] = { key: "NWSE", sub: ["NE-WS"] };
+				// data.walls[3][3] = { key: "NWSE" };
 				// data.walls[3][4] = { key: "NWSE" };
 
 				// data.walls[4][0] = { key: "NWSE" };
@@ -89,7 +89,7 @@
 				// data.walls[4][3] = { key: "NWSE" };
 				// data.walls[4][4] = { key: "NWSE" };
 
-				// Self.fixNegativeBorders(data.walls);
+				Self.fixNegativeBorders(data.walls);
 
 				return data;
 		}
@@ -177,9 +177,14 @@
 					tip = el.hasClass("wall") ? EMPTY : WALL,
 					snapshot = Self.data.board.map(row => [...row]),
 					offset = {
-						x: event.offsetX - event.clientX,
 						y: event.offsetY - event.clientY,
+						x: event.offsetX - event.clientX,
 					};
+
+				if (el.hasClass("wall")) {
+					offset.y += +el.prop("offsetTop");
+					offset.x += +el.prop("offsetLeft");
+				}
 
 				// return console.log(event);
 				Self.drag = { bEl, tip, offset, snapshot };
@@ -204,22 +209,25 @@
 					let newState = JSON.stringify(Drag.snapshot);
 
 					if (oldState !== newState) {
-						Self.data.walls[y][x] = { key: "NWSE" };
+						Self.data.walls[y][x] = Drag.tip === WALL ? { key: "NWSE" } : {};
 						Self.fixNegativeBorders(Self.data.walls);
 
 						// clear old walls
 						Self.els.board.find(".wall:not(.ghost)").remove();
 						// // refresh DOM
-						let { walls } = Game.paintWalls(Self.data.walls);
+						let { walls, board } = Game.paintWalls(Self.data.walls);
 						// add new walls
 						Self.els.board.prepend(walls.join(""));
+						// update board array "in memory"
+						Self.data.board = board;
+
 						// console.log("refreshed DOM");
 					}
 				} else {
 					let y = Math.min((event.offsetY / Self.data.px) | 0, Self.data.size),
 						x = Math.min((event.offsetX / Self.data.px) | 0, Self.data.size),
 						cell = Self.data.walls[y][x];
-					if (cell.key) y = -1; // hovering wall
+					if (cell.key || event.target.classList.contains("wall")) y = -1; // hovering wall
 					Self.els.ghost.css({ "--y": y, "--x": x });
 				}
 				break;
