@@ -183,6 +183,10 @@
 
 				// return console.log(event);
 				Self.drag = { bEl, tip, offset, snapshot };
+				// hide ghost
+				Self.els.ghost.css({ "--y": -1, "--x": -1 });
+				// auto trigger mousemove event
+				Self.paintWall({ type: "mousemove", clientY: event.clientY, clientX: event.clientX });
 
 				// cover content
 				APP.content.addClass("cover");
