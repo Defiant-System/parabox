@@ -3,8 +3,8 @@
 	<ToolSet id="default" state="active">
 		<Group width="23%">
 			<Options>
-				<Tool symbol="icon-undo"/>
-				<Tool symbol="icon-redo"/>
+				<Tool symbol="icon-undo" click="history-go-prev" state="disabled"/>
+				<Tool symbol="icon-redo" click="history-go-next" state="disabled"/>
 			</Options>
 		</Group>
 		<Group width="66%">

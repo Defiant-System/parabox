@@ -1,5 +1,6 @@
 
 @import "./classes/point.js"
+@import "./modules/history.js"
 @import "./modules/utils.js"
 @import "./modules/player.js"
 @import "./modules/game.js"
@@ -19,6 +20,7 @@ const parabox = {
 			.map(i => this[i].init(this));
 
 		// init objects
+		History.init();
 		Game.init();
 		
 		// DEV-ONLY-START
@@ -44,6 +46,9 @@ const parabox = {
 				}
 				break;
 			// custom events
+			case "history-go-prev":
+			case "history-go-next":
+				return History.dispatch(event);
 			case "toggle-zoom":
 				let isOn = Self.content.hasClass("show-zoomed");
 				Self.content.toggleClass("show-zoomed", isOn);

@@ -7,6 +7,9 @@ let Player = {
 		let x = +this.el.cssProp("--x"),
 			y = +this.el.cssProp("--y");
 		this.pos = new Point(x, y);
+
+		// game started - push initial state
+		History.dispatch({ type: "history-push-state" });
 	},
 	move(dir) {
 		let name = `go-${dir}`,
@@ -21,6 +24,9 @@ let Player = {
 		this.el
 			.css(this.pos.serialize())
 			.cssSequence(name, "animationend", el => el.removeClass(name));
+
+		// push state after move
+		History.dispatch({ type: "history-push-state" });
 	},
 	coords() {
 		let y = Game.board.findIndex(row => row.includes(PLAYER));
