@@ -59,17 +59,17 @@
 					walls: [...Array(event.size)].map(y => [...Array(event.size)].map(x => ({}))),
 				};
 
-				data.walls[0][0] = { key: "NWSE" };
-				data.walls[0][1] = { key: "NWSE" };
-				data.walls[0][2] = { key: "NWE" };
-				data.walls[0][3] = { key: "NWE" };
+				// data.walls[0][0] = { key: "NWSE" };
+				// data.walls[0][1] = { key: "NWSE" };
+				data.walls[0][2] = { key: "NWSE" };
+				// data.walls[0][3] = { key: "NWSE" };
 				// data.walls[0][4] = { key: "NWSE" };
 
-				// data.walls[1][0] = { key: "NWSE" };
-				// data.walls[1][1] = { key: "NWSE" };
-				// data.walls[1][2] = { key: "NWSE" };
-				// data.walls[1][3] = { key: "NWSE" };
-				// data.walls[1][4] = { key: "NWSE" };
+				data.walls[1][0] = { key: "NWSE" };
+				data.walls[1][1] = { key: "NWSE" };
+				data.walls[1][2] = { key: "NWSE" };
+				data.walls[1][3] = { key: "NWSE" };
+				data.walls[1][4] = { key: "NWSE" };
 
 				// data.walls[2][0] = { key: "NWSE" };
 				// data.walls[2][1] = { key: "NWSE" };
@@ -114,25 +114,35 @@
 					if (cell.W && !!cell.W.key) cell.borders[1] = "";
 					if (cell.S && !!cell.S.key) cell.borders[2] = "";
 					if (cell.E && !!cell.E.key) cell.borders[3] = "";
+					if (!cell.N || (cell.N && !cell.N.key)) cell.borders[0] = "N";
+					if (!cell.W || (cell.W && !cell.W.key)) cell.borders[1] = "W";
+					if (!cell.S || (cell.S && !cell.S.key)) cell.borders[2] = "S";
+					if (!cell.E || (cell.E && !cell.E.key)) cell.borders[3] = "E";
 					if (cell.N && !!cell.N.key && cell.W && !!cell.W.key && cell.S && !!cell.S.key && cell.E && !!cell.E.key) cell.borders[4] = ["F"];
-					if (cell.NE && !!cell.NE.key && !cell.E.key) addSub(cell.hold, "NE-NW");
-					if (cell.NW && !!cell.NW.key && !cell.W.key) addSub(cell.hold, "NW-NE");
+
+					cell.hold.sub = [];
+
+					if (cell.NE && !!cell.NE.key && cell.N && !!cell.N.key && !cell.E.key) addSub(cell.hold, "NE-NW");
+					if (cell.NW && !!cell.NW.key && cell.N && !!cell.N.key && !cell.W.key) addSub(cell.hold, "NW-NE");
 					if (cell.N && !!cell.N.key && cell.E && !!cell.E.key && !cell.NE.key) addSub(cell.hold, "NE-WS");
 					if (cell.NE && !!cell.NE.key && cell.E && !!cell.E.key && !cell.N.key) addSub(cell.hold, "NE-ES");
 
-					if (!!cell.hold.sub) {
-						if (cell.NW && !!cell.NW.key && cell.W && !!cell.W.key) delSub(cell.hold, "NW-NE");
-						if (cell.NE && !!cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-NW");
-						if ((cell.NE && !cell.NE.key) || (cell.N && !cell.N.key)) delSub(cell.hold, "NE-NW");
-						if ((cell.NW && !cell.NW.key) || (cell.N && !cell.N.key)) delSub(cell.hold, "NW-NE");
-						if (cell.N && cell.N.key && cell.NE && cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-WS");
-						if (cell.N && !!cell.N.key && cell.NW && !!cell.NW.key && cell.W && !!cell.W.key) delSub(cell.hold, "NW-WS");
-						if (cell.N && !!cell.N.key && cell.NE && !!cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-ES");
-						if (cell.N && !cell.N.key && cell.NE && !cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-ES");
+					// if (!!cell.hold.sub) {
+					// 	if (!cell.N || (cell.NW && !cell.NW.key) && cell.E && !!cell.E.key) delSub(cell.hold, "NE-WS");
+					// 	if (!cell.N || (cell.NE && !cell.NE.key) && cell.W && !!cell.W.key) delSub(cell.hold, "NW-ES");
+					// 	if (cell.NW && !!cell.NW.key && cell.W && !!cell.W.key) delSub(cell.hold, "NW-NE");
+					// 	if (cell.NE && !!cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-NW");
+					// 	if ((cell.NE && !cell.NE.key) || (cell.N && !cell.N.key)) delSub(cell.hold, "NE-NW");
+					// 	if ((cell.NW && !cell.NW.key) || (cell.N && !cell.N.key)) delSub(cell.hold, "NW-NE");
+					// 	if (cell.N && cell.N.key && cell.NE && cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-WS");
+					// 	if (cell.N && !!cell.N.key && cell.NW && !!cell.NW.key && cell.W && !!cell.W.key) delSub(cell.hold, "NW-WS");
+					// 	if (cell.N && !!cell.N.key && cell.NE && !!cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-ES");
+					// 	if (cell.N && !cell.N.key && cell.NE && !cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-ES");
+					// }
 
-						if (!cell.hold.sub.length) delete cell.hold.sub;
-					}
-					// if (y === 2 && x === 3) console.log(cell);
+					if (!cell.hold.sub.length) delete cell.hold.sub;
+
+					// if (y === 3 && x === 2) console.log(cell);
 					cell.hold.key = cell.borders.join("");
 				}
 			}
