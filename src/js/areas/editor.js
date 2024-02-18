@@ -59,28 +59,28 @@
 					walls: [...Array(event.size)].map(y => [...Array(event.size)].map(x => ({}))),
 				};
 
-				data.walls[0][0] = { key: "NWSE" };
-				data.walls[0][1] = { key: "NWSE" };
-				data.walls[0][2] = { key: "NWSE" };
-				data.walls[0][3] = { key: "NWSE" };
-				data.walls[0][4] = { key: "NWSE" };
+				// data.walls[0][0] = { key: "NWSE" };
+				// data.walls[0][1] = { key: "NWSE" };
+				// data.walls[0][2] = { key: "NWSE" };
+				// data.walls[0][3] = { key: "NWSE" };
+				// data.walls[0][4] = { key: "NWSE" };
 
 				// data.walls[1][0] = { key: "NWSE" };
 				// data.walls[1][1] = { key: "NWSE" };
-				data.walls[1][2] = { key: "NWSE" };
-				data.walls[1][3] = { key: "W" };
+				// data.walls[1][2] = { key: "NWSE" };
+				// data.walls[1][3] = { key: "NWSE" };
 				// data.walls[1][4] = { key: "NWSE" };
 
 				// data.walls[2][0] = { key: "NWSE" };
 				// data.walls[2][1] = { key: "NWSE" };
-				data.walls[2][2] = { key: "NWSE" };
-				data.walls[2][3] = { key: "NWSE", sub: ["NE-ES"] };
-				data.walls[2][4] = { key: "NWSE" };
+				// data.walls[2][2] = { key: "NWSE" };
+				// data.walls[2][3] = { key: "NWSE" };
+				// data.walls[2][4] = { key: "NWSE" };
 
 				// data.walls[3][0] = { key: "NWSE" };
 				// data.walls[3][1] = { key: "NWSE" };
 				// data.walls[3][2] = { key: "NWSE" };
-				// data.walls[3][3] = { key: "NWSE" };
+				// data.walls[3][3] = { key: "NWSE", sub: ["NE-WS"] };
 				// data.walls[3][4] = { key: "NWSE" };
 
 				// data.walls[4][0] = { key: "NWSE" };
@@ -89,7 +89,7 @@
 				// data.walls[4][3] = { key: "NWSE" };
 				// data.walls[4][4] = { key: "NWSE" };
 
-				Self.fixNegativeBorders(data.walls);
+				// Self.fixNegativeBorders(data.walls);
 
 				return data;
 		}
@@ -114,10 +114,7 @@
 					if (cell.W && !!cell.W.key) cell.borders[1] = "";
 					if (cell.S && !!cell.S.key) cell.borders[2] = "";
 					if (cell.E && !!cell.E.key) cell.borders[3] = "";
-					if (cell.N && !!cell.N.key && cell.W && !!cell.W.key &&
-						cell.S && !!cell.S.key && cell.E && !!cell.E.key) {
-						cell.borders[4] = ["F"];
-					}
+					if (cell.N && !!cell.N.key && cell.W && !!cell.W.key && cell.S && !!cell.S.key && cell.E && !!cell.E.key) cell.borders[4] = ["F"];
 					if (cell.NE && !!cell.NE.key && !cell.E.key) addSub(cell.hold, "NE-NW");
 					if (cell.NW && !!cell.NW.key && !cell.W.key) addSub(cell.hold, "NW-NE");
 					if (cell.N && !!cell.N.key && cell.E && !!cell.E.key && !cell.NE.key) addSub(cell.hold, "NE-WS");
@@ -128,12 +125,14 @@
 						if (cell.NE && !!cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-NW");
 						if ((cell.NE && !cell.NE.key) || (cell.N && !cell.N.key)) delSub(cell.hold, "NE-NW");
 						if ((cell.NW && !cell.NW.key) || (cell.N && !cell.N.key)) delSub(cell.hold, "NW-NE");
+						if (cell.N && cell.N.key && cell.NE && cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-WS");
 						if (cell.N && !!cell.N.key && cell.NW && !!cell.NW.key && cell.W && !!cell.W.key) delSub(cell.hold, "NW-WS");
 						if (cell.N && !!cell.N.key && cell.NE && !!cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-ES");
+						if (cell.N && !cell.N.key && cell.NE && !cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-ES");
+
 						if (!cell.hold.sub.length) delete cell.hold.sub;
 					}
-
-					if (y === 2 && x === 3) console.log(cell);
+					// if (y === 2 && x === 3) console.log(cell);
 					cell.hold.key = cell.borders.join("");
 				}
 			}
@@ -205,13 +204,12 @@
 						Self.fixNegativeBorders(Self.data.walls);
 
 						// clear old walls
-						Self.els.board.find(".wall").remove();
-
+						Self.els.board.find(".wall:not(.ghost)").remove();
 						// // refresh DOM
 						let { walls } = Game.paintWalls(Self.data.walls);
-
+						// add new walls
 						Self.els.board.prepend(walls.join(""));
-						console.log("refreshed DOM");
+						// console.log("refreshed DOM");
 					}
 				} else {
 					let y = Math.min((event.offsetY / Self.data.px) | 0, Self.data.size),
