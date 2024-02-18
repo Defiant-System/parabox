@@ -65,29 +65,29 @@
 				data.walls[0][3] = { key: "NWSE" };
 				data.walls[0][4] = { key: "NWSE" };
 
-				data.walls[1][0] = { key: "NWSE" };
+				// data.walls[1][0] = { key: "NWSE" };
 				// data.walls[1][1] = { key: "NWSE" };
-				data.walls[1][2] = { key: "NWSE" };
+				// data.walls[1][2] = { key: "NWSE" };
 				// data.walls[1][3] = { key: "NWSE" };
-				data.walls[1][4] = { key: "NWSE" };
+				// data.walls[1][4] = { key: "NWSE" };
 
-				data.walls[2][0] = { key: "NWSE" };
-				data.walls[2][1] = { key: "NWSE" };
-				data.walls[2][2] = { key: "NWSE" };
-				data.walls[2][3] = { key: "NWSE" };
-				data.walls[2][4] = { key: "NWSE" };
+				// data.walls[2][0] = { key: "NWSE" };
+				// data.walls[2][1] = { key: "NWSE" };
+				// data.walls[2][2] = { key: "NWSE" };
+				// data.walls[2][3] = { key: "NWSE" };
+				// data.walls[2][4] = { key: "NWSE" };
 
-				data.walls[3][0] = { key: "NWSE" };
+				// data.walls[3][0] = { key: "NWSE" };
 				// data.walls[3][1] = { key: "NWSE" };
-				data.walls[3][2] = { key: "NWSE" };
+				// data.walls[3][2] = { key: "NWSE" };
 				// data.walls[3][3] = { key: "NWSE" };
-				data.walls[3][4] = { key: "NWSE" };
+				// data.walls[3][4] = { key: "NWSE" };
 
-				data.walls[4][0] = { key: "NWSE" };
-				data.walls[4][1] = { key: "NWSE" };
-				data.walls[4][2] = { key: "NWSE" };
-				data.walls[4][3] = { key: "NWSE" };
-				data.walls[4][4] = { key: "NWSE" };
+				// data.walls[4][0] = { key: "NWSE" };
+				// data.walls[4][1] = { key: "NWSE" };
+				// data.walls[4][2] = { key: "NWSE" };
+				// data.walls[4][3] = { key: "NWSE" };
+				// data.walls[4][4] = { key: "NWSE" };
 
 				Self.fixNegativeBorders(data.walls);
 
@@ -190,12 +190,14 @@
 
 					if (oldState !== newState) {
 						Self.data.walls[y][x] = { key: "NWSE" };
+						Self.fixNegativeBorders(Self.data.walls);
 
 						// clear old walls
 						Self.els.board.find(".wall").remove();
 
 						// // refresh DOM
 						let { walls } = Game.paintWalls(Self.data.walls);
+
 						Self.els.board.prepend(walls.join(""));
 						console.log("refreshed DOM");
 					}
