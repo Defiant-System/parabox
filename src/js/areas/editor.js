@@ -55,7 +55,7 @@
 					player: { y: 1, x: 1 },
 					exit: { y: 1, x: 3 },
 					void: [{ y: 1, x: 4 }],
-					block: [{ y: 3, x: 2, color: "yellow" }],
+					block: [{ y: 0, x: 1, color: "yellow" }],
 					walls: [...Array(event.size)].map(y => [...Array(event.size)].map(x => ({}))),
 				};
 

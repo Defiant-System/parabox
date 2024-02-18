@@ -32,9 +32,8 @@ Level[7.2] = {
 	bg: "#829",
 	filter: "sepia(1) hue-rotate(245deg) saturate(1.5) brightness(.85)",
 	walls: [
-		[{ key: "NSE" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],
-		[{}, {}, {}, { key: "WE", sub: ["NE-NW"] }],
-		[{ key: "NWE" }, {}, {}, { key: "WE" }],
-		[{ key: "SE" }, { key: "NWS", sub: ["NE-ES"] }, {}, { key: "WSE" }],
+		[{ key: "NSE" }, { key: "NS" }, { key: "NW" }],
+		[{}, {}, { key: "WE", sub: ["NE-NW"] }],
+		[{ key: "NWSE" }, {}, { key: "WSE" }],
 	]
 };
