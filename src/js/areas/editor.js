@@ -114,12 +114,14 @@
 						cell.S && !!cell.S.key && cell.E && !!cell.E.key) {
 						cell.borders[4] = ["F"];
 					}
-
 					if (cell.NE && !!cell.NE.key && !cell.E.key) addSub(cell.hold, "NE-NW");
 					if (cell.NW && !!cell.NW.key && !cell.W.key) addSub(cell.hold, "NW-NE");
-
 					if (cell.N && !!cell.N.key && cell.E && !!cell.E.key && !cell.NE.key) addSub(cell.hold, "NE-WS");
 					if (cell.NE && !!cell.NE.key && cell.E && !!cell.E.key && !cell.N.key) addSub(cell.hold, "NE-ES");
+
+					if (!!cell.sub) {
+						// TODO
+					}
 
 					// if (y === 2 && x === 2) console.log(cell);
 					cell.hold.key = cell.borders.join("");

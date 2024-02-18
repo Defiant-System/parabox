@@ -28,6 +28,8 @@
 	<ToolSet id="edit-tools">
 		<Group width="89%">
 			<Options>
+				<Tool name="3" click="set-board-size" arg="3"/>
+				<Tool name="4" click="set-board-size" arg="4"/>
 				<Tool name="5" click="set-board-size" arg="5"/>
 				<Tool name="7" click="set-board-size" arg="7"/>
 				<Tool name="9" click="set-board-size" arg="9"/>
