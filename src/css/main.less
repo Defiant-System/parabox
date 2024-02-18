@@ -818,9 +818,26 @@ content {
 		}
 
 		.box.board {
-			.wall:hover {
-				background: #a44;
-				opacity: .85;
+			.wall {
+				&:hover:before {
+					display: block;
+				}
+
+				&:before {
+					content: "";
+					display: none;
+					position: absolute;
+					top: 7px;
+					left: 7px;
+					right: 7px;
+					bottom: 7px;
+					border-radius: 5px;
+					background: #a44;
+				}
+
+				&[class*="S"]:before {
+					bottom: 15px;
+				}
 			}
 		}
 	}

@@ -59,25 +59,71 @@
 					walls: [...Array(event.size)].map(y => [...Array(event.size)].map(x => ({}))),
 				};
 
-				// data.walls[0][0] = { key: "NSE" };
-				// data.walls[0][1] = { key: "NWS" };
+				data.walls[0][0] = { key: "NWSE" };
+				data.walls[0][1] = { key: "NWSE" };
+				data.walls[0][2] = { key: "NWSE" };
+
+				data.walls[1][2] = { key: "NWSE" };
+
+				data.walls[3][2] = { key: "NWSE" };
+				data.walls[4][2] = { key: "NWSE" };
+
 				// data.walls[2][2] = { key: "NWSE" };
+
+				Self.fixNegativeBorders(data.walls);
 
 				return data;
 		}
 	},
-	getCell(y, x) {
-		let board = this.data;
+	fixNegativeBorders(walls) {
+		for (let y=0, yl=walls.length; y<yl; y++) {
+			let row = walls[y];
+			for (let x=0, xl=row.length; x<xl; x++) {
+				let cell = this.getCell(y, x, walls);
+				
+				if (cell.hold.key) {
+					if (cell.N && !!cell.N.key) cell.borders[0] = "";
+					if (cell.W && !!cell.W.key) cell.borders[1] = "";
+					if (cell.S && !!cell.S.key) cell.borders[2] = "";
+					if (cell.E && !!cell.E.key) cell.borders[3] = "";
+
+					if (cell.NE && !!cell.NE.key) {
+						if (!cell.hold.sub) cell.hold.sub = [];
+						cell.hold.sub.push("NE-NW");
+					}
+
+					if (cell.NW && !!cell.NW.key) {
+						if (!cell.hold.sub) cell.hold.sub = [];
+						cell.hold.sub.push("NW-NE");
+					}
+
+					// if (y === 1 && x === 1) console.log(y, x, cell);
+					cell.hold.key = cell.borders.join("");
+				}
+			}
+		}
+	},
+	getCell(y, x, data) {
+		let board = data || this.data,
+			template = "NWSE".split(""),
+			hold = board[y][x],
+			borders = [];
+		
+		if (hold.key) {
+			hold.key.split("").map(e => borders[template.indexOf(e)] = e);
+		}
+
 		return {
-			cell: board[y, x],
-			N: board[y-1][x],
-			S: board[y+1][x],
-			E: board[y][x-1],
-			W: board[y][x+1],
-			NW: board[y-1][x+1],
-			NE: board[y-1][x-1],
-			SW: board[y+1][x+1],
-			SE: board[y+1][x-1],
+			hold,
+			borders,
+			N: board[y-1] ? board[y-1][x] : undefined,
+			S: board[y+1] ? board[y+1][x] : undefined,
+			E: board[y][x-1] || undefined,
+			W: board[y][x+1] || undefined,
+			NW: board[y-1] ? board[y-1][x+1] : undefined,
+			NE: board[y-1] ? board[y-1][x-1] : undefined,
+			SW: board[y+1] ? board[y+1][x+1] : undefined,
+			SE: board[y+1] ? board[y+1][x-1] : undefined,
 		};
 	},
 	paintWall(event) {
