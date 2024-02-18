@@ -66,16 +66,16 @@
 				data.walls[0][4] = { key: "NWSE" };
 
 				// data.walls[1][0] = { key: "NWSE" };
-				data.walls[1][1] = { key: "NWSE", sub: ["NW-NE"] };
-				data.walls[1][2] = { key: "NWSE", sub: ["NW-NE", "NE-NW"] };
-				data.walls[1][3] = { key: "NWSE" };
+				// data.walls[1][1] = { key: "NWSE" };
+				data.walls[1][2] = { key: "NWSE" };
+				data.walls[1][3] = { key: "W" };
 				// data.walls[1][4] = { key: "NWSE" };
 
 				// data.walls[2][0] = { key: "NWSE" };
 				// data.walls[2][1] = { key: "NWSE" };
-				// data.walls[2][2] = { key: "NWSE" };
-				// data.walls[2][3] = { key: "NWSE" };
-				// data.walls[2][4] = { key: "NWSE" };
+				data.walls[2][2] = { key: "NWSE" };
+				data.walls[2][3] = { key: "NWSE", sub: ["NE-ES"] };
+				data.walls[2][4] = { key: "NWSE" };
 
 				// data.walls[3][0] = { key: "NWSE" };
 				// data.walls[3][1] = { key: "NWSE" };
@@ -98,6 +98,10 @@
 		let addSub = (hold, corner) => {
 				if (!hold.sub) hold.sub = [];
 				if (!hold.sub.includes(corner)) hold.sub.push(corner);
+			},
+			delSub = (hold, corner) => {
+				let index = hold.sub.indexOf(corner);
+				if (index > -1) hold.sub.splice(index, 1);
 			};
 
 		for (let y=0, yl=walls.length; y<yl; y++) {
@@ -119,11 +123,16 @@
 					if (cell.N && !!cell.N.key && cell.E && !!cell.E.key && !cell.NE.key) addSub(cell.hold, "NE-WS");
 					if (cell.NE && !!cell.NE.key && cell.E && !!cell.E.key && !cell.N.key) addSub(cell.hold, "NE-ES");
 
-					if (!!cell.sub) {
-						// TODO
+					if (!!cell.hold.sub) {
+						if (cell.NW && !!cell.NW.key && cell.W && !!cell.W.key) delSub(cell.hold, "NW-NE");
+						if (cell.NE && !!cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-NW");
+						if ((cell.NE && !cell.NE.key) || (cell.N && !cell.N.key))  delSub(cell.hold, "NE-NW");
+						if ((cell.NW && !cell.NW.key) || (cell.N && !cell.N.key))  delSub(cell.hold, "NW-NE");
+						
+						if (!cell.hold.sub.length) delete cell.hold.sub;
 					}
 
-					// if (y === 2 && x === 2) console.log(cell);
+					if (y === 1 && x === 2) console.log(cell);
 					cell.hold.key = cell.borders.join("");
 				}
 			}
