@@ -119,6 +119,7 @@ content {
 				--bH: 9px;
 
 				.mini {
+					&.size-3 > span.wall { --size: 24px; }
 					&.size-4 > span.wall { --size: 20px; }
 					&.size-5 > span.wall { --size: 16px; }
 				}
@@ -148,9 +149,15 @@ content {
 			}
 
 			&.size-11 {
-				top: 29px;
-				left: 29px;
-				--size: 54px;
+				top: 23px;
+				left: 23px;
+				--size: 51px;
+
+				.mini {
+					&.size-3 > span.wall { --size: 16px; }
+					&.size-4 > span.wall { --size: 15px; }
+					&.size-5 > span.wall { --size: 12px; }
+				}
 			}
 			
 

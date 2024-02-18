@@ -1,6 +1,8 @@
 
 let Level = {};
 
+@import "./fit-5x.js"
+
 @import "./blank.js"
 @import "./level-1.js"
 @import "./level-2.js"
