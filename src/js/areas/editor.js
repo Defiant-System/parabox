@@ -37,7 +37,7 @@
 				Self.data.px = parseInt(Self.els.board.cssProp("--size"), 10);
 				Self.data.board = result.board;
 
-				console.log( Self.data );
+				// console.log( Self.data );
 
 				// insert ghost element
 				Self.els.ghost = Self.els.board.append(`<span class="wall ghost" style="--y: -1; --x: -1;"></span>`);
@@ -62,13 +62,32 @@
 				data.walls[0][0] = { key: "NWSE" };
 				data.walls[0][1] = { key: "NWSE" };
 				data.walls[0][2] = { key: "NWSE" };
+				data.walls[0][3] = { key: "NWSE" };
+				data.walls[0][4] = { key: "NWSE" };
 
+				data.walls[1][0] = { key: "NWSE" };
+				// data.walls[1][1] = { key: "NWSE" };
 				data.walls[1][2] = { key: "NWSE" };
+				// data.walls[1][3] = { key: "NWSE" };
+				data.walls[1][4] = { key: "NWSE" };
 
+				data.walls[2][0] = { key: "NWSE" };
+				data.walls[2][1] = { key: "NWSE" };
+				data.walls[2][2] = { key: "NWSE" };
+				data.walls[2][3] = { key: "NWSE" };
+				data.walls[2][4] = { key: "NWSE" };
+
+				data.walls[3][0] = { key: "NWSE" };
+				// data.walls[3][1] = { key: "NWSE" };
 				data.walls[3][2] = { key: "NWSE" };
-				data.walls[4][2] = { key: "NWSE" };
+				// data.walls[3][3] = { key: "NWSE" };
+				data.walls[3][4] = { key: "NWSE" };
 
-				// data.walls[2][2] = { key: "NWSE" };
+				data.walls[4][0] = { key: "NWSE" };
+				data.walls[4][1] = { key: "NWSE" };
+				data.walls[4][2] = { key: "NWSE" };
+				data.walls[4][3] = { key: "NWSE" };
+				data.walls[4][4] = { key: "NWSE" };
 
 				Self.fixNegativeBorders(data.walls);
 
@@ -76,6 +95,11 @@
 		}
 	},
 	fixNegativeBorders(walls) {
+		let addSub = (hold, corner) => {
+				if (!hold.sub) hold.sub = [];
+				if (!hold.sub.includes(corner)) hold.sub.push(corner);
+			};
+
 		for (let y=0, yl=walls.length; y<yl; y++) {
 			let row = walls[y];
 			for (let x=0, xl=row.length; x<xl; x++) {
@@ -86,18 +110,18 @@
 					if (cell.W && !!cell.W.key) cell.borders[1] = "";
 					if (cell.S && !!cell.S.key) cell.borders[2] = "";
 					if (cell.E && !!cell.E.key) cell.borders[3] = "";
-
-					if (cell.NE && !!cell.NE.key) {
-						if (!cell.hold.sub) cell.hold.sub = [];
-						cell.hold.sub.push("NE-NW");
+					if (cell.N && !!cell.N.key && cell.W && !!cell.W.key &&
+						cell.S && !!cell.S.key && cell.E && !!cell.E.key) {
+						cell.borders[4] = ["F"];
 					}
 
-					if (cell.NW && !!cell.NW.key) {
-						if (!cell.hold.sub) cell.hold.sub = [];
-						cell.hold.sub.push("NW-NE");
-					}
+					if (cell.NE && !!cell.NE.key && !cell.E.key) addSub(cell.hold, "NE-NW");
+					if (cell.NW && !!cell.NW.key && !cell.W.key) addSub(cell.hold, "NW-NE");
 
-					// if (y === 1 && x === 1) console.log(y, x, cell);
+					if (cell.N && !!cell.N.key && cell.E && !!cell.E.key && !cell.NE.key) addSub(cell.hold, "NE-WS");
+					if (cell.NE && !!cell.NE.key && cell.E && !!cell.E.key && !cell.N.key) addSub(cell.hold, "NE-ES");
+
+					// if (y === 2 && x === 2) console.log(cell);
 					cell.hold.key = cell.borders.join("");
 				}
 			}
