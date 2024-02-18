@@ -66,9 +66,9 @@
 				data.walls[0][4] = { key: "NWSE" };
 
 				// data.walls[1][0] = { key: "NWSE" };
-				// data.walls[1][1] = { key: "NWSE" };
-				// data.walls[1][2] = { key: "NWSE" };
-				// data.walls[1][3] = { key: "NWSE" };
+				data.walls[1][1] = { key: "NWSE", sub: ["NW-NE"] };
+				data.walls[1][2] = { key: "NWSE", sub: ["NW-NE", "NE-NW"] };
+				data.walls[1][3] = { key: "NWSE" };
 				// data.walls[1][4] = { key: "NWSE" };
 
 				// data.walls[2][0] = { key: "NWSE" };
