@@ -6,6 +6,8 @@
 	</Menu>
 	<Menu name="Game" for="game-options">
 		<Menu name="Editor Mode" click="set-editor-mode"/>
+		<Menu type="divider"/>
+		<Menu name="Output PGN" click="output-pgn"/>
 	</Menu>
 
 	<Menu name="Help">

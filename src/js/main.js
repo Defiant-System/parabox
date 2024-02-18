@@ -48,6 +48,8 @@ const parabox = {
 				let isOn = Self.content.hasClass("show-zoomed");
 				Self.content.toggleClass("show-zoomed", isOn);
 				return !isOn;
+			case "output-pgn":
+				return Self.editor.dispatch(event);
 			case "set-editor-mode":
 				if (!event.xMenu.getAttribute("is-checked")) {
 					event.xMenu.setAttribute("is-checked", "1");

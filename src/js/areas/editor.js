@@ -47,6 +47,24 @@
 				Self.els.el.html("");
 				break;
 
+			case "output-pgn":
+				value = [];
+
+				Self.data.walls.map(row => {
+					let cells = [];
+					row.map(cell => {
+						let str = JSON.stringify(cell);
+						str = str.replace(/\{/, "{ ");
+						str = str.replace(/\}/, " }");
+						str = str.replace(/\{  \}/, "{}");
+						cells.push(str);
+					});
+					value.push(`[${cells.join(", ")}]`);
+				});
+
+				// console.log( Self.data.walls );
+				console.log( "\n"+ value.join(",\n") );
+				break;
 			case "generate-board":
 				data = {
 					bg: "#666",
@@ -61,15 +79,15 @@
 
 				// data.walls[0][0] = { key: "NWSE" };
 				// data.walls[0][1] = { key: "NWSE" };
-				data.walls[0][2] = { key: "NWSE" };
+				// data.walls[0][2] = { key: "NWSE" };
 				// data.walls[0][3] = { key: "NWSE" };
 				// data.walls[0][4] = { key: "NWSE" };
 
-				data.walls[1][0] = { key: "NWSE" };
-				data.walls[1][1] = { key: "NWSE" };
-				data.walls[1][2] = { key: "NWSE" };
-				data.walls[1][3] = { key: "NWSE" };
-				data.walls[1][4] = { key: "NWSE" };
+				// data.walls[1][0] = { key: "NWSE" };
+				// data.walls[1][1] = { key: "NWSE" };
+				// data.walls[1][2] = { key: "NWSE" };
+				// data.walls[1][3] = { key: "NWSE" };
+				// data.walls[1][4] = { key: "NWSE" };
 
 				// data.walls[2][0] = { key: "NWSE" };
 				// data.walls[2][1] = { key: "NWSE" };
@@ -89,7 +107,7 @@
 				// data.walls[4][3] = { key: "NWSE" };
 				// data.walls[4][4] = { key: "NWSE" };
 
-				Self.fixNegativeBorders(data.walls);
+				// Self.fixNegativeBorders(data.walls);
 
 				return data;
 		}
@@ -248,6 +266,9 @@
 				APP.content.removeClass("cover");
 				// bind event handlers
 				Self.els.doc.off("mousemove mouseup", Self.paintWall);
+
+				// temp
+				Self.dispatch({ type: "output-pgn" });
 				break;
 		}
 	}
