@@ -23,9 +23,8 @@
 		switch (event.type) {
 			case "init-mode":
 			case "paint-board":
-				// Self.data = Self.dispatch({ type: "generate-board", size: event.size || 5 });
-				// Self.data = Level[6];
-				Self.data = Game.level;
+				// if there is no "active" level, generate empty board
+				Self.data = Game.level || Self.dispatch({ type: "generate-board", size: event.size || 5 });
 				result = Game.paint(Self.data);
 
 				// extract only walls
@@ -37,7 +36,7 @@
 				Self.els.board = Self.els.el.html(value.join("")).find(`> .box.board`);
 				// get cell size in pixels
 				Self.data.px = parseInt(Self.els.board.cssProp("--size"), 10);
-				Self.data.size = result.size.w;
+				Self.data.size = result.size.w - 1;
 				Self.data.board = result.board;
 				// console.log( Self.data );
 

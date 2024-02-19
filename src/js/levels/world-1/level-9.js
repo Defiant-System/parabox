@@ -2,7 +2,7 @@
 Level[9] = {
 	grid: 7,
 	bg: "#795d7d",
-	filter: "sepia(.5) hue-rotate(245deg) saturate(2) brightness(.9)",
+	filter: "sepia(.5) hue-rotate(245deg) saturate(3.5) brightness(.9)",
 	player: { y: 2, x: 4 },
 	void: [{ y: 4, x: 3 }],
 	block: [

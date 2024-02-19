@@ -40,6 +40,9 @@
 
 			// MODE: editor
 			case "set-board-size":
+				// reset game level
+				delete Game.level;
+				// dispatch event
 				APP.editor.dispatch({ type: "paint-board", size: +event.arg });
 				return true;
 		}
