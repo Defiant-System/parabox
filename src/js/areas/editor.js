@@ -24,7 +24,8 @@
 			case "init-mode":
 			case "paint-board":
 				// Self.data = Self.dispatch({ type: "generate-board", size: event.size || 5 });
-				Self.data = Level[6];
+				// Self.data = Level[6];
+				Self.data = Game.level;
 				result = Game.paint(Self.data);
 
 				// extract only walls

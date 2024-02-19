@@ -48,6 +48,9 @@ let Game = {
 			});
 		}
 
+		// save reference to active level object
+		this.level = level;
+
 		let { walls, board, size } = this.paintWalls(level.walls);
 
 		// player
