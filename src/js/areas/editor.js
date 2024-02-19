@@ -70,6 +70,7 @@
 				data = {
 					bg: "#666",
 					filter: "none",
+					grid: event.size,
 					size: event.size - 1,
 					player: { y: 1, x: 1 },
 					exit: { y: 1, x: 3 },

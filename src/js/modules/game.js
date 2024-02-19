@@ -27,11 +27,20 @@ let Game = {
 	},
 	paint(id) {
 		let level = typeof id === "object" ? id : Level[id],
+			grid = (level ? level.grid : id).toString(),
 			// update board
 			player = [],
 			voids = [],
 			blocks = [],
 			htm = [];
+
+		if (id.toString().includes("-")) {
+			let [big, mini] = id.split("-");
+			level = Level[big];
+			level.block.map(b => b.mini ? (b.mini = mini) : null);
+			// complete grid name
+			grid = `${Level[big].grid}x${Level[mini].grid}`;
+		}
 
 		let { walls, board, size } = this.paintWalls(level.walls);
 
@@ -81,7 +90,7 @@ let Game = {
 		}
 
 		// level wrapper: START
-		htm.push(`<div class="box board size-${size.w}" style="--bg-color: ${level.bg}; --fg-filter: ${level.filter}; --w: ${size.w}; --h: ${size.h};">`);
+		htm.push(`<div class="box board grid-${grid}" style="--bg-color: ${level.bg}; --fg-filter: ${level.filter}; --w: ${size.w}; --h: ${size.h};">`);
 		htm.push(walls.join(""));
 		htm.push(player.join(""));
 		htm.push(voids.join(""));

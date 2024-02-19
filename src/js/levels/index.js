@@ -1,14 +1,9 @@
 
 let Level = {};
 
-@import "./fit-5x.js"
 
-@import "./blank.js"
-@import "./level-1.js"
-@import "./level-2.js"
-@import "./level-3.js"
-@import "./level-4.js"
-@import "./level-5.js"
-@import "./level-6.js"
-@import "./level-7.js"
-@import "./level-8.js"
+@import "fit/big.js"
+@import "fit/mini.js"
+
+
+@import "world-1/index.js"
