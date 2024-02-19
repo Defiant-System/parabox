@@ -58,12 +58,17 @@ content {
 			top: -1520px;
 			left: -1520px;
 			--size: 410px;
+			filter: blur(7px) saturate(0.75) brightness(.85);
 
 			div.void,
 			div.exit,
 			div.box {
 				border-radius: 29px;
 				border-width: 44px;
+			}
+
+			.box.mini.size-5 {
+				display: none;
 			}
 		}
 
@@ -86,6 +91,15 @@ content {
 			left: 210px;
 			width: 235px;
 			height: 241px;
+
+			&.box:before {
+				opacity: 1;
+				z-index: -1;
+				background: transparent;
+				top: -13px;
+				bottom: 0;
+				box-shadow: 0 0 0 9px rgba(#000,.75);
+			}
 		}
 	}
 
