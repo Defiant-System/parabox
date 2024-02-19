@@ -203,7 +203,7 @@
 						// clear old walls
 						Self.els.board.find(".wall:not(.ghost)").remove();
 						// // refresh DOM
-						let { walls, board } = Game.paintWalls(Self.data.walls);
+						let { walls, board } = Game.draw("walls", Self.data.walls);
 						// add new walls
 						Self.els.board.prepend(walls.join(""));
 						// update board array "in memory"

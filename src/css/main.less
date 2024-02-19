@@ -208,6 +208,7 @@ content {
 			&[class*="grid-7"] {
 				top: 69px;
 				left: 69px;
+				--size: 74px;
 				--bH: 9px;
 
 				&.grid-7x3 {
@@ -227,6 +228,7 @@ content {
 					left: 78px;
 					--size: 72px;
 
+					.mini > .exit,
 					.mini > span.wall { --size: 14px; }
 				}
 
@@ -442,6 +444,31 @@ content {
 
 				&.NE-WS {
 					background-image: url(~/icons/mini-neg-ne-ws.png);
+				}
+			}
+
+			div.void,
+			div.exit {
+				top: calc( calc( var( --y ) * var( --size ) ) - 2px );
+				left: calc( var( --x ) * var( --size ) );
+				height: calc( var( --size ) - 3px );
+				width: calc( var( --size ) - 3px );
+				position: absolute;
+				border-radius: 3px;
+				border: 1px solid rgba(#000,.5);
+
+				i {
+					--eyes: 3px;
+
+					&:before,
+					&:after {
+						box-shadow: none;
+					}
+				}
+
+				&:before,
+				&:after {
+					display: none;
 				}
 			}
 		}

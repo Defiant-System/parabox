@@ -50,32 +50,14 @@ let Game = {
 
 		// save reference to active level object
 		this.level = level;
-
-		let { walls, board, size } = this.paintWalls(level.walls);
-
+		// start rendering; walls
+		let { walls, board, size } = this.draw("walls", level.walls);
 		// player
-		if (level.player) {
-			player.push(`<div class="box player" style="--y: ${level.player.y}; --x: ${level.player.x};"><i></i></div>`);
-			// update board
-			board[level.player.y][level.player.x] = PLAYER;
-		}
-		
+		if (level.player) player = this.draw("player", level, board);
 		// voids
-		if (level.void) {
-			for (let i=0, il=level.void.length; i<il; i++) {
-				let spot = level.void[i];
-				voids.push(`<div class="void" style="--y: ${spot.y}; --x: ${spot.x};"></div>`);
-				// update board
-				board[spot.y][spot.x] = VOID;
-			}
-		}
-
+		if (level.void) voids = this.draw("voids", level, board);
 		// exit
-		if (level.exit) {
-			voids.push(`<div class="exit" style="--y: ${level.exit.y}; --x: ${level.exit.x};"><i></i><b></b></div>`);
-			// update board
-			board[level.exit.y][level.exit.x] = EXIT;
-		}
+		if (level.exit) voids.push(this.draw("exit", level, board));
 
 		// blocks
 		if (level.block) {
@@ -86,8 +68,13 @@ let Game = {
 					sub = [];
 				if (block.mini) {
 					let mini = Level[block.mini],
-						data = this.paintWalls(mini.walls);
+						data = this.draw("walls", mini.walls);
+
+					// mini maps walls
 					sub = [...data.walls];
+					// paint void + exit on mini maps
+					if (mini.void) sub.push(...this.draw("voids", mini, data.board));
+					if (mini.exit) sub.push(...this.draw("exit", mini, data.board));
 
 					color = `mini size-${data.size.w}`;
 					style += `--color: ${mini.bg}; --fg-filter: ${mini.filter};`;
@@ -108,28 +95,53 @@ let Game = {
 
 		return { id, level, board, size, walls, player, voids, blocks, htm };
 	},
-	paintWalls(data) {
-		let size = {
-				h: data.length,
-				w: Math.max(...data.map(row => row.length)),
-			},
-			board = [...Array(size.h)].map(y => [...Array(size.w)].map(x => EMPTY)),
-			walls = [];
-		// walls
-		for (let y=0, yl=data.length; y<yl; y++) {
-			let row = data[y];
-			for (let x=0, xl=row.length; x<xl; x++) {
-				let cell = row[x],
-					sub = cell.sub ? cell.sub.map(s => `<u class="${s}"></u>`).join("") : "";
-				if (cell.key) {
-					// UI element
-					walls.push(`<span class="wall ${cell.key}" style="--y: ${y}; --x: ${x};">${sub}</span>`);
+	draw(what, data, levelBoard) {
+		let result = [];
+		switch (what) {
+			case "player":
+				result.push(`<div class="box player" style="--y: ${data.player.y}; --x: ${data.player.x};"><i></i></div>`);
+				// update board
+				levelBoard[data.player.y][data.player.x] = PLAYER;
+				// return html
+				return result;
+			case "voids":
+				for (let i=0, il=data.void.length; i<il; i++) {
+					let spot = data.void[i];
+					result.push(`<div class="void" style="--y: ${spot.y}; --x: ${spot.x};"></div>`);
 					// update board
-					board[y][x] = "wall";
+					levelBoard[spot.y][spot.x] = VOID;
 				}
-			}
+				// return html
+				return result;
+			case "exit":
+				result.push(`<div class="exit" style="--y: ${data.exit.y}; --x: ${data.exit.x};"><i></i><b></b></div>`);
+				// update board
+				levelBoard[data.exit.y][data.exit.x] = EXIT;
+				// return html
+				return result;
+			case "walls":
+				let size = {
+						h: data.length,
+						w: Math.max(...data.map(row => row.length)),
+					},
+					board = [...Array(size.h)].map(y => [...Array(size.w)].map(x => EMPTY)),
+					walls = [];
+				// walls
+				for (let y=0, yl=data.length; y<yl; y++) {
+					let row = data[y];
+					for (let x=0, xl=row.length; x<xl; x++) {
+						let cell = row[x],
+							sub = cell.sub ? cell.sub.map(s => `<u class="${s}"></u>`).join("") : "";
+						if (cell.key) {
+							// UI element
+							walls.push(`<span class="wall ${cell.key}" style="--y: ${y}; --x: ${x};">${sub}</span>`);
+							// update board
+							board[y][x] = "wall";
+						}
+					}
+				}
+				return { walls, board, size };
 		}
-		return { walls, board, size };
 	},
 	movePlayer(playerCoords, direction) {
 		// Replace previous spot with initial board state (void or empty)
