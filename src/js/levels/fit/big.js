@@ -65,3 +65,47 @@ Level["b7"] = {
 		[{ key: "SE" }, { key: "NS", sub: ["NE-ES"] }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "WS", sub: ["NE-WS"] }],
 	]
 };
+
+Level["b9"] = {
+	grid: 9,
+	bg: "#272",
+	filter: "sepia(1) hue-rotate(65deg) saturate(1.15) brightness(.8)",
+	player: { y: 1, x: 1 },
+	exit: null,
+	void: [],
+	block: [{ y: 1, x: 3, mini: "s3" }],
+	walls: [
+		[{ key: "NSE" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NWS" }],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{ key: "NWE" }, {}, {}, {}, {}, {}, {}, {}, { key: "NWE" }],
+		[{ key: "SE" }, { key: "NS", sub: ["NE-ES"] }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "WS", sub: ["NE-WS"] }],
+	]
+};
+
+Level["b11"] = {
+	grid: 11,
+	bg: "#272",
+	filter: "sepia(1) hue-rotate(65deg) saturate(1.15) brightness(.8)",
+	player: { y: 1, x: 1 },
+	exit: null,
+	void: [],
+	block: [{ y: 1, x: 3, mini: "s3" }],
+	walls: [
+		[{ key: "NSE" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NWS" }],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+		[{ key: "NWE" }, {}, {}, {}, {}, {}, {}, {}, {}, {}, { key: "NWE" }],
+		[{ key: "SE" }, { key: "NS", sub: ["NE-ES"] }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "WS", sub: ["NE-WS"] }],
+	]
+};

@@ -3,7 +3,7 @@ let Test = {
 	init(APP) {
 
 		// setTimeout(() => Game.zoomPaint(1), 200);
-		setTimeout(() => Game.renderLevel("b7-m7"), 200);
+		setTimeout(() => Game.renderLevel("b11-m7"), 200);
 		// setTimeout(() => window.find(`.toolbar-tool_[data-arg="7"]`).trigger("click"), 100);
 
 		// let xMenu = window.bluePrint.selectSingleNode(`//Menu[@click="set-editor-mode"]`);
