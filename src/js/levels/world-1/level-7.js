@@ -1,11 +1,15 @@
 
 Level[7] = {
+	grid: 5,
 	bg: "#272",
 	filter: "sepia(1) hue-rotate(65deg) saturate(1.15) brightness(.8)",
 	player: { y: 2, x: 1 },
 	exit: null,
 	void: [],
-	block: [{ y: 1, x: 1, mini: 7.1 }, { y: 1, x: 3, mini: 7.2 }],
+	block: [
+		{ y: 1, x: 1, mini: 7.1 },
+		{ y: 1, x: 3, mini: 7.2 }
+	],
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],
 		[{ key: "WE", sub: ["NW-NE"] }, {}, {}, {}, { key: "WE", sub: ["NE-NW"] }],
@@ -16,6 +20,7 @@ Level[7] = {
 };
 
 Level[7.1] = {
+	grid: 5,
 	bg: "#24a",
 	filter: "sepia(1) hue-rotate(175deg) saturate(1.75) brightness(.8)",
 	walls: [
@@ -29,6 +34,7 @@ Level[7.1] = {
 
 
 Level[7.2] = {
+	grid: 3,
 	bg: "#829",
 	filter: "sepia(1) hue-rotate(245deg) saturate(1.5) brightness(.85)",
 	walls: [

@@ -114,22 +114,141 @@ content {
 				mix-blend-mode: none;
 			}
 
-			&.grid-3x3 {
+
+			&[class*="grid-3"] {
 				top: 210px;
 				left: 210px;
-				--size: 80px;
 				--bH: 9px;
 
-				.mini > span.wall { --size: 26px; }
+				&.grid-3x3 {
+					--size: 80px;
+
+					.mini > span.wall { --size: 26px; }
+				}
+
+				&.grid-3x4 {
+					--size: 82px;
+
+					.mini > span.wall { --size: 20px; }
+				}
+
+				&.grid-3x5 {
+					--size: 82px;
+
+					.mini > span.wall { --size: 16px; }
+				}
+
+				&.grid-3x7 {
+					--size: 86px;
+
+					.mini > span.wall { --size: 12px; }
+				}
 			}
 
-			&.grid-3x4 {
-				top: 210px;
-				left: 210px;
-				--size: 82px;
+			&[class*="grid-4"] {
+				top: 165px;
+				left: 165px;
 				--bH: 9px;
 
-				.mini > span.wall { --size: 20px; }
+				&.grid-4x3 {
+					--size: 80px;
+
+					.mini > span.wall { --size: 26px; }
+				}
+
+				&.grid-4x4 {
+					--size: 81px;
+
+					.mini > span.wall { --size: 20px; }
+				}
+
+				&.grid-4x5 {
+					--size: 81px;
+
+					.mini > span.wall { --size: 16px; }
+				}
+
+				&.grid-4x7 {
+					--size: 86px;
+
+					.mini > span.wall { --size: 12px; }
+				}
+			}
+
+			&[class*="grid-5"] {
+				top: 122px;
+				left: 122px;
+				--bH: 9px;
+
+				&.grid-5x3 {
+					--size: 80px;
+
+					.mini > span.wall { --size: 26px; }
+				}
+
+				&.grid-5x4 {
+					--size: 82px;
+
+					.mini > span.wall { --size: 20px; }
+				}
+
+				&.grid-5x5 {
+					--size: 82px;
+
+					.mini > span.wall { --size: 16px; }
+				}
+
+				&.grid-5x7 {
+					--size: 86px;
+
+					.mini > span.wall { --size: 12px; }
+				}
+			}
+
+			&[class*="grid-7"] {
+				top: 69px;
+				left: 69px;
+				--bH: 9px;
+
+				&.grid-7x3 {
+					--size: 74px;
+
+					.mini > span.wall { --size: 24px; }
+				}
+
+				&.grid-7x4 {
+					--size: 74px;
+
+					.mini > span.wall { --size: 18px; }
+				}
+
+				&.grid-7x5 {
+					top: 78px;
+					left: 78px;
+					--size: 72px;
+
+					.mini > span.wall { --size: 14px; }
+				}
+
+				&.grid-7x7 {
+					top: 54px;
+					left: 54px;
+					--size: 79px;
+
+					.mini > span.wall { --size: 11px; }
+				}
+			}
+
+			&[class*="grid-9"] {
+				top: 55px;
+				left: 55px;
+				--size: 62px;
+			}
+
+			&[class*="grid-11"] {
+				top: 23px;
+				left: 23px;
+				--size: 51px;
 			}
 		}
 
@@ -731,7 +850,7 @@ content {
 		right: 0;
 		bottom: 0;
 		overflow: hidden;
-		background-color: #527;
+		background-color: #636;
 		background-image: linear-gradient(0deg, transparent, rgba(#fff,.075));
 
 		&:before {

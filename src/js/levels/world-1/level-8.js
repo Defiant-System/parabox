@@ -1,5 +1,6 @@
 
 Level[8] = {
+	grid: 4,
 	bg: "#829",
 	filter: "sepia(1) hue-rotate(245deg) saturate(1.5) brightness(.85)",
 	player: { y: 1, x: 1 },

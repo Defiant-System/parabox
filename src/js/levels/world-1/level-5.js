@@ -1,5 +1,6 @@
 
 Level[5] = {
+	grid: 9,
 	bg: "#626262",
 	filter: "none",
 	player: { y: 3, x: 7 },
@@ -20,6 +21,7 @@ Level[5] = {
 };
 
 Level[5.1] = {
+	grid: 3,
 	bg: "#339",
 	filter: "sepia(1) hue-rotate(195deg) saturate(2) brightness(.75)",
 	walls: [

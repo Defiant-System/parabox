@@ -40,11 +40,13 @@ Level["m7"] = {
 	bg: "#24a",
 	filter: "sepia(1) hue-rotate(175deg) saturate(1.75) brightness(.8)",
 	walls: [
-		[{ key: "NE" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],
-		[{ key: "WE", sub: ["NW-NE"] }, {}, {}, {}, { key: "WE", sub: ["NE-NW"] }],
-		[{ key: "WE" }, {}, {}, {}, { key: "WE" }],
-		[{ key: "WE" }, {}, {}, {}, { key: "WE" }],
-		[{ key: "SE" }, { key: "NWS", sub: ["NE-ES"] }, {}, { key: "NSE" }, { key: "WS", sub: ["NE-WS"] }],
+		[{ key: "NE" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NS" }, { key: "NW" }],
+		[{ key: "WE", sub: ["NW-NE"] }, {}, {}, {}, {}, {}, { key: "WE", sub: ["NE-NW"] }],
+		[{ key: "WE" }, {}, {}, {}, {}, {}, { key: "WE" }],
+		[{ key: "WE" }, {}, {}, {}, {}, {}, { key: "WE" }],
+		[{ key: "WE" }, {}, {}, {}, {}, {}, { key: "WE" }],
+		[{ key: "WE" }, {}, {}, {}, {}, {}, { key: "WE" }],
+		[{ key: "SE" }, { key: "NWS", sub: ["NE-ES"] }, {}, {}, {}, { key: "NSE" }, { key: "WS", sub: ["NE-WS"] }],
 	]
 };
 
