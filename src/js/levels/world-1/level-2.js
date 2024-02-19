@@ -7,7 +7,10 @@ Level[2] = {
 	player: { y: 2, x: 4 },
 	exit: { y: 7, x: 4 },
 	void: [{ y: 7, x: 2 }, { y: 7, x: 6 }],
-	block: [{ y: 3, x: 4, color: "yellow" }, { y: 4, x: 4, color: "yellow" }],
+	block: [
+		{ y: 3, x: 4, color: "brown" },
+		{ y: 4, x: 4, color: "brown" }
+	],
 	walls: [
 		[{ key: "NE" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "NW" }],
 		[{ key: "E" }, { key: "F" }, { key: "S" }, { key: "S" }, { key: "S" }, { key: "F" }, { key: "F" }, { key: "F" }, { key: "W" }],

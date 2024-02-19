@@ -11,7 +11,7 @@ Level[7] = {
 	],
 	block: [
 		{ y: 3, x: 5, mini: 7.1 },
-		{ y: 3, x: 6, color: "yellow" }
+		{ y: 3, x: 6, color: "red" }
 	],
 	walls: [
 		[{ "key": "NE" }, { "key": "N" }, { "key": "N" }, { "key": "N" }, { "key": "N" }, { "key": "N" }, { "key": "N" }, { "key": "N" }, { "key": "NW" }],
