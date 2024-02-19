@@ -24,7 +24,8 @@ let Player = {
 		this.el
 			.css(this.pos.serialize())
 			.cssSequence(name, "animationend", el => el.removeClass(name));
-
+		// play audio sound
+		window.audio.play("move");
 		// push state after move
 		History.dispatch({ type: "history-push-state" });
 	},
