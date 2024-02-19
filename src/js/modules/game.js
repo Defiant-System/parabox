@@ -23,7 +23,7 @@ let Game = {
 		if (level.player) Player.init();
 
 		// temp
-		// this.zoomPaint(id);
+		this.zoomPaint(9.1);
 	},
 	paint(id) {
 		let level = typeof id === "object" ? id : Level[id],
@@ -40,7 +40,7 @@ let Game = {
 			level.block.map(b => b.mini ? (b.mini = mini) : null);
 			// complete grid name
 			grid = `${Level[big].grid}x${Level[mini].grid}`;
-		} else {
+		} else if (level.block) {
 			level.block.map(b => {
 				if (b.mini) {
 					grid += `x${Level[b.mini].grid}`;

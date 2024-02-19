@@ -50,6 +50,16 @@ content {
 	}
 
 	&.show-zoomed {
+		.box[data-id] {
+			transition: none;
+		}
+
+		> .game-view > .box.board[class*="grid-"] {
+			top: -1520px;
+			left: -1520px;
+			--size: 410px;
+		}
+
 		.zoom-level {
 			display: block;
 		}
@@ -58,20 +68,17 @@ content {
 	.zoom-level {
 		display: none;
 		position: absolute;
-		top: -1000px;
-		left: -310px;
-		z-index: 999;
+		top: 0;
+		left: 0;
+		z-index: 99;
 
 		.board {
-			&.box {
-				&.size-7 {
-					--bR: 28px;
-					--bW: 10px;
-					--size: 352px;
-					--t: 19px;
-					--eyes: 31px;
-				}
-			}
+			// background: rgba(#f00,.1);
+			position: absolute;
+			top: 210px;
+			left: 210px;
+			width: 235px;
+			height: 241px;
 		}
 	}
 
@@ -367,6 +374,11 @@ content {
 		&.brown  { --color: #950; }
 		&.red    { --color: #b33; }
 		&.green  { --color: #171; }
+
+		&.neon   { --color: #8c0; }
+		&.pink   { --color: #e38eff; }
+		&.gray   { --color: #6f656e; }
+		&.cyan   { --color: #0791a2; }
 
 		&[data-id] { transition: all 250ms ease-in-out; }
 
