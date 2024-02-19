@@ -51,13 +51,20 @@ content {
 
 	&.show-zoomed {
 		.box[data-id] {
-			transition: none;
+			// transition: none;
 		}
 
 		> .game-view > .box.board[class*="grid-"] {
 			top: -1520px;
 			left: -1520px;
 			--size: 410px;
+
+			div.void,
+			div.exit,
+			div.box {
+				border-radius: 29px;
+				border-width: 44px;
+			}
 		}
 
 		.zoom-level {
@@ -500,13 +507,13 @@ content {
 
 	div.player {
 		--color: #9d02bd;
-		transition: all 260ms ease-in-out;
+		transition: all 0s ease-in-out;
 		will-change: transform, top, left;
 
-		&.go-right { animation: go-right 300ms ease-in-out; }
-		&.go-left  { animation: go-left 300ms ease-in-out; }
-		&.go-up    { animation: go-up 300ms ease-in-out; }
-		&.go-down  { animation: go-down 300ms ease-in-out; }
+		&.go-right { transition-duration: 260ms; animation: go-right 300ms ease-in-out; }
+		&.go-left  { transition-duration: 260ms; animation: go-left 300ms ease-in-out; }
+		&.go-up    { transition-duration: 260ms; animation: go-up 300ms ease-in-out; }
+		&.go-down  { transition-duration: 260ms; animation: go-down 300ms ease-in-out; }
 
 		i {
 			position: absolute;
