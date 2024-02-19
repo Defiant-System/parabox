@@ -58,6 +58,8 @@
 						str = str.replace(/\{/, "{ ");
 						str = str.replace(/\}/, " }");
 						str = str.replace(/\{  \}/, "{}");
+						str = str.replace(/"key":"/, `"key": "`);
+						str = str.replace(/"sub":"/, `"sub": "`);
 						cells.push(str);
 					});
 					value.push(`[${cells.join(", ")}]`);
@@ -78,38 +80,6 @@
 					block: [{ y: 0, x: 1, color: "yellow" }],
 					walls: [...Array(event.size)].map(y => [...Array(event.size)].map(x => ({}))),
 				};
-
-				// data.walls[0][0] = { key: "NWSE" };
-				// data.walls[0][1] = { key: "NWSE" };
-				// data.walls[0][2] = { key: "NWSE" };
-				// data.walls[0][3] = { key: "NWSE" };
-				// data.walls[0][4] = { key: "NWSE" };
-
-				// data.walls[1][0] = { key: "NWSE" };
-				// data.walls[1][1] = { key: "NWSE" };
-				// data.walls[1][2] = { key: "NWSE" };
-				// data.walls[1][3] = { key: "NWSE" };
-				// data.walls[1][4] = { key: "NWSE" };
-
-				// data.walls[2][0] = { key: "NWSE" };
-				// data.walls[2][1] = { key: "NWSE" };
-				// data.walls[2][2] = { key: "NWSE" };
-				// data.walls[2][3] = { key: "NWSE" };
-				// data.walls[2][4] = { key: "NWSE" };
-
-				// data.walls[3][0] = { key: "NWSE" };
-				// data.walls[3][1] = { key: "NWSE" };
-				// data.walls[3][2] = { key: "NWSE" };
-				// data.walls[3][3] = { key: "NWSE" };
-				// data.walls[3][4] = { key: "NWSE" };
-
-				// data.walls[4][0] = { key: "NWSE" };
-				// data.walls[4][1] = { key: "NWSE" };
-				// data.walls[4][2] = { key: "NWSE" };
-				// data.walls[4][3] = { key: "NWSE" };
-				// data.walls[4][4] = { key: "NWSE" };
-
-				// Self.fixNegativeBorders(data.walls);
 
 				return data;
 		}
@@ -146,19 +116,6 @@
 					if (cell.NW && !!cell.NW.key && cell.N && !!cell.N.key && !cell.W.key) addSub(cell.hold, "NW-NE");
 					if (cell.N && !!cell.N.key && cell.E && !!cell.E.key && !cell.NE.key) addSub(cell.hold, "NE-WS");
 					if (cell.NE && !!cell.NE.key && cell.E && !!cell.E.key && !cell.N.key) addSub(cell.hold, "NE-ES");
-
-					// if (!!cell.hold.sub) {
-					// 	if (!cell.N || (cell.NW && !cell.NW.key) && cell.E && !!cell.E.key) delSub(cell.hold, "NE-WS");
-					// 	if (!cell.N || (cell.NE && !cell.NE.key) && cell.W && !!cell.W.key) delSub(cell.hold, "NW-ES");
-					// 	if (cell.NW && !!cell.NW.key && cell.W && !!cell.W.key) delSub(cell.hold, "NW-NE");
-					// 	if (cell.NE && !!cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-NW");
-					// 	if ((cell.NE && !cell.NE.key) || (cell.N && !cell.N.key)) delSub(cell.hold, "NE-NW");
-					// 	if ((cell.NW && !cell.NW.key) || (cell.N && !cell.N.key)) delSub(cell.hold, "NW-NE");
-					// 	if (cell.N && cell.N.key && cell.NE && cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-WS");
-					// 	if (cell.N && !!cell.N.key && cell.NW && !!cell.NW.key && cell.W && !!cell.W.key) delSub(cell.hold, "NW-WS");
-					// 	if (cell.N && !!cell.N.key && cell.NE && !!cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-ES");
-					// 	if (cell.N && !cell.N.key && cell.NE && !cell.NE.key && cell.E && !!cell.E.key) delSub(cell.hold, "NE-ES");
-					// }
 
 					if (!cell.hold.sub.length) delete cell.hold.sub;
 

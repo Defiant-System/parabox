@@ -23,7 +23,7 @@ let Game = {
 		if (level.player) Player.init();
 
 		// temp
-		this.zoomPaint(id);
+		// this.zoomPaint(id);
 	},
 	paint(id) {
 		let level = typeof id === "object" ? id : Level[id],
@@ -40,6 +40,12 @@ let Game = {
 			level.block.map(b => b.mini ? (b.mini = mini) : null);
 			// complete grid name
 			grid = `${Level[big].grid}x${Level[mini].grid}`;
+		} else {
+			level.block.map(b => {
+				if (b.mini) {
+					grid += `x${Level[b.mini].grid}`;
+				}
+			});
 		}
 
 		let { walls, board, size } = this.paintWalls(level.walls);
