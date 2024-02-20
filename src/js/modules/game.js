@@ -158,7 +158,7 @@ let Game = {
 		let blockY = Utils.getY(playerCoords.y, direction, 2);
 		let blockX = Utils.getX(playerCoords.x, direction, 2);
 
-		// Don"t move if the movement pushes a box into a wall
+		// Don't move if the movement pushes a box into a wall
 		if (Utils.isWall(this.board[blockY][blockX])) return;
 
 		// Count how many blocks are in a row
@@ -194,7 +194,8 @@ let Game = {
 		let bEl = this.el.find(`.box[data-id="${from[0]}-${from[1]}"]`),
 			style = { "--y": to[0], "--x": to[1] },
 			id = `${to[0]}-${to[1]}`;
-		bEl.css(style).data({ id });
+		bEl.css(style).data({ id })
+			.cssSequence("moving", "transitionend", el => el.removeClass("moving"));
 	},
 	move(direction) {
 		let playerCoords = Player.coords();

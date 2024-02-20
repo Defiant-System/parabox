@@ -92,14 +92,9 @@ content {
 			width: 235px;
 			height: 241px;
 
-			&.box:before {
-				opacity: 1;
-				z-index: -1;
-				background: transparent;
-				top: -13px;
-				bottom: 0;
-				box-shadow: 0 0 0 9px rgba(#000,.75);
-			}
+			// &.box:before {
+			// 	z-index: -1;
+			// }
 		}
 	}
 
@@ -127,14 +122,12 @@ content {
 						0 0 var( --bH ) rgba(#000,.35);
 
 			&:before {
-				opacity: .25;
-				top: 9px;
-				border-top: 1px solid rgba(#000,.75);
-				box-shadow: 0px var( --nbH ) 0px 0px rgba(#000,.25);
-				background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.8), transparent);
-				// background-image: radial-gradient(ellipse at bottom center, rgba(#fff,.8), transparent),
-				// 					repeating-linear-gradient(0deg, transparent 0, transparent calc( var( --size ) - 1px ), #111 calc( var( --size ) - 1px ), #111 var( --size )),
-				// 					repeating-linear-gradient(90deg, transparent 0, transparent calc( var( --size ) - 1px ), #111 calc( var( --size ) - 1px ), #111 var( --size ));
+				// z-index: -1;
+				background: transparent;
+				top: -13px;
+				bottom: 0;
+				border: 0;
+				box-shadow: 0 0 0 9px rgba(#000,.85);
 			}
 
 			&:after {
@@ -401,7 +394,7 @@ content {
 		&.gray   { --color: #6f656e; }
 		&.cyan   { --color: #0791a2; }
 
-		&[data-id] { transition: all 250ms ease-in-out; }
+		&.moving { transition: all 250ms ease-in-out; }
 
 		&:before {
 			content: "";
