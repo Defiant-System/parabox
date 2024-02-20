@@ -7,6 +7,39 @@
 	<Menu name="Game" for="game-options">
 		<Menu name="Editor Mode" click="set-editor-mode"/>
 		<Menu type="divider"/>
+		<Menu name="World 1&#8230;">
+			<Menu name="Level 1" click="select-level" arg="1-1"/>
+			<Menu name="Level 2" click="select-level" arg="1-2"/>
+			<Menu name="Level 3" click="select-level" arg="1-3"/>
+			<Menu name="Level 4" click="select-level" arg="1-4"/>
+			<Menu name="Level 5" click="select-level" arg="1-5"/>
+			<Menu name="Level 6" click="select-level" arg="1-6"/>
+			<Menu name="Level 7" click="select-level" arg="1-7"/>
+			<Menu name="Level 8" click="select-level" arg="1-8"/>
+			<Menu name="Level 9" click="select-level" arg="1-9"/>
+		</Menu>
+		<Menu name="World 2&#8230;">
+			<Menu name="Level 1" click="select-level" arg="2-1"/>
+			<Menu name="Level 2" click="select-level" arg="2-2"/>
+			<Menu name="Level 3" click="select-level" arg="2-3"/>
+			<Menu name="Level 4" click="select-level" arg="2-4"/>
+			<Menu name="Level 5" click="select-level" arg="2-5"/>
+			<Menu name="Level 6" click="select-level" arg="2-6"/>
+			<Menu name="Level 7" click="select-level" arg="2-7"/>
+			<Menu name="Level 8" click="select-level" arg="2-8"/>
+			<Menu name="Level 9" click="select-level" arg="2-9"/>
+			<Menu name="Level 10" click="select-level" arg="2-10"/>
+			<Menu name="Level 11" click="select-level" arg="2-11"/>
+			<Menu name="Level 12" click="select-level" arg="2-12"/>
+			<Menu name="Level 13" click="select-level" arg="2-13"/>
+			<Menu name="Level 14" click="select-level" arg="2-14"/>
+			<Menu name="Level 15" click="select-level" arg="2-15"/>
+			<Menu name="Level 16" click="select-level" arg="2-16"/>
+			<Menu name="Level 17" click="select-level" arg="2-17"/>
+			<Menu name="Level 18" click="select-level" arg="2-18"/>
+			<Menu name="Level 19" click="select-level" arg="2-19"/>
+		</Menu>
+		<Menu type="divider"/>
 		<Menu name="Output PGN" click="output-pgn"/>
 	</Menu>
 

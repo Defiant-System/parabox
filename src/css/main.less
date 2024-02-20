@@ -50,15 +50,12 @@ content {
 	}
 
 	&.show-zoomed {
-		.box[data-id] {
-			// transition: none;
-		}
-
 		> .game-view > .box.board[class*="grid-"] {
 			top: -1520px;
 			left: -1520px;
-			--size: 410px;
 			filter: blur(7px) saturate(0.75) brightness(.85);
+			pointer-events: none;
+			--size: 410px;
 
 			div.void,
 			div.exit,
@@ -91,10 +88,6 @@ content {
 			left: 210px;
 			width: 235px;
 			height: 241px;
-
-			// &.box:before {
-			// 	z-index: -1;
-			// }
 		}
 	}
 
@@ -991,8 +984,9 @@ content {
 		right: 0;
 		bottom: 0;
 		overflow: hidden;
-		background-color: #444;
+		// background-color: #444;
 		background-image: linear-gradient(0deg, transparent, rgba(#fff,.075));
+		animation: bgColors 37s linear infinite;
 
 		&:before {
 			content: "";
@@ -1002,6 +996,7 @@ content {
 			width: 110%;
 			height: 110%;
 			opacity: .5;
+			pointer-events: none;
 			background-image: repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
 							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
 							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px),
@@ -1141,6 +1136,14 @@ content {
 }
 
 
+
+@keyframes bgColors {
+	100%, 0% { background-color: #6d408e; }
+	20% { background-color: #3e7274; }
+	40% { background-color: #444; }
+	60% { background-color: #353869; }
+	80% { background-color: #3f5000; }
+}
 
 @keyframes go-right {
 	0%   { transform: scale(1, 1); }

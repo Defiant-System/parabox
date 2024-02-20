@@ -1,12 +1,12 @@
 
-Level[5] = {
+Level["1-5"] = {
 	grid: 9,
 	bg: "#626262",
 	filter: "none",
 	player: { y: 3, x: 7 },
 	exit: { y: 3, x: 6 },
 	void: [{ y: 5, x: 4 }],
-	block: [{ y: 5, x: 2, mini: 5.1 }],
+	block: [{ y: 5, x: 2, mini: "1-5.1" }],
 	walls: [
 		[{ key: "NE" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "NW" }],
 		[{ key: "E" }, { key: "F" }, { key: "F" }, { key: "F" }, { key: "F" }, { key: "F" }, { key: "F" }, { key: "F" }, { key: "W" }],
@@ -20,7 +20,7 @@ Level[5] = {
 	]
 };
 
-Level[5.1] = {
+Level["1-5.1"] = {
 	grid: 3,
 	bg: "#339",
 	filter: "sepia(1) hue-rotate(195deg) saturate(2) brightness(.75)",

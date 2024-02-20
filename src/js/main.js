@@ -55,6 +55,8 @@ const parabox = {
 				return !isOn;
 			case "output-pgn":
 				return Self.editor.dispatch(event);
+			case "select-level":
+				break;
 			case "set-editor-mode":
 				if (!event.xMenu.getAttribute("is-checked")) {
 					event.xMenu.setAttribute("is-checked", "1");

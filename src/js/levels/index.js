@@ -1,5 +1,9 @@
 
-let Level = {};
+let Level = {
+	get(id) {
+		return this[id];
+	}
+};
 
 
 @import "fit/big.js"

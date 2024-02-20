@@ -26,7 +26,7 @@ let Game = {
 		this.zoomPaint(9.1);
 	},
 	paint(id) {
-		let level = typeof id === "object" ? id : Level[id],
+		let level = typeof id === "object" ? id : Level.get(id),
 			grid = (level ? level.grid : id).toString(),
 			// update board
 			player = [],
@@ -34,19 +34,19 @@ let Game = {
 			blocks = [],
 			htm = [];
 
-		if (id.toString().includes("-")) {
-			let [big, mini] = id.split("-");
-			level = Level[big];
-			level.block.map(b => b.mini ? (b.mini = mini) : null);
-			// complete grid name
-			grid = `${Level[big].grid}x${Level[mini].grid}`;
-		} else if (level.block) {
-			level.block.map(b => {
-				if (b.mini) {
-					grid += `x${Level[b.mini].grid}`;
-				}
-			});
-		}
+		// if (id.toString().includes("-")) {
+		// 	let [big, mini] = id.split("-");
+		// 	level = Level[big];
+		// 	level.block.map(b => b.mini ? (b.mini = mini) : null);
+		// 	// complete grid name
+		// 	grid = `${Level[big].grid}x${Level[mini].grid}`;
+		// } else if (level.block) {
+		// 	level.block.map(b => {
+		// 		if (b.mini) {
+		// 			grid += `x${Level[b.mini].grid}`;
+		// 		}
+		// 	});
+		// }
 
 		// save reference to active level object
 		this.level = level;

@@ -1,12 +1,12 @@
 
-Level[6] = {
+Level["1-6"] = {
 	grid: 11,
 	bg: "#95a",
 	filter: "sepia(1) hue-rotate(255deg) saturate(2) brightness(0.8)",
 	player: { y: 5, x: 4 },
 	exit: { y: 6, x: 9 },
 	void: [{ y: 4, x: 6 }],
-	block: [{ y: 4, x: 2, color1: "blue", mini: 5.1 }],
+	block: [{ y: 4, x: 2, color1: "blue", mini: "1-6.1" }],
 	walls: [
 		[{ "key":"NE" }, { "key":"N" }, { "key":"N" }, { "key":"N" }, { "key":"N" }, { "key":"N" }, { "key":"N" }, { "key":"N" }, { "key":"N" }, { "key":"N" }, { "key":"NW" }],
 		[{ "key":"E" }, { "key":"F" }, { "key":"S" }, { "key":"S" }, { "key":"S" }, { "key":"F" }, { "key":"F" }, { "key":"S" }, { "key":"F" }, { "key":"F" }, { "key":"W" }],
@@ -22,13 +22,13 @@ Level[6] = {
 	]
 };
 
-Level[6.1] = {
+Level["1-6.1"] = {
 	grid: 3,
 	bg: "#339",
 	filter: "sepia(1) hue-rotate(195deg) saturate(2) brightness(.75)",
 	walls: [
-		[{ key: "NWE" }, {}, { key: "NWSE" }],
-		[{ key: "WE" }, {}, {}],
-		[{ key: "SE" }, { key: "NS" }, { key: "NWS" }],
+		[{ key: "NWSE" }, {}, { key: "NWSE" }],
+		[{}, {}, {}],
+		[{ key: "NSE" }, { key: "NS" }, { key: "NWS" }],
 	]
 };

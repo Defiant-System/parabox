@@ -1,5 +1,5 @@
 
-Level[2] = {
+Level["1-2"] = {
 	grid: 9,
 	bg: "#151",
 	filter: "sepia(1) hue-rotate(75deg) saturate(1.25) brightness(0.85)",
