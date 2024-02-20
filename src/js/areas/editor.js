@@ -24,8 +24,9 @@
 			case "init-mode":
 			case "paint-board":
 				// if there is no "active" level, generate empty board
-				Self.data = Game.level || Self.dispatch({ type: "generate-board", size: event.size || 5 });
-				result = Game.paint(Self.data);
+				let level = Game.level || Self.dispatch({ type: "generate-board", size: event.size || 5 });
+				result = Game.paint(level);
+				Self.data = level.data;
 
 				// extract only walls
 				value = [result.htm[0]];
@@ -81,7 +82,7 @@
 					walls: [...Array(event.size)].map(y => [...Array(event.size)].map(x => ({}))),
 				};
 
-				return data;
+				return { data };
 		}
 	},
 	fixNegativeBorders(walls) {

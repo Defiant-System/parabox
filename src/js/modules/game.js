@@ -27,7 +27,6 @@ let Game = {
 	},
 	paint(id) {
 		let level = typeof id === "object" ? id : Level.get(id),
-			// grid = (level ? level.grid : id).toString(),
 			// update board
 			player = [],
 			voids = [],
@@ -71,7 +70,7 @@ let Game = {
 		}
 
 		// level wrapper: START
-		htm.push(`<div class="box board grid-${level.grid}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
+		htm.push(`<div class="box board grid-${level.grid || level.data.grid}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
 		htm.push(walls.join(""));
 		htm.push(player.join(""));
 		htm.push(voids.join(""));
