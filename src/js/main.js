@@ -55,7 +55,8 @@ const parabox = {
 				return !isOn;
 			case "output-pgn":
 				return Self.editor.dispatch(event);
-			case "select-level":
+			case "set-game-level":
+				Game.renderLevel(event.arg);
 				break;
 			case "set-editor-mode":
 				if (!event.xMenu.getAttribute("is-checked")) {

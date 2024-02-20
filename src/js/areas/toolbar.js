@@ -34,10 +34,6 @@
 					Self.editor.dispatch({ type: "exit-mode" });
 				}
 				break;
-			case "set-game-level":
-				Game.renderLevel(+event.arg);
-				return true;
-
 			// MODE: editor
 			case "set-board-size":
 				// reset game level
