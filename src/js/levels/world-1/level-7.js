@@ -1,5 +1,5 @@
 
-Level[7] = {
+Level["1-7"] = {
 	grid: 9,
 	bg: "#272",
 	filter: "sepia(1) hue-rotate(65deg) saturate(1.15) brightness(.8)",
@@ -10,7 +10,7 @@ Level[7] = {
 		{ y: 3, x: 4 },
 	],
 	block: [
-		{ y: 3, x: 5, mini: 7.1 },
+		{ y: 3, x: 5, mini: "1-7.1" },
 		{ y: 3, x: 6, color: "red" }
 	],
 	walls: [
@@ -26,7 +26,7 @@ Level[7] = {
 	]
 };
 
-Level[7.1] = {
+Level["1-7.1"] = {
 	grid: 3,
 	bg: "#24a",
 	filter: "sepia(1) hue-rotate(175deg) saturate(1.75) brightness(.8)",

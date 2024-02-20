@@ -6,7 +6,10 @@ Level["1-4"] = {
 	player: { y: 7, x: 1 },
 	exit: { y: 6, x: 4 },
 	void: [{ y: 1, x: 6 }, { y: 6, x: 6 }],
-	block: [{ y: 4, x: 2, color: "yellow" }, { y: 3, x: 3, mini: "1-4.1" }],
+	block: [
+		{ y: 4, x: 2, color: "yellow" },
+		{ y: 3, x: 3, mini: "1-4.1" },
+	],
 	walls: [
 		[{ key: "NE" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "NS" }, { key: "N" }, { key: "NW" }],
 		[{ key: "E" }, { key: "F" }, { key: "F" }, { key: "F" }, { key: "F" }, { key: "W", sub: ["NW-NE"] }, {}, { key: "E", sub: ["NE-NW"] }, { key: "W" }],

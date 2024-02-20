@@ -1,5 +1,5 @@
 
-Level[9] = {
+Level["1-9"] = {
 	grid: 7,
 	bg: "#795d7d",
 	filter: "sepia(.5) hue-rotate(245deg) saturate(3.5) brightness(.9)",
@@ -7,7 +7,7 @@ Level[9] = {
 	void: [{ y: 4, x: 3 }],
 	block: [
 		{ y: 2, x: 2, color: "yellow" },
-		{ y: 4, x: 4, mini: 9.1 },
+		{ y: 4, x: 4, mini: "1-9.1" },
 	],
 	walls: [
 		[{ "key": "NE" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NW" }],
@@ -20,7 +20,7 @@ Level[9] = {
 	]
 };
 
-Level[9.1] = {
+Level["1-9.1"] = {
 	grid: 5,
 	bg: "#24a",
 	filter: "sepia(1) hue-rotate(175deg) saturate(1.75) brightness(.8)",

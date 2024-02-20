@@ -23,61 +23,46 @@ let Game = {
 		if (level.player) Player.init();
 
 		// temp
-		this.zoomPaint(9.1);
+		// this.zoomPaint(9.1);
 	},
 	paint(id) {
 		let level = typeof id === "object" ? id : Level.get(id),
-			grid = (level ? level.grid : id).toString(),
+			// grid = (level ? level.grid : id).toString(),
 			// update board
 			player = [],
 			voids = [],
 			blocks = [],
 			htm = [];
 
-		// if (id.toString().includes("-")) {
-		// 	let [big, mini] = id.split("-");
-		// 	level = Level[big];
-		// 	level.block.map(b => b.mini ? (b.mini = mini) : null);
-		// 	// complete grid name
-		// 	grid = `${Level[big].grid}x${Level[mini].grid}`;
-		// } else if (level.block) {
-		// 	level.block.map(b => {
-		// 		if (b.mini) {
-		// 			grid += `x${Level[b.mini].grid}`;
-		// 		}
-		// 	});
-		// }
-
 		// save reference to active level object
-		this.level = level;
+		this.level = level.data;
 		// start rendering; walls
-		let { walls, board, size } = this.draw("walls", level.walls);
+		let { walls, board, size } = this.draw("walls", level.data.walls);
 		// player
-		if (level.player) player = this.draw("player", level, board);
+		if (level.data.player) player = this.draw("player", level.data, board);
 		// voids
-		if (level.void) voids = this.draw("voids", level, board);
+		if (level.data.void) voids = this.draw("voids", level.data, board);
 		// exit
-		if (level.exit) voids.push(this.draw("exit", level, board));
+		if (level.data.exit) voids.push(this.draw("exit", level.data, board));
 
 		// blocks
-		if (level.block) {
-			for (let i=0, il=level.block.length; i<il; i++) {
-				let block = level.block[i],
+		if (level.data.block) {
+			for (let i=0, il=level.data.block.length; i<il; i++) {
+				let block = level.data.block[i],
 					style = `--y: ${block.y}; --x: ${block.x};`,
 					color = block.color,
 					sub = [];
 				if (block.mini) {
-					let mini = Level[block.mini],
-						data = this.draw("walls", mini.walls);
-
+					let mini = Level.get(block.mini),
+						data = this.draw("walls", mini.data.walls);
 					// mini maps walls
 					sub = [...data.walls];
 					// paint void + exit on mini maps
-					if (mini.void) sub.push(...this.draw("voids", mini, data.board));
-					if (mini.exit) sub.push(...this.draw("exit", mini, data.board));
+					if (mini.data.void) sub.push(...this.draw("voids", mini.data, data.board));
+					if (mini.data.exit) sub.push(...this.draw("exit", mini.data, data.board));
 
 					color = `mini size-${data.size.w}`;
-					style += `--color: ${mini.bg}; --fg-filter: ${mini.filter};`;
+					style += `--color: ${mini.data.bg}; --fg-filter: ${mini.data.filter};`;
 				}
 				blocks.push(`<div class="box ${color}" data-id="${block.y}-${block.x}" style="${style}">${sub.join("")}</div>`);
 				// update board
@@ -86,14 +71,14 @@ let Game = {
 		}
 
 		// level wrapper: START
-		htm.push(`<div class="box board grid-${grid}" style="--bg-color: ${level.bg}; --fg-filter: ${level.filter}; --w: ${size.w}; --h: ${size.h};">`);
+		htm.push(`<div class="box board grid-${level.grid}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
 		htm.push(walls.join(""));
 		htm.push(player.join(""));
 		htm.push(voids.join(""));
 		htm.push(blocks.join(""));
 		htm.push(`</div>`);
 
-		return { id, level, board, size, walls, player, voids, blocks, htm };
+		return { id, level: level.data, board, size, walls, player, voids, blocks, htm };
 	},
 	draw(what, data, levelBoard) {
 		let result = [];
