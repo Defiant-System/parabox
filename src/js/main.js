@@ -61,7 +61,7 @@ const parabox = {
 					Self.dispatch({ type: "set-editor-mode", xMenu });
 				}
 				Game.renderLevel(event.arg);
-				break;
+				return true;
 			case "set-editor-mode":
 				if (!event.xMenu.getAttribute("is-checked")) {
 					event.xMenu.setAttribute("is-checked", "1");

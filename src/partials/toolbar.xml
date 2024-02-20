@@ -8,17 +8,17 @@
 			</Options>
 		</Group>
 		<Group width="66%">
-			<!-- <Options>
-				<Tool name="1" click="set-game-level" arg="1"/>
-				<Tool name="2" click="set-game-level" arg="2"/>
-				<Tool name="3" click="set-game-level" arg="3"/>
-				<Tool name="4" click="set-game-level" arg="4"/>
-				<Tool name="5" click="set-game-level" arg="5"/>
-				<Tool name="6" click="set-game-level" arg="6"/>
-				<Tool name="7" click="set-game-level" arg="7"/>
-				<Tool name="8" click="set-game-level" arg="8"/>
-				<Tool name="9" click="set-game-level" arg="9"/>
-			</Options> -->
+			<Options>
+				<Tool name="1" click="set-game-level" arg="1-1"/>
+				<Tool name="2" click="set-game-level" arg="1-2"/>
+				<Tool name="3" click="set-game-level" arg="1-3"/>
+				<Tool name="4" click="set-game-level" arg="1-4"/>
+				<Tool name="5" click="set-game-level" arg="1-5"/>
+				<Tool name="6" click="set-game-level" arg="1-6"/>
+				<Tool name="7" click="set-game-level" arg="1-7"/>
+				<Tool name="8" click="set-game-level" arg="1-8"/>
+				<Tool name="9" click="set-game-level" arg="1-9"/>
+			</Options>
 			<Tool name="Zoom" click="toggle-zoom"/>
 		</Group>
 		<Group width="11%">
