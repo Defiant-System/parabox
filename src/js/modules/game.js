@@ -26,7 +26,7 @@ let Game = {
 		// this.zoomPaint(9.1);
 	},
 	paint(id) {
-		let level = typeof id === "object" ? id : Level.get(id),
+		let level = typeof id === "object" ? { data: id } : Level.get(id),
 			// update board
 			player = [],
 			voids = [],

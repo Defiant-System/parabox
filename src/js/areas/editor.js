@@ -26,7 +26,7 @@
 				// if there is no "active" level, generate empty board
 				let level = Game.level || Self.dispatch({ type: "generate-board", size: event.size || 5 });
 				result = Game.paint(level);
-				Self.data = level.data;
+				Self.data = level.data || level;
 
 				// extract only walls
 				value = [result.htm[0]];
