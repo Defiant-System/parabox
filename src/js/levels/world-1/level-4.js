@@ -35,3 +35,15 @@ Level["1-4.1"] = {
 		[{ key: "SE" }, { key: "NS", sub: ["NE-ES"] }, { key: "NS" }, { key: "S", sub: ["NE-WS"] }, { key: "WS" }],
 	]
 };
+
+
+Level["1-4.2"] = {
+	grid: 3,
+	bg: "#136",
+	filter: "sepia(1) hue-rotate(175deg) saturate(2) brightness(.65)",
+	walls: [
+		[{ key: "NE" }, { key: "N" }, { key: "NW" }],
+		[{ key: "E" }, { key: "F" }, { key: "W" }],
+		[{ key: "SE" }, { key: "S" }, { key: "WS" }],
+	]
+};
