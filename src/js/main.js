@@ -49,10 +49,6 @@ const parabox = {
 			case "history-go-prev":
 			case "history-go-next":
 				return History.dispatch(event);
-			case "toggle-zoom":
-				let isOn = Self.content.hasClass("show-zoomed");
-				Self.content.toggleClass("show-zoomed", isOn);
-				return !isOn;
 			case "output-pgn":
 				return Self.editor.dispatch(event);
 			case "set-game-level":

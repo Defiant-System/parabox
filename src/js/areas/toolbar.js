@@ -14,26 +14,10 @@
 		// console.log(event);
 		switch (event.type) {
 			// MODE: game
-			case "set-editor-mode":
-				if (!event.xMenu.getAttribute("is-checked")) {
-					event.xMenu.setAttribute("is-checked", "1");
-					// switch toolbar toolset
-					window.toolset = "edit-tools";
-					// switch content mode
-					Self.content.data({ mode: "editor" });
-					// dispatch init event
-					Self.editor.dispatch({ type: "init-mode" });
-				} else {
-					// update blueprint
-					event.xMenu.removeAttribute("is-checked");
-					// switch content mode
-					Self.content.data({ mode: "game" });
-					// switch toolbar toolset
-					window.toolset = "default";
-					// dispatch editor exit
-					Self.editor.dispatch({ type: "exit-mode" });
-				}
-				break;
+			case "toggle-zoom":
+				let isOn = APP.content.hasClass("show-zoomed");
+				APP.content.toggleClass("show-zoomed", isOn);
+				return !isOn;
 			// MODE: editor
 			case "set-board-size":
 				// reset game level
