@@ -15,8 +15,8 @@
 		switch (event.type) {
 			// MODE: game
 			case "toggle-zoom":
-				let isOn = APP.content.hasClass("show-zoomed");
-				APP.content.toggleClass("show-zoomed", isOn);
+				let isOn = APP.content.hasClass("show-from-default");
+				APP.content.toggleClass("show-from-default", isOn);
 				return !isOn;
 			// MODE: editor
 			case "set-board-size":

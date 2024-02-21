@@ -1,10 +1,11 @@
 
 let Game = {
 	init() {
+		// fast references
 		this.wrapper = parabox.content.find(".game-view");
 	},
 	zoomPaint(id) {
-		let { board, size, htm, level } = this.paint(id);
+		let { board, size, htm, level } = this.paint(id, true);
 		this.wrapper.append(`<div class="zoom-level">${htm.join("")}</div`);
 	},
 	renderLevel(id) {
@@ -23,9 +24,9 @@ let Game = {
 		if (level.player) Player.init();
 
 		// temp
-		// this.zoomPaint(9.1);
+		this.zoomPaint("1-4.1");
 	},
-	paint(id) {
+	paint(id, zoom) {
 		let level = typeof id === "object" ? { data: id } : Level.get(id),
 			// update board
 			player = [],
@@ -70,7 +71,9 @@ let Game = {
 		}
 
 		// level wrapper: START
-		htm.push(`<div class="box board grid-${level.grid || level.data.grid}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
+		let grid = level.grid || level.data.grid;
+		if (zoom) grid = level.data.grid;
+		htm.push(`<div class="box board grid-${grid}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
 		htm.push(walls.join(""));
 		htm.push(player.join(""));
 		htm.push(voids.join(""));

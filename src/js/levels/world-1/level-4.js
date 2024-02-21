@@ -28,7 +28,7 @@ Level["1-4.1"] = {
 	bg: "#136",
 	filter: "sepia(1) hue-rotate(175deg) saturate(2) brightness(.65)",
 	walls: [
-		[{ key: "NE" }, { key: "NWS" }, {}, { key: "NSE" }, { key: "NW" }],
+		[{ key: "NE" }, { key: "NW" }, {}, { key: "NE" }, { key: "NW" }],
 		[{ key: "SE" }, { key: "WS" }, {}, { key: "E" }, { key: "W" }],
 		[{}, {}, {}, { key: "E" }, { key: "W" }],
 		[{ key: "NWE" }, {}, {}, { key: "E" }, { key: "W" }],
