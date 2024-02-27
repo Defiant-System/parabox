@@ -33,6 +33,14 @@ content {
 		}
 	}
 
+	&[data-mode="start"] {
+		.start-view {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: initial;
+		}
+	}
+
 	&[data-mode="game"] {
 		.game-view {
 			opacity: 1;
@@ -1054,6 +1062,41 @@ content {
 				animation-delay: 0s;
 				animation-duration: 19s;
 			}
+		}
+	}
+
+	.start-view {
+		opacity: 0;
+		visibility: hidden;
+		border-radius: inherit;
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 73px;
+
+		h1 {
+			text-align: center;
+			font-size: 100px;
+			text-transform: uppercase;
+			color: #fff;
+			text-shadow: 0 1px 0 hsl(174,5%,80%),
+						0 2px 0 hsl(174,5%,75%),
+						0 3px 0 hsl(174,5%,70%),
+						0 4px 0 hsl(174,5%,66%),
+						0 5px 0 hsl(174,5%,64%),
+						0 6px 0 hsl(174,5%,62%),
+						0 7px 0 hsl(174,5%,61%),
+						0 8px 0 hsl(174,5%,60%),
+			
+						0 0 5px rgba(0,0,0,.05),
+						0 1px 3px rgba(0,0,0,.2),
+						0 3px 5px rgba(0,0,0,.2),
+						0 5px 10px rgba(0,0,0,.2),
+						0 10px 10px rgba(0,0,0,.2),
+						0 20px 20px rgba(0,0,0,.3);
 		}
 	}
 
