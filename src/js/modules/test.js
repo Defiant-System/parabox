@@ -2,6 +2,10 @@
 let Test = {
 	init(APP) {
 
+		return;
+
+		return setTimeout(() => window.find(`.toolbar-tool_[data-arg="1-1"]`).trigger("click"), 500);
+
 		// setTimeout(() => Game.zoomPaint(1), 200);
 		// setTimeout(() => Game.renderLevel("b5-m5"), 200);
 		

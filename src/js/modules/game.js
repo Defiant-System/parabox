@@ -24,7 +24,7 @@ let Game = {
 		if (level.player) Player.init();
 
 		// temp
-		this.zoomPaint("1-4.1");
+		// this.zoomPaint("1-4.1");
 	},
 	paint(id, zoom) {
 		let level = typeof id === "object" ? { data: id } : Level.get(id),

@@ -1,7 +1,7 @@
 
 let Player = {
 	init() {
-		this.el = window.find(".box.player");
+		this.el = window.find(".game-view .box.player");
 		
 		// player position
 		let x = +this.el.cssProp("--x"),

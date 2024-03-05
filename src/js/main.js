@@ -51,13 +51,6 @@ const parabox = {
 				return History.dispatch(event);
 			case "output-pgn":
 				return Self.editor.dispatch(event);
-			case "set-game-level":
-				if (Self.content.data("mode") === "editor") {
-					let xMenu = window.bluePrint.selectSingleNode(`//Menu[@click="set-editor-mode"]`);
-					Self.dispatch({ type: "set-editor-mode", xMenu });
-				}
-				Game.renderLevel(event.arg);
-				return true;
 			case "set-editor-mode":
 				if (!event.xMenu.getAttribute("is-checked")) {
 					event.xMenu.setAttribute("is-checked", "1");
