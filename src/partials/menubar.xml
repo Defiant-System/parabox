@@ -34,18 +34,6 @@
 			<Menu name="Level 5" click="set-game-level" arg="2-5" check-group="game-level"/>
 			<Menu name="Level 6" click="set-game-level" arg="2-6" check-group="game-level"/>
 			<Menu name="Level 7" click="set-game-level" arg="2-7" check-group="game-level"/>
-			<Menu name="Level 8" click="set-game-level" arg="2-8" check-group="game-level"/>
-			<Menu name="Level 9" click="set-game-level" arg="2-9" check-group="game-level"/>
-			<Menu name="Level 10" click="set-game-level" arg="2-10" check-group="game-level"/>
-			<Menu name="Level 11" click="set-game-level" arg="2-11" check-group="game-level"/>
-			<Menu name="Level 12" click="set-game-level" arg="2-12" check-group="game-level"/>
-			<Menu name="Level 13" click="set-game-level" arg="2-13" check-group="game-level"/>
-			<Menu name="Level 14" click="set-game-level" arg="2-14" check-group="game-level"/>
-			<Menu name="Level 15" click="set-game-level" arg="2-15" check-group="game-level"/>
-			<Menu name="Level 16" click="set-game-level" arg="2-16" check-group="game-level"/>
-			<Menu name="Level 17" click="set-game-level" arg="2-17" check-group="game-level"/>
-			<Menu name="Level 18" click="set-game-level" arg="2-18" check-group="game-level"/>
-			<Menu name="Level 19" click="set-game-level" arg="2-19" check-group="game-level"/>
 		</Menu>
 		<Menu type="divider"/>
 		<Menu name="Output PGN" click="output-pgn"/>

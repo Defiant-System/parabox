@@ -49,79 +49,20 @@ content {
 		}
 	}
 
-	&.show-zoomed {
-		> .game-view > .box.board[class*="grid-"] {
-			top: -1520px;
-			left: -1520px;
-			filter: blur(7px) saturate(0.75) brightness(.85);
-			pointer-events: none;
-			--size: 410px;
-
-			div.void,
-			div.exit,
-			div.box {
-				border-radius: 29px;
-				border-width: 44px;
-			}
-
-			.box.mini.size-5 {
-				display: none;
-			}
-		}
-
-		.zoom-level {
-			display: block;
-		}
-	}
-
 	&.show-from-default {
 		> .game-view > .box.board[class*="grid-"] {
 			filter: grayscale(1);
 		}
-
-		.zoom-level {
-			display: block;
-
-			> .box.board {
-				top: 224px;
-				left: 237px;
-				margin-top: 5px;
-				--size: 12px;
-				--bR: 5px;
-				--bH: 3px;
-				--wT: 7px;
-				--wH: -3px;
-
-				&:before {
-					box-shadow: none;
-				}
-
-				span.wall:after {
-					top: 0;
-				}
-
-				u {
-					opacity: 0;
-				}
-			}
-		}
 	}
 
-	.zoom-level {
-		display: none;
+	.offscreen {
+		background: rgba(#000,.15);
 		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: 99;
-
-		.board {
-			// background: rgba(#f00,.1);
-			position: absolute;
-			top: 210px;
-			left: 210px;
-			width: 235px;
-			height: 241px;
-		}
+		left: 100%;
+		top: 20px;
+		min-width: 200px;
+		min-height: 200px;
+		margin-left: 40px;
 	}
 
 	.board {
@@ -1376,11 +1317,11 @@ content {
 
 
 @keyframes bgColors {
-	100%, 0% { background-color: #9e6a18; }
-	20% { background-color: #248e18; }
-	40% { background-color: #188e87; }
-	60% { background-color: #2f86e2; }
-	80% { background-color: #da5edb; }
+	100%, 0% { background-color: #6d408e; }
+	20% { background-color: #3e7274; }
+	40% { background-color: #444; }
+	60% { background-color: #353869; }
+	80% { background-color: #3f5000; }
 }
 
 @keyframes go-right {

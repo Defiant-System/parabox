@@ -4,9 +4,13 @@ let Game = {
 		// fast references
 		this.wrapper = parabox.content.find(".game-view");
 	},
-	zoomPaint(id) {
-		let { board, size, htm, level } = this.paint(id, true);
-		this.wrapper.append(`<div class="zoom-level">${htm.join("")}</div`);
+	offscreenPaint() {
+		let el = this.wrapper.find(".board");
+		window.paint.toCanvas(el)
+			.then(cvs => {
+				let target = parabox.content.append(`<div class="offscreen"></div`);
+				target.append(cvs);
+			});
 	},
 	renderLevel(id) {
 		let { board, size, htm, level } = this.paint(id);
@@ -24,7 +28,7 @@ let Game = {
 		if (level.player) Player.init();
 
 		// temp
-		// this.zoomPaint("1-4.1");
+		this.offscreenPaint();
 	},
 	paint(id, zoom) {
 		let level = typeof id === "object" ? { data: id } : Level.get(id),

@@ -4,19 +4,14 @@ let Test = {
 
 		// return;
 
-		return setTimeout(() => APP.dispatch({ type: "set-game-level", arg: "1-1" }), 500);
+		setTimeout(() => APP.dispatch({ type: "set-game-level", arg: "1-99" }), 200);
+		return;
 
 		// setTimeout(() => Game.zoomPaint(1), 200);
 		// setTimeout(() => Game.renderLevel("b5-m5"), 200);
 		
 		setTimeout(() => Game.renderLevel("1-4"), 200);
-		setTimeout(() => window.find(`.toolbar-tool_[data-click="toggle-zoom"]`).trigger("click"), 300);
-
 		// setTimeout(() => Game.renderLevel("2-7"), 200);
-		// setTimeout(() => window.find(`.toolbar-tool_[data-arg="1"]`).trigger("click"), 100);
-
-		// setTimeout(() => window.find(`.toolbar-tool_[data-arg="9"]`).trigger("click"), 100);
-		// setTimeout(() => window.find(`.toolbar-tool_[data-click="toggle-zoom"]`).trigger("click"), 1500);
 
 		// let xMenu = window.bluePrint.selectSingleNode(`//Menu[@click="set-editor-mode"]`);
 		// setTimeout(() => APP.dispatch({ type: "set-editor-mode", xMenu }), 500);
