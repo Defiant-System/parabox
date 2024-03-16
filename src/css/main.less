@@ -67,7 +67,7 @@ content {
 			// top: 30px;
 			// left: 43px;
 			z-index: 201;
-			opacity: .75;
+			// opacity: .75;
 		}
 
 		.board.box[class*="grid-"] {
@@ -80,6 +80,11 @@ content {
 			}
 		}
 
+		.zoom-level {
+			z-index: 101;
+			opacity: .75;
+		}
+
 		.box.player {
 			position: absolute;
 			--size: 61px;
@@ -88,6 +93,7 @@ content {
 			--eyes: calc( var( --size ) * .175 );
 			--bH: calc( var( --size ) * .15 );
 			--nbH: calc( var( --bH ) * -1 );
+			z-index: 102;
 			transition: all 900ms ease-in-out;
 		}
 	}

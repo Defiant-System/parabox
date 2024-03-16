@@ -4,7 +4,6 @@ let Game = {
 		// fast references
 		this.view = parabox.content.find(".game-view");
 		this.buffer = parabox.content.find(".buffer");
-		this.temp = parabox.content.find(".temp");
 	},
 	offscreenPaint() {
 		console.time("to-canvas");
@@ -17,7 +16,13 @@ let Game = {
 			.then(cvs => {
 				console.timeEnd("to-canvas");
 				
-				this.buffer.html(`<div class="box player" style="transform: translateY(${pO.top+2}px) translateX(${pO.left+3}px)"><i></i></div>`);
+				let { board, size, htm, level } = this.paint("1-99.1", true),
+					str = [];
+				
+				str.push(`<div class="zoom-level">${htm.join("")}</div>`);
+				str.push(`<div class="box player" style="transform: translateY(${pO.top+2}px) translateX(${pO.left+3}px)"><i></i></div>`);
+					
+				this.buffer.html(str.join(""));
 				this.buffer.addClass("ready").append(cvs);
 
 				let ghost = this.buffer.find(".player"),
@@ -31,7 +36,7 @@ let Game = {
 			ctx = cvs.getContext("2d");
 
 		opt.ghost.css({
-				transform: `translateY(230px) translateX(52px)`,
+				transform: `translateY(273px) translateX(124px)`,
 				"--size": "82px",
 				"--bW": "2px",
 				"--bR": "8px",
