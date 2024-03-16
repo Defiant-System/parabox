@@ -16,17 +16,26 @@ let Game = {
 		window.paint.toCanvas(this.buffer)
 			.then(cvs => {
 				console.timeEnd("to-canvas");
-				this.buffer.html(`<div class="box player" style="top: ${pO.top+2}px; left: ${pO.left+3}px;"><i></i></div>`);
+				
+				this.buffer.html(`<div class="box player" style="transform: translateY(${pO.top+2}px) translateX(${pO.left+3}px)"><i></i></div>`);
 				this.buffer.addClass("ready").append(cvs);
 
-				let target = { x: 3, y: 6 },
+				let ghost = this.buffer.find(".player"),
+					target = { x: 3, y: 6 },
 					offset = { x: 43, y: 30 };
-				setTimeout(() => this.zoomIn({ cvs, target, offset }), 200);
+				setTimeout(() => this.zoomIn({ cvs, ghost, target, offset }), 200);
 			});
 	},
 	zoomIn(opt) {
 		let cvs = opt.cvs,
 			ctx = cvs.getContext("2d");
+
+		opt.ghost.css({
+				transform: `translateY(230px) translateX(52px)`,
+				"--size": "82px",
+				"--bW": "2px",
+				"--bR": "8px",
+			});
 	},
 	renderLevel(id) {
 		let { board, size, htm, level } = this.paint(id);
