@@ -55,24 +55,39 @@ content {
 		}
 	}
 
-	.temp {
-		position: absolute;
-		left: 100%;
-		top: 20px;
-		margin-left: 140px;
-	}
-
 	.buffer {
 		position: absolute;
 		left: 0;
 		top: 0;
+		width: 100%;
+		height: 100%;
 		z-index: -1;
-		padding: 0 14px 27px 0;
+
+		&.ready {
+			// top: 30px;
+			// left: 43px;
+			z-index: 201;
+			opacity: .75;
+		}
 
 		.board.box[class*="grid-"] {
-			position: relative;
-			top: 20px;
-			left: 7px;
+			// position: relative;
+			// top: 20px;
+			// left: 7px;
+
+			.box.player {
+				display: none;
+			}
+		}
+
+		.box.player {
+			position: absolute;
+			--size: 61px;
+			--bR: 8px;
+			--bW: 2px;
+			--eyes: calc( var( --size ) * .175 );
+			--bH: calc( var( --size ) * .15 );
+			--nbH: calc( var( --bH ) * -1 );
 		}
 	}
 

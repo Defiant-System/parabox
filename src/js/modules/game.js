@@ -8,14 +8,25 @@ let Game = {
 	},
 	offscreenPaint() {
 		console.time("to-canvas");
-		let el = this.el.clone(true);
-		this.buffer.append(el);
+		this.buffer.append(this.el.clone(true));
+
+		let player = this.el.find(".box.player"),
+			pO = player.offset(".game-view");
+
 		window.paint.toCanvas(this.buffer)
 			.then(cvs => {
 				console.timeEnd("to-canvas");
-				// this.buffer.html("");
-				this.temp.append(cvs);
+				this.buffer.html(`<div class="box player" style="top: ${pO.top+2}px; left: ${pO.left+3}px;"><i></i></div>`);
+				this.buffer.addClass("ready").append(cvs);
+
+				let target = { x: 3, y: 6 },
+					offset = { x: 43, y: 30 };
+				setTimeout(() => this.zoomIn({ cvs, target, offset }), 200);
 			});
+	},
+	zoomIn(opt) {
+		let cvs = opt.cvs,
+			ctx = cvs.getContext("2d");
 	},
 	renderLevel(id) {
 		let { board, size, htm, level } = this.paint(id);
