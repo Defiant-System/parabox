@@ -9,6 +9,13 @@
 @import "./levels/index.js"
 
 
+// default settings
+const defaultSettings = {
+	"sound-fx": "on",
+	"level": 1,
+};
+
+
 const parabox = {
 	init() {
 		// fast references
@@ -22,6 +29,11 @@ const parabox = {
 		// init objects
 		History.init();
 		Game.init();
+
+		// get settings, if any
+		this.settings = window.settings.getItem("settings") || defaultSettings;
+		// apply settings
+		this.dispatch({ type: "apply-settings" });
 		
 		// DEV-ONLY-START
 		Test.init(this);
@@ -30,12 +42,17 @@ const parabox = {
 	dispatch(event) {
 		let Self = parabox,
 			name,
+			value,
 			pEl,
 			el;
 		// console.log(event);
 		switch (event.type) {
 			// system events
 			case "window.init":
+				break;
+			case "window.close":
+				// save settings
+				window.settings.setItem("settings", Self.settings);
 				break;
 			case "window.keystroke":
 				switch (event.char) {
@@ -49,6 +66,56 @@ const parabox = {
 			case "history-go-prev":
 			case "history-go-next":
 				return History.dispatch(event);
+			case "apply-settings":
+				// apply settings
+				for (name in Self.settings) {
+					value = Self.settings[name];
+					// update menu
+					window.bluePrint.selectNodes(`//Menu[@check-group="${name}"]`).map(xMenu => {
+						switch (name) {
+							case "sound-fx":
+								if (value === "on") {
+									xMenu.setAttribute("is-checked", 1);
+									Self.dispatch({ type: "toggle-sound", checked: 1 });
+								} else {
+									xMenu.removeAttribute("is-checked");
+									Self.dispatch({ type: "toggle-sound", checked: -1 });
+								}
+								break;
+							default:
+								let xArg = xMenu.getAttribute("arg");
+								xMenu.removeAttribute("is-checked");;
+								if (xArg === value) {
+									// update menu item
+									xMenu.setAttribute("is-checked", 1);
+									// call dispatch
+									let type = xMenu.getAttribute("click");
+									Self.dispatch({ type, arg: value});
+								}
+						}
+					});
+				}
+				break;
+			case "set-board-size":
+				// reset game level
+				delete Game.level;
+				// dispatch event
+				Self.editor.dispatch({ type: "paint-board", size: +event.arg });
+				break;
+			case "set-game-level":
+				if (Self.content.data("mode") === "editor") {
+					let xMenu = window.bluePrint.selectSingleNode(`//Menu[@click="set-editor-mode"]`);
+					Self.dispatch({ type: "set-editor-mode", xMenu });
+				}
+				Game.renderLevel(event.arg);
+				// update app UI
+				Self.content.removeClass("game-won").data({ mode: "game" });
+				break;
+			case "toggle-sound":
+				window.audio.mute = event.checked < 0;
+				// update settings
+				Self.settings["sound-fx"] = window.audio.mute ? "off" : "on";
+				break;
 			case "output-pgn":
 				return Self.editor.dispatch(event);
 			case "set-editor-mode":
@@ -87,7 +154,6 @@ const parabox = {
 				}
 		}
 	},
-	toolbar: @import "areas/toolbar.js",
 	editor: @import "areas/editor.js",
 };
 
