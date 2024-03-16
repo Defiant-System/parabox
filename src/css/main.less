@@ -55,7 +55,7 @@ content {
 		}
 	}
 
-	.offscreen {
+	.buffer {
 		background: rgba(#000,.15);
 		position: absolute;
 		left: 100%;
@@ -63,6 +63,12 @@ content {
 		min-width: 200px;
 		min-height: 200px;
 		margin-left: 40px;
+
+		.board.box[class*="grid-"] {
+			position: relative;
+			top: 0;
+			left: 0;
+		}
 	}
 
 	.board {

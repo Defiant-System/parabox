@@ -85,7 +85,7 @@ const parabox = {
 							default:
 								let xArg = xMenu.getAttribute("arg");
 								xMenu.removeAttribute("is-checked");;
-								if (xArg === value) {
+								if (xArg == value) {
 									// update menu item
 									xMenu.setAttribute("is-checked", 1);
 									// call dispatch

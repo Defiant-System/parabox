@@ -2,21 +2,22 @@
 let Game = {
 	init() {
 		// fast references
-		this.wrapper = parabox.content.find(".game-view");
+		this.view = parabox.content.find(".game-view");
+		this.buffer = parabox.content.find(".buffer");
 	},
 	offscreenPaint() {
-		let el = this.wrapper.find(".board");
-		window.paint.toCanvas(el)
+		console.time("to-canvas");
+		window.paint.toCanvas(this.el)
 			.then(cvs => {
-				let target = parabox.content.append(`<div class="offscreen"></div`);
-				target.append(cvs);
+				console.timeEnd("to-canvas");
+				this.buffer.append(cvs);
 			});
 	},
 	renderLevel(id) {
 		let { board, size, htm, level } = this.paint(id);
 
 		// insert into DOM
-		this.el = this.wrapper.html(htm.join("")).find(".box.board");
+		this.el = this.view.html(htm.join("")).find(".box.board");
 		// count and store block count
 		this.blockCount = this.el.find(".box[data-id]").length;
 
@@ -27,7 +28,6 @@ let Game = {
 		// init player object
 		if (level.player) Player.init();
 
-		// temp
 		this.offscreenPaint();
 	},
 	paint(id, zoom) {
@@ -77,6 +77,7 @@ let Game = {
 		// level wrapper: START
 		let grid = level.grid || level.data.grid;
 		if (zoom) grid = level.data.grid;
+
 		htm.push(`<div class="box board grid-${grid}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
 		htm.push(walls.join(""));
 		htm.push(player.join(""));
