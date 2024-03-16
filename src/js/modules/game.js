@@ -4,13 +4,17 @@ let Game = {
 		// fast references
 		this.view = parabox.content.find(".game-view");
 		this.buffer = parabox.content.find(".buffer");
+		this.temp = parabox.content.find(".temp");
 	},
 	offscreenPaint() {
 		console.time("to-canvas");
-		window.paint.toCanvas(this.el)
+		let el = this.el.clone(true);
+		this.buffer.append(el);
+		window.paint.toCanvas(this.buffer)
 			.then(cvs => {
 				console.timeEnd("to-canvas");
-				this.buffer.append(cvs);
+				// this.buffer.html("");
+				this.temp.append(cvs);
 			});
 	},
 	renderLevel(id) {

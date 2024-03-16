@@ -55,19 +55,24 @@ content {
 		}
 	}
 
-	.buffer {
-		background: rgba(#000,.15);
+	.temp {
 		position: absolute;
 		left: 100%;
 		top: 20px;
-		min-width: 200px;
-		min-height: 200px;
-		margin-left: 40px;
+		margin-left: 140px;
+	}
+
+	.buffer {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: -1;
+		padding: 0 14px 27px 0;
 
 		.board.box[class*="grid-"] {
 			position: relative;
-			top: 0;
-			left: 0;
+			top: 20px;
+			left: 7px;
 		}
 	}
 
