@@ -29,7 +29,7 @@ let Game = {
 			height = offset.height + margin.n + margin.s;
 
 		this.els.animFrom.css({
-			display: "none",
+			// display: "none",
 			"background-image": `url(${cached})`,
 			"background-position": `${oX}px ${oY}px`,
 			transform: `translateX(${tX}px) translateY(${tY}px)`,
@@ -54,16 +54,16 @@ let Game = {
 		width = offset.width + margin.w + margin.e;
 		height = offset.height + margin.n + margin.s;
 
-		tX += 126;
-		tY += -69;
-		let sX = .15,
-			sY = .15;
+		let atX = tX + 126,
+			atY = tY - 66,
+			sX = .15,
+			sY = .16;
 
 		this.els.animZoom.css({
 			// display: "none",
 			"background-image": `url(${cached})`,
 			"background-position": `${oX}px ${oY}px`,
-			transform: `translateX(${tX}px) translateY(${tY}px) scale(${sX} ${sY})`,
+			transform: `translateX(${atX}px) translateY(${atY}px) scale(${sX}, ${sY})`,
 			width,
 			height,
 		});
@@ -71,12 +71,35 @@ let Game = {
 		this.els.buffer.html("");
 
 
+		// 3. position "player"
 		this.els.actor.css({
+			// display: "none",
 			transform: `translateY(224px) translateX(361px)`,
 			"--size": `62px`,
 			"--bW": `2px`,
 			"--bR": `8px`,
 		});
+
+
+		setTimeout(() => {
+			this.els.animFrom.css({
+				transform: `translateX(-750px) translateY(440px) scale(6.5)`,
+			});
+
+			this.els.animZoom.css({
+				transform: `translateX(${tX}px) translateY(${tY}px) scale(1, 1)`,
+			});
+
+			this.els.actor.css({
+				transform: `translateY(273px) translateX(123px)`,
+				"--size": `82px`,
+			});
+
+			this.els.trans.cssSequence("play", "transitionend", el => {
+				console.log(el);
+			});
+
+		}, 100);
 	},
 	renderLevel(id) {
 		let { board, size, htm, level } = this.paint(id);

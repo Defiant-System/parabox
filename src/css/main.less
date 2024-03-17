@@ -1256,9 +1256,21 @@ content {
 			right: 0;
 			bottom: 0;
 			z-index: 201;
+			min-width: 1px;
 			// opacity: .75;
 			// background: #f00;
 			// pointer-events: none;
+
+			&.play {
+				min-width: 2px;
+				transition: min-width 550ms ease-in-out;
+
+				.anim-from,
+				.anim-zoom,
+				.box.player {
+					transition: all 500ms ease-in-out;
+				}
+			}
 
 			.anim-from {
 				z-index: 1;
@@ -1273,8 +1285,8 @@ content {
 				position: absolute;
 				top: 0;
 				left: 0;
-				opacity: .85;
 				background-repeat: no-repeat;
+				// opacity: .85;
 			}
 			
 			.box.player {
@@ -1282,19 +1294,12 @@ content {
 				position: absolute;
 				// display: none;
 
-				--dur: 900ms;
-				--size: 62px;
-				--bW: 2px;
-				--bR: 8px;
+				// --size: 62px;
+				// --bW: 2px;
+				// --bR: 8px;
 				--eyes: calc( var( --size ) * .175 );
 				--bH: calc( var( --size ) * .15 );
 				--nbH: calc( var( --bH ) * -1 );
-				
-				// transition: all var( --dur ) ease-in-out;
-				// transform: translateY(224px) translateX(361px);
-
-				// --size: 82px;
-				// transform: translateY(273px) translateX(124px);
 			}
 		}
 	}
