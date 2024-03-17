@@ -4,7 +4,7 @@ let Test = {
 
 		// return;
 
-		setTimeout(() => APP.dispatch({ type: "set-game-level", arg: "1-99.1" }), 200);
+		setTimeout(() => APP.dispatch({ type: "set-game-level", arg: "1-99" }), 200);
 		return;
 
 		// setTimeout(() => Game.zoomPaint(1), 200);

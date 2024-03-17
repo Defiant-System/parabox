@@ -25,18 +25,24 @@ let Game = {
 
 		// 1. render "top" level
 		this.els.buffer.append(this.el.clone(true));
-		let fCvs = await window.paint.toCanvas(this.els.buffer),
-			fCtx = fCvs.getContext("2d"),
-			fOffset = this.els.buffer.find(".board:nth(0)").offset();
-
-		let x = fOffset.left - 7,
-			y = fOffset.top - 21,
-			w = fOffset.width + 14,
-			h = fOffset.height + 28,
-			data = fCtx.getImageData(x, y, w, h),
-			from = { x, y, w, h, data };
-		// this.ctx.putImageData(from.data, from.x, from.y);
-		this.els.buffer.html(""); // empty buffer
+		let cvs = await window.paint.toCanvas(this.els.buffer),
+			ctx = cvs.getContext("2d"),
+			offset = this.els.buffer.find(".board:nth(0)").offset(),
+			margin = { n: 20, w: 7, s: 7, e: 7 },
+			x = offset.left - margin.e,
+			y = offset.top - margin.n,
+			w = offset.width + margin.w + margin.e,
+			h = offset.height + margin.n + margin.s,
+			data = ctx.getImageData(x, y, w, h),
+			from = { x, y, w, h, cvs, ctx },
+			to = {};
+		from.cvs.width = from.w;
+		from.cvs.height = from.h;
+		from.ctx.putImageData(data, 0, 0);
+		// test draw
+		// this.ctx.drawImage(from.cvs, 0, 0);
+		// empty buffer element
+		this.els.buffer.html("");
 
 
 		// 2. render "zoom" level
@@ -44,30 +50,33 @@ let Game = {
 			zBoard = this.els.zoomLevel.html(htm.join("")).find(".box.board");
 		this.els.buffer.append(zBoard.clone(true));
 		
-		let tCvs = await window.paint.toCanvas(this.els.buffer),
-			tCtx = tCvs.getContext("2d"),
-			tOffset = this.els.buffer.find(".board:nth(0)").offset();
+		to.cvs = await window.paint.toCanvas(this.els.buffer),
+		to.ctx = to.cvs.getContext("2d"),
+		offset = this.els.buffer.find(".board:nth(0)").offset();
+		to.x = offset.left - margin.e;
+		to.y = offset.top - margin.n;
+		to.w = offset.width + margin.w + margin.e;
+		to.h = offset.height + margin.n + margin.s;
 
-		x = tOffset.left - 7;
-		y = tOffset.top - 21;
-		w = tOffset.width + 14;
-		h = tOffset.height + 28;
-		data = tCtx.getImageData(x, y, w, h);
-		let to = { x, y, w, h, data };
-		this.ctx.putImageData(to.data, to.x, to.y);
+		data = to.ctx.getImageData(to.x, to.y, to.w, to.h);
+		to.cvs.width = to.w;
+		to.cvs.height = to.h;
+		to.ctx.putImageData(data, 0, 0);
+		// test draw
+		// this.ctx.drawImage(to.cvs, 0, 0);
+		// empty buffer element
+		this.els.buffer.html("");
 
-		// let sx = 0,
-		// 	sy = 0,
-		// 	sWidth = to.width,
-		// 	sHeight = to.height,
-		// 	dx = 407,
-		// 	dy = 206,
-		// 	dWidth = 92,
-		// 	dHeight = 106;
-		// this.ctx.drawImage(to, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-		this.els.buffer.html(""); // empty buffer
+		let sx = 0,
+			sy = 0,
+			sWidth = to.w,
+			sHeight = to.h,
+			dx = 422,
+			dy = 221,
+			dWidth = 62,
+			dHeight = 72;
+		this.ctx.drawImage(to.cvs, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 
-		console.log( tOffset );
 		return;
 
 		// 3. animate player "zoom"
@@ -129,7 +138,7 @@ let Game = {
 		// init player object
 		if (level.player) Player.init();
 
-		// this.prepareTransition();
+		this.prepareTransition();
 	},
 	paint(id, zoom) {
 		let level = typeof id === "object" ? { data: id } : Level.get(id),
