@@ -55,49 +55,6 @@ content {
 		}
 	}
 
-	.buffer {
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-
-		&.ready {
-			// top: 30px;
-			// left: 43px;
-			z-index: 201;
-			// opacity: .75;
-		}
-
-		.board.box[class*="grid-"] {
-			// position: relative;
-			// top: 20px;
-			// left: 7px;
-
-			.box.player {
-				display: none;
-			}
-		}
-
-		.zoom-level {
-			z-index: 101;
-			opacity: .75;
-		}
-
-		.box.player {
-			position: absolute;
-			--size: 61px;
-			--bW: 2px;
-			--bR: 8px;
-			--eyes: calc( var( --size ) * .175 );
-			--bH: calc( var( --size ) * .15 );
-			--nbH: calc( var( --bH ) * -1 );
-			z-index: 102;
-			transition: all 900ms ease-in-out;
-		}
-	}
-
 	.board {
 		position: absolute;
 		font-size: 0;
@@ -1196,11 +1153,11 @@ content {
 		right: 0;
 		bottom: 0;
 		overflow: hidden;
-		// background-color: #444;
-		background-image: linear-gradient(0deg, transparent, rgba(#fff,.075));
-		animation: bgColors 37s linear infinite;
+		background: #888;
+		// background-image: linear-gradient(0deg, transparent, rgba(#fff,.075));
+		// animation: bgColors 37s linear infinite;
 
-		&:before {
+		&:before1 {
 			content: "";
 			position: absolute;
 			top: 0;
@@ -1214,6 +1171,69 @@ content {
 							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px),
 							repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px);
 			animation: bgAnim 7s linear infinite;
+		}
+
+		.top-level {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.zoom-level {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.buffer {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+
+			.board.box[class*="grid-"] {
+				.box.player { display: none; }
+			}
+		}
+
+		.movie {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 201;
+			// pointer-events: none;
+
+			canvas {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				// background: rgba(#f33,.2);
+			}
+
+			.box.player {
+				position: absolute;
+				--dur: 900ms;
+				--size: 62px;
+				--bW: 2px;
+				--bR: 8px;
+				--eyes: calc( var( --size ) * .175 );
+				--bH: calc( var( --size ) * .15 );
+				--nbH: calc( var( --bH ) * -1 );
+				z-index: 203;
+				transition: all var( --dur ) ease-in-out;
+
+				transform: translateY(224px) translateX(361px);
+
+				// --size: 82px;
+				// transform: translateY(273px) translateX(124px);
+			}
 		}
 	}
 

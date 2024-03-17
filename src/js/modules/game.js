@@ -2,51 +2,68 @@
 let Game = {
 	init() {
 		// fast references
-		this.view = parabox.content.find(".game-view");
-		this.buffer = parabox.content.find(".buffer");
+		this.els = {};
+		this.els.view = parabox.content.find(".game-view");
+		this.els.topLevel = this.els.view.find(".top-level");
+		this.els.zoomLevel = this.els.view.find(".zoom-level");
+		this.els.buffer = this.els.view.find(".buffer");
+		this.els.movie = this.els.view.find(".movie");
+		this.els.actor = this.els.view.find(".player");
+		// zoom animation canvas
+		this.cvs = this.els.movie.find("canvas");
+		this.ctx = this.cvs[0].getContext("2d");
+		this.dim = {
+			width: +this.cvs.prop("offsetWidth"),
+			height: +this.cvs.prop("offsetHeight"),
+		};
+		// reset canvas contents
+		this.cvs.attr(this.dim);
 	},
-	offscreenPaint() {
-		console.time("to-canvas");
-		this.buffer.append(this.el.clone(true));
+	async prepareTransition() {
+		// reset canvas contents
+		this.cvs.attr(this.dim);
 
-		let player = this.el.find(".box.player"),
-			pO = player.offset(".game-view");
+		// 1. render "top" level
+		this.els.buffer.append(this.el.clone(true));
+		let from = await window.paint.toCanvas(this.els.buffer);
+		this.ctx.drawImage(from, 0, 0);
+		this.els.buffer.html(""); // empty buffer
 
-		window.paint.toCanvas(this.buffer)
-			.then(cvs => {
-				console.timeEnd("to-canvas");
-				
-				let { board, size, htm, level } = this.paint("1-99.1", true),
-					str = [];
-				
-				str.push(`<div class="zoom-level">${htm.join("")}</div>`);
-				str.push(`<div class="box player" style="transform: translateY(${pO.top+2}px) translateX(${pO.left+3}px)"><i></i></div>`);
-					
-				this.buffer.html(str.join(""));
-				this.buffer.addClass("ready").append(cvs);
+		// 2. render "zoom" level
+		let { htm } = this.paint("1-99.1", true),
+			zBoard = this.els.zoomLevel.html(htm.join("")).find(".box.board");
+		this.els.buffer.append(zBoard.clone(true));
+		
+		let to = await window.paint.toCanvas(this.els.buffer),
+			sx = 0,
+			sy = 0,
+			sWidth = to.width,
+			sHeight = to.height,
+			dx = 407,
+			dy = 206,
+			dWidth = 92,
+			dHeight = 106;
+		this.ctx.drawImage(to, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+		this.els.buffer.html(""); // empty buffer
 
-				let ghost = this.buffer.find(".player"),
-					target = { x: 3, y: 6 },
-					offset = { x: 43, y: 30 };
-				setTimeout(() => this.zoomIn({ cvs, ghost, target, offset }), 200);
-			});
-	},
-	zoomIn(opt) {
-		let cvs = opt.cvs,
-			ctx = cvs.getContext("2d");
-
-		opt.ghost.css({
+		// 3. animate player "zoom"
+		this.els.actor.css({
 				transform: `translateY(273px) translateX(124px)`,
+				"--dur": "400ms",
 				"--size": "82px",
 				"--bW": "2px",
 				"--bR": "8px",
-			});
+			})
+
+		// 4. animate levels "zoom"
+
+		// 5. hide canvas & show zoomed HTML
 	},
 	renderLevel(id) {
 		let { board, size, htm, level } = this.paint(id);
 
 		// insert into DOM
-		this.el = this.view.html(htm.join("")).find(".box.board");
+		this.el = this.els.topLevel.html(htm.join("")).find(".box.board");
 		// count and store block count
 		this.blockCount = this.el.find(".box[data-id]").length;
 
@@ -57,7 +74,7 @@ let Game = {
 		// init player object
 		if (level.player) Player.init();
 
-		this.offscreenPaint();
+		this.prepareTransition();
 	},
 	paint(id, zoom) {
 		let level = typeof id === "object" ? { data: id } : Level.get(id),

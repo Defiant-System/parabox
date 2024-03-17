@@ -32,7 +32,20 @@
 	</div>
 
 	<div class="game-view">
-		<!-- level html goes here -->
+		<div class="buffer">
+			<!-- this element is used to create offscreen screenshots -->
+		</div>
+		<div class="top-level">
+			<!-- top level html goes here -->
+		</div>
+		<div class="zoom-level">
+			<!-- zoom level html goes here -->
+		</div>
+		<div class="movie">
+			<!-- transition animation is done here -->
+			<canvas></canvas>
+			<div class="box player"><i></i></div>
+		</div>
 	</div>
 
 	<div class="editor-view" data-area="editor">
@@ -49,7 +62,4 @@
 			<div class="after"></div>
 		</div>
 	</div>
-
-	<!-- this element is used to create offscreen screenshots -->
-	<div class="buffer"></div>
 </content>
