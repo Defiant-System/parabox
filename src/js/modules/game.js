@@ -25,8 +25,17 @@ let Game = {
 
 		// 1. render "top" level
 		this.els.buffer.append(this.el.clone(true));
-		let from = await window.paint.toCanvas(this.els.buffer);
-		// this.ctx.drawImage(from, 0, 0);
+		let fCvs = await window.paint.toCanvas(this.els.buffer),
+			fCtx = fCvs.getContext("2d"),
+			fOffset = this.els.buffer.find(".board:nth(0)").offset();
+
+		let x = fOffset.left - 7,
+			y = fOffset.top - 21,
+			w = fOffset.width + 14,
+			h = fOffset.height + 28,
+			data = fCtx.getImageData(x, y, w, h),
+			from = { x, y, w, h, data };
+		this.ctx.putImageData(from.data, from.x, from.y);
 		this.els.buffer.html(""); // empty buffer
 
 		// 2. render "zoom" level
@@ -34,17 +43,31 @@ let Game = {
 			zBoard = this.els.zoomLevel.html(htm.join("")).find(".box.board");
 		this.els.buffer.append(zBoard.clone(true));
 		
-		let to = await window.paint.toCanvas(this.els.buffer),
-			sx = 0,
-			sy = 0,
-			sWidth = to.width,
-			sHeight = to.height,
-			dx = 407,
-			dy = 206,
-			dWidth = 92,
-			dHeight = 106;
+		let tCvs = await window.paint.toCanvas(this.els.buffer),
+			tCtx = tCvs.getContext("2d"),
+			tOffset = this.els.buffer.find(".board:nth(0)").offset();
+
+		x = tOffset.left - 7;
+		y = tOffset.top - 21;
+		w = tOffset.width + 14;
+		h = tOffset.height + 28;
+		data = tCtx.getImageData(x, y, w, h);
+		let to = { x, y, w, h, data };
+		this.ctx.putImageData(to.data, to.x, to.y);
+
+		// let sx = 0,
+		// 	sy = 0,
+		// 	sWidth = to.width,
+		// 	sHeight = to.height,
+		// 	dx = 407,
+		// 	dy = 206,
+		// 	dWidth = 92,
+		// 	dHeight = 106;
 		// this.ctx.drawImage(to, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 		this.els.buffer.html(""); // empty buffer
+
+		console.log( tOffset );
+		return;
 
 		// 3. animate player "zoom"
 		this.els.actor.css({
@@ -58,16 +81,12 @@ let Game = {
 		// 4. animate levels "zoom"
 		let Self = this,
 			frame = 0,
-			steps = 60,
+			steps = 100,
 			anim = karaqu.FpsControl({ // fps: 20,
 				callback() {
 					// reset canvas contents
 					Self.cvs.attr(Self.dim);
 
-					// let s = Math.tween.linear(frame, 1, 20, steps),
-					// 	x = -((s * posX) / Self.dim.width) * ((s * width) - Self.dim.width);
-					// 	y = -((s * posY) / Self.dim.height) * ((s * height) - Self.dim.height);
-					
 					let sx = 0,
 						sy = 0,
 						sWidth = to.width,
@@ -109,7 +128,7 @@ let Game = {
 		// init player object
 		if (level.player) Player.init();
 
-		this.prepareTransition();
+		// this.prepareTransition();
 	},
 	paint(id, zoom) {
 		let level = typeof id === "object" ? { data: id } : Level.get(id),
