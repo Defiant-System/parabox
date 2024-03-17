@@ -14,7 +14,6 @@ let Game = {
 		this.els.actor = this.els.trans.find(".player");
 	},
 	async prepareTransition() {
-		
 		// 1. render "top" level
 		this.els.buffer.append(this.el.clone(true));
 
@@ -101,6 +100,9 @@ let Game = {
 
 		}, 100);
 	},
+	zoomGrid(coords) {
+		
+	},
 	renderLevel(id) {
 		let { board, size, htm, level } = this.paint(id);
 
@@ -116,7 +118,7 @@ let Game = {
 		// init player object
 		if (level.player) Player.init();
 
-		this.prepareTransition();
+		// this.prepareTransition();
 	},
 	paint(id, zoom) {
 		let level = typeof id === "object" ? { data: id } : Level.get(id),

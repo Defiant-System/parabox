@@ -62,6 +62,20 @@ const parabox = {
 					case "right": Game.move(event.char); break;
 				}
 				break;
+			// temp
+			case "zoom-grid":
+				el = $(event.target);
+				value = {
+					size: parseInt(el.cssProp("--size"), 10),
+					x: +el.cssProp("--x"),
+					y: +el.cssProp("--y"),
+				};
+				if (!el.cssProp("--x")) {
+					value.x = Math.round(event.offsetX / value.size);
+					value.y = Math.round(event.offsetY / value.size);
+				}
+				Game.zoomGrid(value);
+				break;
 			// custom events
 			case "history-go-prev":
 			case "history-go-next":
