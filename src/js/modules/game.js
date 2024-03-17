@@ -26,7 +26,7 @@ let Game = {
 		// 1. render "top" level
 		this.els.buffer.append(this.el.clone(true));
 		let from = await window.paint.toCanvas(this.els.buffer);
-		this.ctx.drawImage(from, 0, 0);
+		// this.ctx.drawImage(from, 0, 0);
 		this.els.buffer.html(""); // empty buffer
 
 		// 2. render "zoom" level
@@ -43,7 +43,7 @@ let Game = {
 			dy = 206,
 			dWidth = 92,
 			dHeight = 106;
-		this.ctx.drawImage(to, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+		// this.ctx.drawImage(to, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 		this.els.buffer.html(""); // empty buffer
 
 		// 3. animate player "zoom"
@@ -53,11 +53,46 @@ let Game = {
 				"--size": "82px",
 				"--bW": "2px",
 				"--bR": "8px",
-			})
+			});
 
 		// 4. animate levels "zoom"
+		let Self = this,
+			frame = 0,
+			steps = 60,
+			anim = karaqu.FpsControl({ // fps: 20,
+				callback() {
+					// reset canvas contents
+					Self.cvs.attr(Self.dim);
 
-		// 5. hide canvas & show zoomed HTML
+					// let s = Math.tween.linear(frame, 1, 20, steps),
+					// 	x = -((s * posX) / Self.dim.width) * ((s * width) - Self.dim.width);
+					// 	y = -((s * posY) / Self.dim.height) * ((s * height) - Self.dim.height);
+					
+					let sx = 0,
+						sy = 0,
+						sWidth = to.width,
+						sHeight = to.height,
+						// dx = 407,
+						dx = Math.tween.linear(frame, sx, 407, steps),
+						// dy = 206,
+						dy = Math.tween.linear(frame, sy, 206, steps),
+						dWidth = 92,
+						dHeight = 106;
+					Self.ctx.drawImage(to, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+
+					frame++;
+					if (frame >= steps) {
+						console.log("stopped");
+
+						// stop animation
+						anim.stop();
+
+						// 5. hide canvas & show zoomed HTML
+					}
+				}
+			});
+		// start zoom animation
+		anim.start();
 	},
 	renderLevel(id) {
 		let { board, size, htm, level } = this.paint(id);
