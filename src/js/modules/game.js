@@ -29,18 +29,18 @@ let Game = {
 			ctx = cvs.getContext("2d"),
 			offset = this.els.buffer.find(".board:nth(0)").offset(),
 			margin = { n: 20, w: 7, s: 7, e: 7 },
-			x = offset.left - margin.e,
 			y = offset.top - margin.n,
+			x = offset.left - margin.e,
 			w = offset.width + margin.w + margin.e,
 			h = offset.height + margin.n + margin.s,
 			data = ctx.getImageData(x, y, w, h),
-			from = { x, y, w, h, cvs, ctx },
-			to = {};
-		from.cvs.width = from.w;
-		from.cvs.height = from.h;
-		from.ctx.putImageData(data, 0, 0);
+			prev = { x, y, w, h, cvs, ctx },
+			next = {};
+		prev.cvs.width = prev.w;
+		prev.cvs.height = prev.h;
+		prev.ctx.putImageData(data, 0, 0);
 		// test draw
-		// this.ctx.drawImage(from.cvs, 0, 0);
+		// this.ctx.drawImage(prev.cvs, prev.x, prev.y);
 		// empty buffer element
 		this.els.buffer.html("");
 
@@ -50,78 +50,96 @@ let Game = {
 			zBoard = this.els.zoomLevel.html(htm.join("")).find(".box.board");
 		this.els.buffer.append(zBoard.clone(true));
 		
-		to.cvs = await window.paint.toCanvas(this.els.buffer),
-		to.ctx = to.cvs.getContext("2d"),
+		next.cvs = await window.paint.toCanvas(this.els.buffer),
+		next.ctx = next.cvs.getContext("2d"),
 		offset = this.els.buffer.find(".board:nth(0)").offset();
-		to.x = offset.left - margin.e;
-		to.y = offset.top - margin.n;
-		to.w = offset.width + margin.w + margin.e;
-		to.h = offset.height + margin.n + margin.s;
+		next.y = offset.top - margin.n;
+		next.x = offset.left - margin.e;
+		next.w = offset.width + margin.w + margin.e;
+		next.h = offset.height + margin.n + margin.s;
 
-		data = to.ctx.getImageData(to.x, to.y, to.w, to.h);
-		to.cvs.width = to.w;
-		to.cvs.height = to.h;
-		to.ctx.putImageData(data, 0, 0);
+		data = next.ctx.getImageData(next.x, next.y, next.w, next.h);
+		next.cvs.width = next.w;
+		next.cvs.height = next.h;
+		next.ctx.putImageData(data, 0, 0);
 		// test draw
-		// this.ctx.drawImage(to.cvs, 0, 0);
+		// this.ctx.drawImage(next.cvs, next.x, next.y);
 		// empty buffer element
 		this.els.buffer.html("");
 
-		let sx = 0,
-			sy = 0,
-			sWidth = to.w,
-			sHeight = to.h,
-			dx = 422,
-			dy = 221,
-			dWidth = 62,
-			dHeight = 72;
-		this.ctx.drawImage(to.cvs, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-
-		return;
 
 		// 3. animate player "zoom"
 		this.els.actor.css({
-				transform: `translateY(273px) translateX(124px)`,
-				"--dur": "400ms",
-				"--size": "82px",
-				"--bW": "2px",
-				"--bR": "8px",
+				transform: `translateY(224px) translateX(361px)`,
+				"--size": `62px`,
+				"--bW": `2px`,
+				"--bR": `8px`,
 			});
+
 
 		// 4. animate levels "zoom"
 		let Self = this,
-			frame = 0,
-			steps = 100,
-			anim = karaqu.FpsControl({ // fps: 20,
+			fps = 50,
+			duration = 500, // ms
+			tick = 0,
+			total = Math.round(duration/fps),
+			anim = karaqu.FpsControl({
+				fps,
 				callback() {
+					if (tick >= total) {
+						// stop animation
+						anim.stop();
+						// 5. hide canvas & show zoomed HTML
+						console.log("stopped");
+						// exit "tick"
+						return;
+					}
+
 					// reset canvas contents
 					Self.cvs.attr(Self.dim);
 
-					let sx = 0,
-						sy = 0,
-						sWidth = to.width,
-						sHeight = to.height,
-						// dx = 407,
-						dx = Math.tween.linear(frame, sx, 407, steps),
-						// dy = 206,
-						dy = Math.tween.linear(frame, sy, 206, steps),
-						dWidth = 92,
-						dHeight = 106;
-					Self.ctx.drawImage(to, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+					let start = {
+							x: 422,
+							y: 221,
+							w: 62,
+							h: 72,
+						},
+						end = {
+							x: 61 - start.x,
+							y: 61 - start.y,
+							w: next.w,
+							h: next.h,
+						},
+						dx = Math.tween.linear(tick, start.x, end.x, total),
+						dy = Math.tween.linear(tick, start.y, end.y, total),
+						dw = Math.tween.linear(tick, start.w, end.w, total),
+						dh = Math.tween.linear(tick, start.h, end.h, total);
+					// console.log( dx );
+					Self.ctx.drawImage(next.cvs,
+						0,
+						0,
+						next.w,
+						next.h,
+						dx,
+						dy,
+						dw,
+						dh
+					);
 
-					frame++;
-					if (frame >= steps) {
-						console.log("stopped");
-
-						// stop animation
-						anim.stop();
-
-						// 5. hide canvas & show zoomed HTML
-					}
+					// tick
+					tick++;
 				}
 			});
-		// start zoom animation
-		anim.start();
+
+		setTimeout(() => {
+			this.els.actor.css({
+				transform: `translateY(263px) translateX(104px)`,
+				"--dur": `${duration-140}ms`,
+				"--size": `89px`,
+			});
+			// start zoom animation
+			anim.start();
+		}, 1);
 	},
 	renderLevel(id) {
 		let { board, size, htm, level } = this.paint(id);

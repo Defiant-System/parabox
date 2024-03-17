@@ -1259,8 +1259,8 @@ content {
 			right: 0;
 			bottom: 0;
 			z-index: 201;
-			opacity: .75;
-			background: #f00;
+			// opacity: .75;
+			// background: #f00;
 			// pointer-events: none;
 
 			canvas {
@@ -1274,17 +1274,13 @@ content {
 
 			.box.player {
 				position: absolute;
-				--dur: 900ms;
-				--size: 62px;
-				--bW: 2px;
-				--bR: 8px;
 				--eyes: calc( var( --size ) * .175 );
 				--bH: calc( var( --size ) * .15 );
 				--nbH: calc( var( --bH ) * -1 );
 				z-index: 203;
-				transition: all var( --dur ) ease-in-out;
+				transition: all var( --dur ) linear;
 
-				transform: translateY(224px) translateX(361px);
+				// transform: translateY(224px) translateX(361px);
 
 				// --size: 82px;
 				// transform: translateY(273px) translateX(124px);
