@@ -35,8 +35,9 @@ let Game = {
 			h = fOffset.height + 28,
 			data = fCtx.getImageData(x, y, w, h),
 			from = { x, y, w, h, data };
-		this.ctx.putImageData(from.data, from.x, from.y);
+		// this.ctx.putImageData(from.data, from.x, from.y);
 		this.els.buffer.html(""); // empty buffer
+
 
 		// 2. render "zoom" level
 		let { htm } = this.paint("1-99.1", true),
@@ -141,7 +142,7 @@ let Game = {
 		// save reference to active level object
 		this.level = level.data;
 		// start rendering; walls
-		let { walls, board, size } = this.draw("walls", level.data.walls);
+		let { walls, board, size, corners } = this.draw("walls", level.data.walls);
 		// player
 		if (level.data.player) player = this.draw("player", level.data, board);
 		// voids
@@ -178,7 +179,7 @@ let Game = {
 		let grid = level.grid || level.data.grid;
 		if (zoom) grid = level.data.grid;
 
-		htm.push(`<div class="box board grid-${grid}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
+		htm.push(`<div class="box board grid-${grid} ${corners.join(" ")}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
 		htm.push(walls.join(""));
 		htm.push(player.join(""));
 		htm.push(voids.join(""));
@@ -217,13 +218,16 @@ let Game = {
 						w: Math.max(...data.map(row => row.length)),
 					},
 					board = [...Array(size.h)].map(y => [...Array(size.w)].map(x => EMPTY)),
-					walls = [];
+					walls = [],
+					corners = [];
 				// walls
 				for (let y=0, yl=data.length; y<yl; y++) {
 					let row = data[y];
 					for (let x=0, xl=row.length; x<xl; x++) {
 						let cell = row[x],
 							sub = cell.sub ? cell.sub.map(s => `<u class="${s}"></u>`).join("") : "";
+						if (y === 0 && x === 0 && cell.key === "B") corners.push("tlb");
+						if (y === 0 && x === xl-1 && cell.key === "B") corners.push("trb");
 						if (cell.key) {
 							// UI element
 							walls.push(`<span class="wall ${cell.key}" style="--y: ${y}; --x: ${x};">${sub}</span>`);
@@ -232,7 +236,7 @@ let Game = {
 						}
 					}
 				}
-				return { walls, board, size };
+				return { walls, board, size, corners };
 		}
 	},
 	movePlayer(playerCoords, direction) {
