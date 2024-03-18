@@ -9,6 +9,7 @@ Level["1-99"] = {
 	block: [
 		{ y: 4, x: 2, color: "yellow" },
 		{ y: 3, x: 6, mini: "1-99.1" },
+		{ y: 5, x: 2, mini: "1-99.2" },
 	],
 	walls: [
 		[{ key: "NE" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "NS" }, { key: "N" }, { key: "NW" }],
@@ -42,8 +43,8 @@ Level["1-99.2"] = {
 	bg: "#136",
 	filter: "sepia(1) hue-rotate(175deg) saturate(2) brightness(.65)",
 	walls: [
-		[{ key: "NE" }, { key: "N" }, { key: "NW" }],
-		[{ key: "E" }, { key: "F" }, { key: "W" }],
-		[{ key: "SE" }, { key: "S" }, { key: "WS" }],
+		[{ key: "NWE" }, {}, { key: "NWSE" }],
+		[{ key: "WE" }, {}, {}],
+		[{ key: "SE" }, { key: "NS", sub: ["NE-ES"] }, { key: "NWS" }],
 	]
 };

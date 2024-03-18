@@ -10,6 +10,7 @@ let Anim = {
 			actor: trans.find(".player"),
 			animFrom: trans.find(".anim-from"),
 			animZoom: trans.find(".anim-zoom"),
+			topLevel: view.find(".top-level"),
 			zoomLevel: view.find(".zoom-level"),
 			buffer: view.find(".buffer"),
 		};
@@ -19,6 +20,15 @@ let Anim = {
 		let player = { y: 2, x: 0 },
 			{ htm } = Game.paint("1-99.1", { player, zoom: true });
 		this.els.zoomLevel.html(htm.join(""));
+
+		let grid = 5,
+			scale = 7.2,
+			tX = -894,
+			tY = 539,
+			transform = `translateX(${tX}px) translateY(${tY}px) scale(${scale})`;
+
+		console.log( transform );
+		this.els.topLevel.find(`> .board`).css({ transform });
 	},
 	zoomOut() {
 		

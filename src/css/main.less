@@ -101,6 +101,7 @@ content {
 								#33333377 calc( var( --size ) - 1px ), #33333377 var( --size ));
 				background-position: -1px -1px;
 				mix-blend-mode: soft-light;
+				pointer-events: none;
 			}
 
 			&[class*="grid-3"] {
@@ -242,6 +243,9 @@ content {
 					.mini > span.wall { --size: 18px; }
 				}
 
+				// &.grid-7x3x5,
+				// &.grid-7x5x3 {
+
 				&.grid-7x5 {
 					top: 78px;
 					left: 78px;
@@ -290,6 +294,19 @@ content {
 					.mini > .void,
 					.mini > .exit,
 					.mini > span.wall { --size: 12px; }
+				}
+
+				&.grid-9x3x5,
+				&.grid-9x5x3 {
+					--size: 62px;
+
+					.mini.size-5 > .void,
+					.mini.size-5 > .exit,
+					.mini.size-5 > span.wall { --size: 12px; }
+
+					.mini.size-3 > .void,
+					.mini.size-3 > .exit,
+					.mini.size-3 > span.wall { --size: 20px; }
 				}
 
 				&.grid-9x7 {
@@ -1251,7 +1268,7 @@ content {
 		}
 
 		.zoom-level {
-			display: none;
+			// display: none;
 			z-index: 101;
 		}
 
