@@ -75,8 +75,8 @@ content {
 			background: var( --bg-color );
 			width: calc( var( --size ) * var( --w ) );
 			height: calc( calc( var( --size ) * var( --h ) ) + 6px );
-			// box-shadow: inset 0px var( --nbH ) 0px 0px rgba(#000,.175),
-			// 			0 0 var( --bH ) rgba(#000,.35);
+			--size: 74px;
+			--bH: 9px;
 
 			&:after {
 				opacity: .5;
@@ -102,290 +102,20 @@ content {
 				background-position: -1px -1px;
 				mix-blend-mode: soft-light;
 				pointer-events: none;
-			}
 
-			&[class*="grid-3"] {
-				top: 210px;
-				left: 210px;
-				--size: 80px;
-				--bH: 9px;
-
-				&.grid-3x3 {
-					--size: 80px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 26px; }
-				}
-
-				&.grid-3x4 {
-					--size: 82px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 20px; }
-				}
-
-				&.grid-3x5 {
-					--size: 82px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 16px; }
-				}
-
-				&.grid-3x7 {
-					--size: 86px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 12px; }
-				}
-			}
-
-			&[class*="grid-4"] {
-				top: 165px;
-				left: 165px;
-				--size: 81px;
-				--bH: 9px;
-
-				&.grid-4x3 {
-					--size: 80px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 26px; }
-				}
-
-				&.grid-4x4 {
-					--size: 81px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 20px; }
-				}
-
-				&.grid-4x5 {
-					--size: 81px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 16px; }
-				}
-
-				&.grid-4x7 {
-					--size: 86px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 12px; }
-				}
-			}
-
-			&[class*="grid-5"] {
-				top: 122px;
-				left: 122px;
-				--size: 82px;
-				--bH: 9px;
-
-				&.grid-5x3 {
-					--size: 80px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 26px; }
-				}
-
-				&.grid-5x4 {
-					--size: 82px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 20px; }
-				}
-
-				&.grid-5x5 {
-					--size: 82px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 16px; }
-				}
-
-				&.grid-5x7 {
-					--size: 86px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 12px; }
-				}
-			}
-
-			&[class*="grid-7"] {
-				top: 69px;
-				left: 69px;
-				--size: 74px;
-				--bH: 9px;
-
-				&.grid-7x3 {
-					--size: 74px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 24px; }
-				}
-
-				&.grid-7x4 {
-					--size: 74px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 18px; }
-				}
-
-				// &.grid-7x3x5,
-				// &.grid-7x5x3 {
-
-				&.grid-7x5 {
-					top: 78px;
-					left: 78px;
-					--size: 72px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 14px; }
-				}
-
-				&.grid-7x7 {
-					top: 54px;
-					left: 54px;
-					--size: 79px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 11px; }
-				}
-			}
-
-			&[class*="grid-9"] {
-				top: 50px;
-				left: 50px;
-				--bH: 9px;
-
-				&.grid-9x3 {
-					--size: 62px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 20px; }
-				}
-
-				&.grid-9x4 {
-					--size: 62px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 15px; }
-				}
-
-				&.grid-9x5 {
-					--size: 62px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 12px; }
-				}
-
-				&.grid-9x3x5,
-				&.grid-9x5x3 {
-					--size: 62px;
-
-					.mini.size-5 > .void,
-					.mini.size-5 > .exit,
-					.mini.size-5 > span.wall { --size: 12px; }
-
-					.mini.size-3 > .void,
-					.mini.size-3 > .exit,
-					.mini.size-3 > span.wall { --size: 20px; }
-				}
-
-				&.grid-9x7 {
-					top: 40px;
-					left: 37px;
-					--size: 65px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 9px; }
-				}
-
-				&.grid-9x9 {
-					top: 40px;
-					left: 37px;
-					--size: 65px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 7px; }
-				}
-			}
-
-			&[class*="grid-11"] {
-				top: 23px;
-				left: 23px;
-				--size: 56px;
-				--bH: 9px;
-
-				&.grid-11x3 {
-					--size: 56px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 18px; }
-				}
-
-				&.grid-11x4 {
-					top: 33px;
-					left: 33px;
-					--size: 54px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 13px; }
-				}
-
-				&.grid-11x5 {
-					top: 45px;
-					left: 45px;
-					--size: 52px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 10px; }
-				}
-
-				&.grid-11x7 {
-					top: 49px;
-					left: 49px;
-					--size: 51px;
-					--bH: 7px;
-					--wT: 10px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 7px; }
-				}
-
-				&.grid-11x9 {
-					top: 23px;
-					left: 23px;
-					--size: 56px;
-					--bH: 7px;
-					--wT: 10px;
-
-					.mini > .void,
-					.mini > .exit,
-					.mini > span.wall { --size: 6px; }
+				&:after {
+					content: "";
+					position: absolute;
+					left: 0px;
+					right: -2px;
+					bottom: calc( var( --t ) * -1 );
+					height: var( --t );
+					opacity: .5;
+					background: repeating-linear-gradient(90deg,
+								transparent 0, transparent calc( var( --size ) - 2px ),
+								#33333377 calc( var( --size ) - 2px ), #33333377 calc( var( --size ) - 1px ),
+								#eeeeee55 calc( var( --size ) - 1px ), #eeeeee55 var( --size ));
+					background-position: -1px 0;
 				}
 			}
 		}
@@ -394,7 +124,11 @@ content {
 			position: absolute;
 			top: calc( calc( var( --y ) * var( --size ) ) - 14px );
 			left: calc( calc( var( --x ) * var( --size ) ) - 1px );
+		}
 
+
+		// for development
+		> div {
 			// &.player { display: none; }
 			// &.box:not(.player) { display: none; }
 			// &.exit,
@@ -402,8 +136,10 @@ content {
 		}
 
 		> span {
-			// &.wall { display: none; }
+			&.wall { display: none; }
 		}
+
+		&.box:before { border-radius: 5px !important; }
 	}
 
 	.box {
@@ -1342,65 +1078,9 @@ content {
 		}
 	}
 
-	.editor-view {
-		opacity: 0;
-		visibility: hidden;
-		border-radius: inherit;
-		pointer-events: none;
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		overflow: hidden;
-		background-color: #5a5acd;
-		background-image: linear-gradient(0deg, transparent, rgba(#fff,.075));
-		
-		&:before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 110%;
-			height: 110%;
-			opacity: .5;
-			background-image: repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
-							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
-							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px),
-							repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px);
-			animation: bgAnim 7s linear infinite;
-		}
-
-		.box.board:hover .ghost {
-			display: block;
-		}
-
-		.box.board {
-			.wall {
-				// pointer-events: none;
-				
-				&:hover:before {
-					display: block;
-				}
-
-				&:before {
-					content: "";
-					display: none;
-					position: absolute;
-					top: 7px;
-					left: 7px;
-					right: 7px;
-					bottom: 7px;
-					border-radius: 5px;
-					background: #a44;
-				}
-
-				&[class*="S"]:before {
-					bottom: 15px;
-				}
-			}
-		}
-	}
+	// imports
+	@import "board-grids";
+	@import "editor";
 
 	&.game-won {
 		.congrats-view {
