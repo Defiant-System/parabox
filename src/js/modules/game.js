@@ -2,13 +2,10 @@
 let Game = {
 	init() {
 		// fast references
-		let APP = parabox,
-			view = APP.content.find(".game-view");
+		let APP = parabox;
 		this.els = {
-			view,
-			topLevel: view.find(".top-level"),
-			zoomLevel: view.find(".zoom-level"),
-			buffer: view.find(".buffer"),
+			view: APP.content.find(".game-view"),
+			topLevel: APP.content.find(".game-view .top-level"),
 		};
 	},
 	renderLevel(id) {
@@ -26,10 +23,10 @@ let Game = {
 		// init player object
 		if (level.player) Player.init();
 
-		// Anim.prepareTransition();
+		// Anim.zoomGrid_();
 	},
-	paint(id, zoom) {
-		let level = typeof id === "object" ? { data: id } : Level.get(id),
+	paint(id, extend={}) {
+		let level = typeof id === "object" ? { data: id, ...extend } : Level.get(id, extend),
 			// update board
 			player = [],
 			voids = [],
@@ -74,9 +71,10 @@ let Game = {
 
 		// level wrapper: START
 		let grid = level.grid || level.data.grid;
-		if (zoom) grid = level.data.grid;
+		if (extend.zoom) grid = level.data.grid;
 
 		htm.push(`<div class="box board grid-${grid} ${corners.join(" ")}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
+		htm.push(`<div class="floor-tiles"></div>`);
 		htm.push(walls.join(""));
 		if (player.length) htm.push(player.join(""));
 		if (voids.length) htm.push(voids.join(""));

@@ -3,24 +3,33 @@ let Anim = {
 	init() {
 		// fast references
 		let APP = parabox,
-			trans = APP.content.find(".trans");
+			trans = APP.content.find(".trans"),
+			view = APP.content.find(".game-view");
 		this.els = {
 			trans,
+			actor: trans.find(".player"),
 			animFrom: trans.find(".anim-from"),
 			animZoom: trans.find(".anim-zoom"),
-			actor: trans.find(".player"),
+			zoomLevel: view.find(".zoom-level"),
+			buffer: view.find(".buffer"),
 		};
 	},
 	zoomGrid(coord) {
-		console.log("zoom", coord);
+		// render mini map
+		let player = { y: 2, x: 0 },
+			{ htm } = Game.paint("1-99.1", { player, zoom: true });
+		this.els.zoomLevel.html(htm.join(""));
 	},
-	async prepareTransition() {
+	zoomOut() {
+		
+	},
+	async zoomGrid_(coord) {
 		// 1. render "top" level
-		Game.els.buffer.append(Game.el.clone(true));
+		this.els.buffer.append(Game.el.clone(true));
 
 		let margin = { n: 20, w: 7, s: 7, e: 7 },
-			cached = await window.paint.toCache(Game.els.buffer, "top-board.png"),
-			offset = Game.els.buffer.find(".board:nth(0)").offset(),
+			cached = await window.paint.toCache(this.els.buffer, "top-board.png"),
+			offset = this.els.buffer.find(".board:nth(0)").offset(),
 			oY = margin.n - offset.top,
 			oX = margin.e - offset.left,
 			tY = offset.top - margin.n,
@@ -36,17 +45,17 @@ let Anim = {
 			width,
 			height,
 		});
-		// empty buffer
-		Game.els.buffer.html("");
+		// empty render buffer
+		this.els.buffer.html("");
 
 
 		// 2. render "zoom" level
-		let { htm } = Game.paint("1-99.1", true),
-			zBoard = Game.els.zoomLevel.html(htm.join("")).find(".box.board");
-		Game.els.buffer.append(zBoard.clone(true));
+		let { htm } = Game.paint("1-99.1", { zoom: true }),
+			zBoard = this.els.zoomLevel.html(htm.join("")).find(".box.board");
+		this.els.buffer.append(zBoard.clone(true));
 
-		cached = await window.paint.toCache(Game.els.buffer, "zoom-board.png");
-		offset = Game.els.buffer.find(".board:nth(0)").offset();
+		cached = await window.paint.toCache(this.els.buffer, "zoom-board.png");
+		offset = this.els.buffer.find(".board:nth(0)").offset();
 		oY = margin.n - offset.top;
 		oX = margin.e - offset.left;
 		tY = offset.top - margin.n;
@@ -67,8 +76,8 @@ let Anim = {
 			width,
 			height,
 		});
-		// empty buffer
-		Game.els.buffer.html("");
+		// empty render buffer
+		this.els.buffer.html("");
 
 
 		// 3. position "player"
@@ -79,7 +88,6 @@ let Anim = {
 			"--bW": `2px`,
 			"--bR": `8px`,
 		});
-
 
 		setTimeout(() => {
 			this.els.animFrom.css({

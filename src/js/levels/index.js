@@ -1,8 +1,8 @@
 
 let Level = {
-	get(id) {
-		let data = this[id],
-			grid = data.grid.toString();
+	get(id, extend) {
+		let data = { ...this[id], ...extend };
+		let grid = data.grid.toString();
 
 		if (id.toString().includes(".")) {
 			let [big, mini] = id.toString().split("."),

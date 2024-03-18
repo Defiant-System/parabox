@@ -78,6 +78,9 @@ const parabox = {
 				}
 				Anim.zoomGrid(value);
 				break;
+			case "zoom-out":
+				Anim.zoomOut();
+				break;
 			// custom events
 			case "history-go-prev":
 			case "history-go-next":

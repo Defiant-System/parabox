@@ -83,6 +83,26 @@ content {
 				mix-blend-mode: normal;
 			}
 
+			.floor-tiles {
+				position: absolute;
+				top: 0;
+				left: 0px;
+				right: -2px;
+				bottom: var( --t );
+				opacity: .75;
+				border-radius: inherit;
+				background: repeating-linear-gradient(90deg,
+								transparent 0, transparent calc( var( --size ) - 2px ),
+								#33333377 calc( var( --size ) - 2px ), #33333377 calc( var( --size ) - 1px ),
+								#eeeeee55 calc( var( --size ) - 1px ), #eeeeee55 var( --size )),
+							repeating-linear-gradient(0deg,
+								transparent 0, transparent calc( var( --size ) - 2px ),
+								#eeeeee55 calc( var( --size ) - 2px ), #eeeeee55 calc( var( --size ) - 1px ),
+								#33333377 calc( var( --size ) - 1px ), #33333377 var( --size ));
+				background-position: -1px -1px;
+				mix-blend-mode: soft-light;
+			}
+
 			&[class*="grid-3"] {
 				top: 210px;
 				left: 210px;
@@ -1232,6 +1252,7 @@ content {
 
 		.zoom-level {
 			display: none;
+			z-index: 101;
 		}
 
 		.buffer {
