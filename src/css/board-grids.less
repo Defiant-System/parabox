@@ -117,14 +117,6 @@
 		--size: 74px;
 		--bH: 9px;
 
-		&[data-level-id="2-4"] {
-			.mini {
-				&.size-5 {
-					--mini-margin: 14px 0 0 5px;
-				}
-			}
-		}
-
 		.mini {
 			&.size-3 {
 				--size: 74px;
@@ -145,17 +137,24 @@
 			}
 
 			&.size-5 {
-				--size: 72px;
-				--mini-margin: 8px 0 0 11px;
+				--size: 74px;
+				--mini-margin: 4px 0 0 0;
 
 				> .void,
 				> .exit,
-				> span.wall { --size: 14px; }
+				> span.wall {
+					--size: 14px;
+
+					&[style*="--x: 4;"] {
+						width: calc( var(--size) + 2px );
+					}
+				}
 			}
 
 			&.size-7 {
-				--size: 72px;
+				// --size: 72px;
 				--mini-margin: 8px 0 0 11px;
+				--wT: 5px;
 
 				> .void,
 				> .exit,
@@ -163,7 +162,7 @@
 			}
 
 			&.size-9 {
-				--size: 74px;
+				// --size: 74px;
 				--mini-margin: 5px 0 0 0px;
 
 				> .void,
