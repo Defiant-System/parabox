@@ -126,7 +126,12 @@ const parabox = {
 					let xMenu = window.bluePrint.selectSingleNode(`//Menu[@click="set-editor-mode"]`);
 					Self.dispatch({ type: "set-editor-mode", xMenu });
 				}
+				// html
 				Game.renderLevel(event.arg);
+				// window title
+				let [world, level] = event.arg.split("-");
+				window.title = `Parabox <i class="icon-heart"></i> World ${world} - Level ${level}`;
+
 				// update app UI
 				Self.content.removeClass("game-won").data({ mode: "game" });
 				break;

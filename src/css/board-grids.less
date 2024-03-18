@@ -33,6 +33,20 @@
 		left: 50px;
 		--size: 62px;
 		--bH: 9px;
+
+		.mini.size-3 {
+			--size: 62px;
+
+			> .void,
+			> .exit,
+			> span.wall { --size: 20px; }
+		}
+
+		.mini.size-5 {
+			> .void,
+			> .exit,
+			> span.wall { --size: 12px; }
+		}
 	}
 
 	&[class*="grid-11"] {
