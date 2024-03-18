@@ -4,6 +4,7 @@
 @import "./modules/utils.js"
 @import "./modules/player.js"
 @import "./modules/game.js"
+@import "./modules/anim.js"
 @import "./modules/test.js"
 
 @import "./levels/index.js"
@@ -29,6 +30,7 @@ const parabox = {
 		// init objects
 		History.init();
 		Game.init();
+		Anim.init();
 
 		// get settings, if any
 		this.settings = window.settings.getItem("settings") || defaultSettings;
@@ -74,7 +76,7 @@ const parabox = {
 					value.x = Math.round(event.offsetX / value.size);
 					value.y = Math.round(event.offsetY / value.size);
 				}
-				Game.zoomGrid(value);
+				Anim.zoomGrid(value);
 				break;
 			// custom events
 			case "history-go-prev":
