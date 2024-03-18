@@ -1,5 +1,5 @@
 
-Level["m3"] = {
+Level["99-3"] = {
 	grid: 3,
 	bg: "#932",
 	filter: "sepia(1) hue-rotate(345deg) saturate(1.85) brightness(.85)",
@@ -10,7 +10,7 @@ Level["m3"] = {
 	]
 };
 
-Level["m4"] = {
+Level["99-4"] = {
 	grid: 4,
 	bg: "#829",
 	filter: "sepia(1) hue-rotate(245deg) saturate(1.5) brightness(.85)",
@@ -22,7 +22,7 @@ Level["m4"] = {
 	]
 };
 
-Level["m5"] = {
+Level["99-5"] = {
 	grid: 5,
 	bg: "#24a",
 	filter: "sepia(1) hue-rotate(175deg) saturate(1.75) brightness(.8)",
@@ -35,7 +35,7 @@ Level["m5"] = {
 	]
 };
 
-Level["m7"] = {
+Level["99-7"] = {
 	grid: 7,
 	bg: "#24a",
 	filter: "sepia(1) hue-rotate(175deg) saturate(1.75) brightness(.8)",
@@ -50,7 +50,7 @@ Level["m7"] = {
 	]
 };
 
-Level["m9"] = {
+Level["99-9"] = {
 	grid: 9,
 	bg: "#24a",
 	filter: "sepia(1) hue-rotate(175deg) saturate(1.75) brightness(.8)",
@@ -67,7 +67,7 @@ Level["m9"] = {
 	]
 };
 
-Level["m11"] = {
+Level["99-11"] = {
 	grid: 11,
 	bg: "#24a",
 	filter: "sepia(1) hue-rotate(175deg) saturate(1.75) brightness(.8)",

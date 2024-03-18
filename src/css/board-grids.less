@@ -5,6 +5,17 @@
 		left: 210px;
 		--size: 80px;
 		--bH: 9px;
+
+		.mini {
+			&.size-3 {
+				--size: 80px;
+				--mini-margin: 4px 0 0 0;
+
+				> .void,
+				> .exit,
+				> span.wall { --size: 26px; }
+			}
+		}
 	}
 
 	&[class*="grid-4"] {
@@ -49,6 +60,7 @@
 			&.size-5 {
 				--size: 72px;
 				--mini-margin: 8px 0 0 11px;
+				// --mini-margin: 14px 0 0 5px;
 
 				> .void,
 				> .exit,
