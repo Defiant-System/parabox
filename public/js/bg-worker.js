@@ -28,17 +28,17 @@ let Anim = {
 				Self.boxes = [...Array(17)].map(b => ({
 					x: Utils.random(0, Self.cvs.width + 100) - 50 | 0,
 					y: Utils.random(0, Self.cvs.height - 70) + 35 | 0,
-					d: Utils.random(.1, 1.5), // speed
+					d: Utils.random(.1, 1.25), // speed
 					w: Utils.random(20, 60) | 0,
 					h: Utils.random(20, 60) | 0,
 					r: Utils.random(0, Math.PI),
-					rD: Utils.random(.1, .2),
+					rD: Utils.random(.05, .2),
 				}));
 
 				// lines
 				Self.perlin = new ClassicalNoise();
-				Self.variation = .0007;
-				Self.amp = 400;
+				Self.variation = .0027;
+				Self.amp = 560;
 				Self.maxLines = 29;
 				Self.variators = [];
 				Self.startY = Self.cvs.height >> 1;
@@ -65,7 +65,7 @@ let Anim = {
 				b.y = Utils.random(0, Self.cvs.height - 70) + 35 | 0;
 				b.w = Utils.random(20, 60) | 0;
 				b.x = Self.cvs.width + (b.w * 2);
-				b.d = Utils.random(.1, 1);
+				b.d = Utils.random(.1, 1.25);
 			}
 			// rotate
 			b.r += .01;
@@ -98,8 +98,8 @@ let Anim = {
 			}
 			ctx.stroke();
 			ctx.closePath();
-
-			Self.variators[i] += .004;
+			// wavines
+			Self.variators[i] += .00075;
 		}
 
 		// next tick

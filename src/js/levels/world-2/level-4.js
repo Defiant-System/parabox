@@ -22,9 +22,9 @@ Level["2-4"] = {
 
 Level["2-4.1"] = {
 	grid: 3,
-	bg: "#0c561c",
-	filter: "sepia(1) hue-rotate(75deg) saturate(3) brightness(.9)",
-	void: [{ y: 1, x: 1 }],
+	bg: "#c6823f",
+	filter: "sepia(1) hue-rotate(325deg) saturate(2) brightness(.7)",
+	void: [{ y: 1, x: 2 }],
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NWS" }],
 		[{ key: "WE", "sub":["NW-NE"] }, {}, {}],
@@ -34,8 +34,8 @@ Level["2-4.1"] = {
 
 Level["2-4.2"] = {
 	grid: 3,
-	bg: "#0c561c",
-	filter: "sepia(1) hue-rotate(75deg) saturate(3) brightness(.9)",
+	bg: "#c6823f",
+	filter: "sepia(1) hue-rotate(325deg) saturate(2) brightness(.7)",
 	void: [{ y: 1, x: 1 }],
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NWS" }],
@@ -46,8 +46,8 @@ Level["2-4.2"] = {
 
 Level["2-4.3"] = {
 	grid: 5,
-	bg: "#0c561c",
-	filter: "sepia(1) hue-rotate(75deg) saturate(3) brightness(.9)",
+	bg: "#8d3fc6",
+	filter: "sepia(1) hue-rotate(215deg) saturate(2) brightness(.9)",
 	exit: { y: 2, x: 1 },
 	walls: [
 		[{ "key": "NE" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NW" }],
