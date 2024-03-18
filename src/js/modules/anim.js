@@ -31,7 +31,8 @@ let Anim = {
 		this.els.topLevel.find(`> .board`).css({ transform });
 	},
 	zoomOut() {
-		
+		this.els.zoomLevel.html("");
+		this.els.topLevel.find(`> .board`).css({ transform: "" });
 	},
 	async zoomGrid_(coord) {
 		// 1. render "top" level
