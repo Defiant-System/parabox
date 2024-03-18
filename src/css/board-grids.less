@@ -138,6 +138,7 @@
 
 			&.size-5 {
 				--size: 74px;
+				--wT: 5px;
 				--mini-margin: 4px 0 0 0;
 
 				> .void,
@@ -152,9 +153,8 @@
 			}
 
 			&.size-7 {
-				// --size: 72px;
-				--mini-margin: 8px 0 0 11px;
-				--wT: 5px;
+				--size: 70px;
+				--mini-margin: 4px 0 0 1px;
 
 				> .void,
 				> .exit,
@@ -181,6 +181,19 @@
 		}
 	}
 
+	&[data-level-id="2-8"] {
+		top: 69px;
+		left: 69px;
+		--size: 72px;
+		
+		.mini {
+			&.size-7 {
+				--size: 72px;
+				--mini-margin: 4px 0 0 0;
+			}
+		}
+	}
+
 	&[class*="grid-9"] {
 		top: 50px;
 		left: 50px;
@@ -189,7 +202,6 @@
 
 		.mini {
 			&.size-3 {
-				--size: 62px;
 				--mini-margin: 4px 0 0 0;
 
 				> .void,
@@ -198,8 +210,7 @@
 			}
 
 			&.size-4 {
-				--size: 62px;
-				--mini-margin: 5px 0 0 0;
+				--mini-margin: 4px 0 0 0;
 
 				> .void,
 				> .exit,
@@ -207,7 +218,7 @@
 			}
 
 			&.size-5 {
-				--mini-margin: 5px 0 0 0;
+				--mini-margin: 4px 0 0 0;
 
 				> .void,
 				> .exit,
@@ -234,8 +245,23 @@
 		}
 	}
 
+	&[data-level-id="2-7"],
+	&[data-level-id="2-6"] {
+		top: 36px;
+		left: 33px;
+		--size: 66px;
+		
+		.mini {
+			&.size-9 {
+				--size: 66px;
+				--mini-margin: 4px 0 0 0;
+				--wT: 4px;
+			}
+		}
+	}
+
 	&[class*="grid-11"] {
-		top: 26px;
+		top: 21px;
 		left: 23px;
 		--size: 56px;
 		--bH: 9px;
@@ -243,6 +269,7 @@
 		.mini {
 			&.size-3 {
 				--size: 56px;
+				--wT: 5px;
 				--mini-margin: 4px 0 0 0;
 
 				> .void,

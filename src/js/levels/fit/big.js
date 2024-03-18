@@ -7,14 +7,13 @@ Level["98-3"] = {
 	// player: { y: 1, x: 0 },
 	void: [],
 	block: [
-		{ y: 0, x: 0, mini: "99-4" },
-
-		// { y: 0, x: 2, mini: "99-5" },
-		// { y: 2, x: 0, mini: "99-7" },
-		// { y: 2, x: 2, mini: "99-11" },
+		{ y: 0, x: 0, mini: "99-3" },
+		{ y: 0, x: 2, mini: "99-5" },
+		{ y: 2, x: 0, mini: "99-7" },
+		{ y: 2, x: 2, mini: "99-11" },
 	],
 	walls: [
-		[{ key: "NSE" }, { key: "NS" }, { key: "NWS" }],
+		[{}, {}, {}],
 		[{}, {}, {}],
 		[{}, {}, {}],
 	]
@@ -28,7 +27,7 @@ Level["98-4"] = {
 	exit: null,
 	void: [],
 	block: [
-		{ y: 0, x: 0, mini: "99-3" },
+		{ y: 1, x: 3, mini: "99-3" },
 	],
 	walls: [
 		[{ key: "NSE" }, { key: "NS" }, { key: "NS" }, { key: "NWS" }],

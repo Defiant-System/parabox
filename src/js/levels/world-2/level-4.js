@@ -8,8 +8,6 @@ Level["2-4"] = {
 		{ y: 2, x: 2, mini: "2-4.1" },
 		{ y: 2, x: 4, mini: "2-4.2" },
 		{ y: 4, x: 2, mini: "2-4.3" },
-		{ y: 6, x: 0, mini: "2-4.3" },
-		{ y: 6, x: 6, mini: "2-4.3" },
 	],
 	walls: [
 		[{ "key": "NE" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NW" }],
