@@ -24,11 +24,11 @@ Level["2-4.1"] = {
 	grid: 3,
 	bg: "#0c561c",
 	filter: "sepia(1) hue-rotate(75deg) saturate(3) brightness(.9)",
-	void: [{ y: 1, x: 2 }],
+	void: [{ y: 1, x: 1 }],
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NWS" }],
-		[{ key: "E" }, { key: "W", "sub":["NW-NE"] }, {}],
-		[{ key: "SE" }, { key: "S" }, { key: "NWS","sub":["NE-ES"] }],
+		[{ key: "WE", "sub":["NW-NE"] }, {}, {}],
+		[{ key: "SE" }, { key: "NS","sub":["NE-ES"] }, { key: "NWS" }],
 	]
 };
 
@@ -36,11 +36,11 @@ Level["2-4.2"] = {
 	grid: 3,
 	bg: "#0c561c",
 	filter: "sepia(1) hue-rotate(75deg) saturate(3) brightness(.9)",
-	void: [{ y: 1, x: 4 }],
+	void: [{ y: 1, x: 1 }],
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NWS" }],
-		[{ key: "E" }, { key: "W", "sub":["NW-NE"] }, {}],
-		[{ key: "SE" }, { key: "S" }, { key: "NWS","sub":["NE-ES"] }],
+		[{ key: "WE", "sub":["NW-NE"] }, {}, {}],
+		[{ key: "SE" }, { key: "NS","sub":["NE-ES"] }, { key: "NWS" }],
 	]
 };
 
