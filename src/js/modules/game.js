@@ -73,7 +73,7 @@ let Game = {
 		let grid = level.grid || level.data.grid;
 		if (extend.zoom) grid = level.data.grid;
 
-		htm.push(`<div class="box board grid-${grid} ${corners.join(" ")}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
+		htm.push(`<div class="box board grid-${grid} ${corners.join(" ")}" data-level-id="${id}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
 		htm.push(`<div class="floor-tiles"></div>`);
 		htm.push(walls.join(""));
 		if (player.length) htm.push(player.join(""));

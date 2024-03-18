@@ -8,6 +8,8 @@ Level["2-4"] = {
 		{ y: 2, x: 2, mini: "2-4.1" },
 		{ y: 2, x: 4, mini: "2-4.2" },
 		{ y: 4, x: 2, mini: "2-4.3" },
+		{ y: 6, x: 0, mini: "2-4.3" },
+		{ y: 6, x: 6, mini: "2-4.3" },
 	],
 	walls: [
 		[{ "key": "NE" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NW" }],
@@ -24,7 +26,7 @@ Level["2-4.1"] = {
 	grid: 3,
 	bg: "#c6823f",
 	filter: "sepia(1) hue-rotate(325deg) saturate(2) brightness(.7)",
-	void: [{ y: 1, x: 2 }],
+	void: [{ y: 1, x: 1 }],
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NWS" }],
 		[{ key: "WE", "sub":["NW-NE"] }, {}, {}],

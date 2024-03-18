@@ -117,12 +117,20 @@
 		--size: 74px;
 		--bH: 9px;
 
+		&[data-level-id="2-4"] {
+			.mini {
+				&.size-5 {
+					--mini-margin: 14px 0 0 5px;
+				}
+			}
+		}
+
 		.mini {
 			&.size-3 {
 				--size: 74px;
 				--mini-margin: 4px 0 0 0;
 
-				> .void { --size: 22px; margin: 3px 0 0 3px; opacity: .5; }
+				> .void { --size: 22px; margin: 7px 0 0 7px; opacity: .5; }
 				> .exit,
 				> span.wall { --size: 24px; }
 			}
@@ -139,7 +147,6 @@
 			&.size-5 {
 				--size: 72px;
 				--mini-margin: 8px 0 0 11px;
-				// --mini-margin: 14px 0 0 5px;
 
 				> .void,
 				> .exit,
