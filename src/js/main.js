@@ -5,6 +5,7 @@
 @import "./modules/player.js"
 @import "./modules/game.js"
 @import "./modules/anim.js"
+@import "./modules/bg.js"
 @import "./modules/test.js"
 
 @import "./levels/index.js"
@@ -28,6 +29,7 @@ const parabox = {
 			.map(i => this[i].init(this));
 
 		// init objects
+		Bg.init();
 		History.init();
 		Game.init();
 		Anim.init();
@@ -53,6 +55,8 @@ const parabox = {
 			case "window.init":
 				break;
 			case "window.close":
+				// kill bg canvas worker
+				Bg.dispatch({ type: "dispose" });
 				// save settings
 				window.settings.setItem("settings", Self.settings);
 				break;
@@ -80,6 +84,9 @@ const parabox = {
 				break;
 			case "zoom-out":
 				Anim.zoomOut();
+				break;
+			case "bg-event":
+				Bg.dispatch({ type: event.arg });
 				break;
 			// custom events
 			case "history-go-prev":

@@ -15,6 +15,12 @@
 		<Menu type="divider"/>
 		<Menu name="Editor Mode" click="set-editor-mode"/>
 		<Menu type="divider"/>
+		<Menu name="BG">
+			<Menu name="Stop" click="bg-event" arg="stop"/>
+			<Menu name="Pause" click="bg-event" arg="pause"/>
+			<Menu name="Resume" click="bg-event" arg="resume"/>
+		</Menu>
+		<Menu type="divider"/>
 		<Menu name="World 1&#8230;">
 			<Menu name="Level 1" click="set-game-level" arg="1-1" check-group="game-level" is-checked="1"/>
 			<Menu name="Level 2" click="set-game-level" arg="1-2" check-group="game-level"/>
