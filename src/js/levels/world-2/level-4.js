@@ -6,8 +6,8 @@ Level["2-4"] = {
 	player: { y: 4, x: 4 },
 	block: [
 		{ y: 2, x: 2, mini: "2-4.1" },
-		// { y: 2, x: 4, mini: "2-4.2" },
-		// { y: 4, x: 2, mini: "2-4.3" },
+		{ y: 2, x: 4, mini: "2-4.2" },
+		{ y: 4, x: 2, mini: "2-4.3" },
 	],
 	walls: [
 		[{ "key": "NE" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NW" }],
