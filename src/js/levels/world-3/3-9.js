@@ -1,8 +1,8 @@
 
 Level["3-9"] = {
 	grid: 9,
-	bg: "#b87441",
-	filter: "sepia(1) hue-rotate(315deg) saturate(1.5) brightness(0.85)",
+	bg: "#8c6b52",
+	filter: "sepia(1) hue-rotate(315deg) saturate(0.5) brightness(0.8)",
 	player: { y: 7, x: 4 },
 	void: [{ y: 7, x: 1 }],
 	exit: { y: 6, x: 1 },
