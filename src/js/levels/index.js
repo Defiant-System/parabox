@@ -46,7 +46,6 @@ let Level = {
 @import "./world-2/2-7.js"
 @import "./world-2/2-8.js"
 @import "./world-2/2-9.js"
-@import "./world-2/2-10.js"
 
 @import "./world-3/3-1.js"
 @import "./world-3/3-2.js"
