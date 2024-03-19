@@ -244,6 +244,9 @@
 		}
 	}
 
+	&[data-level-id="3-7"],
+	&[data-level-id="3-6"],
+	&[data-level-id="3-5"],
 	&[data-level-id="2-10"],
 	&[data-level-id="2-9"],
 	&[data-level-id="2-7"],
@@ -257,6 +260,12 @@
 				--size: 66px;
 				--mini-margin: 4px 0 0 0;
 				--wT: 4px;
+
+				> span.wall {				
+					&[style*="--x: 8;"] {
+						width: calc( var(--size) + 1px );
+					}
+				}
 			}
 		}
 	}
