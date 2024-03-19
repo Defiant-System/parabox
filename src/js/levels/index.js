@@ -23,10 +23,38 @@ let Level = {
 	}
 };
 
+// for dev purpose
+//@im1port "./level-99.js"
 
-@import "./fit/big.js"
-@import "./fit/mini.js"
 
+@import "./world-1/1-1.js"
+@import "./world-1/1-2.js"
+@import "./world-1/1-3.js"
+@import "./world-1/1-4.js"
+@import "./world-1/1-5.js"
+@import "./world-1/1-6.js"
+@import "./world-1/1-7.js"
+@import "./world-1/1-8.js"
+@import "./world-1/1-9.js"
 
-@import "./world-1/index.js"
-@import "./world-2/index.js"
+@import "./world-2/2-1.js"
+@import "./world-2/2-2.js"
+@import "./world-2/2-3.js"
+@import "./world-2/2-4.js"
+@import "./world-2/2-5.js"
+@import "./world-2/2-6.js"
+@import "./world-2/2-7.js"
+@import "./world-2/2-8.js"
+@import "./world-2/2-9.js"
+@import "./world-2/2-10.js"
+
+@import "./world-3/3-1.js"
+@import "./world-3/3-2.js"
+@import "./world-3/3-3.js"
+@import "./world-3/3-4.js"
+@import "./world-3/3-5.js"
+@import "./world-3/3-6.js"
+@import "./world-3/3-7.js"
+@import "./world-3/3-8.js"
+@import "./world-3/3-9.js"
+

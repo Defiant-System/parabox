@@ -34,6 +34,21 @@
 			<Menu name="Level 5" click="set-game-level" arg="2-5" check-group="game-level"/>
 			<Menu name="Level 6" click="set-game-level" arg="2-6" check-group="game-level"/>
 			<Menu name="Level 7" click="set-game-level" arg="2-7" check-group="game-level"/>
+			<Menu name="Level 8" click="set-game-level" arg="2-8" check-group="game-level"/>
+			<Menu name="Level 9" click="set-game-level" arg="2-9" check-group="game-level"/>
+		</Menu>
+		<Menu name="World 3&#8230;">
+			<Menu name="Level 0" click="set-game-level" arg="3-0" check-group="game-level"/>
+			<Menu name="Level 1" click="set-game-level" arg="3-1" check-group="game-level"/>
+			<Menu name="Level 2" click="set-game-level" arg="3-2" check-group="game-level"/>
+			<Menu name="Level 3" click="set-game-level" arg="3-3" check-group="game-level"/>
+			<Menu name="Level 4" click="set-game-level" arg="3-4" check-group="game-level"/>
+			<Menu name="Level 5" click="set-game-level" arg="3-5" check-group="game-level"/>
+			<Menu name="Level 6" click="set-game-level" arg="3-6" check-group="game-level"/>
+			<Menu name="Level 7" click="set-game-level" arg="3-7" check-group="game-level"/>
+			<Menu name="Level 8" click="set-game-level" arg="3-8" check-group="game-level"/>
+			<Menu name="Level 9" click="set-game-level" arg="3-9" check-group="game-level"/>
+			<Menu name="Level 10" click="set-game-level" arg="3-10" check-group="game-level"/>
 		</Menu>
 		<Menu type="divider"/>
 		<Menu name="BG">

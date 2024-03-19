@@ -10,24 +10,7 @@
 		right: 0;
 		bottom: 0;
 		overflow: hidden;
-		background-color: #5a5acd;
-		background-image: linear-gradient(0deg, transparent, rgba(#fff,.075));
 		
-		&:before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 110%;
-			height: 110%;
-			opacity: .5;
-			background-image: repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
-							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
-							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px),
-							repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px);
-			animation: bgAnim 7s linear infinite;
-		}
-
 		.box.board:hover .ghost {
 			display: block;
 		}

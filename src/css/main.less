@@ -888,6 +888,7 @@ content {
 						border: 0 solid rgba(#000,.35);
 					}
 					
+					&.NSE:before,
 					&.NE:before {
 						left: -9px;
 						border-radius: 13px 0 0 0;
@@ -907,6 +908,7 @@ content {
 						border-width: 9px 0 0 0;
 					}
 
+					&.NWS:before,
 					&.NW:before {
 						right: -9px;
 						border-radius: 0 13px 0 0;
@@ -1067,14 +1069,6 @@ content {
 
 
 
-@keyframes bgColors {
-	100%, 0% { background-color: #6d408e; }
-	20% { background-color: #3e7274; }
-	40% { background-color: #444; }
-	60% { background-color: #353869; }
-	80% { background-color: #3f5000; }
-}
-
 @keyframes go-right {
 	0%   { transform: scale(1, 1); }
 	30%  { transform: scale(.75, 1.1); }
@@ -1156,24 +1150,11 @@ content {
 }
 
 
-@keyframes pulsate {
-	0%   { border-width: 0px; opacity: .15; transform: scale(1.1); }
-	10%  { border-width: 4px; opacity: 1; transform: scale(1); }
-	75%  { border-width: 0px; opacity: 0; transform: scale(1.35); }
-	100% { border-width: 0px; opacity: 0; transform: scale(1.35); }
-}
-
-
 @keyframes moveUp  {
 	0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
 	100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
 }
 
-
-@keyframes bgAnim  {
-	0%   { transform: translateY(0) translateX(0); }
-	100% { transform: translateY(-40px) translateX(-40px); }
-}
 
 
 // fireworks
