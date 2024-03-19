@@ -1,8 +1,8 @@
 
 Level["3-2"] = {
 	grid: 9,
-	bg: "#848484",
-	filter: "sepia(1) saturate(0) brightness(0.9)",
+	bg: "#8d71cd",
+	filter: "sepia(1) hue-rotate(212deg) saturate(1.85) brightness(0.85)",
 	player: { y: 4, x: 6 },
 	void: [
 		{ y: 4, x: 1 },
@@ -28,11 +28,11 @@ Level["3-2"] = {
 
 Level["3-2.1"] = {
 	grid: 3,
-	bg: "#3f7ac6",
-	filter: "sepia(1) hue-rotate(165deg) saturate(2) brightness(.8)",
+	bg: "#b73fc6",
+	filter: "sepia(1) hue-rotate(265deg) saturate(2) brightness(.8)",
 	void: [{ y: 1, x: 1 }],
 	block: [
-		{ y: 2, x: 1, color: "red" }
+		{ y: 2, x: 1, color: "yellow" }
 	],
 	walls: [
 		[{ "key": "NE" }, { "key": "NS" }, { "key": "NW" }],
@@ -43,8 +43,8 @@ Level["3-2.1"] = {
 
 Level["3-2.2"] = {
 	grid: 7,
-	bg: "#3f7ac6",
-	filter: "sepia(1) hue-rotate(165deg) saturate(2) brightness(.8)",
+	bg: "#228e56",
+	filter: "sepia(1) hue-rotate(75deg) saturate(2.25) brightness(.875)",
 	walls: [
 		[{ "key": "NE" }, { "key": "N" }, { "key": "N" }, { "key": "NS" }, { "key": "NS" }, { "key": "N" }, { "key": "NW" }],
 		[{ "key": "E" }, { "key": "S" }, { "key": "WS","sub":["NW-NE"] }, {}, {}, { "key": "SE","sub":["NE-NW"] }, { "key": "W" }],
