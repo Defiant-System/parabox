@@ -149,6 +149,9 @@ const parabox = {
 				break;
 			case "output-pgn":
 				return Self.editor.dispatch(event);
+			case "reset-game":
+				Self.content.data({ mode: "start" });
+				break;
 			case "set-editor-mode":
 				if (!event.xMenu.getAttribute("is-checked")) {
 					event.xMenu.setAttribute("is-checked", "1");

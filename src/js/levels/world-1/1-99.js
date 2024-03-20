@@ -9,7 +9,7 @@ Level["1-99"] = {
 	block: [
 		{ y: 4, x: 2, color: "yellow" },
 		{ y: 3, x: 6, mini: "1-99.1" },
-		{ y: 5, x: 2, mini: "1-99.2" },
+		// { y: 5, x: 2, mini: "1-99.2" },
 	],
 	walls: [
 		[{ key: "NE" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "NS" }, { key: "N" }, { key: "NW" }],

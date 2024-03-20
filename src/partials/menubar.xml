@@ -13,6 +13,7 @@
 		<Menu name="Undo"/>
 		<Menu name="Redo"/>
 		<Menu type="divider"/>
+		<Menu name="Start View" click="reset-game"/>
 		<Menu name="Editor Mode" click="set-editor-mode"/>
 		<Menu type="divider"/>
 		<Menu name="World 1&#8230;">

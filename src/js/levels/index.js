@@ -24,7 +24,7 @@ let Level = {
 };
 
 // for dev purpose
-//@im1port "./level-99.js"
+@import "./world-1/1-99.js"
 
 
 @import "./world-1/1-1.js"

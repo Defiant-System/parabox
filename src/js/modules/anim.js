@@ -15,11 +15,20 @@ let Anim = {
 			buffer: view.find(".buffer"),
 		};
 	},
+	zoomOut() {
+		this.els.zoomLevel.html("");
+		this.els.topLevel.find(`> .board`).css({ transform: "" });
+	},
 	zoomGrid(coord) {
 		// render mini map
 		let player = { y: 2, x: 0 },
 			{ htm } = Game.paint("1-99.1", { player, zoom: true });
 		this.els.zoomLevel.html(htm.join(""));
+
+		/* from:    g: 9x9    w: 553    t: 69     s: 62    
+		 * to:      g: 5x5    w: 405    t: 122    s: 82   
+		 * coord:   x: 6      y: 3
+		 */
 
 		let grid = 5,
 			scale = 7.2,
@@ -27,12 +36,8 @@ let Anim = {
 			tY = 539,
 			transform = `translateX(${tX}px) translateY(${tY}px) scale(${scale})`;
 
-		console.log( transform );
+		console.log( coord );
 		this.els.topLevel.find(`> .board`).css({ transform });
-	},
-	zoomOut() {
-		this.els.zoomLevel.html("");
-		this.els.topLevel.find(`> .board`).css({ transform: "" });
 	},
 	async zoomGrid_(coord) {
 		// 1. render "top" level
