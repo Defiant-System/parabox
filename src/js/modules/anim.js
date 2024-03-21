@@ -15,9 +15,28 @@ let Anim = {
 			buffer: view.find(".buffer"),
 		};
 	},
+	getBoard(el) {
+		let board = el.find("> .board:first");
+		return {
+			grid: {
+				w: parseInt(board.cssProp("--w"), 10),
+				h: parseInt(board.cssProp("--h"), 10),
+				size: parseInt(board.cssProp("--size"), 10),
+			},
+			offset: {
+				top: +board.prop("offsetTop"),
+				left: +board.prop("offsetLeft"),
+				width: +board.prop("offsetWidth"),
+				height: +board.prop("offsetHeight"),
+			}
+		};
+	},
 	zoomOut() {
 		this.els.zoomLevel.html("");
 		this.els.topLevel.find(`> .board`).css({ transform: "" });
+
+		// temp flag
+		delete this.zoomed;
 	},
 	zoomGrid(coord) {
 		// render mini map
@@ -30,14 +49,19 @@ let Anim = {
 		 * coord:   x: 6      y: 3
 		 */
 
-		let grid = 5,
-			scale = 7.2,
-			tX = -894,
-			tY = 539,
+		let from = this.getBoard(this.els.topLevel),
+			to = this.getBoard(this.els.zoomLevel),
+
+			scale = to.offset.width / from.grid.size,
+			tX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.top - to.offset.top),
+			tY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.left - to.offset.left),
 			transform = `translateX(${tX}px) translateY(${tY}px) scale(${scale})`;
 
-		console.log( coord );
+		// console.log( coord );
 		this.els.topLevel.find(`> .board`).css({ transform });
+
+		// temp flag
+		this.zoomed = true;
 	},
 	async zoomGrid_(coord) {
 		// 1. render "top" level

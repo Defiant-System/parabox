@@ -869,6 +869,11 @@ content {
 			left: 0;
 
 			> .box.board {
+				// top: 0;
+				// left: 0;
+				transform: translateX(0px) translateY(0px) scale(1);
+				transition: all 500ms ease-in-out;
+
 				&.tlb:before { border-top-left-radius: 5px; }
 				&.trb:before { border-top-right-radius: 5px; }
 
@@ -926,6 +931,13 @@ content {
 		.zoom-level {
 			// display: none;
 			z-index: 101;
+			opacity: 0;
+			pointer-events: none;
+
+			&.show {
+				opacity: initial;
+				pointer-events: initial;
+			}
 		}
 
 		.buffer {

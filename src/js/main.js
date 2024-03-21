@@ -77,10 +77,11 @@ const parabox = {
 					y: +el.cssProp("--y"),
 				};
 				if (!el.cssProp("--x")) {
-					value.x = Math.round(event.offsetX / value.size);
-					value.y = Math.round(event.offsetY / value.size);
+					value.x = Math.floor(event.offsetX / value.size);
+					value.y = Math.floor(event.offsetY / value.size);
 				}
-				Anim.zoomGrid(value);
+				if (Anim.zoomed) Anim.zoomOut();
+				else Anim.zoomGrid(value);
 				break;
 			case "zoom-out":
 				Anim.zoomOut();
