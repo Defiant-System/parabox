@@ -53,8 +53,8 @@ let Anim = {
 			to = this.getBoard(this.els.zoomLevel),
 
 			scale = to.offset.width / from.grid.size,
-			tX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.top - to.offset.top),
-			tY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.left - to.offset.left),
+			tX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.left - to.offset.left),
+			tY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 30,
 			transform = `translateX(${tX}px) translateY(${tY}px) scale(${scale})`;
 
 		// console.log( coord );
