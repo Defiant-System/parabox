@@ -28,16 +28,15 @@ let Anim = {
 	},
 	zoomOut() {
 		this.els.topLevel.find(`> .board`).css({ transform: "" });
-		console.log("zoom out 1");
-		// this.els.zoomLevel.find(`> .board`).css({ transform: `translateX(126px) translateY(-71px) scale(0.15)` });
-		// this.els.zoomLevel.find(`> .player`).css({ transform: `translateX(-255px) translateY(-1px) scale(5)` });
+
+		// zoom/fade out top-level player
+		// Player.el.css({ transform: `` });
 
 		this.els.view.cssSequence("zoom-out", "transitionend", el => {
-			console.log("zoom out 2");
 			el.removeClass("zoom-in zoom-out");
 
 			this.els.zoomLevel.html("");
-			
+
 			// temp flag
 			delete this.zoomed;
 		});
@@ -65,7 +64,7 @@ let Anim = {
 		this.els.topLevel.find(`> .board`).css({ transform });
 		
 		// zoom/fade out top-level player
-		Player.el.css({ transform: `translateX(25px) translateY(2px) scale(0.2` });
+		// Player.el.css({ transform: `translateX(25px) translateY(2px) scale(0.2)` });
 
 		this.els.view.cssSequence("zoom-in", "transitionend", el => {
 			// temp flag

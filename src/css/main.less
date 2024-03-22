@@ -853,20 +853,22 @@ content {
 			// pointer-events: none;
 			transition: min-width calc( var( --dur ) + 50ms ) ease-in-out;
 
-			.top-level > .board {
-				> .mini {
-					opacity: 0;
-					transition: opacity var( --dur ) ease-in-out;
-				}
-			}
-
 			.top-level {
+				filter: grayscale(1);
+				transition: filter var( --dur ) ease-in-out;
+
 				> .box.board {
 					transition: all var( --dur ) ease-in-out;
 
+					> .box.mini {
+						opacity: 0;
+						transition: all var( --dur ) ease-in-out;
+					}
+
 					> .box.player {
 						opacity: 0;
-						// transition: all var( --dur ) ease-in-out;
+						transition: all var( --dur ) ease-in-out;
+						transform: translateX(75px) translateY(2px) scale(0.2);
 					}
 				}
 			}
@@ -890,15 +892,31 @@ content {
 		&.zoom-out {
 			min-width: 1px;
 
-			.top-level > .board {
-				> .mini {
-					opacity: 1;
-					transition: opacity var( --dur ) ease-in-out;
+			.top-level {
+				filter: none;
+
+				> .box.board {
+					> .box.mini {
+						opacity: 1;
+					}
+
+					> .box.player {
+						transform: translateX(0) translateY(0) scale(1);
+						opacity: 1;
+					}
 				}
 			}
 
 			.zoom-level {
 				opacity: 0;
+			
+				> .box.board {
+					transform: translateX(126px) translateY(-71px) scale(0.15);
+
+					> .box.player {
+						transform: translateX(-255px) translateY(-1px) scale(5);
+					}
+				}
 			}
 		}
 
