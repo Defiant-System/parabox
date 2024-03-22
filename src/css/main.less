@@ -843,7 +843,7 @@ content {
 		bottom: 0;
 		min-width: 1px;
 		overflow: hidden;
-		--dur: 1000ms;
+		--dur: 750ms;
 		// background: #f88;
 		// background-image: linear-gradient(0deg, transparent, rgba(#fff,.075));
 		// animation: bgColors 37s linear infinite;
@@ -851,7 +851,7 @@ content {
 		&.zoom-in {
 			min-width: 2px;
 			// pointer-events: none;
-			transition: min-width calc( var( --dur ) + 50ms ) ease-in-out;
+			transition: min-width var( --dur ) ease-in-out;
 
 			.top-level {
 				filter: grayscale(1);
@@ -859,16 +859,19 @@ content {
 
 				> .box.board {
 					transition: all var( --dur ) ease-in-out;
+					will-change: transform;
 
 					> .box.mini {
 						opacity: 0;
 						transition: all var( --dur ) ease-in-out;
+						will-change: transform, opacity;
 					}
 
 					> .box.player {
 						opacity: 0;
 						transition: all var( --dur ) ease-in-out;
 						transform: translateX(38px) translateY(2px) scale(0.2);
+						will-change: transform, opacity;
 					}
 				}
 			}
@@ -876,14 +879,17 @@ content {
 			.zoom-level {
 				opacity: 1;
 				transition: opacity var( --dur ) ease-in-out;
+				will-change: transform;
 			
 				> .box.board {
 					transition: all var( --dur ) ease-in-out;
 					transform: translateX(0) translateY(0) scale(1);
+					will-change: transform;
 
 					> .box.player {
 						transition: all var( --dur ) ease-in-out;
 						transform: translateX(0) translateY(0) scale(1);
+						will-change: transform;
 					}
 				}
 			}
