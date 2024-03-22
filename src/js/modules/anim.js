@@ -32,7 +32,10 @@ let Anim = {
 		};
 	},
 	zoomOut() {
-		this.els.zoomLevel.html("");
+		this.els.zoomLevel.cssSequence("!show", "transitionend", el => {
+			el.html("");
+		});
+		
 		this.els.topLevel.find(`> .board`).css({ transform: "" });
 
 		// temp flag
@@ -59,6 +62,7 @@ let Anim = {
 
 		// console.log( coord );
 		this.els.topLevel.find(`> .board`).css({ transform });
+		this.els.zoomLevel.addClass("show");
 
 		// temp flag
 		this.zoomed = true;

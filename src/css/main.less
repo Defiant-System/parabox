@@ -869,10 +869,8 @@ content {
 			left: 0;
 
 			> .box.board {
-				// top: 0;
-				// left: 0;
 				transform: translateX(0px) translateY(0px) scale(1);
-				transition: all 500ms ease-in-out;
+				transition: all 1000ms ease-in-out;
 
 				&.tlb:before { border-top-left-radius: 5px; }
 				&.trb:before { border-top-right-radius: 5px; }
@@ -931,11 +929,12 @@ content {
 		.zoom-level {
 			// display: none;
 			z-index: 101;
-			opacity: 0.35;
+			opacity: 0;
 			pointer-events: none;
+			transition: opacity 1000ms ease-in-out;
 
 			&.show {
-				opacity: initial;
+				opacity: 1;
 				pointer-events: initial;
 			}
 		}
