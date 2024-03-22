@@ -1,7 +1,7 @@
 
 Level["1-4"] = {
 	grid: 9,
-	bg: "#833",
+	bg: "#a43e3e",
 	filter: "sepia(.5) brightness(.8) hue-rotate(320deg) saturate(4)",
 	player: { y: 7, x: 1 },
 	exit: { y: 6, x: 4 },
