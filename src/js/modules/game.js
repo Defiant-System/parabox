@@ -22,8 +22,6 @@ let Game = {
 		this.board = board;
 		// init player object
 		if (level.player) Player.init();
-
-		// Anim.zoomGrid_();
 	},
 	paint(id, extend={}) {
 		let level = typeof id === "object" ? { data: id, ...extend } : Level.get(id, extend),
