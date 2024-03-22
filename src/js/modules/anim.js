@@ -3,11 +3,9 @@ let Anim = {
 	init() {
 		// fast references
 		let APP = parabox,
-			trans = APP.content.find(".trans"),
 			view = APP.content.find(".game-view");
 		this.els = {
-			trans,
-			actor: trans.find(".player"),
+			view,
 			topLevel: view.find(".top-level"),
 			zoomLevel: view.find(".zoom-level"),
 		};
@@ -29,19 +27,26 @@ let Anim = {
 		};
 	},
 	zoomOut() {
-		this.els.zoomLevel.cssSequence("!show", "transitionend", el => {
-			el.html("");
-		});
-
 		this.els.topLevel.find(`> .board`).css({ transform: "" });
+		console.log("zoom out 1");
+		// this.els.zoomLevel.find(`> .board`).css({ transform: `translateX(126px) translateY(-71px) scale(0.15)` });
+		// this.els.zoomLevel.find(`> .player`).css({ transform: `translateX(-255px) translateY(-1px) scale(5)` });
 
-		// temp flag
-		delete this.zoomed;
+		this.els.view.cssSequence("zoom-out", "transitionend", el => {
+			console.log("zoom out 2");
+			el.removeClass("zoom-in zoom-out");
+
+			this.els.zoomLevel.html("");
+			
+			// temp flag
+			delete this.zoomed;
+		});
 	},
 	zoomGrid(coord) {
 		// render mini map
-		let player = { y: 2, x: -1 },
+		let player = { y: 2, x: 0 },
 			{ htm } = Game.paint("1-99.1", { player, zoom: true });
+		// render 
 		this.els.zoomLevel.html(htm.join(""));
 
 		/* from:    g: 9x9    w: 553    t: 69     s: 62    
@@ -55,16 +60,16 @@ let Anim = {
 			tX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.left - to.offset.left),
 			tY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 30,
 			transform = `translateX(${tX}px) translateY(${tY}px) scale(${scale})`;
-		// zoom in
+			
+		// top-level zoom in
 		this.els.topLevel.find(`> .board`).css({ transform });
 		
-		// "zoom" player
+		// zoom/fade out top-level player
 		Player.el.css({ transform: `translateX(25px) translateY(2px) scale(0.2` });
 
-		// show zoomed board
-		this.els.zoomLevel.addClass("show");
-
-		// temp flag
-		this.zoomed = true;
+		this.els.view.cssSequence("zoom-in", "transitionend", el => {
+			// temp flag
+			this.zoomed = true;
+		});
 	}
 };

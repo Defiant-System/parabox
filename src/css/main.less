@@ -199,6 +199,7 @@ content {
 			--bR: 5px;
 			--wT: 7px;
 			--wH: -3px;
+			opacity: 1;
 			margin: var( --mini-margin );
 			height: calc( var( --size ) + 2px );
 			box-shadow: inset 0px -2px 0px 0px rgba(#000,.175),
@@ -840,28 +841,79 @@ content {
 		left: 0;
 		right: 0;
 		bottom: 0;
+		min-width: 1px;
 		overflow: hidden;
+		--dur: 1000ms;
 		// background: #f88;
 		// background-image: linear-gradient(0deg, transparent, rgba(#fff,.075));
 		// animation: bgColors 37s linear infinite;
 
-		&:before1 {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 110%;
-			height: 110%;
-			opacity: .5;
-			pointer-events: none;
-			background-image: repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
-							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 40px),
-							repeating-linear-gradient(0deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px),
-							repeating-linear-gradient(90deg, rgba(#fff,.05) 0px, rgba(#fff,.05) 1px, transparent 1px, transparent 10px);
-			animation: bgAnim 7s linear infinite;
+		&.zoom-in {
+			min-width: 2px;
+			// pointer-events: none;
+			transition: min-width calc( var( --dur ) + 50ms ) ease-in-out;
+
+			.top-level > .board {
+				> .mini {
+					opacity: 0;
+					transition: opacity var( --dur ) ease-in-out;
+				}
+			}
+
+			.top-level {
+				> .box.board {
+					transition: all var( --dur ) ease-in-out;
+
+					> .box.player {
+						opacity: 0;
+						// transition: all var( --dur ) ease-in-out;
+					}
+				}
+			}
+
+			.zoom-level {
+				opacity: 1;
+				transition: opacity var( --dur ) ease-in-out;
+			
+				> .box.board {
+					transition: all var( --dur ) ease-in-out;
+					transform: translateX(0) translateY(0) scale(1);
+
+					> .box.player {
+						transition: all var( --dur ) ease-in-out;
+						transform: translateX(0) translateY(0) scale(1);
+					}
+				}
+			}
 		}
 
-		.buffer,
+		&.zoom-out {
+			min-width: 1px;
+
+			.top-level > .board {
+				> .mini {
+					opacity: 1;
+					transition: opacity var( --dur ) ease-in-out;
+				}
+			}
+
+			.zoom-level {
+				opacity: 0;
+			}
+		}
+
+		.zoom-level {
+			z-index: 101;
+			
+			> .box.board {
+				transform: translateX(126px) translateY(-71px) scale(0.15);
+
+				> .box.player {
+					transform: translateX(-255px) translateY(-1px) scale(5);
+				}
+			}
+		}
+
 		.zoom-level,
 		.top-level {
 			position: absolute;
@@ -869,8 +921,7 @@ content {
 			left: 0;
 
 			> .box.board {
-				transform: translateX(0px) translateY(0px) scale(1);
-				transition: all 1000ms ease-in-out;
+				// transform: translateX(0px) translateY(0px) scale(1);
 
 				&.tlb:before { border-top-left-radius: 5px; }
 				&.trb:before { border-top-right-radius: 5px; }
@@ -923,20 +974,6 @@ content {
 						border-width: 9px 9px 0 0;
 					}
 				}
-			}
-		}
-
-		.zoom-level {
-			// display: none;
-			z-index: 101;
-			opacity: 0;
-			pointer-events: none;
-			transition: opacity 1000ms ease-in-out;
-
-			&.show {
-				// opacity: 1;
-				opacity: .5;
-				pointer-events: initial;
 			}
 		}
 	}
