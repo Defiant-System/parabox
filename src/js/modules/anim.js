@@ -27,7 +27,7 @@ let Anim = {
 		};
 	},
 	zoomOut() {
-		this.els.topLevel.find(`> .board`).css({ transform: "" });
+		// this.els.topLevel.find(`> .board`).css({ transform: "" });
 
 		// zoom/fade out top-level player
 		// Player.el.css({ transform: `` });
@@ -44,7 +44,7 @@ let Anim = {
 	zoomGrid(coord) {
 		// render mini map
 		let player = { y: 2, x: 0 },
-			{ htm } = Game.paint("1-99.1", { player, zoom: true });
+			{ htm } = Game.paint(coord.mini, { player, zoom: true });
 		// render 
 		this.els.zoomLevel.html(htm.join(""));
 
@@ -61,11 +61,8 @@ let Anim = {
 			transform = `translateX(${tX}px) translateY(${tY}px) scale(${scale})`;
 			
 		// top-level zoom in
-		this.els.topLevel.find(`> .board`).css({ transform });
+		// this.els.topLevel.find(`> .board`).css({ transform });
 		
-		// zoom/fade out top-level player
-		// Player.el.css({ transform: `translateX(25px) translateY(2px) scale(0.2)` });
-
 		this.els.view.cssSequence("zoom-in", "transitionend", el => {
 			// temp flag
 			this.zoomed = true;

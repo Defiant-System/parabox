@@ -25,6 +25,7 @@ let Level = {
 
 // for dev purpose
 @import "./world-1/1-99.js"
+@import "./world-1/1-98.js"
 
 
 @import "./world-1/1-1.js"

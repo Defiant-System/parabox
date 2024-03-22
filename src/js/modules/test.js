@@ -4,8 +4,8 @@ let Test = {
 
 		// return;
 
-		setTimeout(() => APP.dispatch({ type: "set-game-level", arg: "1-99" }), 200);
-		setTimeout(() => Anim.zoomGrid({ x: 6, y: 3 }), 1500);
+		setTimeout(() => APP.dispatch({ type: "set-game-level", arg: "1-98" }), 200);
+		// setTimeout(() => Anim.zoomGrid({ x: 6, y: 3 }), 1500);
 		return;
 
 		// setTimeout(() => Game.zoomPaint(1), 200);

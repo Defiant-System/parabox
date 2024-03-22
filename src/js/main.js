@@ -73,6 +73,7 @@ const parabox = {
 				el = $(event.target);
 				value = {
 					size: parseInt(el.cssProp("--size"), 10),
+					mini: el.data("mini"),
 					x: +el.cssProp("--x"),
 					y: +el.cssProp("--y"),
 				};

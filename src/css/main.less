@@ -844,34 +844,35 @@ content {
 		min-width: 1px;
 		overflow: hidden;
 		--dur: 750ms;
-		// background: #f88;
-		// background-image: linear-gradient(0deg, transparent, rgba(#fff,.075));
-		// animation: bgColors 37s linear infinite;
 
 		&.zoom-in {
-			min-width: 2px;
 			// pointer-events: none;
+			min-width: 2px;
 			transition: min-width var( --dur ) ease-in-out;
 
 			.top-level {
 				filter: grayscale(1);
 				transition: filter var( --dur ) ease-in-out;
+				--btX: -822px;
+				--btY: 462px;
+				--btS: 6.6129;
+				--ptX: 38px;
+				--ptY: 2px;
+				--ptS: 0.2;
 
 				> .box.board {
 					transition: all var( --dur ) ease-in-out;
-					will-change: transform;
+					transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
 
 					> .box.mini {
 						opacity: 0;
 						transition: all var( --dur ) ease-in-out;
-						will-change: transform, opacity;
 					}
 
 					> .box.player {
 						opacity: 0;
 						transition: all var( --dur ) ease-in-out;
-						transform: translateX(38px) translateY(2px) scale(0.2);
-						will-change: transform, opacity;
+						transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
 					}
 				}
 			}
@@ -879,17 +880,14 @@ content {
 			.zoom-level {
 				opacity: 1;
 				transition: opacity var( --dur ) ease-in-out;
-				will-change: transform;
 			
 				> .box.board {
 					transition: all var( --dur ) ease-in-out;
-					transform: translateX(0) translateY(0) scale(1);
-					will-change: transform;
+					transform: translate(0, 0) scale(1);
 
 					> .box.player {
 						transition: all var( --dur ) ease-in-out;
-						transform: translateX(0) translateY(0) scale(1);
-						will-change: transform;
+						transform: translate(0, 0) scale(1);
 					}
 				}
 			}
@@ -902,12 +900,14 @@ content {
 				filter: none;
 
 				> .box.board {
+					transform: translate(0, 0) scale(1);
+
 					> .box.mini {
 						opacity: 1;
 					}
 
 					> .box.player {
-						transform: translateX(0) translateY(0) scale(1);
+						transform: translate(0, 0) scale(1);
 						opacity: 1;
 					}
 				}
@@ -915,12 +915,18 @@ content {
 
 			.zoom-level {
 				opacity: 0;
+				--btX: 126px;
+				--btY: -71px;
+				--btS: 0.15;
+				--ptX: -255px;
+				--ptY: -1px;
+				--ptS: 5;
 			
 				> .box.board {
-					transform: translateX(126px) translateY(-71px) scale(0.15);
+					transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
 
 					> .box.player {
-						transform: translateX(-255px) translateY(-1px) scale(5);
+						transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
 					}
 				}
 			}
@@ -928,12 +934,18 @@ content {
 
 		.zoom-level {
 			z-index: 101;
-			
+			--btX: 126px;
+			--btY: -71px;
+			--btS: .15;
+			--ptX: -255px;
+			--ptY: -1px;
+			--ptS: 5;
+
 			> .box.board {
-				transform: translateX(126px) translateY(-71px) scale(0.15);
+				transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
 
 				> .box.player {
-					transform: translateX(-255px) translateY(-1px) scale(5);
+					transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
 				}
 			}
 		}
@@ -943,10 +955,15 @@ content {
 			position: absolute;
 			top: 0;
 			left: 0;
+			will-change: transform, filter;
+
+			> .box.board,
+			> .box.mini,
+			.box.player {
+				will-change: transform, opacity;
+			}
 
 			> .box.board {
-				// transform: translateX(0px) translateY(0px) scale(1);
-
 				&.tlb:before { border-top-left-radius: 5px; }
 				&.trb:before { border-top-right-radius: 5px; }
 

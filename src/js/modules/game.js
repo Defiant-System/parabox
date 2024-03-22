@@ -61,7 +61,7 @@ let Game = {
 					color = `mini size-${data.size.w}`;
 					style += `--color: ${mini.data.bg}; --fg-filter: ${mini.data.filter};`;
 				}
-				blocks.push(`<div class="box ${color}" data-id="${block.y}-${block.x}" style="${style}">${sub.join("")}</div>`);
+				blocks.push(`<div class="box ${color}" data-mini="${block.mini}" data-id="${block.y}-${block.x}" style="${style}">${sub.join("")}</div>`);
 				// update board
 				board[block.y][block.x] = BLOCK;
 			}
