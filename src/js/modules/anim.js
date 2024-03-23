@@ -18,6 +18,7 @@ let Anim = {
 				w: parseInt(bEl.cssProp("--w"), 10),
 				h: parseInt(bEl.cssProp("--h"), 10),
 				size: parseInt(bEl.cssProp("--size"), 10),
+				bH: parseInt(bEl.cssProp("--bH"), 10),
 			},
 			offset: {
 				top: +bEl.prop("offsetTop"),
@@ -63,18 +64,18 @@ let Anim = {
 			from = this.getBoard(this.els.topLevel),
 			to = this.getBoard(this.els.zoomLevel.html(htm.join(""))),
 			btS = from.grid.size / to.offset.width,
-			btX = 126,
-			btY = -71,
+			btX = (from.grid.size * (coord.x - Math.floor(from.grid.w / 2))) + 2,
+			btY = (from.grid.size * (coord.y - Math.floor(from.grid.h / 2))) - to.grid.bH,
 			ptS = to.offset.width / to.grid.size,
-			ptX = to.grid.size * (to.player.x - Math.ceil(to.grid.w / 2)),
-			ptY = to.grid.size * (to.player.y - Math.ceil(to.grid.h / 2) + 1);
-
+			ptX = to.grid.size * (player.x - Math.ceil(to.grid.w / 2)),
+			ptY = to.grid.size * (player.y - Math.ceil(to.grid.h / 2) + 1);
+		
 		// render
 		this.els.zoomLevel.css({
 				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
 				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
 			});
-
+		// return;
 		btX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.left - to.offset.left);
 		btY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 30;
 		btS = to.offset.width / from.grid.size;
