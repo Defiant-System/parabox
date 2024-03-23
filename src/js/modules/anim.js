@@ -11,32 +11,31 @@ let Anim = {
 		};
 	},
 	getBoard(el) {
-		let board = el.find("> .board:first");
+		let bEl = el.find("> .board:first"),
+			pEl = el.find(".player").get(0);
 		return {
 			grid: {
-				w: parseInt(board.cssProp("--w"), 10),
-				h: parseInt(board.cssProp("--h"), 10),
-				size: parseInt(board.cssProp("--size"), 10),
+				w: parseInt(bEl.cssProp("--w"), 10),
+				h: parseInt(bEl.cssProp("--h"), 10),
+				size: parseInt(bEl.cssProp("--size"), 10),
 			},
 			offset: {
-				top: +board.prop("offsetTop"),
-				left: +board.prop("offsetLeft"),
-				width: +board.prop("offsetWidth"),
-				height: +board.prop("offsetHeight"),
-			}
+				top: +bEl.prop("offsetTop"),
+				left: +bEl.prop("offsetLeft"),
+				width: +bEl.prop("offsetWidth"),
+				height: +bEl.prop("offsetHeight"),
+			},
 		};
 	},
 	zoomOut() {
-		let btX = 126,
-			btY = -71,
-			btS = 0.15,
-			ptX = -255,
-			ptY = -1,
-			ptS = 5;
 		// zoom/fade out top-level player
 		this.els.topLevel.css({
-				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
-				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
+				"--btX": this.els.zoomLevel.cssProp("--btX"),
+				"--btY": this.els.zoomLevel.cssProp("--btY"),
+				"--btS": this.els.zoomLevel.cssProp("--btS"),
+				"--ptX": this.els.zoomLevel.cssProp("--ptX"),
+				"--ptY": this.els.zoomLevel.cssProp("--ptY"),
+				"--ptS": this.els.zoomLevel.cssProp("--ptS"),
 			});
 
 		this.els.view.cssSequence("zoom-out", "transitionend", el => {
@@ -76,8 +75,8 @@ let Anim = {
 		btY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 30;
 		btS = to.offset.width / from.grid.size;
 		ptX = 38;
-		ptY = 2;
-		ptS = 0.2;
+		ptY = 3;
+		ptS = (from.grid.size / to.grid.w) / from.grid.size;
 			
 		// top-level zoom in
 		this.els.topLevel.css({

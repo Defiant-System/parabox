@@ -71,6 +71,7 @@ const parabox = {
 			// temp
 			case "zoom-grid":
 				el = $(event.target);
+				if (!el.hasClass("mini")) return;
 				value = {
 					size: parseInt(el.cssProp("--size"), 10),
 					mini: el.data("mini"),
