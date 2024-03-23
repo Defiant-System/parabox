@@ -48,29 +48,29 @@ let Anim = {
 		});
 	},
 	zoomGrid(coord) {
-		// render mini map
-		let player = { y: 2, x: 0 },
-			{ htm } = Game.paint(coord.mini, { player, zoom: true }),
-			btX = 126,
-			btY = -71,
-			btS = .15,
-			ptX = -255,
-			ptY = -1,
-			ptS = 5;
-		// render
-		this.els.zoomLevel.css({
-				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
-				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
-			})
-			.html(htm.join(""));
-
-		let from = this.getBoard(this.els.topLevel),
-			to = this.getBoard(this.els.zoomLevel);
-
 		/* from:    g: 9x9    w: 553    t: 69     s: 62    
 		 * to:      g: 5x5    w: 405    t: 122    s: 82   
 		 * coord:   x: 6      y: 3
 		 */
+
+		// render mini map
+		let player = { y: 2, x: 0 },
+			{ htm } = Game.paint(coord.mini, { player, zoom: true }),
+			from = this.getBoard(this.els.topLevel),
+			to = this.getBoard(this.els.zoomLevel.html(htm.join(""))),
+			btX = 126,
+			btY = -71,
+			btS = from.grid.size / to.offset.width,
+			ptX = -255,
+			ptY = -1,
+			ptS = to.offset.width / to.grid.size;
+
+		// render
+		this.els.zoomLevel.css({
+				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
+				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
+			});
+
 		btX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.left - to.offset.left);
 		btY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 30;
 		btS = to.offset.width / from.grid.size;
@@ -84,9 +84,11 @@ let Anim = {
 				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
 			});
 		
-		this.els.view.cssSequence("zoom-in", "transitionend", el => {
-			// temp flag
-			this.zoomed = true;
+		requestAnimationFrame(() => {
+			this.els.view.cssSequence("zoom-in", "transitionend", el => {
+				// temp flag
+				this.zoomed = true;
+			});
 		});
 	}
 };
