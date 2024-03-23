@@ -843,7 +843,7 @@ content {
 		bottom: 0;
 		min-width: 1px;
 		overflow: hidden;
-		--dur: 750ms;
+		--dur: 1750ms;
 
 		&.zoom-in {
 			// pointer-events: none;
@@ -867,8 +867,6 @@ content {
 						opacity: 0;
 						transition: all var( --dur ) ease-in-out;
 						transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
-
-						i { opacity: 0; }  // prevents "double" set of eyes
 					}
 				}
 			}
@@ -884,8 +882,6 @@ content {
 					> .box.player {
 						transition: all var( --dur ) ease-in-out;
 						transform: translate(0, 0) scale(1);
-
-						i { opacity: 1; }  // prevents "double" set of eyes
 					}
 				}
 			}
@@ -907,8 +903,6 @@ content {
 					> .box.player {
 						transform: translate(0, 0) scale(1);
 						opacity: 1;
-
-						i { opacity: 1; }  // prevents "double" set of eyes
 					}
 				}
 			}
@@ -920,9 +914,8 @@ content {
 					transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
 
 					> .box.player {
+						opacity: 0;
 						transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
-
-						i { opacity: 0; }  // prevents "double" set of eyes
 					}
 				}
 			}
@@ -930,7 +923,7 @@ content {
 
 		.zoom-level {
 			z-index: 101;
-			opacity: 0.5;
+			opacity: 0;
 			
 			> .box.board {
 				transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
@@ -951,7 +944,7 @@ content {
 			> .box.board,
 			> .box.mini,
 			.box.player {
-				will-change: transform, opacity;
+				will-change: transform;
 			}
 
 			> .box.board {

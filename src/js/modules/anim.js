@@ -59,7 +59,16 @@ let Anim = {
 		 */
 
 		// render mini map
-		let player = { y: 2, x: 0 },
+		let grid = Level[coord.mini].grid,
+			gX = grid - 1,
+			gM = Math.floor(grid / 2),
+			entrance = {
+				up:    { y: gX, x: gM },
+				down:  { y: 0,  x: gM },
+				left:  { y: gM, x: gX },
+				right: { y: gM, x: 0 },
+			},
+			player = entrance[coord.enter],
 			{ htm } = Game.paint(coord.mini, { player, zoom: true }),
 			from = this.getBoard(this.els.topLevel),
 			to = this.getBoard(this.els.zoomLevel.html(htm.join(""))),
@@ -75,13 +84,15 @@ let Anim = {
 				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
 				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
 			});
-		// return;
+		
 		btX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.left - to.offset.left);
 		btY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 30;
 		btS = to.offset.width / from.grid.size;
-		ptX = 38;
-		ptY = 3;
 		ptS = (from.grid.size / to.grid.w) / from.grid.size;
+		ptX = (to.grid.size - to.grid.bH) / 2;
+		ptY = 3;
+
+		// console.log( to.grid.size, from.grid.size );
 		
 		// top-level zoom in
 		this.els.topLevel.css({
@@ -89,6 +100,10 @@ let Anim = {
 				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
 			});
 		
+		// console.log(from);
+		// console.log(to);
+		// return;
+
 		requestAnimationFrame(() =>
 			this.els.view.cssSequence("zoom-in", "transitionend", el => {
 				// temp flag

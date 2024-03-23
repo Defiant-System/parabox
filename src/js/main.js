@@ -77,6 +77,7 @@ const parabox = {
 					mini: el.data("mini"),
 					x: +el.cssProp("--x"),
 					y: +el.cssProp("--y"),
+					enter: "right"
 				};
 				if (!el.cssProp("--x")) {
 					value.x = Math.floor(event.offsetX / value.size);
