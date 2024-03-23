@@ -853,12 +853,6 @@ content {
 			.top-level {
 				filter: grayscale(1);
 				transition: filter var( --dur ) ease-in-out;
-				--btX: -822px;
-				--btY: 462px;
-				--btS: 6.6129;
-				--ptX: 38px;
-				--ptY: 2px;
-				--ptS: 0.2;
 
 				> .box.board {
 					transition: all var( --dur ) ease-in-out;
@@ -915,12 +909,6 @@ content {
 
 			.zoom-level {
 				opacity: 0;
-				--btX: 126px;
-				--btY: -71px;
-				--btS: 0.15;
-				--ptX: -255px;
-				--ptY: -1px;
-				--ptS: 5;
 			
 				> .box.board {
 					transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
@@ -934,13 +922,7 @@ content {
 
 		.zoom-level {
 			z-index: 101;
-			--btX: 126px;
-			--btY: -71px;
-			--btS: .15;
-			--ptX: -255px;
-			--ptY: -1px;
-			--ptS: 5;
-
+			
 			> .box.board {
 				transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
 

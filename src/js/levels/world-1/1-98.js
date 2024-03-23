@@ -6,10 +6,7 @@ Level["1-98"] = {
 	// player: { y: 3, x: 5 }, // to right
 	player: { y: 3, x: 5 }, // to left
 	block: [
-		{ y: 4, x: 2, mini: "1-98.1" },
 		{ y: 3, x: 6, mini: "1-98.1" },
-		{ y: 2, x: 3, mini: "1-98.1" },
-		{ y: 6, x: 4, mini: "1-98.1" },
 	],
 	walls: [
 		[{ "key": "NE" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NW" }],
