@@ -74,9 +74,9 @@ let Game = {
 		htm.push(`<div class="box board grid-${grid} ${corners.join(" ")}" data-level-id="${id}" style="--bg-color: ${level.data.bg}; --fg-filter: ${level.data.filter}; --w: ${size.w}; --h: ${size.h};">`);
 		htm.push(`<div class="floor-tiles"></div>`);
 		htm.push(walls.join(""));
-		if (player.length) htm.push(player.join(""));
 		if (voids.length) htm.push(voids.join(""));
 		if (blocks.length) htm.push(blocks.join(""));
+		if (player.length) htm.push(player.join(""));
 		htm.push(`</div>`);
 
 		return { id, level: level.data, board, size, walls, player, voids, blocks, htm };

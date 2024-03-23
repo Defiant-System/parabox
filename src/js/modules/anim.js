@@ -27,14 +27,16 @@ let Anim = {
 		};
 	},
 	zoomOut() {
+		let btX = 126,
+			btY = -71,
+			btS = 0.15,
+			ptX = -255,
+			ptY = -1,
+			ptS = 5;
 		// zoom/fade out top-level player
 		this.els.topLevel.css({
-				"--btX": "126px",
-				"--btY": "-71px",
-				"--btS": "0.15",
-				"--ptX": "-255px",
-				"--ptY": "-1px",
-				"--ptS": "5",
+				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
+				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
 			});
 
 		this.els.view.cssSequence("zoom-out", "transitionend", el => {
@@ -49,37 +51,38 @@ let Anim = {
 	zoomGrid(coord) {
 		// render mini map
 		let player = { y: 2, x: 0 },
-			{ htm } = Game.paint(coord.mini, { player, zoom: true });
+			{ htm } = Game.paint(coord.mini, { player, zoom: true }),
+			btX = 126,
+			btY = -71,
+			btS = .15,
+			ptX = -255,
+			ptY = -1,
+			ptS = 5;
 		// render
 		this.els.zoomLevel.css({
-				"--btX": "126px",
-				"--btY": "-71px",
-				"--btS": ".15",
-				"--ptX": "-255px",
-				"--ptY": "-1px",
-				"--ptS": "5",
+				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
+				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
 			})
-			.html(htm.join(""));;
+			.html(htm.join(""));
+
+		let from = this.getBoard(this.els.topLevel),
+			to = this.getBoard(this.els.zoomLevel);
 
 		/* from:    g: 9x9    w: 553    t: 69     s: 62    
 		 * to:      g: 5x5    w: 405    t: 122    s: 82   
 		 * coord:   x: 6      y: 3
 		 */
-
-		let from = this.getBoard(this.els.topLevel),
-			to = this.getBoard(this.els.zoomLevel),
-			scale = to.offset.width / from.grid.size,
-			tX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.left - to.offset.left),
-			tY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 30;
+		btX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.left - to.offset.left);
+		btY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 30;
+		btS = to.offset.width / from.grid.size;
+		ptX = 38;
+		ptY = 2;
+		ptS = 0.2;
 			
 		// top-level zoom in
 		this.els.topLevel.css({
-				"--btX": `${tX}px`,
-				"--btY": `${tY}px`,
-				"--btS": scale,
-				"--ptX": `38px`,
-				"--ptY": `2px`,
-				"--ptS": `0.2`,
+				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
+				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
 			});
 		
 		this.els.view.cssSequence("zoom-in", "transitionend", el => {
