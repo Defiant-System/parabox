@@ -25,6 +25,10 @@ let Anim = {
 				width: +bEl.prop("offsetWidth"),
 				height: +bEl.prop("offsetHeight"),
 			},
+			player: {
+				x: +pEl.cssProp("--x"),
+				y: +pEl.cssProp("--y"),
+			}
 		};
 	},
 	zoomOut() {
@@ -58,12 +62,12 @@ let Anim = {
 			{ htm } = Game.paint(coord.mini, { player, zoom: true }),
 			from = this.getBoard(this.els.topLevel),
 			to = this.getBoard(this.els.zoomLevel.html(htm.join(""))),
+			btS = from.grid.size / to.offset.width,
 			btX = 126,
 			btY = -71,
-			btS = from.grid.size / to.offset.width,
-			ptX = -255,
-			ptY = -1,
-			ptS = to.offset.width / to.grid.size;
+			ptS = to.offset.width / to.grid.size,
+			ptX = to.grid.size * (to.player.x - Math.ceil(to.grid.w / 2)),
+			ptY = to.grid.size * (to.player.y - Math.ceil(to.grid.h / 2) + 1);
 
 		// render
 		this.els.zoomLevel.css({
@@ -77,18 +81,17 @@ let Anim = {
 		ptX = 38;
 		ptY = 3;
 		ptS = (from.grid.size / to.grid.w) / from.grid.size;
-			
+		
 		// top-level zoom in
 		this.els.topLevel.css({
 				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
 				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
 			});
 		
-		requestAnimationFrame(() => {
+		requestAnimationFrame(() =>
 			this.els.view.cssSequence("zoom-in", "transitionend", el => {
 				// temp flag
 				this.zoomed = true;
-			});
-		});
+			}));
 	}
 };

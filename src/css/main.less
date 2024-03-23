@@ -851,8 +851,8 @@ content {
 			transition: min-width var( --dur ) ease-in-out;
 
 			.top-level {
-				filter: grayscale(1);
-				transition: filter var( --dur ) ease-in-out;
+				// filter: grayscale(1);
+				// transition: filter var( --dur ) ease-in-out;
 
 				> .box.board {
 					transition: all var( --dur ) ease-in-out;
@@ -867,6 +867,8 @@ content {
 						opacity: 0;
 						transition: all var( --dur ) ease-in-out;
 						transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
+
+						i { opacity: 0; }  // prevents "double" set of eyes
 					}
 				}
 			}
@@ -882,6 +884,8 @@ content {
 					> .box.player {
 						transition: all var( --dur ) ease-in-out;
 						transform: translate(0, 0) scale(1);
+
+						i { opacity: 1; }  // prevents "double" set of eyes
 					}
 				}
 			}
@@ -903,6 +907,8 @@ content {
 					> .box.player {
 						transform: translate(0, 0) scale(1);
 						opacity: 1;
+
+						i { opacity: 1; }  // prevents "double" set of eyes
 					}
 				}
 			}
@@ -915,6 +921,8 @@ content {
 
 					> .box.player {
 						transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
+
+						i { opacity: 0; }  // prevents "double" set of eyes
 					}
 				}
 			}
@@ -922,7 +930,7 @@ content {
 
 		.zoom-level {
 			z-index: 101;
-			opacity: 0;
+			opacity: 0.5;
 			
 			> .box.board {
 				transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));

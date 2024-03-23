@@ -16,7 +16,7 @@
 		<stop  offset="1" style="stop-color:#000;stop-opacity:0"/>
 	</radialGradient>
 	<filter filterUnits="objectBoundingBox" id="dropshadow">
-		<feOffset dx="0" dy="1.5" in="SourceAlpha" result="defappShadowOffsetOuter1"></feOffset>
+		<feOffset dx="0" dy="1.25" in="SourceAlpha" result="defappShadowOffsetOuter1"></feOffset>
 		<feGaussianBlur stdDeviation="2" in="defappShadowOffsetOuter1" result="defappShadowBlurOuter1"></feGaussianBlur>
 		<feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 .5 0" type="matrix" in="defappShadowBlurOuter1" result="defappShadowMatrixOuter1"></feColorMatrix>
 		<feMerge>
