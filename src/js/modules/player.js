@@ -47,8 +47,8 @@ let Player = {
 		return {
 			x,
 			y,
-			above: Game.board[y-1][x],
-			below: Game.board[y+1][x],
+			above: Game.board[y-1] ? Game.board[y-1][x] : null,
+			below: Game.board[y+1] ? Game.board[y+1][x] : null,
 			sideLeft: Game.board[y][x-1],
 			sideRight: Game.board[y][x+1],
 		};

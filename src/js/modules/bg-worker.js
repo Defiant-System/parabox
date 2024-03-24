@@ -13,8 +13,8 @@ let Anim = {
 			case "start":
 				Self.cvs = event.canvas;
 				Self.ctx = Self.cvs.getContext("2d");
-				// Self.dispatch({ type: "create-scene" });
-				// Self.draw();
+				Self.dispatch({ type: "create-scene" });
+				Self.draw();
 				break;
 			case "stop":
 			case "pause":
