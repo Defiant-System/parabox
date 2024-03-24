@@ -44,6 +44,8 @@ let Anim = {
 		// 	});
 
 		this.els.view.cssSequence("zoom-out", "transitionend", el => {
+			// transport in to zoomed level
+			Player.transport(this.els.topLevel, this.parentBoard);
 			// reset root element
 			el.removeClass("zoom-in zoom-out");
 			// empty zoom level element
@@ -102,6 +104,8 @@ let Anim = {
 		
 		requestAnimationFrame(() =>
 			this.els.view.cssSequence("zoom-in", "transitionend", el => {
+				// save reference to parent board
+				this.parentBoard = Game.board;
 				// transport in to zoomed level
 				Player.transport(this.els.zoomLevel, board);
 				// temp flag

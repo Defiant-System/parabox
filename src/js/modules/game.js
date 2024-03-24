@@ -146,16 +146,17 @@ let Game = {
 		let playerX = Utils.getX(playerCoords.x, direction, 1);
 		let blockY = Utils.getY(playerCoords.y, direction, 2);
 		let blockX = Utils.getX(playerCoords.x, direction, 2);
+		let cell = this.board[blockY][blockX];
 
 		// Don't move if the movement pushes a box into a wall
-		if (Utils.isWall(this.board[blockY][blockX])) {
-			if (this.board[playerY][playerX] === MINI) this.enterMinimap(playerCoords, direction);
+		if (Utils.isWall(cell)) {
+			if (this.board[playerY][playerX] === MINI) this.enterMinimap({ y: playerY, x: playerX }, direction);
 			return;
 		}
 
 		// Count how many blocks are in a row
 		let blocksInARow = 0;
-		if (Utils.isBlock(this.board[blockY][blockX])) {
+		if (Utils.isBlock(cell)) {
 			blocksInARow = Utils.countBlocks(1, blockY, blockX, direction, this.board);
 			// See what the next block is
 			let bY = Utils.getY(playerY, direction, blocksInARow),
@@ -175,7 +176,6 @@ let Game = {
 				this.movePlayer(playerCoords, direction);
 			}
 		} else {
-				console.log(3);
 			// Move box; if on top of void, make into a success box
 			let result = Utils.isVoid(this.levelClean[blockY][blockX]) ? SUCCESS : this.board[playerY][playerX];
 			this.board[blockY][blockX] = result;
@@ -183,10 +183,10 @@ let Game = {
 			this.movePlayer(playerCoords, direction);
 		}
 	},
-	enterMinimap(playerCoords, enter) {
-		let x = 7,
-			y = 3,
-			mini = "1-98.1";
+	enterMinimap(coords, enter) {
+		let { x, y } = coords,
+			mEl = this.el.find(`.box[data-id="${y}-${x}"]`),
+			mini = mEl.data("mini");
 		Anim.zoomGrid({ x, y, enter, mini });
 	},
 	moveBlockEl(from, to) {
@@ -213,7 +213,7 @@ let Game = {
 			this.movePlayerAndBoxes(playerCoords, direction);
 		}
 		if (Utils.isOff(adjacentCell[direction])) {
-			console.log("get off this map");
+			Anim.zoomOut();
 		}
 		// check if level is cleared
 		this.checkWin();
