@@ -863,7 +863,7 @@ content {
 						transition: all var( --dur ) ease-in-out;
 					}
 
-					> .box.player {
+					> .box.player:not(.go-right, .go-left, .go-up, .go-down) {
 						opacity: 0;
 						transition: all var( --dur ) ease-in-out;
 						transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
@@ -879,7 +879,7 @@ content {
 					transition: all var( --dur ) ease-in-out;
 					transform: translate(0, 0) scale(1);
 
-					> .box.player {
+					> .box.player:not(.go-right, .go-left, .go-up, .go-down) {
 						transition: all var( --dur ) ease-in-out;
 						transform: translate(0, 0) scale(1);
 					}
@@ -900,7 +900,7 @@ content {
 						opacity: 1;
 					}
 
-					> .box.player {
+					> .box.player:not(.go-right, .go-left, .go-up, .go-down) {
 						transform: translate(0, 0) scale(1);
 						opacity: 1;
 					}
@@ -913,7 +913,7 @@ content {
 				> .box.board {
 					transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
 
-					> .box.player {
+					> .box.player:not(.go-right, .go-left, .go-up, .go-down) {
 						opacity: 0;
 						transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
 					}
@@ -924,11 +924,11 @@ content {
 		.zoom-level {
 			z-index: 101;
 			opacity: 0;
-			
+
 			> .box.board {
 				transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
 
-				> .box.player {
+				> .box.player:not(.go-right, .go-left, .go-up, .go-down) {
 					transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
 				}
 			}
