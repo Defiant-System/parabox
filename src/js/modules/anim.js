@@ -78,7 +78,7 @@ let Anim = {
 			btX = (from.grid.size * (coord.x - Math.floor(from.grid.w / 2))) + 2,
 			btY = (from.grid.size * (coord.y - Math.floor(from.grid.h / 2))) - to.grid.bH,
 			ptS = to.offset.width / to.grid.size,
-			ptX = to.grid.size * (player.x - Math.ceil(to.grid.w / 2)),
+			ptX = to.grid.size * (player.x - Math.ceil(to.grid.w / 2)) + 182,
 			ptY = to.grid.size * (player.y - Math.ceil(to.grid.h / 2) + 1);
 		
 		// render
@@ -91,10 +91,21 @@ let Anim = {
 		btY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 20;
 		btS = to.offset.width / from.grid.size;
 		ptS = (from.grid.size / to.grid.w) / from.grid.size;
-		ptX = 37;
+		// left
+		ptX = -37;
 		ptY = 4;
-		// ptX = 42;
-		// ptY = -3;
+
+		// right
+		// ptX = 37;
+		// ptY = 4;
+
+		// up
+		// ptX = 0;
+		// ptY = -37;
+
+		// down
+		// ptX = 0;
+		// ptY = 37;
 
 		// top-level zoom in
 		this.els.topLevel.css({
