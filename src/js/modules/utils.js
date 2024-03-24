@@ -1,6 +1,7 @@
 
 // constans
-let EMPTY = "empty",
+let OFF = "off",
+	EMPTY = "empty",
 	WALL = "wall",
 	VOID = "void",
 	EXIT = "exit",
@@ -36,6 +37,9 @@ let Utils = {
 	},
 	isMini(cell) {
 		return [MINI].includes(cell);
+	},
+	isOff(cell) {
+		return [OFF].includes(cell);
 	},
 	getX(x, direction, spaces = 1) {
 		if (direction === "up" || direction === "down") return x;

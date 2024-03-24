@@ -175,6 +175,7 @@ let Game = {
 				this.movePlayer(playerCoords, direction);
 			}
 		} else {
+				console.log(3);
 			// Move box; if on top of void, make into a success box
 			let result = Utils.isVoid(this.levelClean[blockY][blockX]) ? SUCCESS : this.board[playerY][playerX];
 			this.board[blockY][blockX] = result;
@@ -210,6 +211,9 @@ let Game = {
 		}
 		if (Utils.isBlock(adjacentCell[direction])) {
 			this.movePlayerAndBoxes(playerCoords, direction);
+		}
+		if (Utils.isOff(adjacentCell[direction])) {
+			console.log("get off this map");
 		}
 		// check if level is cleared
 		this.checkWin();
