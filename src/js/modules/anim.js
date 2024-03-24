@@ -69,7 +69,7 @@ let Anim = {
 				right: { y: gM, x: 0 },
 			},
 			player = entrance[coord.enter],
-			{ htm } = Game.paint(coord.mini, { player, zoom: true }),
+			{ board, htm } = Game.paint(coord.mini, { player, zoom: true }),
 			from = this.getBoard(this.els.topLevel),
 			to = this.getBoard(this.els.zoomLevel.html(htm.join(""))),
 			btS = from.grid.size / to.offset.width,
@@ -102,6 +102,8 @@ let Anim = {
 		
 		requestAnimationFrame(() =>
 			this.els.view.cssSequence("zoom-in", "transitionend", el => {
+				// transport in to zoomed level
+				Player.transport(this.els.zoomLevel, board);
 				// temp flag
 				this.zoomed = true;
 			}));

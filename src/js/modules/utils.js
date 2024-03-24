@@ -35,7 +35,7 @@ let Utils = {
 		return [VOID, SUCCESS].includes(cell);
 	},
 	isMini(cell) {
-		return [WALL].includes(cell);
+		return [MINI].includes(cell);
 	},
 	getX(x, direction, spaces = 1) {
 		if (direction === "up" || direction === "down") return x;

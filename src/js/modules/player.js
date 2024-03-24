@@ -11,6 +11,17 @@ let Player = {
 		// game started - push initial state
 		History.dispatch({ type: "history-push-state" });
 	},
+	transport(zoomLevel, board) {
+		let zPlayer = zoomLevel.find(".player"),
+			x = +zPlayer.cssProp("--x"),
+			y = +zPlayer.cssProp("--y"),
+			pos = new Point(x, y);
+
+		this.el = zPlayer;
+		this.pos = pos;
+
+		Game.board = board;
+	},
 	move(dir) {
 		let name = `go-${dir}`,
 			vec = {

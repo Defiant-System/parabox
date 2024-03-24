@@ -148,7 +148,10 @@ let Game = {
 		let blockX = Utils.getX(playerCoords.x, direction, 2);
 
 		// Don't move if the movement pushes a box into a wall
-		if (Utils.isWall(this.board[blockY][blockX])) return;
+		if (Utils.isWall(this.board[blockY][blockX])) {
+			if (this.board[playerY][playerX] === MINI) this.enterMinimap(playerCoords, direction);
+			return;
+		}
 
 		// Count how many blocks are in a row
 		let blocksInARow = 0;
@@ -179,6 +182,12 @@ let Game = {
 			this.movePlayer(playerCoords, direction);
 		}
 	},
+	enterMinimap(playerCoords, enter) {
+		let x = 7,
+			y = 3,
+			mini = "1-98.1";
+		Anim.zoomGrid({ x, y, enter, mini });
+	},
 	moveBlockEl(from, to) {
 		let bEl = this.el.find(`.box[data-id="${from[0]}-${from[1]}"]`),
 			style = { "--y": to[0], "--x": to[1] },
@@ -195,8 +204,6 @@ let Game = {
 				[directions.left]: sideLeft,
 				[directions.right]: sideRight,
 			};
-
-		// console.log( adjacentCell[direction] );
 
 		if (Utils.isTraversible(adjacentCell[direction])) {
 			this.movePlayer(playerCoords, direction);
