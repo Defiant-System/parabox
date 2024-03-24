@@ -6,6 +6,7 @@ let EMPTY = "empty",
 	EXIT = "exit",
 	BLOCK = "block",
 	SUCCESS = "success",
+	MINI = "mini",
 	PLAYER = "player";
 
 let directions = {
@@ -19,7 +20,7 @@ let directions = {
 
 let Utils = {
 	isBlock(cell) {
-		return [BLOCK, SUCCESS].includes(cell);
+		return [MINI, BLOCK, SUCCESS].includes(cell);
 	},
 	isPlayer(cell) {
 		return [PLAYER].includes(cell);
@@ -32,6 +33,9 @@ let Utils = {
 	},
 	isVoid(cell) {
 		return [VOID, SUCCESS].includes(cell);
+	},
+	isMini(cell) {
+		return [WALL].includes(cell);
 	},
 	getX(x, direction, spaces = 1) {
 		if (direction === "up" || direction === "down") return x;

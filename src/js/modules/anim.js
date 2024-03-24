@@ -34,14 +34,14 @@ let Anim = {
 	},
 	zoomOut() {
 		// zoom/fade out top-level player
-		this.els.topLevel.css({
-				"--btX": this.els.zoomLevel.cssProp("--btX"),
-				"--btY": this.els.zoomLevel.cssProp("--btY"),
-				"--btS": this.els.zoomLevel.cssProp("--btS"),
-				"--ptX": this.els.zoomLevel.cssProp("--ptX"),
-				"--ptY": this.els.zoomLevel.cssProp("--ptY"),
-				"--ptS": this.els.zoomLevel.cssProp("--ptS"),
-			});
+		// this.els.topLevel.css({
+		// 		"--btX": this.els.zoomLevel.cssProp("--btX"),
+		// 		"--btY": this.els.zoomLevel.cssProp("--btY"),
+		// 		"--btS": this.els.zoomLevel.cssProp("--btS"),
+		// 		"--ptX": this.els.zoomLevel.cssProp("--ptX"),
+		// 		"--ptY": this.els.zoomLevel.cssProp("--ptY"),
+		// 		"--ptS": this.els.zoomLevel.cssProp("--ptS"),
+		// 	});
 
 		this.els.view.cssSequence("zoom-out", "transitionend", el => {
 			// reset root element
@@ -86,24 +86,20 @@ let Anim = {
 			});
 		
 		btX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.left - to.offset.left);
-		btY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 30;
+		btY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 20;
 		btS = to.offset.width / from.grid.size;
 		ptS = (from.grid.size / to.grid.w) / from.grid.size;
-		ptX = (to.grid.size - to.grid.bH) / 2;
-		ptY = 3;
+		ptX = 37;
+		ptY = 4;
+		// ptX = 42;
+		// ptY = -3;
 
-		// console.log( to.grid.size, from.grid.size );
-		
 		// top-level zoom in
 		this.els.topLevel.css({
 				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
 				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
 			});
 		
-		// console.log(from);
-		// console.log(to);
-		// return;
-
 		requestAnimationFrame(() =>
 			this.els.view.cssSequence("zoom-in", "transitionend", el => {
 				// temp flag

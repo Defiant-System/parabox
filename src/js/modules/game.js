@@ -63,7 +63,7 @@ let Game = {
 				}
 				blocks.push(`<div class="box ${color}" data-mini="${block.mini}" data-id="${block.y}-${block.x}" style="${style}">${sub.join("")}</div>`);
 				// update board
-				board[block.y][block.x] = BLOCK;
+				board[block.y][block.x] = block.mini ? MINI : BLOCK;
 			}
 		}
 
@@ -162,7 +162,7 @@ let Game = {
 				while (blocksInARow--) {
 					let oY = Utils.getY(blockY, direction, blocksInARow),
 						oX = Utils.getX(blockX, direction, blocksInARow),
-						result = Utils.isVoid(this.levelClean[oY][oX]) ? SUCCESS : BLOCK;
+						result = Utils.isVoid(this.levelClean[oY][oX]) ? SUCCESS : this.board[playerY][playerX];
 					this.board[oY][oX] = result;
 					// move DOM element
 					let nY = Utils.getY(playerY, direction, blocksInARow),
@@ -173,7 +173,7 @@ let Game = {
 			}
 		} else {
 			// Move box; if on top of void, make into a success box
-			let result = Utils.isVoid(this.levelClean[blockY][blockX]) ? SUCCESS : BLOCK;
+			let result = Utils.isVoid(this.levelClean[blockY][blockX]) ? SUCCESS : this.board[playerY][playerX];
 			this.board[blockY][blockX] = result;
 			this.moveBlockEl([playerY, playerX], [blockY, blockX]);
 			this.movePlayer(playerCoords, direction);
@@ -196,6 +196,8 @@ let Game = {
 				[directions.right]: sideRight,
 			};
 
+		// console.log( adjacentCell[direction] );
+
 		if (Utils.isTraversible(adjacentCell[direction])) {
 			this.movePlayer(playerCoords, direction);
 		}
@@ -217,8 +219,9 @@ let Game = {
 								.reduce((acc, row) => acc + row.filter(c => c === SUCCESS).length, 0);
 		let voidCount = this.board.filter(row => row.some(cell => cell === VOID))
 							.reduce((acc, row) => acc + row.filter(c => c === VOID).length, 0);
-		if (voidCount === 0 && successCount === this.blockCount) this.el.find(".exit").addClass("ready");
-
+		if (voidCount === 0 && successCount === this.blockCount) {
+			setTimeout(() => this.el.find(".exit").addClass("ready"), 500);
+		}
 		// return if player is not on exit square
 		if (!Player.pos.isOn(exitX, exitY)) return;
 
@@ -229,8 +232,7 @@ let Game = {
 		}
 
 		// check if level is complete
-		let rowsWithSuccess = this.board.filter(row => row.some(cell => cell === SUCCESS));
-		if (rowsWithVoid.length === 0 && rowsWithSuccess.length === this.blockCount) {
+		if (successCount === this.blockCount) {
 			setTimeout(() => parabox.content.addClass("game-won"), 500);
 		}
 	}

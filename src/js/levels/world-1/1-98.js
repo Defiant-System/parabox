@@ -8,6 +8,7 @@ Level["1-98"] = {
 	block: [
 		{ y: 3, x: 6, mini: "1-98.1" },
 		// { y: 3, x: 6, mini: "1-98.2" },
+		// { y: 3, x: 6, mini: "1-98.3" },
 	],
 	walls: [
 		[{ "key": "NE" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NW" }],
@@ -44,6 +45,21 @@ Level["1-98.2"] = {
 		[{ "key": "NWSE" }, {}, { "key": "NWSE" }],
 		[{}, {}, {}],
 		[{ "key": "NWSE" }, {}, { "key": "NWSE" }]
+	]
+};
+
+Level["1-98.3"] = {
+	grid: 7,
+	bg: "#369",
+	filter: "sepia(1) hue-rotate(145deg) saturate(1.5) brightness(0.75)",
+	walls: [
+		[{ "key": "NE" }, { "key": "NS" }, { "key": "NWS" }, {}, { "key": "NSE" }, { "key": "NS" }, { "key": "NW" }],
+		[{ "key": "WE","sub":["NW-NE"] }, {}, {}, {}, {}, {}, { "key": "WE","sub":["NE-NW"] }],
+		[{ "key": "WSE" }, {}, {}, {}, {}, {}, { "key": "WSE" }],
+		[{}, {}, {}, {}, {}, {}, {}],
+		[{ "key": "NWE" }, {}, {}, {}, {}, {}, { "key": "NWE" }],
+		[{ "key": "WE" }, {}, {}, {}, {}, {}, { "key": "WE" }],
+		[{ "key": "SE" }, { "key": "NS","sub":["NE-ES"] }, { "key": "NWS" }, {}, { "key": "NSE" }, { "key": "NS" }, { "key": "WS","sub":["NE-WS"] }]
 	]
 };
 
