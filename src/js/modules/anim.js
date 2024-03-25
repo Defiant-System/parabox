@@ -77,10 +77,19 @@ let Anim = {
 			btS = from.grid.size / to.offset.width,
 			btX = (from.grid.size * (coord.x - Math.floor(from.grid.w / 2))) + 2,
 			btY = (from.grid.size * (coord.y - Math.floor(from.grid.h / 2))) - to.grid.bH,
+			pushX = ((to.offset.width - (to.grid.size * (to.grid.size / to.offset.width))) / 2),
 			ptS = to.offset.width / to.grid.size,
-			ptX = to.grid.size * (player.x - Math.ceil(to.grid.w / 2)) + 182,
-			ptY = to.grid.size * (player.y - Math.ceil(to.grid.h / 2) + 1);
+			ptX = to.grid.size * (player.x - Math.ceil(to.grid.w / 2)),
+			ptY = to.grid.size * (player.y - Math.ceil(to.grid.h / 2) + 1),
+			sign = "";
 		
+		switch (coord.enter) {
+			case "top": /* TODO */ break;
+			case "bottom": /* TODO */ break;
+			case "right": break;
+			case "left": ptX += pushX; sign = "-"; break;
+		}
+
 		// render
 		this.els.zoomLevel.css({
 				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
@@ -92,12 +101,12 @@ let Anim = {
 		btS = to.offset.width / from.grid.size;
 		ptS = (from.grid.size / to.grid.w) / from.grid.size;
 		// left
-		ptX = -37;
-		ptY = 4;
+		// ptX = -37;
+		// ptY = 4;
 
 		// right
-		// ptX = 37;
-		// ptY = 4;
+		ptX = `${sign}60%`;
+		ptY = "4px";
 
 		// up
 		// ptX = 0;
@@ -110,7 +119,7 @@ let Anim = {
 		// top-level zoom in
 		this.els.topLevel.css({
 				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
-				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
+				"--ptX": `${ptX}`, "--ptY": `${ptY}`, "--ptS": ptS,
 			});
 		
 		requestAnimationFrame(() =>
