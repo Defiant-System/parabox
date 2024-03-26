@@ -77,17 +77,33 @@ let Anim = {
 			btS = from.grid.size / to.offset.width,
 			btX = (from.grid.size * (coord.x - Math.floor(from.grid.w / 2))) + 2,
 			btY = (from.grid.size * (coord.y - Math.floor(from.grid.h / 2))) - to.grid.bH,
-			pushX = ((to.offset.width - (to.grid.size * (to.grid.size / to.offset.width))) / 2),
 			ptS = to.offset.width / to.grid.size,
 			ptX = to.grid.size * (player.x - Math.ceil(to.grid.w / 2)),
 			ptY = to.grid.size * (player.y - Math.ceil(to.grid.h / 2) + 1),
-			sign = "";
+			mpX, mpY;
 		
 		switch (coord.enter) {
-			case "top": /* TODO */ break;
-			case "bottom": /* TODO */ break;
-			case "right": break;
-			case "left": ptX += pushX; sign = "-"; break;
+			case "up":
+				ptX += 105;
+				ptY += 105;
+				mpX = "1px";
+				mpY = "-50%";
+				break;
+			case "down":
+				ptX += 105;
+				ptY -= 105;
+				mpX = "1px";
+				mpY = "65%";
+				break;
+			case "right":
+				mpX = "60%";
+				mpY = "4px";
+				break;
+			case "left":
+				ptX += ((to.offset.width - (to.grid.size * (to.grid.size / to.offset.width))) / 2);
+				mpX = "-60%";
+				mpY = "4px";
+				break;
 		}
 
 		// render
@@ -100,21 +116,8 @@ let Anim = {
 		btY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 20;
 		btS = to.offset.width / from.grid.size;
 		ptS = (from.grid.size / to.grid.w) / from.grid.size;
-		// left
-		// ptX = -37;
-		// ptY = 4;
-
-		// right
-		ptX = `${sign}60%`;
-		ptY = "4px";
-
-		// up
-		// ptX = 0;
-		// ptY = -37;
-
-		// down
-		// ptX = 0;
-		// ptY = 37;
+		ptX = mpX;
+		ptY = mpY;
 
 		// top-level zoom in
 		this.els.topLevel.css({

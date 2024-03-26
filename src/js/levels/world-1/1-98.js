@@ -4,7 +4,7 @@ Level["1-98"] = {
 	bg: "#a43e3e",
 	filter: "sepia(.5) brightness(.8) hue-rotate(320deg) saturate(4)",
 	// player: { y: 3, x: 5 }, // to right
-	player: { y: 3, x: 7 }, // to left
+	player: { y: 4, x: 6 }, // to left
 	block: [
 		{ y: 3, x: 6, mini: "1-98.1" },
 		// { y: 3, x: 6, mini: "1-98.2" },
