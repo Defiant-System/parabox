@@ -44,6 +44,8 @@ let Anim = {
 		// 	});
 
 		this.els.view.cssSequence("zoom-out", "transitionend", el => {
+			// pause background worker
+			Bg.dispatch({ type: "resume" });
 			// transport in to zoomed level
 			Player.transport(this.els.topLevel, this.parentBoard);
 			// reset root element
@@ -131,6 +133,8 @@ let Anim = {
 				this.parentBoard = Game.board;
 				// transport in to zoomed level
 				Player.transport(this.els.zoomLevel, board);
+				// pause background worker
+				Bg.dispatch({ type: "pause" });
 				// temp flag
 				this.zoomed = true;
 			}));

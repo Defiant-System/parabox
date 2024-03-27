@@ -1,8 +1,8 @@
 
 Level["1-98"] = {
 	grid: 9,
-	bg: "#a43e3e",
-	filter: "sepia(.5) brightness(.8) hue-rotate(320deg) saturate(4)",
+	bg: "#687b47",
+	filter: "sepia(.5) brightness(.8) hue-rotate(90deg) saturate(4)",
 	// player: { y: 3, x: 5 }, // to right
 	player: { y: 4, x: 6 }, // to left
 	block: [
@@ -25,8 +25,8 @@ Level["1-98"] = {
 
 Level["1-98.1"] = {
 	grid: 5,
-	bg: "#136",
-	filter: "sepia(1) hue-rotate(175deg) saturate(2) brightness(.65)",
+	bg: "#11664a",
+	filter: "sepia(1) hue-rotate(75deg) saturate(2) brightness(.65)",
 	walls: [
 		[{ "key": "NE" }, { "key": "NW" }, {}, { "key": "NE" }, { "key": "NW" }],
 		[{ "key": "SE" }, { "key": "WS" }, {}, { "key": "SE" }, { "key": "WS" }],

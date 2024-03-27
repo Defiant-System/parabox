@@ -15,7 +15,6 @@ let Anim = {
 				Self.dispatch({ type: "create-scene" });
 				Self.draw();
 				break;
-			case "stop":
 			case "pause":
 				Self.paused = true;
 				break;
