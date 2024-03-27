@@ -57,11 +57,6 @@ let Anim = {
 		});
 	},
 	zoomGrid(coord) {
-		/* from:    g: 9x9    w: 553    t: 69     s: 62    
-		 * to:      g: 5x5    w: 405    t: 122    s: 82   
-		 * coord:   x: 6      y: 3
-		 */
-
 		// render mini map
 		let grid = Level[coord.mini].grid,
 			gX = grid - 1,
@@ -109,7 +104,6 @@ let Anim = {
 				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
 			});
 
-
 		// top-level zoom in
 		btX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.left - to.offset.left);
 		btY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 20;
@@ -121,6 +115,8 @@ let Anim = {
 
 		requestAnimationFrame(() =>
 			this.els.view.cssSequence("zoom-in", "transitionend", el => {
+				// reset game-view element
+				el.removeClass("pre-anim");
 				// save reference to parent board
 				this.parentBoard = Game.board;
 				// transport in to zoomed level
