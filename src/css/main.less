@@ -843,6 +843,25 @@ content {
 		overflow: hidden;
 		--dur: 750ms;
 
+		&.pre-anim {
+			.top-level {
+				> .box.board {
+					> .box.mini.hidden,
+					> .box.player {
+						display: none;
+					}
+				}
+			}
+
+			.zoom-level {
+				> .box.board {
+					> .box.player {
+
+					}
+				}
+			}
+		}
+
 		&.zoom-in {
 			// pointer-events: none;
 			min-width: 2px;
@@ -856,29 +875,29 @@ content {
 					transition: all var( --dur ) ease-in-out;
 					transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
 
-					> .box.mini {
-						opacity: 0;
-						transition: all var( --dur ) ease-in-out;
-					}
+					// > .box.mini {
+					// 	opacity: 0;
+					// 	transition: all var( --dur ) ease-in-out;
+					// }
 
-					> .box.player:not(.go-right, .go-left, .go-up, .go-down) {
-						opacity: 0;
-						transition: all var( --dur ) ease-in-out;
-						transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
-					}
+					// > .box.player:not(.go-right, .go-left, .go-up, .go-down) {
+					// 	opacity: 0;
+					// 	transition: transform var( --dur ) ease-in-out;
+					// 	transform: translate(var( --ptX ), var( --ptY )) scale(var( --ptS ));
+					// }
 				}
 			}
 
 			.zoom-level {
-				opacity: 1;
-				transition: opacity var( --dur ) ease-in-out;
+				// opacity: 1;
+				// transition: opacity var( --dur ) ease-in-out;
 			
 				> .box.board {
 					transition: all var( --dur ) ease-in-out;
 					transform: translate(0, 0) scale(1);
 
 					> .box.player:not(.go-right, .go-left, .go-up, .go-down) {
-						transition: all var( --dur ) ease-in-out;
+						transition: transform var( --dur ) ease-in-out;
 						transform: translate(0, 0) scale(1);
 					}
 				}
@@ -921,7 +940,6 @@ content {
 
 		.zoom-level {
 			z-index: 101;
-			opacity: 0;
 
 			> .box.board {
 				transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));

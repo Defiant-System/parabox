@@ -71,14 +71,24 @@ const parabox = {
 			// temp
 			case "zoom-grid":
 				el = $(event.target);
+				pEl = el.nextAll(".player");
 				if (!el.hasClass("mini")) return;
 				value = {
+					el,
 					size: parseInt(el.cssProp("--size"), 10),
 					mini: el.data("mini"),
 					x: +el.cssProp("--x"),
 					y: +el.cssProp("--y"),
 					enter: "up"
 				};
+
+				switch (true) {
+					case (+pEl.cssProp("--y") === 4): value.enter = "up"; break;
+					case (+pEl.cssProp("--y") === 2): value.enter = "down"; break;
+					case (+pEl.cssProp("--x") === 5): value.enter = "right"; break;
+					case (+pEl.cssProp("--x") === 7): value.enter = "left"; break;
+				}
+
 				if (!el.cssProp("--x")) {
 					value.x = Math.floor(event.offsetX / value.size);
 					value.y = Math.floor(event.offsetY / value.size);

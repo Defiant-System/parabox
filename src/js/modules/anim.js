@@ -80,31 +80,26 @@ let Anim = {
 			btX = (from.grid.size * (coord.x - Math.floor(from.grid.w / 2))) + 2,
 			btY = (from.grid.size * (coord.y - Math.floor(from.grid.h / 2))) - to.grid.bH,
 			ptS = to.offset.width / to.grid.size,
-			ptX = to.grid.size * (player.x - Math.ceil(to.grid.w / 2)),
-			ptY = to.grid.size * (player.y - Math.ceil(to.grid.h / 2) + 1),
-			mpX, mpY;
+			ptX = 0,
+			ptY = 0;
+
+		// hide original mini map
+		coord.el.addClass("hidden");
 		
 		switch (coord.enter) {
 			case "up":
-				ptX += 105;
-				ptY += 105;
-				mpX = "1px";
-				mpY = "-50%";
+				ptY = to.offset.height * .5;
 				break;
 			case "down":
-				ptX += 105;
-				ptY -= 105;
-				mpX = "1px";
-				mpY = "65%";
+				ptY -= to.offset.height * .5;
 				break;
 			case "right":
-				mpX = "60%";
-				mpY = "4px";
+				ptY += 10;
+				ptX -= to.offset.width * .5;
 				break;
 			case "left":
-				ptX += ((to.offset.width - (to.grid.size * (to.grid.size / to.offset.width))) / 2);
-				mpX = "-60%";
-				mpY = "4px";
+				ptY += 10;
+				ptX = to.offset.width * .5;
 				break;
 		}
 
@@ -113,20 +108,17 @@ let Anim = {
 				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
 				"--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS,
 			});
-		
+
+
+		// top-level zoom in
 		btX = ((from.grid.w * to.offset.width) / 2) - (from.offset.width / 2) - (coord.x * to.offset.width) - (from.offset.left - to.offset.left);
 		btY = ((from.grid.h * to.offset.height) / 2) - (from.offset.height / 2) - (coord.y * to.offset.width) - (from.offset.top - to.offset.top) + 20;
 		btS = to.offset.width / from.grid.size;
-		ptS = (from.grid.size / to.grid.w) / from.grid.size;
-		ptX = mpX;
-		ptY = mpY;
-
-		// top-level zoom in
-		this.els.topLevel.css({
-				"--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS,
-				"--ptX": `${ptX}`, "--ptY": `${ptY}`, "--ptS": ptS,
-			});
+		this.els.topLevel.css({ "--btX": `${btX}px`, "--btY": `${btY}px`, "--btS": btS });
 		
+		// pre-anim frame
+		this.els.view.addClass("pre-anim");
+
 		requestAnimationFrame(() =>
 			this.els.view.cssSequence("zoom-in", "transitionend", el => {
 				// save reference to parent board
