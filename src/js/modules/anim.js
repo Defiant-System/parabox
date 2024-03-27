@@ -50,26 +50,15 @@ let Anim = {
 		// reset parent map
 		this.els.topLevel.css({ "--btX": "0px", "--btY": "0px", "--btS": ptS });
 
-
-		switch (direction) {
-			case "up":
-				ptY = -from.offset.height * .5;
-				ptX = 0;
-				break;
-			case "down":
-				ptY = from.offset.height * .5;
-				ptX = 0;
-				break;
-			case "right":
-				ptY = 0;
-				ptX = -from.offset.width * .5;
-				break;
-			case "left":
-				ptY = 0;
-				ptX = from.offset.width * .5;
-				break;
-		}
 		ptS = 5;
+		ptY = 0;
+		ptX = 0;
+		switch (direction) {
+			case "up": ptY -= from.offset.height * .5; break;
+			case "down": ptY = from.offset.height * .5; break;
+			case "right": ptX = from.offset.width * .5; break;
+			case "left": ptX -= from.offset.width * .5; break;
+		}
 		this.els.zoomLevel.css({ "--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS });
 
 		this.els.view.cssSequence("zoom-out", "transitionend", el => {
