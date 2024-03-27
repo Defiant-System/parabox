@@ -44,16 +44,16 @@ let Anim = {
 		// 	});
 
 		this.els.view.cssSequence("zoom-out", "transitionend", el => {
-			// pause background worker
-			Bg.dispatch({ type: "resume" });
 			// transport in to zoomed level
 			Player.transport(this.els.topLevel, this.parentBoard);
 			// reset root element
 			el.removeClass("zoom-in zoom-out");
 			// empty zoom level element
 			this.els.zoomLevel.html("");
-			// temp flag
+			// is-zoomed flag
 			delete this.zoomed;
+			// pause background worker
+			Bg.dispatch({ type: "resume" });
 		});
 	},
 	zoomGrid(coord) {
@@ -123,7 +123,7 @@ let Anim = {
 				Player.transport(this.els.zoomLevel, board);
 				// pause background worker
 				Bg.dispatch({ type: "pause" });
-				// temp flag
+				// is-zoomed flag
 				this.zoomed = true;
 			}));
 	}

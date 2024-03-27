@@ -25,8 +25,10 @@ let Bg = {
 				Self.worker.postMessage({ ...event, canvas: value }, [value]);
 				break;
 			case "pause":
-			case "resume":
 				Self.worker.postMessage(event);
+				break;
+			case "resume":
+				if (window.isFocused && !Anim.zoomed) Self.worker.postMessage(event);
 				break;
 			case "dispose":
 				Self.worker.terminate();

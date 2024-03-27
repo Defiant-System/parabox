@@ -60,6 +60,14 @@ const parabox = {
 				// save settings
 				window.settings.setItem("settings", Self.settings);
 				break;
+			case "window.focus":
+				// resume background worker
+				Bg.dispatch({ type: "resume" });
+				break;
+			case "window.blur":
+				// resume background worker
+				Bg.dispatch({ type: "pause" });
+				break;
 			case "window.keystroke":
 				switch (event.char) {
 					case "up":
