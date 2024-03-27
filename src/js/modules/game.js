@@ -150,7 +150,8 @@ let Game = {
 
 		// Don't move if the movement pushes a box into a wall
 		if (Utils.isWall(cell)) {
-			if (this.board[playerY][playerX] === MINI) {
+			let el = this.el.find(`.box[data-id="${playerY}-${playerX}"]`);
+			if (el.length && el.hasClass("mini")) {
 				this.enterMinimap({ y: playerY, x: playerX }, direction);
 				this.board[playerCoords.y][playerCoords.x] = EMPTY;
 			}
