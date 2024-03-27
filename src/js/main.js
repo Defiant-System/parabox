@@ -101,7 +101,7 @@ const parabox = {
 					value.x = Math.floor(event.offsetX / value.size);
 					value.y = Math.floor(event.offsetY / value.size);
 				}
-				if (Anim.zoomed) Anim.zoomOut();
+				if (Anim.zoomed) Anim.zoomOut(value);
 				else Anim.zoomGrid(value);
 				break;
 			case "zoom-out":

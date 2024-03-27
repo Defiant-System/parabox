@@ -213,7 +213,7 @@ let Game = {
 			this.movePlayerAndBoxes(playerCoords, direction);
 		}
 		if (Utils.isOff(adjacentCell[direction])) {
-			Anim.zoomOut();
+			Anim.zoomOut(playerCoords, direction);
 		}
 		// check if level is cleared
 		this.checkWin();

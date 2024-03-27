@@ -1,9 +1,6 @@
 
 let Anim = {
 	init(canvas) {
-		// initial values
-		this.paused = false;
-
 		// setTimeout(() => { this.paused = true }, 300);
 	},
 	dispatch(event) {
@@ -14,14 +11,17 @@ let Anim = {
 				Self.cvs = event.canvas;
 				Self.ctx = Self.cvs.getContext("2d");
 				Self.dispatch({ type: "create-scene" });
+				Self.paused = false;
 				Self.draw();
 				break;
 			case "pause":
 				Self.paused = true;
 				break;
 			case "resume":
-				Self.paused = false;
-				Self.draw();
+				if (Self.paused) {
+					Self.paused = false;
+					Self.draw();
+				}
 				break;
 			case "create-scene":
 				// boxes

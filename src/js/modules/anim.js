@@ -32,7 +32,14 @@ let Anim = {
 			}
 		};
 	},
-	zoomOut() {
+	zoomOut(playerCoords, direction) {
+		console.log( playerCoords, direction );
+		let exits = {
+				up:    { y: -1, x: 0 },
+				down:  { y: 1,  x: 0 },
+				left:  { y: 0, x: -1 },
+				right: { y: 0, x: 1 },
+			};
 		// zoom/fade out top-level player
 		// this.els.topLevel.css({
 		// 		"--btX": this.els.zoomLevel.cssProp("--btX"),
