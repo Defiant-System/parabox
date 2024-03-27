@@ -185,9 +185,9 @@ let Game = {
 	},
 	enterMinimap(coords, enter) {
 		let { x, y } = coords,
-			mEl = this.el.find(`.box[data-id="${y}-${x}"]`),
-			mini = mEl.data("mini");
-		Anim.zoomGrid({ x, y, enter, mini });
+			el = this.el.find(`.box[data-id="${y}-${x}"]`),
+			mini = el.data("mini");
+		Anim.zoomGrid({ x, y, enter, mini, el });
 	},
 	moveBlockEl(from, to) {
 		let bEl = this.el.find(`.box[data-id="${from[0]}-${from[1]}"]`),

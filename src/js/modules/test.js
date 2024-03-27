@@ -5,7 +5,7 @@ let Test = {
 		// return;
 
 		setTimeout(() => APP.dispatch({ type: "set-game-level", arg: "1-98" }), 200);
-		setTimeout(() => Game.el.find(".mini").trigger("click"), 1200);
+		// setTimeout(() => Game.el.find(".mini").trigger("click"), 1200);
 		return;
 
 		// setTimeout(() => Game.zoomPaint(1), 200);
