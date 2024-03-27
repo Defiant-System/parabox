@@ -33,22 +33,44 @@ let Anim = {
 		};
 	},
 	zoomOut(playerCoords, direction) {
-		console.log( playerCoords, direction );
-		let exits = {
+		let from = this.getBoard(this.els.zoomLevel),
+			exits = {
 				up:    { y: -1, x: 0 },
 				down:  { y: 1,  x: 0 },
 				left:  { y: 0, x: -1 },
 				right: { y: 0, x: 1 },
-			};
-		// zoom/fade out top-level player
-		// this.els.topLevel.css({
-		// 		"--btX": this.els.zoomLevel.cssProp("--btX"),
-		// 		"--btY": this.els.zoomLevel.cssProp("--btY"),
-		// 		"--btS": this.els.zoomLevel.cssProp("--btS"),
-		// 		"--ptX": this.els.zoomLevel.cssProp("--ptX"),
-		// 		"--ptY": this.els.zoomLevel.cssProp("--ptY"),
-		// 		"--ptS": this.els.zoomLevel.cssProp("--ptS"),
-		// 	});
+			},
+			ptY = playerCoords.y + exits[direction].y,
+			ptX = playerCoords.x + exits[direction].x,
+			ptS = 1;
+		
+		// re-position top-level player
+		playerCoords.pEl.css({ "--y": ptY, "--x": ptX });
+
+		// reset parent map
+		this.els.topLevel.css({ "--btX": "0px", "--btY": "0px", "--btS": ptS });
+
+
+		switch (direction) {
+			case "up":
+				ptY = -from.offset.height * .5;
+				ptX = 0;
+				break;
+			case "down":
+				ptY = from.offset.height * .5;
+				ptX = 0;
+				break;
+			case "right":
+				ptY = 0;
+				ptX = -from.offset.width * .5;
+				break;
+			case "left":
+				ptY = 0;
+				ptX = from.offset.width * .5;
+				break;
+		}
+		ptS = 5;
+		this.els.zoomLevel.css({ "--ptX": `${ptX}px`, "--ptY": `${ptY}px`, "--ptS": ptS });
 
 		this.els.view.cssSequence("zoom-out", "transitionend", el => {
 			// transport in to zoomed level

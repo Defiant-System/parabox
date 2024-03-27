@@ -187,6 +187,9 @@ let Game = {
 		let { x, y } = coords,
 			el = this.el.find(`.box[data-id="${y}-${x}"]`),
 			mini = el.data("mini");
+		// save reference to entered mini map
+		this.miniCoord = { x, y, enter, mini, el, pEl: Player.el };
+		// zoom into mini map
 		Anim.zoomGrid({ x, y, enter, mini, el });
 	},
 	moveBlockEl(from, to) {
@@ -213,7 +216,7 @@ let Game = {
 			this.movePlayerAndBoxes(playerCoords, direction);
 		}
 		if (Utils.isOff(adjacentCell[direction])) {
-			Anim.zoomOut(playerCoords, direction);
+			Anim.zoomOut(this.miniCoord, direction);
 		}
 		// check if level is cleared
 		this.checkWin();
