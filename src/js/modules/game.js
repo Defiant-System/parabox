@@ -150,7 +150,10 @@ let Game = {
 
 		// Don't move if the movement pushes a box into a wall
 		if (Utils.isWall(cell)) {
-			if (this.board[playerY][playerX] === MINI) this.enterMinimap({ y: playerY, x: playerX }, direction);
+			if (this.board[playerY][playerX] === MINI) {
+				this.enterMinimap({ y: playerY, x: playerX }, direction);
+				this.board[playerCoords.y][playerCoords.x] = EMPTY;
+			}
 			return;
 		}
 
@@ -186,9 +189,12 @@ let Game = {
 	enterMinimap(coords, enter) {
 		let { x, y } = coords,
 			el = this.el.find(`.box[data-id="${y}-${x}"]`),
-			mini = el.data("mini");
+			mini = el.data("mini"),
+			parent = {
+				pEl: Player.el,
+			};
 		// save reference to entered mini map
-		this.miniCoord = { x, y, enter, mini, el, pEl: Player.el };
+		this.miniCoord = { x, y, enter, mini, el, parent };
 		// zoom into mini map
 		Anim.zoomGrid({ x, y, enter, mini, el });
 	},

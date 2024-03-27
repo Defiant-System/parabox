@@ -20,6 +20,8 @@ let Player = {
 		this.el = zPlayer;
 		this.pos = pos;
 
+		board[y][x] = PLAYER;
+
 		Game.board = board;
 	},
 	move(dir) {

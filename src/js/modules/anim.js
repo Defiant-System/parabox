@@ -45,7 +45,7 @@ let Anim = {
 			ptS = 1;
 		
 		// re-position top-level player
-		playerCoords.pEl.css({ "--y": ptY, "--x": ptX });
+		playerCoords.parent.pEl.css({ "--y": ptY, "--x": ptX });
 
 		// reset parent map
 		this.els.topLevel.css({ "--btX": "0px", "--btY": "0px", "--btS": ptS });
