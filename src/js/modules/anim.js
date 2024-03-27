@@ -50,7 +50,8 @@ let Anim = {
 		// reset parent map
 		this.els.topLevel.css({ "--btX": "0px", "--btY": "0px", "--btS": ptS });
 
-		ptS = 5;
+		// calculate end-frame of animation
+		ptS = from.offset.width / from.grid.size;
 		ptY = 0;
 		ptX = 0;
 		switch (direction) {
