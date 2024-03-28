@@ -195,13 +195,15 @@ let Game = {
 		let { x, y } = coords,
 			el = this.el.find(`.box[data-id="${y}-${x}"]`),
 			mini = el.data("mini"),
-			parent = {
-				pEl: Player.el,
-			},
 			// zoom into mini map
 			res = Anim.zoomGrid({ x, y, enter, mini, el });
 		// if entrance point is wall
 		if (res === WALL) return;
+		
+		// "empty" player pos on board
+		this.board[Player.pos.y][Player.pos.x] = EMPTY;
+		// prepare data for "exit" in the future
+		let parent = { pEl: Player.el, board: this.board };
 		// save reference to entered mini map
 		this.miniCoord = { x, y, enter, mini, el, parent };
 	},
@@ -229,6 +231,18 @@ let Game = {
 			this.movePlayerAndBoxes(playerCoords, direction);
 		}
 		if (Utils.isOff(adjacentCell[direction])) {
+			let exits = {
+					up:    { y: -1, x: 0 },
+					down:  { y: 1,  x: 0 },
+					left:  { y: 0, x: -1 },
+					right: { y: 0, x: 1 },
+				},
+				eY = this.miniCoord.y + exits[direction].y,
+				eX = this.miniCoord.x + exits[direction].x,
+				parent = this.miniCoord.parent.board,
+				exit = parent[eY][eX];
+			// exit if not wall
+			if (exit === WALL) return;
 			Anim.zoomOut(this.miniCoord, direction);
 		}
 		// check if level is cleared
