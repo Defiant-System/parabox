@@ -165,10 +165,16 @@ let Game = {
 			return;
 		}
 
-		// Count how many blocks are in a row
-		let blocksInARow = 0;
+		// accumulate block info in row
+		let acc = {
+				blocks: [],
+				blocksInARow: 0
+			};
 		if (Utils.isBlock(cell)) {
-			blocksInARow = Utils.countBlocks(1, blockY, blockX, direction, board);
+			acc.blocks.push(board[playerY][playerX]);
+			acc.blocksInARow = 1;
+			let { blocks, blocksInARow } = Utils.countBlocks(acc, blockY, blockX, direction, board);
+			// console.log( blocks, blocksInARow );
 			// See what the next block is
 			let bY = Utils.getY(playerY, direction, blocksInARow),
 				bX = Utils.getX(playerX, direction, blocksInARow);
@@ -177,7 +183,7 @@ let Game = {
 				while (blocksInARow--) {
 					let oY = Utils.getY(blockY, direction, blocksInARow),
 						oX = Utils.getX(blockX, direction, blocksInARow),
-						result = Utils.isVoid(this.levelClean[oY][oX]) ? SUCCESS : board[playerY][playerX];
+						result = Utils.isVoid(this.levelClean[oY][oX]) ? SUCCESS : acc.blocks[blocksInARow];
 					board[oY][oX] = result;
 					// move DOM element
 					let nY = Utils.getY(playerY, direction, blocksInARow),
@@ -185,6 +191,8 @@ let Game = {
 					this.moveBlockEl([nY, nX], [oY, oX]);
 				}
 				if (!skiPlayer) this.movePlayer(playerCoords, direction);
+			} else if (acc.blocks.includes(MINI)) {
+				console.log("push block into mini");
 			}
 		} else {
 			// Move box; if on top of void, make into a success box

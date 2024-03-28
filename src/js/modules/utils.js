@@ -51,12 +51,14 @@ let Utils = {
 		if (direction === "down") return y + spaces;
 		if (direction === "up") return y - spaces;
 	},
-	countBlocks(blockCount, y, x, direction, board) {
-		if (this.isBlock(board[y][x])) {
-			blockCount++;
-			return this.countBlocks(blockCount, this.getY(y, direction), this.getX(x, direction), direction, board);
+	countBlocks(acc, y, x, direction, board) {
+		let cell = board[y][x];
+		if (this.isBlock(cell)) {
+			acc.blocks.push(cell);
+			acc.blocksInARow++;
+			return this.countBlocks(acc, this.getY(y, direction), this.getX(x, direction), direction, board);
 		} else {
-			return blockCount;
+			return acc;
 		}
 	}
 };
