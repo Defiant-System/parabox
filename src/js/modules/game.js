@@ -50,6 +50,7 @@ let Game = {
 			for (let i=0, il=level.data.block.length; i<il; i++) {
 				let block = level.data.block[i],
 					style = `--y: ${block.y}; --x: ${block.x};`,
+					dataMini = "",
 					color = block.color,
 					sub = [];
 				if (block.mini) {
@@ -61,10 +62,11 @@ let Game = {
 					if (mini.data.void) sub.push(...this.draw("voids", mini.data, data.board));
 					if (mini.data.exit) sub.push(...this.draw("exit", mini.data, data.board));
 
+					dataMini = `data-mini="${block.mini}"`;
 					color = `mini size-${data.size.w}`;
 					style += `--color: ${mini.data.bg}; --fg-filter: ${mini.data.filter};`;
 				}
-				blocks.push(`<div class="box ${color}" data-mini="${block.mini}" data-id="${block.y}-${block.x}" style="${style}">${sub.join("")}</div>`);
+				blocks.push(`<div class="box ${color}" ${dataMini} data-id="${block.y}-${block.x}" style="${style}">${sub.join("")}</div>`);
 				// update board
 				board[block.y][block.x] = block.mini ? MINI : BLOCK;
 			}
@@ -144,19 +146,20 @@ let Game = {
 		// update board
 		this.board[Player.pos.y][Player.pos.x] = PLAYER;
 	},
-	movePlayerAndBoxes(playerCoords, direction) {
+	movePlayerAndBoxes(playerCoords, direction, skiPlayer) {
 		let playerY = Utils.getY(playerCoords.y, direction, 1);
 		let playerX = Utils.getX(playerCoords.x, direction, 1);
 		let blockY = Utils.getY(playerCoords.y, direction, 2);
 		let blockX = Utils.getX(playerCoords.x, direction, 2);
-		let cell = this.board[blockY][blockX];
+		let board = playerCoords.board || this.board;
+		let cell = board[blockY][blockX];
 
 		// Don't move if the movement pushes a box into a wall
 		if (Utils.isWall(cell)) {
 			let el = this.el.find(`.box[data-id="${playerY}-${playerX}"]`);
 			if (el.length && el.hasClass("mini")) {
 				if (this.enterMinimap({ y: playerY, x: playerX }, direction)) {
-					this.board[playerCoords.y][playerCoords.x] = EMPTY;
+					board[playerCoords.y][playerCoords.x] = EMPTY;
 				}
 			}
 			return;
@@ -165,30 +168,30 @@ let Game = {
 		// Count how many blocks are in a row
 		let blocksInARow = 0;
 		if (Utils.isBlock(cell)) {
-			blocksInARow = Utils.countBlocks(1, blockY, blockX, direction, this.board);
+			blocksInARow = Utils.countBlocks(1, blockY, blockX, direction, board);
 			// See what the next block is
 			let bY = Utils.getY(playerY, direction, blocksInARow),
 				bX = Utils.getX(playerX, direction, blocksInARow);
 			// Push all the blocks if you can
-			if (Utils.isTraversible(this.board[bY][bX])) {
+			if (Utils.isTraversible(board[bY][bX])) {
 				while (blocksInARow--) {
 					let oY = Utils.getY(blockY, direction, blocksInARow),
 						oX = Utils.getX(blockX, direction, blocksInARow),
-						result = Utils.isVoid(this.levelClean[oY][oX]) ? SUCCESS : this.board[playerY][playerX];
-					this.board[oY][oX] = result;
+						result = Utils.isVoid(this.levelClean[oY][oX]) ? SUCCESS : board[playerY][playerX];
+					board[oY][oX] = result;
 					// move DOM element
 					let nY = Utils.getY(playerY, direction, blocksInARow),
 						nX = Utils.getX(playerX, direction, blocksInARow);
 					this.moveBlockEl([nY, nX], [oY, oX]);
 				}
-				this.movePlayer(playerCoords, direction);
+				if (!skiPlayer) this.movePlayer(playerCoords, direction);
 			}
 		} else {
 			// Move box; if on top of void, make into a success box
-			let result = Utils.isVoid(this.levelClean[blockY][blockX]) ? SUCCESS : this.board[playerY][playerX];
-			this.board[blockY][blockX] = result;
+			let result = Utils.isVoid(this.levelClean[blockY][blockX]) ? SUCCESS : board[playerY][playerX];
+			board[blockY][blockX] = result;
 			this.moveBlockEl([playerY, playerX], [blockY, blockX]);
-			this.movePlayer(playerCoords, direction);
+			if (!skiPlayer) this.movePlayer(playerCoords, direction);
 		}
 	},
 	enterMinimap(coords, enter) {
@@ -239,11 +242,15 @@ let Game = {
 				},
 				eY = this.miniCoord.y + exits[direction].y,
 				eX = this.miniCoord.x + exits[direction].x,
-				parent = this.miniCoord.parent.board,
-				exit = parent[eY][eX];
+				board = this.miniCoord.parent.board,
+				exit = board[eY][eX];
 			// exit if not wall
 			if (exit === WALL) return;
-			Anim.zoomOut(this.miniCoord, direction);
+			if (exit === BLOCK) {
+				let miniPos = { board, y: this.miniCoord.y, x: this.miniCoord.x };
+				this.movePlayerAndBoxes(miniPos, direction, true);
+			}
+			Anim.zoomOut(this.miniCoord, direction, { x: eX, y: eY }, true);
 		}
 		// check if level is cleared
 		this.checkWin();

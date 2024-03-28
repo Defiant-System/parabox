@@ -32,28 +32,19 @@ let Anim = {
 			}
 		};
 	},
-	zoomOut(playerCoords, direction) {
+	zoomOut(playerCoords, direction, finalPos) {
 		let from = this.getBoard(this.els.zoomLevel),
-			exits = {
-				up:    { y: -1, x: 0 },
-				down:  { y: 1,  x: 0 },
-				left:  { y: 0, x: -1 },
-				right: { y: 0, x: 1 },
-			},
-			ptY = playerCoords.y + exits[direction].y,
-			ptX = playerCoords.x + exits[direction].x,
+			ptY = 0,
+			ptX = 0,
 			ptS = 1;
 		
 		// re-position top-level player
-		playerCoords.parent.pEl.css({ "--y": ptY, "--x": ptX });
-
+		playerCoords.parent.pEl.css({ "--y": finalPos.y, "--x": finalPos.x });
 		// reset parent map
 		this.els.topLevel.css({ "--btX": "0px", "--btY": "0px", "--btS": ptS });
 
 		// calculate end-frame of animation
 		ptS = from.offset.width / from.grid.size;
-		ptY = 0;
-		ptX = 0;
 		switch (direction) {
 			case "up": ptY -= from.offset.height * .5; break;
 			case "down": ptY = from.offset.height * .5; break;
@@ -88,7 +79,7 @@ let Anim = {
 			},
 			player = entrance[coord.enter],
 			{ board, htm } = Game.paint(coord.mini, { player, zoom: true });
-			
+
 		// if there is wall, dont enter mini map
 		if (!board) return WALL;
 
