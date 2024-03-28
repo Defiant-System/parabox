@@ -87,8 +87,12 @@ let Anim = {
 				right: { y: gM, x: 0 },
 			},
 			player = entrance[coord.enter],
-			{ board, htm } = Game.paint(coord.mini, { player, zoom: true }),
-			from = this.getBoard(this.els.topLevel),
+			{ board, htm } = Game.paint(coord.mini, { player, zoom: true });
+			
+		// if there is wall, dont enter mini map
+		if (!board) return WALL;
+
+		let from = this.getBoard(this.els.topLevel),
 			to = this.getBoard(this.els.zoomLevel.html(htm.join(""))),
 			btS = from.grid.size / to.offset.width,
 			btX = (from.grid.size * (coord.x - Math.floor(from.grid.w / 2))) + 2,

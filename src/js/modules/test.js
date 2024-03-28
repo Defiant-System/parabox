@@ -4,7 +4,7 @@ let Test = {
 
 		// return;
 
-		setTimeout(() => APP.dispatch({ type: "set-game-level", arg: "1-99" }), 200);
+		setTimeout(() => APP.dispatch({ type: "set-game-level", arg: "1-98" }), 200);
 		// setTimeout(() => Game.el.find(".mini").trigger("click"), 1200);
 		return;
 

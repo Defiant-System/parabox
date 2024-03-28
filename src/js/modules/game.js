@@ -36,7 +36,10 @@ let Game = {
 		// start rendering; walls
 		let { walls, board, size, corners } = this.draw("walls", level.data.walls);
 		// player
-		if (level.data.player) player = this.draw("player", level.data, board);
+		if (level.data.player) {
+			if (board[level.data.player.y][level.data.player.x] === WALL) return {};
+			player = this.draw("player", level.data, board);
+		}
 		// voids
 		if (level.data.void) voids = this.draw("voids", level.data, board);
 		// exit
@@ -152,8 +155,9 @@ let Game = {
 		if (Utils.isWall(cell)) {
 			let el = this.el.find(`.box[data-id="${playerY}-${playerX}"]`);
 			if (el.length && el.hasClass("mini")) {
-				this.enterMinimap({ y: playerY, x: playerX }, direction);
-				this.board[playerCoords.y][playerCoords.x] = EMPTY;
+				if (this.enterMinimap({ y: playerY, x: playerX }, direction)) {
+					this.board[playerCoords.y][playerCoords.x] = EMPTY;
+				}
 			}
 			return;
 		}
@@ -193,11 +197,13 @@ let Game = {
 			mini = el.data("mini"),
 			parent = {
 				pEl: Player.el,
-			};
+			},
+			// zoom into mini map
+			res = Anim.zoomGrid({ x, y, enter, mini, el });
+		// if entrance point is wall
+		if (res === WALL) return;
 		// save reference to entered mini map
 		this.miniCoord = { x, y, enter, mini, el, parent };
-		// zoom into mini map
-		Anim.zoomGrid({ x, y, enter, mini, el });
 	},
 	moveBlockEl(from, to) {
 		let bEl = this.el.find(`.box[data-id="${from[0]}-${from[1]}"]`),
