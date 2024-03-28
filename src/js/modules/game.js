@@ -218,6 +218,7 @@ let Game = {
 			.cssSequence("moving", "transitionend", el => el.removeClass("moving"));
 	},
 	move(direction) {
+		if (Player.el.hasClass("moving")) return;
 		let playerCoords = Player.coords();
 		let { x, y, above, below, sideLeft, sideRight } = playerCoords;
 		let adjacentCell = {

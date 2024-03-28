@@ -3,10 +3,11 @@ Level["1-98"] = {
 	grid: 9,
 	bg: "#687b47",
 	filter: "sepia(.5) brightness(.8) hue-rotate(90deg) saturate(4)",
-	player: { y: 3, x: 5 }, // vert
+	player: { y: 4, x: 6 }, // vert
 	// player: { y: 3, x: 7 }, // hori
 	block: [
-		{ y: 3, x: 6, mini: "1-98.1" },
+		{ y: 3, x: 7, color: "yellow" },
+		{ y: 4, x: 7, mini: "1-98.1" },
 		// { y: 3, x: 6, mini: "1-98.2" },
 		// { y: 3, x: 6, mini: "1-98.3" },
 	],
@@ -29,9 +30,9 @@ Level["1-98.1"] = {
 	filter: "sepia(1) hue-rotate(75deg) saturate(2) brightness(.65)",
 	walls: [
 		[{ "key": "NE" }, { "key": "NW" }, {}, { "key": "NE" }, { "key": "NW" }],
-		[{ "key": "E" }, { "key": "WS" }, {}, { "key": "SE" }, { "key": "WS" }],
-		[{ "key": "WE" }, {}, {}, {}, {}],
-		[{ "key": "E" }, { "key": "NW" }, {}, { "key": "NE" }, { "key": "NW" }],
+		[{ "key": "SE" }, { "key": "WS" }, {}, { "key": "SE" }, { "key": "WS" }],
+		[{}, {}, {}, {}, {}],
+		[{ "key": "NE" }, { "key": "NW" }, {}, { "key": "NE" }, { "key": "NW" }],
 		[{ "key": "SE" }, { "key": "WS" }, {}, { "key": "SE" }, { "key": "WS" }]
 	]
 };

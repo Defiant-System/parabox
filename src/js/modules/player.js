@@ -25,7 +25,7 @@ let Player = {
 		Game.board = board;
 	},
 	move(dir) {
-		let name = `go-${dir}`,
+		let name = `moving go-${dir}`,
 			vec = {
 				up:    [0, -1],
 				left:  [-1, 0],
