@@ -1,0 +1,53 @@
+
+.box.mini {
+	--wH: -3px;
+	--wT: 6px;
+	--bR: 3px;
+	--bH: 4px;
+	--nbH: 4px;
+
+	// for development
+	> div {
+		// &.player { display: none; }
+		&.box:not(.player) { display: none; }
+		// &.exit,
+		// &.void { display: none; }
+	}
+
+	> span.wall {
+		// north east
+		&.NE { border-width: 1px 0 0 1px; }
+		// north
+		&.N { border-width: 1px 0 0 0; }
+		// north west
+		&.NW { border-width: 1px 1px 0 0; }
+		// north south east
+		&.NSE { border-width: 1px 0 1px 1px; }
+		// north south
+		&.NS { border-width: 1px 0 1px 0; }
+		// north west south
+		&.NWS { border-width: 1px 1px 1px 0; }
+		// north west south east
+		&.NWSE { border-width: 1px; }
+		// north west east
+		&.NWE { border-width: 1px 1px 0 1px; }
+		// blank
+		&.B { border-width: 0; }
+		// full
+		&.F { border-width: 0; }
+		// east
+		&.E { border-width: 0 0 0 1px; }
+		// west
+		&.W { border-width: 0 1px 0 0; }
+		// west east
+		&.WE { border-width: 0 1px 0 1px; }
+		// west south east
+		&.WSE { border-width: 0 1px 1px 1px; }
+		// south
+		&.S { border-width: 0 0 1px 0; }
+		// south east
+		&.SE { border-width: 0 0 1px 1px; }
+		// west south
+		&.WS { border-width: 0 1px 1px 0; }
+	}
+}

@@ -60,7 +60,6 @@ content {
 		position: absolute;
 		font-size: 0;
 		padding: 1px 0 0 1px;
-		--mini-margin: 5px 0 0 0;
 		--bg-color: rgba(#248,.5);
 		--fg-filter: none;
 		--size: 61px;
@@ -193,115 +192,9 @@ content {
 			mix-blend-mode: soft-light;
 			pointer-events: none;
 		}
-
-		&.mini {
-			--color: #444;
-			--fg-filter: none; // sepia(1) hue-rotate(145deg) saturate(1.5) brightness(0.75);
-			--bR: 5px;
-			--wT: 5px;
-			--wH: -3px;
-			opacity: 1;
-			margin: var( --mini-margin );
-			height: calc( var( --size ) + 2px );
-			box-shadow: inset 0px -2px 0px 0px rgba(#000,.175),
-						inset 0 0 1px rgba(#fff,.5);
-
-			&:before {
-				top: 2px;
-				bottom: 2px;
-				opacity: .5;
-				background-image: linear-gradient(0deg, rgba(#111,.65), transparent 150%);
-			}
-
-			&:after {
-				bottom: 2px;
-				opacity: .1;
-			}
-
-			span, .box {
-				// pointer-events: none;
-			}
-
-			> span.wall {
-				opacity: .95;
-				border-color: #222;
-				// display: none;
-
-				&:after {
-					top: 1px;
-					border-top: 0;
-				}
-			}
-
-			u {
-				width: 6px;
-				height: 7px;
-
-				&.NW-NE {
-					top: 0;
-					height: 10px;
-					background-image: url(~/icons/mini-neg-nw-ne.png);
-				}
-
-				&.NE-NW {
-					top: 0;
-					height: 10px;
-					background-image: url(~/icons/mini-neg-ne-nw.png);
-				}
-
-				&.NE-ES {
-					background-image: url(~/icons/mini-neg-ne-es.png);
-				}
-
-				&.NE-WS {
-					background-image: url(~/icons/mini-neg-ne-ws.png);
-				}
-			}
-
-			div.box {
-				--size: 12px;
-				position: absolute;
-				top: calc( calc( var( --y ) * var( --size ) ) - 2px );
-				left: calc( var( --x ) * var( --size ) );
-				height: calc( var( --size ) - 3px );
-				width: calc( var( --size ) - 3px );
-				border-radius: 2px;
-				border: 1px solid rgba(#000,.5);
-			}
-
-			div.void,
-			div.exit {
-				top: calc( calc( var( --y ) * var( --size ) ) - 2px );
-				left: calc( var( --x ) * var( --size ) );
-				height: calc( var( --size ) - 3px );
-				width: calc( var( --size ) - 3px );
-				position: absolute;
-				border-radius: 2px;
-				border: 1px solid rgba(#000,.5);
-
-				i {
-					--eyes: 3px;
-
-					&:before {
-						box-shadow: none;
-						background: rgba(#000,.65);
-						left: 2px;
-					}
-
-					&:after {
-						box-shadow: none;
-						background: rgba(#000,.65);
-						right: 2px;
-					}
-				}
-
-				&:before,
-				&:after {
-					display: none;
-				}
-			}
-		}
 	}
+
+	@import "mini";
 
 	div.player {
 		--color: #9d02bd;
@@ -858,7 +751,6 @@ content {
 		&.pre-anim {
 			.top-level {
 				> .box.board {
-					> .box.mini.hidden,
 					> .box.player {
 						opacity: 0;
 					}
@@ -877,7 +769,6 @@ content {
 					transition: all var( --dur ) ease-in-out;
 					transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
 
-					> .box.mini.hidden,
 					> .box.player {
 						opacity: 0;
 					}
@@ -937,7 +828,6 @@ content {
 			will-change: transform, filter;
 
 			> .box.board,
-			> .box.mini,
 			.box.player {
 				will-change: transform;
 			}
