@@ -4,8 +4,13 @@
 	--wT: 3px;
 	--bR: 4px;
 	--bH: 2px;
-	--nbH: 4px;
+	--nbH: 2px;
 	--msize: 12px;
+
+	&:before {
+		opacity: .5;
+		mix-blend-mode: overlay;
+	}
 
 	// for development
 	> div {
@@ -22,13 +27,44 @@
 	> div {
 		position: absolute;
 		top: calc( calc( var( --y ) * var( --msize ) ) - 4px );
-		left: calc( calc( var( --x ) * var( --msize ) ) - 2px );
-		width: var( --msize );
-		height: calc( var( --msize ) + 2px );
+		left: calc( calc( var( --x ) * var( --msize ) ) - 3px );
+		width: calc( var( --msize ) + 2px );
+		height: calc( var( --msize ) + 4px );
 		border-width: 1px;
+
+		&[style*="--y: 0;"] {
+			margin-top: -1px;
+			border-top-width: 2px;
+		}
+
+		&[style*="--x: 0;"] {
+			border-left-width: 2px;
+			margin-left: 1px;
+		}
 	}
 
 	&[class*="size-5"] {
+		> .void,
+		> .exit,
+		> span.wall {
+			--size: 12px;
+		}
+
+		> .void,
+		> .exit,
+		> div {
+			--bR: 3px;
+
+			&[style*="--x: 4;"] {
+				margin-left: -1px;
+				border-right-width: 2px;
+			}
+
+			&[style*="--y: 4;"] {
+				margin-top: 1px;
+			}
+		}
+
 		> span.wall {
 			&.NW,
 			&.WS {
