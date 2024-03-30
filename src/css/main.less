@@ -194,8 +194,6 @@ content {
 		}
 	}
 
-	@import "mini";
-
 	div.player {
 		--color: #9d02bd;
 		transition: all 0s ease-in-out;
@@ -751,6 +749,7 @@ content {
 		&.pre-anim {
 			.top-level {
 				> .box.board {
+					> .box.mini.hidden,
 					> .box.player {
 						opacity: 0;
 					}
@@ -769,6 +768,7 @@ content {
 					transition: all var( --dur ) ease-in-out;
 					transform: translate(var( --btX ), var( --btY )) scale(var( --btS ));
 
+					> .box.mini.hidden,
 					> .box.player {
 						opacity: 0;
 					}
@@ -889,6 +889,7 @@ content {
 	}
 
 	// imports
+	@import "mini";
 	@import "board-grids";
 	@import "editor";
 
