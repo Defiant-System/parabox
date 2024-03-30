@@ -1,14 +1,92 @@
 
 .board.box {
+	&[class*="grid-3"] {
+		top: 210px;
+		left: 210px;
+		--size: 80px;
+	}
+
 	&[class*="grid-5"] {
 		top: 122px;
 		left: 122px;
 		--size: 82px;
 	}
 
+	&[class*="grid-7"] {
+		top: 62px;
+		left: 62px;
+		--size: 77px;
+
+		.mini {
+			&[class*="size-5"] {
+				> .void,
+				> .exit,
+				> span.wall {
+					--size: 15px;
+				}
+
+				> div {
+					&[style*="--x: 4;"] {
+						margin-left: -1px;
+					}
+				}
+			}
+		}
+	}
+
 	&[class*="grid-9"] {
 		top: 50px;
 		left: 50px;
 		--size: 62px;
+
+		.mini {
+			&[class*="size-3"] {
+				> .void,
+				> .exit,
+				> span.wall {
+					--size: 20px;
+				}
+				
+				> div {
+					&[style*="--x: 2;"] {
+						margin-left: -1px;
+					}
+
+					&[style*="--y: 2;"] {
+						margin-top: 1px;
+					}
+				}
+			}
+
+			&[class*="size-5"] {
+				> .void,
+				> .exit,
+				> span.wall {
+					--size: 12px;
+				}
+
+				> div {
+					&[style*="--x: 4;"] {
+						margin-left: -1px;
+					}
+				}
+			}
+		}
+	}
+
+	&[class*="grid-11"] {
+		top: 23px;
+		left: 23px;
+		--size: 56px;
+
+		.mini {
+			&[class*="size-3"] {
+				> .void,
+				> .exit,
+				> span.wall {
+					--size: 18px;
+				}
+			}
+		}
 	}
 }

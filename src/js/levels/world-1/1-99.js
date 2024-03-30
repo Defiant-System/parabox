@@ -1,37 +1,35 @@
 
 Level["1-99"] = {
-	grid: 9,
-	bg: "#a43e3e",
-	filter: "sepia(.5) brightness(.8) hue-rotate(320deg) saturate(4)",
-	player: { y: 3, x: 4 },
-	exit: { y: 6, x: 4 },
-	void: [{ y: 1, x: 6 }, { y: 6, x: 6 }],
+	grid: 7,
+	bg: "#454",
+	filter: "sepia(1) hue-rotate(65deg) saturate(1.25) brightness(.75)",
+	player: { y: 2, x: 2 },
+	exit: { y: 4, x: 2 },
 	block: [
-		{ y: 3, x: 5, color: "yellow" },
-		{ y: 3, x: 6, mini: "1-99.1" },
+		{ y: 1, x: 5, mini: "1-99.1" },
+		{ y: 4, x: 4, color: "yellow" }
 	],
 	walls: [
-		[{ key: "NE" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "N" }, { key: "NS" }, { key: "N" }, { key: "NW" }],
-		[{ key: "E" }, { key: "F" }, { key: "F" }, { key: "F" }, { key: "F" }, { key: "W", sub: ["NW-NE"] }, {}, { key: "E", sub: ["NE-NW"] }, { key: "W" }],
-		[{ key: "E" }, { key: "S" }, { key: "S" }, { key: "S" }, { key: "S" }, { key: "WS" }, {}, { key: "E" }, { key: "W" }],
-		[{ key: "WE", sub: ["NW-NE"] }, {}, {}, {}, {}, {}, {}, { key: "E" }, { key: "W" }],
-		[{ key: "WE" }, {}, {}, { key: "NE" }, { key: "N" }, { key: "NW" }, {}, { key: "E" }, { key: "W" }],
-		[{ key: "E" }, { key: "NWS", sub: ["NE-ES"] }, {}, { key: "E" }, { key: "S" }, { key: "WS" }, {}, { key: "E" }, { key: "W" }],
-		[{ key: "WE", sub: ["NW-NE"] }, {}, {}, { key: "WE", sub: ["NW-NE"] }, {}, {}, {}, { key: "E" }, { key: "W" }],
-		[{ key: "WE" }, {}, {}, { key: "E" }, { key: "N", sub: ["NE-ES"] }, { key: "N" }, { key: "N" }, { key: "F", sub: ["NE-WS"] }, { key: "W" }],
-		[{ key: "SE" }, { key: "NS", sub: ["NE-ES"] }, { key: "NS" }, { key: "S", sub: ["NE-WS"] }, { key: "S" }, { key: "S" }, { key: "S" }, { key: "S" }, { key: "WS" }],
+		[{ "key": "NE" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NW" }],
+		[{ "key": "WE","sub":["NW-NE"] }, {}, {}, {}, {}, {}, { "key": "WE","sub":["NE-NW"] }],
+		[{ "key": "WE" }, {}, {}, {}, {}, {}, { "key": "WE" }],
+		[{ "key": "WE" }, {}, {}, {}, {}, {}, { "key": "WE" }],
+		[{ "key": "WE" }, {}, {}, {}, {}, {}, { "key": "WE" }],
+		[{ "key": "WE" }, {}, {}, {}, {}, {}, { "key": "WE" }],
+		[{ "key": "SE" }, { "key": "NS","sub":["NE-ES"] }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "WS","sub":["NE-WS"] }]
 	]
 };
 
 Level["1-99.1"] = {
 	grid: 5,
-	bg: "#136",
-	filter: "sepia(1) hue-rotate(175deg) saturate(2) brightness(.65)",
+	bg: "#24a",
+	filter: "sepia(1) hue-rotate(175deg) saturate(1.75) brightness(.8)",
+	void: [{ y: 3, x: 1 }],
 	walls: [
-		[{ key: "NE" }, { key: "NW" }, {}, { key: "NE" }, { key: "NW" }],
-		[{ key: "SE" }, { key: "WS" }, {}, { key: "E" }, { key: "W" }],
-		[{}, {}, {}, { key: "E" }, { key: "W" }],
-		[{ key: "NWE" }, {}, {}, { key: "E" }, { key: "W" }],
-		[{ key: "SE" }, { key: "NS", sub: ["NE-ES"] }, { key: "NS" }, { key: "S", sub: ["NE-WS"] }, { key: "WS" }],
+		[{ "key": "NE" }, { "key": "NS" }, { "key": "NS" }, { "key": "NS" }, { "key": "NW" }],
+		[{ "key": "WSE","sub":["NW-NE"] }, {}, {}, {}, { "key": "WE","sub":["NE-NW"] }],
+		[{}, {}, { "key": "NWSE" }, {}, { "key": "WE" }],
+		[{ "key": "NWE" }, {}, {}, {}, { "key": "WE" }],
+		[{ "key": "SE" }, { "key": "NWS","sub":["NE-ES"] }, {}, { "key": "NSE" }, { "key": "WS","sub":["NE-WS"] }],
 	]
 };

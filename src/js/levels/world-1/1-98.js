@@ -6,7 +6,7 @@ Level["1-98"] = {
 	player: { y: 3, x: 4 }, // vert
 	// player: { y: 3, x: 7 }, // hori
 	block: [
-		{ y: 3, x: 5, color: "yellow" },
+		// { y: 3, x: 5, color: "yellow" },
 		{ y: 3, x: 6, mini: "1-98.1" },
 		// { y: 3, x: 6, mini: "1-98.2" },
 		// { y: 3, x: 6, mini: "1-98.3" },
@@ -26,10 +26,13 @@ Level["1-98"] = {
 
 Level["1-98.1"] = {
 	grid: 5,
-	bg: "#11664a",
-	filter: "sepia(1) hue-rotate(75deg) saturate(2) brightness(.65)",
+	bg: "#6c4f78",
+	filter: "sepia(1) hue-rotate(225deg) saturate(2) brightness(.7)",
 	block: [
-		{ y: 2, x: 1, color: "yellow" },
+		{ y: 0, x: 2, color: "yellow" },
+		{ y: 4, x: 2, color: "yellow" },
+		{ y: 2, x: 0, color: "yellow" },
+		{ y: 2, x: 4, color: "yellow" },
 	],
 	walls: [
 		[{ "key": "NE" }, { "key": "NW" }, {}, { "key": "NE" }, { "key": "NW" }],
