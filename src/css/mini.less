@@ -5,7 +5,6 @@
 	--bR: 4px;
 	--bH: 2px;
 	--nbH: 2px;
-	--msize: 12px;
 
 	&:before {
 		opacity: .5;
@@ -39,31 +38,65 @@
 
 		&.NE-NW {
 			top: 0;
+			left: -3px;
 			height: 5px;
 			background-image: url(~/icons/mini-neg-ne-nw.png);
+			background-position: 0 3px;
+			background-color: inherit;
 		}
 
 		&.NE-ES {
 			background-image: url(~/icons/mini-neg-ne-es.png);
+			top: -3px;
+			left: -1px;
 		}
 
 		&.NE-WS {
 			background-image: url(~/icons/mini-neg-ne-ws.png);
+			top: -2px;
+			left: -2px;
 		}
 	}
 
 	> .void,
-	> .exit,
+	> .exit {
+		border-radius: 3px;
+		top: calc( calc( var( --y ) * var( --size ) ) - 3px );
+		left: calc( calc( var( --x ) * var( --size ) ) - 1px );
+		width: calc( var( --size ) - 2px );
+		height: calc( var( --size ) - 2px );
+
+		i {
+			--eyes: 3px;
+
+			&:before {
+				box-shadow: none;
+				background: rgba(#000,.65);
+				left: 3px;
+			}
+
+			&:after {
+				box-shadow: none;
+				background: rgba(#000,.65);
+				right: 3px;
+			}
+		}
+
+		&:after {
+			bottom: -2px;
+		}
+	}
+
 	> div {
 		--bR: 3px;
 	}
 
 	> div {
 		position: absolute;
-		top: calc( calc( var( --y ) * var( --msize ) ) - 4px );
-		left: calc( calc( var( --x ) * var( --msize ) ) - 3px );
-		width: calc( var( --msize ) + 2px );
-		height: calc( var( --msize ) + 4px );
+		top: calc( calc( var( --y ) * var( --size ) ) - 4px );
+		left: calc( calc( var( --x ) * var( --size ) ) - 3px );
+		width: calc( var( --size ) + 2px );
+		height: calc( var( --size ) + 4px );
 		border-width: 1px;
 
 		&[style*="--y: 0;"] {

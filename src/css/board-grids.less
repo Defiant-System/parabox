@@ -18,6 +18,21 @@
 		--size: 77px;
 
 		.mini {
+			&[class*="size-3"] {
+				> span.wall {
+					--size: 24px;
+				}
+
+				> .void,
+				> .exit {
+					--size: 22px;
+					top: calc( calc( var( --y ) * var( --size ) ) + 4px );
+					left: calc( calc( var( --x ) * var( --size ) ) + 2px );
+					width: calc( var( --size ) - 2px );
+					height: calc( var( --size ) - 2px );
+				}
+			}
+
 			&[class*="size-5"] {
 				> .void,
 				> .exit,
@@ -34,6 +49,25 @@
 		}
 	}
 
+	&[class*="grid-7"][data-level-id="2-4"] {
+		top: 73px;
+		left: 73px;
+		--size: 74px;
+
+		.mini {
+			&[class*="size-5"] {
+				> span.wall {
+					--size: 14px;
+					top: calc( var( --y ) * calc( var( --size ) ) - var( --wT ) );
+
+					&[style*="--x: 4;"] {
+						width: 16px;
+					}
+				}
+			}
+		}
+	}
+
 	&[class*="grid-9"] {
 		top: 50px;
 		left: 50px;
@@ -41,8 +75,6 @@
 
 		.mini {
 			&[class*="size-3"] {
-				> .void,
-				> .exit,
 				> span.wall {
 					--size: 20px;
 				}
@@ -55,6 +87,15 @@
 					&[style*="--y: 2;"] {
 						margin-top: 1px;
 					}
+				}
+
+				> .void,
+				> .exit {
+					--size: 18px;
+					top: calc( calc( var( --y ) * var( --size ) ) + 4px );
+					left: calc( calc( var( --x ) * var( --size ) ) + 2px );
+					width: calc( var( --size ) - 2px );
+					height: calc( var( --size ) - 2px );
 				}
 			}
 
@@ -69,6 +110,12 @@
 					&[style*="--x: 4;"] {
 						margin-left: -1px;
 					}
+				}
+			}
+
+			&[class*="size-9"] {
+				> span.wall {
+					--size: 7px;
 				}
 			}
 		}

@@ -1,7 +1,7 @@
 
 Level["2-3"] = {
 	grid: 9,
-	bg: "#2d746c",
+	bg: "#51817c",
 	filter: "sepia(1) hue-rotate(85deg) saturate(1.75) brightness(0.8)",
 	player: { y: 4, x: 4 },
 	void: [
@@ -31,7 +31,7 @@ Level["2-3"] = {
 
 Level["2-3.1"] = {
 	grid: 3,
-	bg: "#0c561c",
+	bg: "#1f692f",
 	filter: "sepia(1) hue-rotate(75deg) saturate(3) brightness(.9)",
 	exit: { y: 1, x: 1 },
 	walls: [
