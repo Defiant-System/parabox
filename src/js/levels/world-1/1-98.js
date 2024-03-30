@@ -28,6 +28,9 @@ Level["1-98.1"] = {
 	grid: 5,
 	bg: "#11664a",
 	filter: "sepia(1) hue-rotate(75deg) saturate(2) brightness(.65)",
+	block: [
+		{ y: 2, x: 1, color: "yellow" },
+	],
 	walls: [
 		[{ "key": "NE" }, { "key": "NW" }, {}, { "key": "NE" }, { "key": "NW" }],
 		[{ "key": "SE" }, { "key": "WS" }, {}, { "key": "SE" }, { "key": "WS" }],

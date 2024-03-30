@@ -219,12 +219,13 @@ content {
 			}
 
 			span, .box {
-				pointer-events: none;
+				// pointer-events: none;
 			}
 
 			> span.wall {
 				opacity: .95;
 				border-color: #222;
+				// display: none;
 
 				&:after {
 					top: 1px;
@@ -255,6 +256,17 @@ content {
 				&.NE-WS {
 					background-image: url(~/icons/mini-neg-ne-ws.png);
 				}
+			}
+
+			div.box {
+				--size: 12px;
+				position: absolute;
+				top: calc( calc( var( --y ) * var( --size ) ) - 2px );
+				left: calc( var( --x ) * var( --size ) );
+				height: calc( var( --size ) - 3px );
+				width: calc( var( --size ) - 3px );
+				border-radius: 2px;
+				border: 1px solid rgba(#000,.5);
 			}
 
 			div.void,

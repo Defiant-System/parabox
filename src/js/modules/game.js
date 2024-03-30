@@ -61,6 +61,8 @@ let Game = {
 					// paint void + exit on mini maps
 					if (mini.data.void) sub.push(...this.draw("voids", mini.data, data.board));
 					if (mini.data.exit) sub.push(...this.draw("exit", mini.data, data.board));
+					if (mini.data.block) sub.push(...this.draw("blocks", mini.data, data.board));
+					if (mini.data.player) sub.push(...this.draw("player", mini.data, data.board));
 
 					dataMini = `data-mini="${block.mini}"`;
 					color = `mini size-${data.size.w}`;
@@ -93,6 +95,15 @@ let Game = {
 				result.push(`<div class="box player" style="--y: ${data.player.y}; --x: ${data.player.x};"><i></i></div>`);
 				// update board
 				levelBoard[data.player.y][data.player.x] = PLAYER;
+				// return html
+				return result;
+			case "blocks":
+				for (let i=0, il=data.block.length; i<il; i++) {
+					let block = data.block[i];
+					result.push(`<div class="box ${block.color}" data-id="${block.y}-${block.x}" style="--y: ${block.y}; --x: ${block.x};"></div>`);
+					// update board
+					levelBoard[block.y][block.x] = BLOCK;
+				}
 				// return html
 				return result;
 			case "voids":
