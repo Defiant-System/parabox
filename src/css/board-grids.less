@@ -198,6 +198,26 @@
 		}
 	}
 
+	&[class*="grid-9"][data-level-id="3-5"],
+	&[class*="grid-9"][data-level-id="3-6"],
+	&[class*="grid-9"][data-level-id="3-7"],
+	&[class*="grid-9"][data-level-id="3-8"],
+	&[class*="grid-9"][data-level-id="3-9"] {
+		top: 35px;
+		left: 32px;
+		--size: 66px;
+
+		.mini {
+			&[class*="size-9"] {
+				--bR: 3px;
+
+				> span.wall {
+					top: calc( calc( var( --y ) * calc( var( --size ) ) - 1px ) - var( --wT ) );
+				}
+			}
+		}
+	}
+
 	&[class*="grid-9"] {
 		top: 50px;
 		left: 50px;
@@ -234,6 +254,8 @@
 				> .exit,
 				> span.wall {
 					--size: 12px;
+					height: calc( var( --size ) + 4px );
+					top: calc( var( --y ) * calc( var( --size ) ) - var( --wT ) );
 				}
 
 				> div {
