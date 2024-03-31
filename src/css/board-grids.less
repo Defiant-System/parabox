@@ -259,6 +259,12 @@
 				}
 
 				> div {
+					--size: 12px;
+
+					&[style*="--y: 0;"][style*="--x: 2;"] {
+						margin-top: 1px;
+					}
+
 					&[style*="--x: 4;"] {
 						margin-left: -1px;
 					}
