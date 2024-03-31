@@ -51,7 +51,7 @@ let Game = {
 				let block = level.data.block[i],
 					style = `--y: ${block.y}; --x: ${block.x};`,
 					dataMini = "",
-					color = block.color,
+					color = block.color || "",
 					sub = [];
 				if (block.mini) {
 					let mini = Level.get(block.mini),
@@ -100,7 +100,7 @@ let Game = {
 			case "blocks":
 				for (let i=0, il=data.block.length; i<il; i++) {
 					let block = data.block[i];
-					result.push(`<div class="box ${block.color}" data-id="${block.y}-${block.x}" style="--y: ${block.y}; --x: ${block.x};"></div>`);
+					result.push(`<div class="box ${block.color || ""}" data-id="${block.y}-${block.x}" style="--y: ${block.y}; --x: ${block.x};"></div>`);
 					// update board
 					levelBoard[block.y][block.x] = BLOCK;
 				}
