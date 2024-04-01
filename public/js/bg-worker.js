@@ -17,7 +17,7 @@ let Anim = {
 				Self.paused = true;
 				break;
 			case "resume":
-				if (Self.paused) {
+				if (Self.paused && Self.ctx) {
 					Self.paused = false;
 					Self.draw();
 				}
