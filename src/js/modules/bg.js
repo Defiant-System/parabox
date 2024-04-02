@@ -13,7 +13,7 @@ let Bg = {
 		this.worker = worker;
 
 		// auto start bg
-		// this.dispatch({ type: "start" });
+		this.dispatch({ type: "start" });
 	},
 	dispatch(event) {
 		let Self = Bg,

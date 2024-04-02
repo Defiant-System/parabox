@@ -14,7 +14,7 @@
 // default settings
 const defaultSettings = {
 	"sound-fx": "on",
-	"level": 1,
+	"level": "1-1",
 };
 
 
@@ -70,6 +70,10 @@ const parabox = {
 				break;
 			case "window.keystroke":
 				switch (event.char) {
+					case "esc":
+						// go to "saved" next level
+						Self.dispatch({ type: "set-game-level", arg: Self.settings.level });
+						break;
 					case "up":
 					case "left":
 					case "down":
@@ -155,11 +159,15 @@ const parabox = {
 					let xMenu = window.bluePrint.selectSingleNode(`//Menu[@click="set-editor-mode"]`);
 					Self.dispatch({ type: "set-editor-mode", xMenu });
 				}
+
 				// html
 				Game.renderLevel(event.arg);
 				// window title
 				let [world, level] = event.arg.split("-");
 				window.title = `Parabox <i class="icon-heart"></i> World ${world} - Level ${level}`;
+
+				// save level in settings
+				Self.settings.level = event.arg;
 
 				// update app UI
 				Self.content.removeClass("game-won").data({ mode: "game" });
@@ -196,6 +204,9 @@ const parabox = {
 				break;
 			case "close-congratulations":
 				Self.content.removeClass("game-won");
+				
+				let nextLevel = Level.getNext(Self.settings.level);
+				Self.dispatch({ type: "set-game-level", arg: nextLevel });
 				break;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");

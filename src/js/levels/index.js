@@ -1,5 +1,10 @@
 
 let Level = {
+	getNext(id="1-1") {
+		let [world, level] = id.split("-").map(i => +i),
+			next = `${world}-${level+1}`;
+		return this[next] ? next : `${world+1}-1`;
+	},
 	get(id, extend) {
 		let data = { ...this[id], ...extend };
 		let grid = data.grid.toString();
