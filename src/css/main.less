@@ -317,10 +317,31 @@ content {
 				right: -4px;
 				bottom: -4px;
 				border-radius: inherit;
-				border: 4px solid rgba(#fff,.75);
-				filter: blur(2px);
-				box-shadow: inset 0 -9px 7px rgba(#fff,.35),
-							0 -9px 7px rgba(#fff,.35);
+
+				&:before {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					border: 4px solid rgba(#fff,.75);
+					filter: blur(2px);
+					box-shadow: inset 0 -9px 7px rgba(#fff,.35),
+								0 -9px 7px rgba(#fff,.35);
+				}
+
+				&:after {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					border: 4px solid #fff;
+					border-radius: inherit;
+					animation: exitLight 2000ms infinite;
+				}
 			}
 		}
 	}
@@ -1173,6 +1194,11 @@ content {
 		margin-top: 30%;
 		margin-left: 80%;
 	}
+}
+
+@keyframes exitLight {
+	0%   { opacity: 1; transform: translateY(0px); }
+	100% { opacity: 0; transform: translateY(-23px); }
 }
 
 

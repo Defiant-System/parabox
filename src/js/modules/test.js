@@ -5,6 +5,7 @@ let Test = {
 		return;
 
 		setTimeout(() => APP.dispatch({ type: "set-game-level", arg: "1-1" }), 200);
+		setTimeout(() => Game.el.find(".exit").addClass("ready"), 400);
 		// setTimeout(() => Game.el.find(".mini").trigger("click"), 1200);
 		// setTimeout(() => APP.content.addClass("game-won"), 1000);
 		return;
