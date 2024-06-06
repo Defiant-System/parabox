@@ -32,6 +32,9 @@ let Player = {
 				down:  [0,  1],
 				right: [1,  0],
 			};
+		// do not obey movement if game won
+		if (parabox.content.hasClass("game-won")) return;
+
 		this.pos.add(vec[dir]);
 
 		this.el

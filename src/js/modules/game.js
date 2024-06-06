@@ -301,7 +301,10 @@ let Game = {
 
 		// check if level is complete
 		if (successCount === this.blockCount) {
-			setTimeout(() => parabox.content.addClass("game-won"), 500);
+			setTimeout(() => {
+				parabox.content.addClass("game-won");
+				exitEl.removeClass("ready");
+			}, 500);
 		}
 	}
 };
