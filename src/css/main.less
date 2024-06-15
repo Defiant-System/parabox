@@ -613,23 +613,50 @@ content {
 		color: #fff;
 
 		h1 {
-			text-align: center;
-			font-size: 100px;
-			text-transform: uppercase;
-			text-shadow: 0 1px 0 hsl(174,5%,80%),
-						0 2px 0 hsl(174,5%,75%),
-						0 3px 0 hsl(174,5%,70%),
-						0 4px 0 hsl(174,5%,66%),
-						0 5px 0 hsl(174,5%,64%),
-						0 6px 0 hsl(174,5%,62%),
-						0 7px 0 hsl(174,5%,61%),
-						0 8px 0 hsl(174,5%,60%),
-						0 0 5px rgba(#000,.05),
-						0 1px 3px rgba(#000,.2),
-						0 3px 5px rgba(#000,.2),
-						0 5px 10px rgba(#000,.2),
-						0 10px 10px rgba(#000,.2),
-						0 20px 20px rgba(#000,.3);
+			position: relative;
+			margin: 0 auto;
+			width: 595px;
+			height: 148px;
+			// text-align: center;
+			// font-size: 100px;
+			// text-transform: uppercase;
+			// text-shadow: 0 1px 0 hsl(174,5%,80%),
+			// 			0 2px 0 hsl(174,5%,75%),
+			// 			0 3px 0 hsl(174,5%,70%),
+			// 			0 4px 0 hsl(174,5%,66%),
+			// 			0 5px 0 hsl(174,5%,64%),
+			// 			0 6px 0 hsl(174,5%,62%),
+			// 			0 7px 0 hsl(174,5%,61%),
+			// 			0 8px 0 hsl(174,5%,60%),
+			// 			0 0 5px rgba(#000,.05),
+			// 			0 1px 3px rgba(#000,.2),
+			// 			0 3px 5px rgba(#000,.2),
+			// 			0 5px 10px rgba(#000,.2),
+			// 			0 10px 10px rgba(#000,.2),
+			// 			0 20px 20px rgba(#000,.3);
+
+			svg {
+				position: relative;
+				left: -2px;
+				// z-index: 2;
+				width: inherit;
+				height: inherit;
+				overflow: visible;
+				filter: drop-shadow(0 1px 0 hsl(174, 5%, 80%))
+						drop-shadow(0 2px 0 hsl(174, 5%, 75%))
+						drop-shadow(0 3px 0 hsl(174, 5%, 70%))
+						drop-shadow(0 4px 0 hsl(174, 5%, 66%))
+						drop-shadow(0 5px 0 hsl(174, 5%, 64%))
+						// drop-shadow(0 6px 0 hsl(174, 5%, 62%))
+						// drop-shadow(0 7px 0 hsl(174, 5%, 61%))
+						// drop-shadow(0 8px 0 hsl(174, 5%, 60%))
+						// drop-shadow(0 0 5px rgba(0, 0, 0, .05))
+						// drop-shadow(0 1px 3px rgba(0, 0, 0, .2))
+						// drop-shadow(0 3px 5px rgba(0, 0, 0, .2))
+						drop-shadow(0 5px 10px rgba(0, 0, 0, .2))
+						drop-shadow(0 10px 10px rgba(0, 0, 0, .2))
+						drop-shadow(0 20px 20px rgba(0, 0, 0, .3));
+			}
 
 			div {
 				--color: #9d02bd;
@@ -641,8 +668,10 @@ content {
 				--eyes: calc( var( --size ) * .175 );
 				--bH: calc( var( --size ) * .15 );
 				--nbH: calc( var( --bH ) * -1 );
-				position: relative;
-				top: 11px;
+				position: absolute;
+				top: 61px;
+				left: 423px;
+				// z-index: 1;
 				height: 81px;
 				vertical-align: top;
 				display: inline-block;
@@ -655,6 +684,7 @@ content {
 							0 3px 5px rgba(#000,.2),
 							0 5px 10px rgba(#000,.15),
 							0 20px 20px rgba(#000,.25);
+				filter: brightness(1.15);
 				border-radius: var( --bR );
 				border: 1px solid #75008e91;
 			}
