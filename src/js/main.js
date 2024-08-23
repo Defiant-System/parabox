@@ -65,7 +65,7 @@ const parabox = {
 				Bg.dispatch({ type: "resume" });
 				break;
 			case "window.blur":
-				// resume background worker
+				// pause background worker
 				Bg.dispatch({ type: "pause" });
 				break;
 			case "window.keystroke":
