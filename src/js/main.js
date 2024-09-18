@@ -164,7 +164,7 @@ const parabox = {
 				Game.renderLevel(event.arg);
 				// window title
 				let [world, level] = event.arg.split("-");
-				window.title = `Parabox <i class="icon-heart"></i> World ${world} - Level ${level}`;
+				window.title = `Sokoban <i class="icon-heart"></i> World ${world} - Level ${level}`;
 
 				// save level in settings
 				Self.settings.level = event.arg;

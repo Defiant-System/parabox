@@ -1,13 +1,13 @@
 <MenuBar>
-	<Menu name="Parabox">
-		<Menu name="About Parabox" shell="win -a"/>
+	<Menu name="Sokoban">
+		<Menu name="About Sokoban" shell="win -a"/>
 		<Menu type="divider"/>
 		<Menu name="New Game" click="new-game"/>
 		<Menu name="Reset Game" click="reset-game"/>
 		<Menu type="divider"/>
 		<Menu name="Sound Effects" check-group="sound-fx" click="toggle-sound" is-checked="1"/>
 		<Menu type="divider"/>
-		<Menu name="Quit Parabox" shell="win -c"/>
+		<Menu name="Quit Sokoban" shell="win -c"/>
 	</Menu>
 	<Menu name="Game" for="game-options">
 		<Menu name="Undo"/>
