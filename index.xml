@@ -3,11 +3,11 @@
 		<task action="skip" source="src/js/modules/bg-worker.js" destination="public/js/bg-worker.js"/>
 	</Build>
 	<Head>
-		<meta name="id" value="parabox"/>
+		<meta name="id" value="sokoban"/>
 		<meta name="title" value="Sokoban" version="1.34"/>
 		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
 		<meta name="license" value="AGPL-3.0"/>
-		<meta name="repository" value="https://github.com/Defiant-System/parabox"/>
+		<meta name="repository" value="https://github.com/Defiant-System/sokoban"/>
 		<meta name="width" value="660"/>
 		<meta name="height" value="660"/>
 		<meta name="top" value="215"/>

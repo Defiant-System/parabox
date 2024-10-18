@@ -2,7 +2,7 @@
 let Anim = {
 	init() {
 		// fast references
-		let APP = parabox,
+		let APP = sokoban,
 			view = APP.content.find(".game-view");
 		this.els = {
 			view,

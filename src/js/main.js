@@ -18,7 +18,7 @@ const defaultSettings = {
 };
 
 
-const parabox = {
+const sokoban = {
 	init() {
 		// fast references
 		this.content = window.find("content");
@@ -44,7 +44,7 @@ const parabox = {
 		// DEV-ONLY-END
 	},
 	dispatch(event) {
-		let Self = parabox,
+		let Self = sokoban,
 			name,
 			value,
 			pEl,
@@ -224,4 +224,4 @@ const parabox = {
 	editor: @import "areas/editor.js",
 };
 
-window.exports = parabox;
+window.exports = sokoban;

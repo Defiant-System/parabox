@@ -2,7 +2,7 @@
 let Game = {
 	init() {
 		// fast references
-		let APP = parabox;
+		let APP = sokoban;
 		this.els = {
 			view: APP.content.find(".game-view"),
 			topLevel: APP.content.find(".game-view .top-level"),
@@ -302,7 +302,7 @@ let Game = {
 		// check if level is complete
 		if (successCount === this.blockCount) {
 			setTimeout(() => {
-				parabox.content.addClass("game-won");
+				sokoban.content.addClass("game-won");
 				exitEl.removeClass("ready");
 			}, 500);
 		}

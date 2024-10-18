@@ -616,8 +616,8 @@ content {
 		h1 {
 			position: relative;
 			margin: 0 auto;
-			width: 595px;
-			height: 148px;
+			width: 515px; 
+			height: 129px;
 			// text-align: center;
 			// font-size: 100px;
 			// text-transform: uppercase;
@@ -637,8 +637,9 @@ content {
 			// 			0 20px 20px rgba(#000,.3);
 
 			svg {
-				position: relative;
-				left: -2px;
+				position: absolute;
+				top: 0;
+				left: 0;
 				// z-index: 2;
 				width: inherit;
 				height: inherit;
@@ -661,7 +662,7 @@ content {
 
 			div {
 				--color: #9d02bd;
-				--size: 73px;
+				--size: 69px;
 				--wH: -9px;
 				--wT: 12px;
 				--bR: 9px;
@@ -670,10 +671,10 @@ content {
 				--bH: calc( var( --size ) * .15 );
 				--nbH: calc( var( --bH ) * -1 );
 				position: absolute;
-				top: 39px;
-				left: 404px;
+				top: 26px;
+				left: 358px;
 				// z-index: 1;
-				height: 81px;
+				height: 76px;
 				vertical-align: top;
 				display: inline-block;
 				margin: 0 7px 0 6px;
@@ -784,6 +785,7 @@ content {
 		}
 
 		.notice {
+			display: none;
 			margin-top: 117px;
 			line-height: 1.25;
 			font-size: 18px;

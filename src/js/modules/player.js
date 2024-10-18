@@ -33,7 +33,7 @@ let Player = {
 				right: [1,  0],
 			};
 		// do not obey movement if game won
-		if (parabox.content.hasClass("game-won")) return;
+		if (sokoban.content.hasClass("game-won")) return;
 
 		this.pos.add(vec[dir]);
 

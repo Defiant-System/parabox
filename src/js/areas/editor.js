@@ -1,5 +1,5 @@
 
-// parabox.editor
+// sokoban.editor
 
 {
 	init() {
@@ -12,7 +12,7 @@
 		this.els.el.on("mousedown mousemove", ".board", this.paintWall);
 	},
 	dispatch(event) {
-		let APP = parabox,
+		let APP = sokoban,
 			Self = APP.editor,
 			data,
 			result,
@@ -150,7 +150,7 @@
 		};
 	},
 	paintWall(event) {
-		let APP = parabox,
+		let APP = sokoban,
 			Self = APP.editor,
 			Drag = Self.drag || {};
 		// console.log(opt);
