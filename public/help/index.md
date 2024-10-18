@@ -18,6 +18,3 @@ It sounds easy, but the levels range from very easy to extremely difficult,
 some takes hours and even days to figure out. The simplicity and elegance of the rules have 
 made Sokoban one of the most popular logic games.
 
----
-*This game is based on the excellent game **Patrick's Parabox** written by [Patrick Traynor](https://www.patricksparabox.com/).*
-
