@@ -28,11 +28,11 @@ Level["3-2"] = {
 
 Level["3-2.1"] = {
 	grid: 3,
-	bg: "#b73fc6",
-	filter: "sepia(1) hue-rotate(265deg) saturate(2) brightness(.8)",
+	bg: "#9f6e21",
+	filter: "sepia(1) hue-rotate(-10deg) saturate(3) brightness(.95)",
 	void: [{ y: 1, x: 1 }],
 	block: [
-		{ y: 2, x: 1, color: "yellow" }
+		{ y: 2, x: 1, color: "blue" }
 	],
 	walls: [
 		[{ "key": "NE" }, { "key": "NS" }, { "key": "NW" }],
@@ -43,7 +43,7 @@ Level["3-2.1"] = {
 
 Level["3-2.2"] = {
 	grid: 7,
-	bg: "#228e56",
+	bg: "#1a7f4a",
 	filter: "sepia(1) hue-rotate(75deg) saturate(2.25) brightness(.875)",
 	walls: [
 		[{ "key": "NE" }, { "key": "N" }, { "key": "N" }, { "key": "NS" }, { "key": "NS" }, { "key": "N" }, { "key": "NW" }],

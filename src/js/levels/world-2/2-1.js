@@ -25,7 +25,7 @@ Level["2-1"] = {
 
 Level["2-1.1"] = {
 	grid: 5,
-	bg: "#56370c",
+	bg: "#7d5622",
 	filter: "sepia(1) hue-rotate(345deg) saturate(3) brightness(.9)",
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NS"}, { key: "NS" }, { key: "NW" }],

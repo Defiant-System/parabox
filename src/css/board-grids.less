@@ -4,191 +4,216 @@
 		top: 210px;
 		left: 210px;
 		--size: 80px;
-		--bH: 9px;
-
-		.mini {
-			&.size-3 {
-				> .void,
-				> .exit,
-				> span.wall { --size: 26px; }
-			}
-
-			&.size-4 {
-				--mini-margin: 4px 0 0 -1px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 20px; }
-			}
-
-			&.size-5 {
-				--size: 82px;
-				--mini-margin: 2px 0 0 -5px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 16px; }
-			}
-
-			&.size-7 {
-				--size: 79px;
-				--mini-margin: 7px 0 0 1px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 11px; }
-			}
-
-			&.size-9 {
-				--size: 74px;
-				--mini-margin: 20px 0 0 14px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 8px; }
-			}
-
-			&.size-11 {
-				--size: 79px;
-				--mini-margin: 7px 0 0 2px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 7px; }
-			}
-		}
-	}
-
-	&[class*="grid-4"] {
-		top: 165px;
-		left: 165px;
-		--size: 80px;
-		--bH: 9px;
-
-		.mini {
-			&.size-3 {
-				--size: 80px;
-				--mini-margin: 5px 0 0 1px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 26px; }
-			}
-
-			&.size-4 {
-				--size: 82px;
-				--mini-margin: 3px 0 0 -3px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 20px; }
-			}
-
-			&.size-5 {
-				--size: 82px;
-				--mini-margin: 2px 0 0 -5px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 16px; }
-			}
-
-			&.size-7 {
-				--size: 79px;
-				--mini-margin: 7px 0 0 1px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 11px; }
-			}
-		}
 	}
 
 	&[class*="grid-5"] {
 		top: 122px;
 		left: 122px;
 		--size: 82px;
-		--bH: 9px;
 	}
 
 	&[class*="grid-7"] {
-		top: 69px;
-		left: 69px;
-		--size: 74px;
-		--bH: 9px;
+		top: 62px;
+		left: 62px;
+		--size: 77px;
 
 		.mini {
-			&.size-3 {
-				// --size: 74px;
-				--mini-margin: 4px 0 0 0;
-
-				> .void { --size: 22px; margin: 7px 0 0 7px; opacity: .5; }
-				> .exit,
-				> span.wall { --size: 24px; }
-			}
-
-			&.size-4 {
-				// --size: 74px;
-				--mini-margin: 4px 0 0 0;
+			&[class*="size-3"] {
+				> span.wall {
+					--size: 24px;
+				}
 
 				> .void,
-				> .exit,
-				> span.wall { --size: 18px; }
+				> .exit {
+					--size: 22px;
+					top: calc( calc( var( --y ) * var( --size ) ) + 4px );
+					left: calc( calc( var( --x ) * var( --size ) ) + 2px );
+					width: calc( var( --size ) - 2px );
+					height: calc( var( --size ) - 2px );
+				}
 			}
 
-			&.size-5 {
-				// --size: 74px;
-				--wT: 5px;
-				--mini-margin: 4px 0 0 0;
-
+			&[class*="size-5"] {
 				> .void,
 				> .exit,
 				> span.wall {
-					--size: 14px;
+					--size: 15px;
+				}
 
+				> div {
 					&[style*="--x: 4;"] {
-						width: calc( var(--size) + 2px );
+						margin-left: -1px;
 					}
 				}
 			}
 
-			&.size-7 {
-				--size: 70px;
-				--mini-margin: 4px 0 0 1px;
+			&[class*="size-7"] {
+				> span.wall {
+					--size: 12px;
+					top: calc( var( --y ) * calc( var( --size ) ) - var( --wT ) );
 
-				> .void,
-				> .exit,
-				> span.wall { --size: 10px; }
-			}
-
-			&.size-9 {
-				// --size: 74px;
-				--mini-margin: 5px 0 0 0px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 8px; }
-			}
-
-			&.size-11 {
-				--size: 79px;
-				--mini-margin: -4px 0 0 -28px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 7px; }
+					&[style*="--x: 4;"] {
+						width: 16px;
+					}
+				}
 			}
 		}
 	}
 
-	&[data-level-id="2-8"] {
-		top: 69px;
-		left: 69px;
-		--size: 72px;
-		
+	&[class*="grid-7"][data-level-id="2-4"] {
+		top: 73px;
+		left: 73px;
+		--size: 74px;
+
 		.mini {
-			&.size-7 {
-				--mini-margin: 4px 0 0 0;
+			&[class*="size-5"] {
+				> span.wall {
+					--size: 14px;
+					top: calc( var( --y ) * calc( var( --size ) ) - var( --wT ) );
+
+					&[style*="--x: 4;"] {
+						width: 16px;
+					}
+				}
+			}
+		}
+	}
+
+	&[class*="grid-7"][data-level-id="2-8"] {
+		top: 75px;
+		left: 75px;
+		--size: 73px;
+
+		.mini {
+			u {
+				&.NW-NE {
+					top: -2px;
+				}
+
+				&.NE-NW {
+					top: -2px;
+				}
+			}
+
+			&[class*="size-7"] {
+				> span.wall {
+					--size: 10px;
+					width: var( --size );
+					height: calc( var( --size ) + 4px );
+					top: calc( calc( var( --y ) * calc( var( --size ) ) - var( --wT ) ) + 1px );
+				}
+
+				> div {
+					--size: 10px;
+					top: calc(calc(var(--y) * var(--size)) - 2px);
+
+					i {
+						display: none;
+					}
+				}
+
+				> .void,
+				> .exit {
+					--size: 10px;
+					top: calc( calc( var( --y ) * var( --size ) ) + 2px );
+					left: calc( var( --x ) * var( --size ) );
+					width: calc( var( --size ) - 2px );
+					height: calc( var( --size ) - 2px );
+				}
+			}
+		}
+	}
+
+	&[class*="grid-9"][data-level-id="2-9"] {
+		top: 36px;
+		left: 34px;
+		--size: 66px;
+
+		.mini {
+			u {
+				&.NW-NE {
+					top: -2px;
+				}
+
+				&.NE-NW {
+					top: -2px;
+				}
+			}
+
+			&[class*="size-9"] {
+				--bR: 3px;
+
+				> span.wall {
+					height: calc( var( --size ) + 4px );
+					top: calc( calc( var( --y ) * calc( var( --size ) ) + 1px ) - var( --wT ) );
+				}
+			}
+		}
+	}
+
+	&[class*="grid-9"][data-level-id="3-2"] {
+		top: 35px;
+		left: 32px;
+		--size: 66px;
+
+		.mini {
+			&[class*="size-3"] {
+				> span.wall {
+					--size: 21px;
+					top: calc( calc( var( --y ) * calc( var( --size ) ) - 1px ) - var( --wT ) );
+
+					&[style*="--x: 2;"] {
+						width: calc( var(--size) + 1px );
+					}
+				}
+
+				> div {
+					--size: 21px;
+
+					i {
+						display: none;
+					}
+
+					&[style*="--y: 2;"] {
+						margin-top: 2px;
+					}
+				}
+
+				> .void,
+				> .exit {
+					--size: 19px;
+					top: calc( calc( var( --y ) * var( --size ) ) + 6px );
+					left: calc( calc( var( --x ) * var( --size ) ) + 2px );
+					width: calc( var( --size ) - 2px );
+					height: calc( var( --size ) - 2px );
+				}
+			}
+
+			&[class*="size-7"] {
+				> span.wall {
+					--size: 9px;
+					top: calc( calc( var( --y ) * calc( var( --size ) ) + 1px ) - var( --wT ) );
+				}
+			}
+		}
+	}
+
+	&[class*="grid-9"][data-level-id="3-5"],
+	&[class*="grid-9"][data-level-id="3-6"],
+	&[class*="grid-9"][data-level-id="3-7"],
+	&[class*="grid-9"][data-level-id="3-8"],
+	&[class*="grid-9"][data-level-id="3-9"] {
+		top: 35px;
+		left: 32px;
+		--size: 66px;
+
+		.mini {
+			&[class*="size-9"] {
+				--bR: 3px;
+
+				> span.wall {
+					top: calc( calc( var( --y ) * calc( var( --size ) ) - 1px ) - var( --wT ) );
+				}
 			}
 		}
 	}
@@ -197,131 +222,103 @@
 		top: 50px;
 		left: 50px;
 		--size: 62px;
-		--bH: 9px;
 
 		.mini {
-			&.size-3 {
-				--mini-margin: 4px 0 0 0;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 20px; }
-			}
-
-			&.size-4 {
-				--mini-margin: 4px 0 0 0;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 15px; }
-			}
-
-			&.size-5 {
-				--mini-margin: 4px 0 0 0;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 12px; }
-			}
-
-			&.size-7 {
-				--size: 65px;
-				--mini-margin: -6px 0 0 -10px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 9px; }
-			}
-
-			&.size-9 {
-				--size: 65px;
-				--mini-margin: -6px 0 0 -10px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 7px; }
-			}
-		}
-	}
-
-	&[data-level-id="3-9"],
-	&[data-level-id="3-8"],
-	&[data-level-id="3-7"],
-	&[data-level-id="3-6"],
-	&[data-level-id="3-5"],
-	&[data-level-id="2-9"],
-	&[data-level-id="2-7"],
-	&[data-level-id="2-6"] {
-		top: 36px;
-		left: 33px;
-		--size: 66px;
-		
-		.mini {
-			&.size-9 {
-				--size: 66px;
-				--mini-margin: 4px 0 0 0;
-				--wT: 4px;
-
-				> span.wall {				
-					&[style*="--x: 8;"] {
-						width: calc( var(--size) + 1px );
+			&[class*="size-3"] {
+				> span.wall {
+					--size: 20px;
+				}
+				
+				> div {
+					&[style*="--x: 2;"] {
+						margin-left: -1px;
 					}
+
+					&[style*="--y: 2;"] {
+						margin-top: 1px;
+					}
+				}
+
+				> .void,
+				> .exit {
+					--size: 18px;
+					top: calc( calc( var( --y ) * var( --size ) ) + 4px );
+					left: calc( calc( var( --x ) * var( --size ) ) + 2px );
+					width: calc( var( --size ) - 2px );
+					height: calc( var( --size ) - 2px );
+				}
+			}
+
+			&[class*="size-5"] {
+				> .void,
+				> .exit,
+				> span.wall {
+					--size: 12px;
+					height: calc( var( --size ) + 4px );
+					top: calc( var( --y ) * calc( var( --size ) ) - var( --wT ) );
+				}
+
+				> div {
+					--size: 12px;
+
+					&[style*="--y: 0;"][style*="--x: 2;"] {
+						margin-top: 1px;
+					}
+
+					&[style*="--x: 4;"] {
+						margin-left: -1px;
+					}
+				}
+			}
+
+			&[class*="size-7"] {
+				> .void,
+				> .exit,
+				> span.wall {
+					--size: 10px;
+				}
+			}
+
+			&[class*="size-9"] {
+				--bR: 3px;
+
+				> span.wall {
+					--size: 7px;
+				}
+
+				> div {
+					--size: 7px;
+
+					i {
+						display: none;
+					}
+				}
+
+				> .void,
+				> .exit {
+					--bR: 1px;
+					--size: 7px;
+					top: calc( calc( var( --y ) * var( --size ) ) + 1px );
+					left: calc( var( --x ) * var( --size ) );
+					width: calc( var( --size ) - 2px );
+					height: calc( var( --size ) - 2px );
 				}
 			}
 		}
 	}
 
 	&[class*="grid-11"] {
-		top: 21px;
+		top: 23px;
 		left: 23px;
 		--size: 56px;
-		--bH: 9px;
 
 		.mini {
-			&.size-3 {
-				--size: 56px;
-				--wT: 5px;
-				--mini-margin: 4px 0 0 0;
-
+			&[class*="size-3"] {
 				> .void,
 				> .exit,
-				> span.wall { --size: 18px; }
-			}
-
-			&.size-4 {
-				--size: 58px;
-				--mini-margin: -6px 0 0 -5px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 14px; }
-			}
-
-			&.size-5 {
-				--size: 57px;
-				--mini-margin: 0 0 0 -2px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 11px; }
-			}
-
-			&.size-7 {
-				--size: 58px;
-				--mini-margin: -5px 0 0 -5px;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 8px; }
-			}
-
-			&.size-9 {
-				--size: 56px;
-				--mini-margin: 4px 0 0 0;
-
-				> .void,
-				> .exit,
-				> span.wall { --size: 6px; }
+				> span.wall {
+					--size: 18px;
+				}
 			}
 		}
 	}

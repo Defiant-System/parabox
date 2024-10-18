@@ -22,8 +22,8 @@ Level["2-4"] = {
 
 Level["2-4.1"] = {
 	grid: 3,
-	bg: "#c6823f",
-	filter: "sepia(1) hue-rotate(325deg) saturate(2) brightness(.7)",
+	bg: "#a56a10",
+	filter: "sepia(1) hue-rotate(345deg) saturate(3) brightness(.85)",
 	void: [{ y: 1, x: 1 }],
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NWS" }],
@@ -34,8 +34,8 @@ Level["2-4.1"] = {
 
 Level["2-4.2"] = {
 	grid: 3,
-	bg: "#c6823f",
-	filter: "sepia(1) hue-rotate(325deg) saturate(2) brightness(.7)",
+	bg: "#a56a10",
+	filter: "sepia(1) hue-rotate(345deg) saturate(3) brightness(.85)",
 	void: [{ y: 1, x: 1 }],
 	walls: [
 		[{ key: "NE" }, { key: "NS" }, { key: "NWS" }],

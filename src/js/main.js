@@ -14,7 +14,7 @@
 // default settings
 const defaultSettings = {
 	"sound-fx": "on",
-	"level": 1,
+	"level": "1-1",
 };
 
 
@@ -65,11 +65,15 @@ const parabox = {
 				Bg.dispatch({ type: "resume" });
 				break;
 			case "window.blur":
-				// resume background worker
+				// pause background worker
 				Bg.dispatch({ type: "pause" });
 				break;
 			case "window.keystroke":
 				switch (event.char) {
+					case "esc":
+						// go to "saved" next level
+						Self.dispatch({ type: "set-game-level", arg: Self.settings.level });
+						break;
 					case "up":
 					case "left":
 					case "down":
@@ -77,36 +81,36 @@ const parabox = {
 				}
 				break;
 			// temp
-			case "zoom-grid":
-				el = $(event.target);
-				pEl = el.nextAll(".player");
-				if (!el.hasClass("mini")) return;
-				value = {
-					el,
-					size: parseInt(el.cssProp("--size"), 10),
-					mini: el.data("mini"),
-					x: +el.cssProp("--x"),
-					y: +el.cssProp("--y"),
-					enter: "up"
-				};
+			// case "zoom-grid":
+			// 	el = $(event.target);
+			// 	pEl = el.nextAll(".player");
+			// 	if (!el.hasClass("mini")) return;
+			// 	value = {
+			// 		el,
+			// 		size: parseInt(el.cssProp("--size"), 10),
+			// 		mini: el.data("mini"),
+			// 		x: +el.cssProp("--x"),
+			// 		y: +el.cssProp("--y"),
+			// 		enter: "up"
+			// 	};
 
-				switch (true) {
-					case (+pEl.cssProp("--y") === 4): value.enter = "up"; break;
-					case (+pEl.cssProp("--y") === 2): value.enter = "down"; break;
-					case (+pEl.cssProp("--x") === 5): value.enter = "right"; break;
-					case (+pEl.cssProp("--x") === 7): value.enter = "left"; break;
-				}
+			// 	switch (true) {
+			// 		case (+pEl.cssProp("--y") === 4): value.enter = "up"; break;
+			// 		case (+pEl.cssProp("--y") === 2): value.enter = "down"; break;
+			// 		case (+pEl.cssProp("--x") === 5): value.enter = "right"; break;
+			// 		case (+pEl.cssProp("--x") === 7): value.enter = "left"; break;
+			// 	}
 
-				if (!el.cssProp("--x")) {
-					value.x = Math.floor(event.offsetX / value.size);
-					value.y = Math.floor(event.offsetY / value.size);
-				}
-				if (Anim.zoomed) Anim.zoomOut(value);
-				else Anim.zoomGrid(value);
-				break;
-			case "zoom-out":
-				Anim.zoomOut();
-				break;
+			// 	if (!el.cssProp("--x")) {
+			// 		value.x = Math.floor(event.offsetX / value.size);
+			// 		value.y = Math.floor(event.offsetY / value.size);
+			// 	}
+			// 	if (Anim.zoomed) Anim.zoomOut(value);
+			// 	else Anim.zoomGrid(value);
+			// 	break;
+			// case "zoom-out":
+			// 	Anim.zoomOut();
+			// 	break;
 			case "bg-event":
 				Bg.dispatch({ type: event.arg });
 				break;
@@ -155,11 +159,15 @@ const parabox = {
 					let xMenu = window.bluePrint.selectSingleNode(`//Menu[@click="set-editor-mode"]`);
 					Self.dispatch({ type: "set-editor-mode", xMenu });
 				}
+
 				// html
 				Game.renderLevel(event.arg);
 				// window title
 				let [world, level] = event.arg.split("-");
-				window.title = `Parabox <i class="icon-heart"></i> World ${world} - Level ${level}`;
+				window.title = `Sokoban <i class="icon-heart"></i> World ${world} - Level ${level}`;
+
+				// save level in settings
+				Self.settings.level = event.arg;
 
 				// update app UI
 				Self.content.removeClass("game-won").data({ mode: "game" });
@@ -196,6 +204,9 @@ const parabox = {
 				break;
 			case "close-congratulations":
 				Self.content.removeClass("game-won");
+				
+				let nextLevel = Level.getNext(Self.settings.level);
+				Self.dispatch({ type: "set-game-level", arg: nextLevel });
 				break;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");

@@ -1,0 +1,300 @@
+
+.box.mini {
+	--wH: -2px;
+	--wT: 3px;
+	--bR: 4px;
+	--bH: 2px;
+	--nbH: 2px;
+
+	&:before {
+		opacity: .5;
+		mix-blend-mode: overlay;
+	}
+
+	// for development
+	> div {
+		// &.player { display: none; }
+		// &.box:not(.player) { display: none; }
+		// &.exit,
+		// &.void { display: none; }
+	}
+
+	> span {
+		// &.wall { display: none; }
+	}
+
+	u {
+		width: 3px;
+		height: 4px;
+
+		&.NW-NE {
+			top: 0;
+			right: -3px;
+			height: 7px;
+			background-image: url(~/icons/mini-neg-nw-ne.png);
+			background-position: 0 3px;
+			background-color: inherit;
+		}
+
+		&.NE-NW {
+			top: 0;
+			left: -3px;
+			height: 5px;
+			background-image: url(~/icons/mini-neg-ne-nw.png);
+			background-position: 0 3px;
+			background-color: inherit;
+		}
+
+		&.NE-ES {
+			background-image: url(~/icons/mini-neg-ne-es.png);
+			top: -3px;
+			left: -1px;
+		}
+
+		&.NE-WS {
+			background-image: url(~/icons/mini-neg-ne-ws.png);
+			top: -2px;
+			left: -2px;
+		}
+	}
+
+	> .void,
+	> .exit {
+		border-radius: 3px;
+		top: calc( calc( var( --y ) * var( --size ) ) - 3px );
+		left: calc( calc( var( --x ) * var( --size ) ) - 1px );
+		width: calc( var( --size ) - 2px );
+		height: calc( var( --size ) - 2px );
+
+		i {
+			--eyes: 3px;
+
+			&:before {
+				box-shadow: none;
+				background: rgba(#000,.65);
+				left: 3px;
+			}
+
+			&:after {
+				box-shadow: none;
+				background: rgba(#000,.65);
+				right: 3px;
+			}
+		}
+
+		&:after {
+			bottom: -2px;
+		}
+	}
+
+	> div {
+		--bR: 3px;
+	}
+
+	> div {
+		position: absolute;
+		top: calc( calc( var( --y ) * var( --size ) ) - 4px );
+		left: calc( calc( var( --x ) * var( --size ) ) - 3px );
+		width: calc( var( --size ) + 2px );
+		height: calc( var( --size ) + 4px );
+		border-width: 1px;
+
+		&[style*="--y: 0;"] {
+			margin-top: -1px;
+			border-top-width: 2px;
+		}
+
+		&[style*="--x: 0;"] {
+			border-left-width: 2px;
+			margin-left: 1px;
+		}
+	}
+
+
+	> span.wall {
+		// north east
+		&.NE {
+			border-width: 1px 0 0 1px;
+
+			&[style^="--y: 0;"] {
+				border-top-width: 2px;
+
+				&[style*="--x: 0;"] {
+					border-left-width: 2px;
+				}
+			}
+
+			&[style*="--x: 0;"] {
+				border-left-width: 2px;
+			}
+		}
+
+		// north
+		&.N {
+			border-width: 1px 0 0 0;
+
+			&[style^="--y: 0;"] {
+				border-top-width: 2px;
+			}
+		}
+
+		// north west
+		&.NW {
+			border-width: 1px 1px 0 0;
+
+			&[style^="--y: 0;"] {
+				border-top-width: 2px;
+			}
+		}
+
+		// north south east
+		&.NSE {
+			border-width: 1px 0 1px 1px;
+
+			&[style*="--x: 0;"] {
+				border-left-width: 2px;
+			}
+		}
+
+		// north south
+		&.NS {
+			border-width: 1px 0 1px 0;
+
+			&[style^="--y: 0;"] {
+				border-top-width: 2px;
+			}
+		}
+
+		// north west south
+		&.NWS {
+			border-width: 1px 1px 1px 0;
+
+			&[style^="--y: 0;"] {
+				border-top-width: 2px;
+			}
+		}
+
+		// north west south east
+		&.NWSE {
+			border-width: 1px;
+
+			&[style^="--y: 0;"] {
+				border-top-width: 2px;
+			}
+
+			&[style*="--x: 0;"] {
+				border-left-width: 2px;
+			}
+		}
+
+		// north west east
+		&.NWE {
+			border-width: 1px 1px 0 1px;
+
+			&[style^="--y: 0;"] {
+				border-top-width: 2px;
+			}
+
+			&[style*="--x: 0;"] {
+				border-left-width: 2px;
+			}
+		}
+
+		// blank
+		&.B {
+			border-width: 0;
+		}
+
+		// full
+		&.F {
+			border-width: 0;
+		}
+
+		// east
+		&.E {
+			border-width: 0 0 0 1px;
+
+			&[style*="--x: 0;"] {
+				border-left-width: 2px;
+			}
+		}
+
+		// west
+		&.W {
+			border-width: 0 1px 0 0;
+		}
+
+		// west east
+		&.WE {
+			border-width: 0 1px 0 1px;
+
+			&[style*="--x: 0;"] {
+				border-left-width: 2px;
+			}
+		}
+
+		// west south east
+		&.WSE {
+			border-width: 0 1px 1px 1px;
+
+			&[style*="--x: 0;"] {
+				border-left-width: 2px;
+			}
+		}
+
+		// south
+		&.S {
+			border-width: 0 0 1px 0;
+		}
+
+		// south east
+		&.SE {
+			border-width: 0 0 1px 1px;
+
+			&[style*="--x: 0;"] {
+				border-left-width: 2px;
+			}
+		}
+
+		// west south
+		&.WS {
+			border-width: 0 1px 1px 0;
+		}
+	}
+
+	&[class*="size-3"] {
+		> span.wall {
+			&[style*="--x: 2;"] {
+				border-right-width: 2px;
+			}
+		}
+
+		> div {
+			&[style*="--x: 2;"] {
+				border-right-width: 2px;
+			}
+
+			&[style*="--y: 2;"] {
+				margin-top: 1px;
+			}
+		}
+	}
+
+	&[class*="size-5"] {
+		> span.wall {
+			&[style*="--x: 4;"] {
+				border-right-width: 2px;
+			}
+		}
+		
+		> div {
+			&[style*="--x: 4;"] {
+				border-right-width: 2px;
+			}
+
+			&[style*="--y: 4;"] {
+				margin-top: 1px;
+			}
+		}
+	}
+}
